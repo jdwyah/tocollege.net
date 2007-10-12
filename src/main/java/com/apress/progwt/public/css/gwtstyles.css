@@ -1,0 +1,51 @@
+body {
+	background-color: transparent;
+	color: black;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+div.loading {
+	position: absolute;
+	top: 45%;
+	left: 45%;
+	background-image: url("../img/blueFade.png");
+	background-repeat: repeat-x;
+	background-position: 0px -20px;
+	background-color: #576B93;
+	border: 4px solid #D8E3FD;
+	border-style: ridge;
+	color: white;
+	font-weight: bold;
+	width: 8em;
+	height: 3em;
+	text-align: center;
+	padding: 10px;
+}
+
+code {
+	font-size: small;
+}
+
+a {
+	color: darkblue;
+}
+
+a:visited {
+	color: darkblue;
+}
+
+.CalcButton {
+	background-color: #DDDDDD;
+	color: white;	
+	border: 4px solid #D8E3FD;
+	border-style: ridge;
+}
+.ControlButton {
+	width: 40px;
+}
+.NumberButton {
+	width: 10px;
+}
+.ResultBox {
+	text-align: right;
+}

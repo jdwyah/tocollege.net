@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.apress.progwt.client.domain">
+
+	<class name="User" table="Users">
+		<meta attribute="generated-class">com.apress.progwt.client.domain.generated.AbstractUser</meta>
+		<meta attribute="scope-class">public abstract</meta>
+
+		<id name="id" type="long" column="user_id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="username" type="string" column="user_name">
+			<meta attribute="use-in-equals">true</meta>
+		</property>
+		
+		<property name="password" type="string" column="password">
+		</property>
+		<property name="email" type="string" column="email">
+		</property>
+		<property name="enabled" type="boolean" column="enabled">
+		</property>
+		<property name="supervisor" type="boolean" column="supervisor">
+		</property>		
+		
+		<property name="invitations" type="int" column="invitations">
+		</property>		
+		
+		<property name="dateCreated" type="java.util.Date">			
+			<meta attribute="field-description">User Was Created</meta>
+			<column name="dateCreated" sql-type="timestamp" />
+		</property>
+				
+	
+	
+	</class>
+
+</hibernate-mapping>
