@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+ 		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${HOST.jdbc.password}" />
+		<property name="testConnectionOnCheckout" value="true"/>
+	</bean>
+	
+
+	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mappingResources">
+			<list>
+				<value>com/apress/progwt/client/domain/User.hbm.xml</value>			
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>			
+			
+				<prop key="hibernate.dialect">${db.dialect}</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+				<prop key="hibernate.jdbc.batch_size">20</prop>
+				
+				
+				<prop key="hibernate.c3p0.min_size">10</prop>
+				<prop key="hibernate.c3p0.max_size">100</prop>
+				<prop key="hibernate.c3p0.timeout">10</prop>
+				<prop key="hibernate.c3p0.acquireRetryAttempts">30</prop>
+
+				<prop key="hibernate.c3p0.acquireIncrement">5</prop>
+
+				<prop key="hibernate.c3p0.idleConnectionTestPeriod">100</prop>
+
+				<prop key="hibernate.c3p0.initialPoolSize">20</prop>
+				<prop key="hibernate.c3p0.maxPoolSize">100</prop>
+				<prop key="hibernate.c3p0.maxIdleTime">300</prop>
+				<prop key="hibernate.c3p0.maxStatements">50</prop>
+				<prop key="hibernate.c3p0.minPoolSize">10</prop>
+
+				<prop key="hibernate.c3p0.preferredTestQuery">SELECT 1</prop>			
+				
+				
+				<prop key="hibernate.c3p0.testConnectionOnCheckout">true</prop>
+
+
+			</props>
+		</property>
+	</bean>
+	<bean id="userDAO" class="com.apress.progwt.server.dao.hibernate.UserDAOHibernateImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	
+	</bean>
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+
+	
+	
+
+</beans>

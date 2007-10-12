@@ -1,0 +1,49 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE decorators PUBLIC "-//OpenSymphony//SiteMesh 1.5 Decorators//EN" "http://www.opensymphony.com/sitemesh/dtd/sitemesh_1_5_decorators.dtd">
+<decorators defaultdir="/decorators">
+
+    <excludes>
+	  <pattern>*com.aavu.HippoTest*</pattern> 
+	  <pattern>*com.aavu.Interactive*</pattern>	 
+	  <pattern>/site/secure/mindscape.html</pattern><!-- todo change to minimal decorator -->
+	  <pattern>/site/browser.html</pattern><!-- todo change to minimal decorator -->
+	  <pattern>/site/secure/addLink.html*</pattern><!-- todo change to minimal decorator -->
+      <pattern>/site/secure/getTopics.html</pattern><!-- Ajax Straight HTML <UL> -->
+      <pattern>/site/browse/*</pattern><!-- /user/topic_title <UL> -->
+	</excludes>
+    
+   <!-- notes -->
+   <!-- The exludes above will NOT do anything if sitemesh.xml doesn't -->
+   <!-- have a "excludes file="${decorators-file}" element  -->
+   <!-- These  patterns match -->
+   <!-- String thisPath = request.getServletPath(); -->
+   <!-- for site/index.html that == "/site"  ! "/site/*" -->
+    
+    
+    <!-- crucial not to match /index.html (the redirect) since that doesn't go through
+    Spring and the default.ftl needs to springMacroRequestContext -->
+    <!-- <decorator name="none" page="none.ftl">
+        <pattern>/*</pattern>
+    </decorator> -->
+    
+   
+    
+    <!-- This default.ftl uses decorators/spring.ftl which is a little messy
+    since that normally just come from the spring jar. -->
+    <decorator name="default" page="default.ftl">
+        <pattern>/site*</pattern>        
+    </decorator>
+   
+    
+    <decorator name="noSidebar" page="noSidebar.ftl">
+    	<pattern>/site/browser.html</pattern>
+    </decorator>
+   
+   <!-- couldn't get this to work. damn sitemesh. for some reason it does the path mapping for the excludes from above instead of these patterns.  I dunno
+   <decorator name="minimal" page="minimal.ftl" >        
+      <pattern>site/secure/mindscape.htm*</pattern>
+	  <pattern>*site/secure/addLink.htm*</pattern>
+	  <pattern>/site/secure/addLink.html</pattern>
+    </decorator> -->
+    
+</decorators>

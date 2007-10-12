@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+	<!-- Turn on @Required -->
+	<!-- not precisely sure why this is neccessary, since we do it in appContext too.. -->
+	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+	<bean id="propertyConfigurer2" class="com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:config.properties" />
+	</bean>
+
+	<bean id="indexController" class="com.apress.progwt.server.web.controllers.IndexController">
+		<property name="view" value="index"/>		
+		<property name="userService" ref="userService"/>		
+	</bean>	
+	
+	<bean id="calculatorController" class="com.apress.progwt.server.web.controllers.BasicController">
+		<property name="view" value="calculator" />
+		<property name="userService" ref="userService" />		
+	</bean>
+	<bean id="errorController" class="com.apress.progwt.server.web.controllers.BasicController">
+		<property name="view" value="servletErrorView" />
+		<property name="userService" ref="userService" />		
+	</bean>
+	<bean id="loginController" class="com.apress.progwt.server.web.controllers.LoginController">
+		<property name="view" value="acegilogin" />
+	</bean>
+	
+	<!-- PEND MED blech. GWT loads the image bundles from the right spot, but
+		 goes looking for this clear.cache.gif from where the .js was called.  -->
+	<bean id="forwardClearCacheController" class="com.apress.progwt.server.web.controllers.BasicController">
+		<property name="view" value="redirect:/com.aavu.Interactive/clear.cache.gif" />
+		<property name="userService" ref="userService" />
+	</bean>
+	
+	
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="mappings">
+			<props>
+				
+				<prop key="/service/userService">GWTUserService</prop>
+				
+								
+				<prop key="/site/acegilogin.html">loginController</prop>
+			
+
+				<prop key="/site/index.html">indexController</prop>
+				<prop key="/site/calculator.html">calculatorController</prop>
+				
+
+				<prop key="/site/accessDenied.html">errorController</prop>
+				<prop key="/site/servletErrorView.html">errorController</prop>						
+
+							
+				<prop key="/site/clear.cache.gif">forwardClearCacheController</prop>
+				<prop key="/site/secure/clear.cache.gif">forwardClearCacheController</prop>
+
+				
+			</props>
+		</property>
+
+	</bean>
+
+	
+
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" abstract="false"
+		scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="requestContextAttribute">
+			<value>rc</value>
+		</property>
+		<property name="cache">
+			<value>true</value>
+		</property>
+		<property name="prefix">
+			<value>/WEB-INF/freemarker/</value>
+		</property>
+		<property name="suffix">
+			<value>.ftl</value>
+		</property>
+		<property name="exposeSpringMacroHelpers" value="true" />
+	</bean>
+
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" abstract="false"
+		scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">errorView</prop>
+			</props>
+		</property>
+	</bean>
+
+
+</beans>
