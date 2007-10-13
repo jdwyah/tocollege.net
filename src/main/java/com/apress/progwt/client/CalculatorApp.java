@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class UserClientApp {
+public class CalculatorApp {
 
 	public static final String MAIN_DIV = "slot1";
 
@@ -18,7 +18,7 @@ public class UserClientApp {
 		RootPanel.get(MAIN_DIV).add(widget);
 	}
 
-	public UserClientApp() {
+	public CalculatorApp() {
 		try {
 
 			initServices();

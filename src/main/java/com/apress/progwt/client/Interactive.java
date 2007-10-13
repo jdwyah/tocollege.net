@@ -64,7 +64,7 @@ public class Interactive implements EntryPoint {
 			GWT.setUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
 
 
-			UserClientApp m = new UserClientApp();
+			CalculatorApp m = new CalculatorApp();
 
 
 		} catch (Exception e) {

@@ -9,7 +9,8 @@ import com.google.gwt.user.client.ui.TextBox;
 public class Calculator extends Composite {
 
 	/**
-	 * Format is postive;negative
+	 * Format is postive;negative. We want to override the default thousands separator ',' to help
+	 * ease our parser.
 	 */
 	private static final NumberFormat nf = NumberFormat.getDecimalFormat().getFormat(
 			"###0.#####;-###0.#####");
@@ -22,7 +23,6 @@ public class Calculator extends Composite {
 
 	public Calculator() {
 
-
 		DockPanel dockPanel = new DockPanel();
 
 		Grid controls = new Grid(5, 2);
@@ -31,11 +31,11 @@ public class Calculator extends Composite {
 		// initialize the 1-9 buttons
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 3; col++) {
-				numbersP.setWidget(row, col, new NumberB(this, row * 3 + col + 1));
+				numbersP.setWidget(row, col, new NumberButton(this, row * 3 + col + 1));
 			}
 		}
-		numbersP.setWidget(3, 0, new NumberB(this, 0));
-		numbersP.setWidget(3, 1, new NumberB(this, "."));
+		numbersP.setWidget(3, 0, new NumberButton(this, 0));
+		numbersP.setWidget(3, 1, new NumberButton(this, "."));
 		numbersP.setWidget(3, 2, new ControlButton(this, new ControlAction(this, "+/-") {
 
 			// @Override
