@@ -17,132 +17,139 @@ import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
 import com.apress.progwt.server.service.UserService;
 
-public class UserDAOHibernateImpl extends HibernateDaoSupport implements UserDAO,
-		UserDetailsService, CasAuthoritiesPopulator {
+public class UserDAOHibernateImpl extends HibernateDaoSupport implements
+        UserDAO, UserDetailsService, CasAuthoritiesPopulator {
 
-	private static final Logger log = Logger.getLogger(UserDAOHibernateImpl.class);
+    private static final Logger log = Logger
+            .getLogger(UserDAOHibernateImpl.class);
 
+    private UserService userService;
 
-	private UserService userService;
+    public void delete(User user) {
+        getHibernateTemplate().delete(user);
+    }
 
+    public List<User> getAllUsers() {
+        return getHibernateTemplate().find("from User");
+    }
 
-	public void delete(User user) {
-		getHibernateTemplate().delete(user);
-	}
+    /**
+     * Uses username.toLowerCase()
+     */
+    public User getUserByUsername(String username)
+            throws UsernameNotFoundException {
 
-	public List<User> getAllUsers() {
-		return getHibernateTemplate().find("from User");
-	}
+        log.debug("Inited");
 
-	/**
-	 * Uses username.toLowerCase()
-	 */
-	public User getUserByUsername(String username) throws UsernameNotFoundException {
+        List<User> list = getHibernateTemplate().findByNamedParam(
+                "from User where username = :name", "name",
+                username.toLowerCase());
+        log.debug("list " + list);
+        log.debug("list " + list.size());
 
-		log.debug("Inited");
+        if (list.size() != 1) {
+            if (!username.equals("anonymousUser")) {
+                log.debug("getUserByUsername UsernameNotFoundException "
+                        + list.size() + " users for " + username);
+            }
+            throw new UsernameNotFoundException(
+                    "Username not found or duplicate.");
+        } else {
+            log.debug("load user success " + list.get(0));
+            User u = (User) list.get(0);
+            log.debug("user: " + u);
+            return u;
+        }
 
-		List<User> list = getHibernateTemplate().findByNamedParam(
-				"from User where username = :name", "name", username.toLowerCase());
-		log.debug("list " + list);
-		log.debug("list " + list.size());
+        // return (User)
+        // DataAccessUtils.uniqueResult(getHibernateTemplate().findByNamedParam("from
+        // User where username = :name", "name", username));
+    }
 
-		if (list.size() != 1) {
-			if (!username.equals("anonymousUser")) {
-				log.debug("getUserByUsername UsernameNotFoundException " + list.size()
-						+ " users for " + username);
-			}
-			throw new UsernameNotFoundException("Username not found or duplicate.");
-		} else {
-			log.debug("load user success " + list.get(0));
-			User u = (User) list.get(0);
-			log.debug("user: " + u);
-			return u;
-		}
+    public User getUserForId(long id) {
+        log.debug("DAOhere user for id " + id);
+        return (User) DataAccessUtils.uniqueResult(getHibernateTemplate()
+                .findByNamedParam("from User where id = :id", "id", id));
+    }
 
+    /**
+     * Uses username.toLowerCase()
+     */
+    public ServerSideUser loadUserByUsername(String username)
+            throws UsernameNotFoundException, DataAccessException {
 
-		// return (User) DataAccessUtils.uniqueResult(getHibernateTemplate().findByNamedParam("from
-		// User where username = :name", "name", username));
-	}
+        log.debug("here");
+        if (username == null) {
+            throw new UsernameNotFoundException("Username null not found");
+        }
+        List<User> users = getHibernateTemplate().findByNamedParam(
+                "from User where username = :name", "name",
+                username.toLowerCase());
 
-	public User getUserForId(long id) {
-		log.debug("DAOhere user for id " + id);
-		return (User) DataAccessUtils.uniqueResult(getHibernateTemplate().findByNamedParam(
-				"from User where id = :id", "id", id));
-	}
+        log.debug("Found " + users.size() + " users for username "
+                + username);
 
-	/**
-	 * Uses username.toLowerCase()
-	 */
-	public ServerSideUser loadUserByUsername(String username) throws UsernameNotFoundException,
-			DataAccessException {
+        if (users.size() != 1) {
+            if (users.size() != 0) {
+                throw new UsernameNotFoundException(
+                        "Duplicate Username Problem: " + username);
+            } else {
+                throw new UsernameNotFoundException(
+                        "Username not found: " + username);
+            }
+        } else {
+            log.debug("load user success " + users.get(0));
+            User u = (User) users.get(0);
+            return new ServerSideUser(u);
+        }
+    }
 
-		log.debug("here");
-		if (username == null) {
-			throw new UsernameNotFoundException("Username null not found");
-		}
-		List<User> users = getHibernateTemplate().findByNamedParam(
-				"from User where username = :name", "name", username.toLowerCase());
+    /**
+     * Save, ensuring that newly created users have the 'none'
+     * subscription first. (non-Javadoc)
+     * 
+     * @see com.aavu.server.dao.UserDAO#save(com.aavu.client.domain.User)
+     */
+    public User save(User user) {
+        log.warn(user);
 
-		log.debug("Found " + users.size() + " users for username " + username);
+        getHibernateTemplate().saveOrUpdate(user);
+        return user;
+    }
 
-		if (users.size() != 1) {
-			if (users.size() != 0) {
-				throw new UsernameNotFoundException("Duplicate Username Problem: " + username);
-			} else {
-				throw new UsernameNotFoundException("Username not found: " + username);
-			}
-		} else {
-			log.debug("load user success " + users.get(0));
-			User u = (User) users.get(0);
-			return new ServerSideUser(u);
-		}
-	}
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
-	/**
-	 * Save, ensuring that newly created users have the 'none' subscription first. (non-Javadoc)
-	 * 
-	 * @see com.aavu.server.dao.UserDAO#save(com.aavu.client.domain.User)
-	 */
-	public User save(User user) {
-		log.warn(user);
+    public User getForPaypalID(String paypalID) {
+        return (User) DataAccessUtils.uniqueResult(getHibernateTemplate()
+                .findByNamedParam("from User where paypalId = :id", "id",
+                        paypalID));
+    }
 
-		getHibernateTemplate().saveOrUpdate(user);
-		return user;
-	}
+    public UserDetails getUserDetails(String username)
+            throws AuthenticationException {
+        log.debug("getting userdetails " + username);
 
+        return loadUserByUsername(username);
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+    }
 
-
-	public User getForPaypalID(String paypalID) {
-		return (User) DataAccessUtils.uniqueResult(getHibernateTemplate().findByNamedParam(
-				"from User where paypalId = :id", "id", paypalID));
-	}
-
-
-	public UserDetails getUserDetails(String username) throws AuthenticationException {
-		log.debug("getting userdetails " + username);
-
-		return loadUserByUsername(username);
-
-	}
-
-	/**
-	 * use iterate() to avoid returning rows. Hibernate ref "11.13. Tips & Tricks"
-	 * 
-	 * grrrrr... started throwing a classcastexception, but not repeatable..
-	 */
-	public long getUserCount() {
-		try {
-			return (Long) getHibernateTemplate().iterate("select count(*) from User").next();
-		} catch (ClassCastException e) {
-			log.error(e.getMessage());
-			return 10000;
-		}
-	}
-
-
+    /**
+     * use iterate() to avoid returning rows. Hibernate ref "11.13. Tips &
+     * Tricks"
+     * 
+     * grrrrr... started throwing a classcastexception, but not
+     * repeatable..
+     */
+    public long getUserCount() {
+        try {
+            return (Long) getHibernateTemplate().iterate(
+                    "select count(*) from User").next();
+        } catch (ClassCastException e) {
+            log.error(e.getMessage());
+            return 10000;
+        }
+    }
 
 }
