@@ -8,8 +8,8 @@
 <head>
   <!--default-->
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-  <meta name="description" content="Tame information anxiety. Connect your thoughts, Write your novel, Start your business, My Hippocampus" />
-  <meta name="keywords" content="personal,knowledge,management,visualization,collection,GWT,information,anxiety,hippocampus,my" />
+  <meta name="description" content="Applying to college? Track your applications & connect with like minded individuals!" />
+  <meta name="keywords" content="College,Application,Social,Web 2.0,GWT" />
   <meta name="author" content="Jeff Dwyer/" />
   
 <link rel="icon" href="http://www.myhippocampus.com/favicon.ico" type="image/vnd.microsoft.icon" />
@@ -26,14 +26,13 @@
 <div id="wrapper">
 
 	<div id="main">
-       
-     
+            
 	    <div id="header">
 	    
-	    	<div id="header_logo">	    	
+	    	<!--<div id="header_logo">	    	
 	    		<a href="<@spring.url "/site/index.html"/>"><@common.pngImage src="/img/sideSeaHorse120px.png" width="67" height="120"/>
 	    		</a>
-    		</div>
+    		</div>-->
     		    	
     		    	
     		<#if "true" == page.properties["meta.sm.showAccount"]?default("true")>
@@ -42,7 +41,7 @@
     		  	<@common.box "boxStyleSm", "userBox", "Welcome ${user.username}">  	
     		  	<ul>
     		  	  <li><strong>
-    		  	  <a href="<@spring.url "/site/secure/mindscape.html"/>">My Mindscape</a></strong>
+    		  	  <a href="<@spring.url "/site/secure/myList.html"/>">My List</a></strong>
     		  	  </li>    		  	  
     		  	  |<li>
     		  	  <a href="<@spring.url "/site/secure/userPage.html"/>">Settings</a>
@@ -61,8 +60,7 @@
     		
     		
     		<div id="header_logoTitle" >
-    			<a href="<@spring.url "/site/index.html"/>"><@common.pngImage src="/img/myhippocampusLogo.png" width="552" height="82"/></a>
-    			<p>Knowledge Reimagined<p>
+    			<a href="<@spring.url "/site/index.html"/>"><@common.pngImage src="/img/Logo_388_126.png" width="388" height="126"/></a>
     		</div>
     			
     		<div class="clearRdiv"/>
@@ -90,10 +88,9 @@
 <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
 </script>
 <script type="text/javascript">
-_uacct = "UA-1880676-1";
+_uacct = "UA-1880676-2";
 urchinTracker();
 </script>
-
 
 </body>
 </html>

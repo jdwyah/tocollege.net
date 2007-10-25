@@ -9,8 +9,11 @@ body {
 	/*background-image:url("../img/simplicity/ocean200.png");*/
 }
 
+#wrapper {
+	background-color: blue;
+}
 #main {
-	background-color: #F0F4AA;
+	background-color: white;
 	margin: 10px 10px 10px 10px;
 	min-height: 500px;
 }
@@ -21,7 +24,7 @@ h2 {
 }
 
 #header {
-	background-color: #F0F4AA;
+	
 }
 
 #header_logo {
@@ -100,7 +103,9 @@ h2 {
 	float: left;
 	width: 65%;
 }
-
+#bottom {
+	clear: both;
+}
 #searchSection {
  	
 }
@@ -150,7 +155,8 @@ fieldset {
 .boxStyle {
 	/*background: url(http://youcastr.com/images/finals/490_top.png) no-repeat
 		top left;*/
-	background: #B6C022;
+	background: blue;
+	
 	margin: 5px;
 	padding: 5px 0px 0px 0px;
 	/*margin-left: 10px;
@@ -161,19 +167,20 @@ fieldset {
 
 .boxStyleSm {
 	margin: 5px;
-	padding: 5px 0px 0px 0px;
-	/*background: url(http://youcastr.com/images/finals/300_top.png) no-repeat
-		top left;*/
-	background-color: #B6C022;
+	padding: 5px 0px 0px 0px;	
+	background: blue;	
 }
 
 .boxStyle h2 {
+	
+	color: white;
 	font-size: 1.5em;
 	margin: 0px 0px 3px 0px;
 	text-indent: 1em;
 }
 
 .boxStyleSm h2 {
+	color: white;
 	font-size: 1.5em;
 	margin: 0px 0px 3px 0px;
 	text-indent: 1em;

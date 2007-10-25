@@ -1,68 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="
+     xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+     xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
-	<!-- Turn on HostPrecedingPropertyPlaceholderConfigurer -->
-	<!-- http://jdwyah.blogspot.com/2006/12/updated-spring-configuration.html -->
-	<bean id="propertyConfigurer" class="com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:config.properties" />
-	</bean>
+     <!-- Turn on HostPrecedingPropertyPlaceholderConfigurer -->
+     <!-- http://jdwyah.blogspot.com/2006/12/updated-spring-configuration.html -->
+     <bean id="propertyConfigurer" class="com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer">
+          <property name="location" value="classpath:config.properties" />
+     </bean>
 
-	<!-- Turn on @Required -->
-	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+     <!-- Turn on @Required -->
+     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
 
 
-<!-- Theory was to wrap all these calls to change the way we do our try/catch & logging but I forgot that Spring AOP can only really catch calls to exernal public methods, in this case handleRequest -->
+     <!-- Theory was to wrap all these calls to change the way we do our try/catch & logging but I forgot that Spring AOP can only really catch calls to exernal public methods, in this case handleRequest -->
+     <aop:config>
+          <aop:aspect ref="GWTDebugAdvice">
+               <aop:pointcut id="gwtCalls"
+                    expression="execution(* com.apress.progwt.server.gwt.GWTSpringControllerReplacement.handleRequest(..))" />
+               <aop:around pointcut-ref="gwtCalls" method="wrapGWT" />
+          </aop:aspect>
+     </aop:config>
+     <bean id="GWTDebugAdvice" class="com.apress.progwt.server.gwt.GWTDebugAdvice" />
 
-	<aop:config>
-      <aop:aspect ref="GWTDebugAdvice">
-         <aop:pointcut id="gwtCalls"
-                    expression="execution(* com.apress.progwt.server.gwt.GWTSpringControllerReplacement.handleRequest(..))"/>
-         <aop:around pointcut-ref="gwtCalls"
-                  method="wrapGWT"/>
-      </aop:aspect>
-   </aop:config>
-	<bean id="GWTDebugAdvice" class="com.apress.progwt.server.gwt.GWTDebugAdvice"/> 
-	
 
-	<bean id="GWTUserService" class="com.apress.progwt.server.service.gwt.GWTUserServiceImpl">
-		<property name="userService" ref="userService" />
-		<property name="serializeEverything" value="${HOST.gwt.serializeEverything}"/>
-	</bean>
+     <bean id="GWTUserService" class="com.apress.progwt.server.service.gwt.GWTUserServiceImpl">
+          <property name="userService" ref="userService" />
+          <property name="serializeEverything" value="${HOST.gwt.serializeEverything}" />
+     </bean>
 
-<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" abstract="false"
-		scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
-		<property name="basename" value="messages" />
-	</bean>
-	<bean id="userService" class="com.apress.progwt.server.service.impl.UserServiceImpl">
-		<property name="userDAO" ref="userDAO" />		
-		<property name="userCache" ref="userCache"/>
-		<property name="messageSource" ref="messageSource" />
-		<property name="maxUsers" value="${users.maxUsers}" />
-		<property name="startingInvitations" value="${users.startInvitations}" />	
-		<property name="saltSource" ref="userSaltSource"/>
-		<property name="passwordEncoder" ref="passwordEncoder"/>	
-	</bean>
-	
+     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" abstract="false"
+          scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
+          <property name="basename" value="messages" />
+     </bean>
+     <bean id="userService" class="com.apress.progwt.server.service.impl.UserServiceImpl">
+          <property name="userDAO" ref="userDAO" />
+          <property name="userCache" ref="userCache" />
+          <property name="messageSource" ref="messageSource" />
+          <property name="maxUsers" value="${users.maxUsers}" />
+          <property name="startingInvitations" value="${users.startInvitations}" />
+          <property name="saltSource" ref="userSaltSource" />
+          <property name="passwordEncoder" ref="passwordEncoder" />
+     </bean>
+     <bean id="schoolService" class="com.apress.progwt.server.service.impl.SchoolServiceImpl">
+          <property name="schoolDAO" ref="schoolDAO" />
+     </bean>
+     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+          <property name="host" value="k2smtpout.secureserver.net" /><!-- http://help.godaddy.com/article.php?article_id=122&topic_id=120 -->
+     </bean>
+     <bean id="invitationService" class="com.apress.progwt.server.service.impl.InvitationServiceImpl">
+          <property name="mailingListDAO" ref="mailingListDAO"></property>
+          <property name="configurer" ref="freemarkerConfig"></property>
+          <property name="from" value="subscriptions@myhippocampus.com"></property>
+          <property name="invitationTemplate" value="/WEB-INF/freemarker/mail/invitation.ftl"></property>
+          <property name="mailSender" ref="mailSender"></property>
+          <property name="userService" ref="userService" />
+          <property name="masterkey" value="${invitations.masterkey}"></property>
+          <property name="salt" value="${invitations.salt}"></property>
+     </bean>
 
-	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer" abstract="false"
-		scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
-		<property name="templateLoaderPath">
-			<value>/</value>
-		</property>
-		<property name="freemarkerSettings">
-			<props>
-				<prop key="datetime_format">MM/dd/yyyy</prop>
-				<prop key="number_format">0.#####</prop>
-				<prop key="url_escaping_charset">ISO-8859-1</prop>
-			</props>
-		</property>
-	</bean>
-	
-	<tx:annotation-driven transaction-manager="txManager"/>
+     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer" abstract="false"
+          scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
+          <property name="templateLoaderPath">
+               <value>/</value>
+          </property>
+          <property name="freemarkerSettings">
+               <props>
+                    <prop key="datetime_format">MM/dd/yyyy</prop>
+                    <prop key="number_format">0.#####</prop>
+                    <prop key="url_escaping_charset">ISO-8859-1</prop>
+               </props>
+          </property>
+     </bean>
+
+     <tx:annotation-driven transaction-manager="txManager" />
 
 </beans>

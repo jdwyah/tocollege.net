@@ -152,4 +152,13 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
         }
     }
 
+    public User getUserByNickname(String nickname) {
+
+        User rtn = (User) DataAccessUtils
+                .uniqueResult(getHibernateTemplate().findByNamedParam(
+                        "from User where nickname = :name", "name",
+                        nickname.toLowerCase()));
+
+        return rtn;
+    }
 }

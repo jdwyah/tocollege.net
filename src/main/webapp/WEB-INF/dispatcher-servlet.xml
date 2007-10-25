@@ -14,45 +14,79 @@
 		<property name="location" value="classpath:config.properties" />
 	</bean>
 
-	<bean id="indexController" class="com.apress.progwt.server.web.controllers.IndexController">
-		<property name="view" value="index"/>		
-		<property name="userService" ref="userService"/>		
-	</bean>	
-	
-	<bean id="calculatorController" class="com.apress.progwt.server.web.controllers.BasicController">
-		<property name="view" value="calculator" />
-		<property name="userService" ref="userService" />		
+	<bean id="indexController" class="com.apress.progwt.server.web.controllers.IndexController">	     
+	     <property name="userService" ref="userService" />
+	     <property name="schoolService" ref="schoolService" />
 	</bean>
-	<bean id="errorController" class="com.apress.progwt.server.web.controllers.BasicController">
-		<property name="view" value="servletErrorView" />
-		<property name="userService" ref="userService" />		
+
+	<bean id="calculatorController" class="com.apress.progwt.server.web.controllers.CalculatorController">
+	     <property name="userService" ref="userService" />
 	</bean>
-	<bean id="loginController" class="com.apress.progwt.server.web.controllers.LoginController">
-		<property name="view" value="acegilogin" />
+     <bean id="termsController" class="com.apress.progwt.server.web.controllers.TermsController">
+          <property name="userService" ref="userService" />
+     </bean>
+	<bean id="errorController" class="com.apress.progwt.server.web.controllers.ErrorController">
+	     <property name="userService" ref="userService" />
 	</bean>
-	
+	<bean id="collegeController" class="com.apress.progwt.server.web.controllers.CollegeController">
+         <property name="view" value="college"/>
+	     <property name="schoolService" ref="schoolService" />
+	     <property name="userService" ref="userService" />
+	     <property name="notFoundView" value="notFound" />
+	</bean>
+	<bean id="viewUserController" class="com.apress.progwt.server.web.controllers.ViewUserController">
+         <property name="view" value="viewuser"/>
+	     <property name="schoolService" ref="schoolService" />
+	     <property name="userService" ref="userService" />
+	     <property name="notFoundView" value="notFound" />
+	</bean>
+     
+     
+	<bean id="loginController" class="com.apress.progwt.server.web.controllers.LoginController"></bean>
+     <bean id="signupIfPossibleController" class="com.apress.progwt.server.web.controllers.SignupIfPossibleController">
+          <property name="mailingListView" value="redirect:/site/mailinglist.html" />
+          <property name="invitationService" ref="invitationService" />
+          <property name="signupView" value="signup" />
+          <property name="userService" ref="userService" />
+     </bean>
+
+     <bean id="createUserValidator" class="com.apress.progwt.server.web.domain.validation.CreateUserRequestValidator">
+          <property name="userService" ref="userService" />
+          <property name="invitationService" ref="invitationService" />
+     </bean>
+
+     <bean id="createUserController" class="com.apress.progwt.server.web.controllers.CreateUserController">
+          <property name="formView" value="signup" />
+          <property name="successView" value="redirect:/site/index.html" /><!-- redirect index needs command in model -->
+          <property name="validator" ref="createUserValidator" />
+          <property name="userService" ref="userService" />
+          <property name="invitationService" ref="invitationService" />
+     </bean>
+
+
+
 	<!-- PEND MED blech. GWT loads the image bundles from the right spot, but
-		 goes looking for this clear.cache.gif from where the .js was called.  -->
-	<bean id="forwardClearCacheController" class="com.apress.progwt.server.web.controllers.BasicController">
+	     goes looking for this clear.cache.gif from where the .js was called.  -->
+	<bean id="forwardClearCacheController" class="com.apress.progwt.server.web.controllers.ForwardClearCacheController">
 		<property name="view" value="redirect:/com.aavu.Interactive/clear.cache.gif" />
 		<property name="userService" ref="userService" />
 	</bean>
-	
-	
+     
+	<!-- Spring 2.5!! -->
+    <bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator" />
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" /> 
 	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="alwaysUseFullPath" value="true" />
 		<property name="mappings">
 			<props>
 				
 				<prop key="/service/userService">GWTUserService</prop>
-				
-								
+												
 				<prop key="/site/acegilogin.html">loginController</prop>
 			
-
-				<prop key="/site/index.html">indexController</prop>
-				<prop key="/site/calculator.html">calculatorController</prop>
-				
+                   
+                <prop key="/site/college/*">collegeController</prop>
+                <prop key="/site/user/*">viewUserController</prop>
 
 				<prop key="/site/accessDenied.html">errorController</prop>
 				<prop key="/site/servletErrorView.html">errorController</prop>						
@@ -68,6 +102,8 @@
 	</bean>
 
 	
+
+
 
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" abstract="false"

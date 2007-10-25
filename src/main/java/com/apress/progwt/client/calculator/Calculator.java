@@ -39,13 +39,12 @@ public class Calculator extends Composite {
         numbersP.setWidget(3, 1, new NumberButton(this, "."));
         numbersP.setWidget(3, 2, new ControlButton(this,
                 new ControlAction(this, "+/-") {
-
-                    // @Override
+                    @Override
                     public boolean isMultiArg() {
                         return false;
                     }
 
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return -1 * current;
@@ -55,7 +54,7 @@ public class Calculator extends Composite {
         controls.setWidget(0, 0, new ControlButton(this,
                 new ControlAction(this, "/") {
 
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return previous / current;
@@ -64,12 +63,12 @@ public class Calculator extends Composite {
 
         controls.setWidget(0, 1, new ControlButton(this,
                 new ControlAction(this, "sqrt") {
-                    // @Override
+                    @Override
                     public boolean isMultiArg() {
                         return false;
                     }
 
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return Math.sqrt(current);
@@ -78,7 +77,7 @@ public class Calculator extends Composite {
 
         controls.setWidget(1, 0, new ControlButton(this,
                 new ControlAction(this, "*") {
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return previous * current;
@@ -86,7 +85,7 @@ public class Calculator extends Composite {
                 }));
         controls.setWidget(1, 1, new ControlButton(this,
                 new ControlAction(this, "%") {
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return previous % current;
@@ -94,7 +93,7 @@ public class Calculator extends Composite {
                 }));
         controls.setWidget(2, 0, new ControlButton(this,
                 new ControlAction(this, "-") {
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return previous - current;
@@ -102,12 +101,12 @@ public class Calculator extends Composite {
                 }));
         controls.setWidget(2, 1, new ControlButton(this,
                 new ControlAction(this, "1/x") {
-                    // @Override
+                    @Override
                     public boolean isMultiArg() {
                         return false;
                     }
 
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return 1 / current;
@@ -115,7 +114,7 @@ public class Calculator extends Composite {
                 }));
         controls.setWidget(3, 0, new ControlButton(this,
                 new ControlAction(this, "+") {
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return previous + current;
@@ -123,11 +122,12 @@ public class Calculator extends Composite {
                 }));
         controls.setWidget(3, 1, new ControlButton(this,
                 new ControlAction(this, "=") {
+                    @Override
                     public boolean isMultiArg() {
                         return false;
                     }
 
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         if (lastAction == null) {
@@ -141,11 +141,12 @@ public class Calculator extends Composite {
 
         controls.setWidget(4, 0, new ControlButton(this,
                 new ControlAction(this, "bksp") {
+                    @Override
                     public boolean isMultiArg() {
                         return false;
                     }
 
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         String cStr = current + "";
@@ -164,11 +165,12 @@ public class Calculator extends Composite {
 
         controls.setWidget(4, 1, new ControlButton(this,
                 new ControlAction(this, "clear") {
+                    @Override
                     public boolean isMultiArg() {
                         return false;
                     }
 
-                    // @Override
+                    @Override
                     public double performAction(ControlAction lastAction,
                             double previous, double current) {
                         return 0;

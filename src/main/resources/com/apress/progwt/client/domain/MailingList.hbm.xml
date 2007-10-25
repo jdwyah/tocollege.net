@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- Note: Server Domain package, not client -->
+<hibernate-mapping package="com.apress.progwt.server.domain">
+
+	<class name="MailingListEntry" table="mailing_list">
+		<meta attribute="generated-class">com.apress.progwt.server.domain.generated.AbstractMailingListEntry</meta>
+		<meta attribute="scope-class">public abstract</meta>
+
+		<id name="id" type="long" column="id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="email" type="string" column="email">
+			<meta attribute="use-in-equals">true</meta>
+		</property>
+		
+		<property name="userAgent" type="string" column="userAgent">
+		</property>
+		<property name="referer" type="string" column="referer">
+		</property>
+		<property name="host" type="string" column="host">
+		</property>		
+	
+		<many-to-one name="inviter" class="com.apress.progwt.client.domain.User" column="inviter" lazy="false"/>
+		<many-to-one name="signedUpUser" class="com.apress.progwt.client.domain.User" column="signedUpUser" lazy="false"/>
+	
+		<property name="randomkey" type="string" column="randomkey">
+		</property>
+		<property name="sentEmailOk" type="boolean" column="sentEmailOk">
+		</property>
+		
+	
+	</class>
+
+</hibernate-mapping>

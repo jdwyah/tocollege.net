@@ -10,21 +10,24 @@ import com.apress.progwt.server.domain.ServerSideUser;
 
 public interface UserDAO {
 
-	void delete(User user);
+    void delete(User user);
 
-	List<User> getAllUsers();
+    List<User> getAllUsers();
 
-	User getForPaypalID(String paypalID);
+    User getForPaypalID(String paypalID);
 
-	User getUserByUsername(String username) throws UsernameNotFoundException;
+    User getUserByUsername(String username)
+            throws UsernameNotFoundException;
 
-	User getUserForId(long id);
+    User getUserForId(long id);
 
-	ServerSideUser loadUserByUsername(final String username) throws UsernameNotFoundException,
-			DataAccessException;
+    ServerSideUser loadUserByUsername(final String username)
+            throws UsernameNotFoundException, DataAccessException;
 
-	User save(User user);
+    User save(User user);
 
-	long getUserCount();
+    long getUserCount();
+
+    User getUserByNickname(String nickname);
 
 }

@@ -5,7 +5,7 @@
 	<#--decorator won't be called on some errors-->
   	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
 	
-	<title>ERROR</title>		
+	<title>SERVLET ERROR</title>		
 	</head>
 	
 	
@@ -17,7 +17,7 @@
     </div>
     		
 	 <div class="middle-column-box-white">
-        <div class="middle-column-box-title-green">Error Occurred</div>
+        <div class="middle-column-box-title-green">Servlet Error Occurred</div>
 	
 	
 	 <#if message?exists>

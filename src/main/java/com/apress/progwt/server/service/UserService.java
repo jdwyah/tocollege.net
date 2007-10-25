@@ -7,38 +7,41 @@ import org.acegisecurity.userdetails.UsernameNotFoundException;
 
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.BusinessException;
+import com.apress.progwt.client.exception.SiteException;
+import com.apress.progwt.server.web.domain.CreateUserRequestCommand;
 
 public interface UserService {
 
+    void addInvitationsTo(User inviter, int num);
 
-	void addInvitationsTo(User inviter, int num);
+    boolean couldBeOpenID(String openIDusername);
 
-	boolean couldBeOpenID(String openIDusername);
+    User createUser(String user, String pass, String email, boolean superV)
+            throws BusinessException;
 
-	User createUser(String user, String pass, String email, boolean superV)
-			throws BusinessException;
+    User createUser(String user, String pass, String email,
+            boolean superV, Date dateCreated) throws BusinessException;
 
+    void delete(Integer id) throws PermissionDeniedException;
 
-	User createUser(String user, String pass, String email, boolean superV, Date dateCreated)
-			throws BusinessException;
+    boolean exists(String username);
 
-	void delete(Integer id) throws PermissionDeniedException;
+    List<User> getAllUsers();
 
-	boolean exists(String username);
+    User getCurrentUser() throws UsernameNotFoundException;
 
-	List<User> getAllUsers();
+    User getUserWithNormalization(String username);
 
+    User getUserByNickname(String nickname);
 
+    boolean nowAcceptingSignups();
 
-	User getCurrentUser() throws UsernameNotFoundException;
+    void toggleEnabled(Integer id) throws PermissionDeniedException;
 
-	User getUserWithNormalization(String username);
+    void toggleSupervisor(Integer id) throws PermissionDeniedException;
 
-	boolean nowAcceptingSignups();
+    User createUser(CreateUserRequestCommand comm) throws SiteException;
 
-	void toggleEnabled(Integer id) throws PermissionDeniedException;
-
-	void toggleSupervisor(Integer id) throws PermissionDeniedException;
-
+    List<User> getTopUsers();
 
 }

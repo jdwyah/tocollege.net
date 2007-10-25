@@ -1,7 +1,6 @@
-package com.apress.progwt.client;
+package com.apress.progwt.client.calculator;
 
 
-import com.apress.progwt.client.calculator.Calculator;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;

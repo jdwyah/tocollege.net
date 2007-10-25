@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.apress.progwt.client.domain">
+
+	<class name="School" table="schools">
+		<meta attribute="generated-class">com.apress.progwt.client.domain.generated.AbstractSchool</meta>
+		<meta attribute="scope-class">public abstract</meta>
+
+		<id name="id" type="long" column="id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="name" type="string" column="name">
+			<meta attribute="use-in-equals">true</meta>
+		</property>
+		
+		<property name="address" type="string" column="address">
+		</property>
+		<property name="city" type="string" column="city">
+		</property>
+		<property name="state" type="string" column="state">
+		</property>
+		<property name="zip" type="string" column="zip">
+		</property>		
+		<property name="phone" type="string" column="phone">
+		</property>
+		<property name="website" type="string" column="website">
+		</property>
+		<property name="schoolType" type="string" column="schoolType">
+		</property>
+		<property name="awards" type="string" column="awards">
+		</property>
+		<property name="campus" type="string" column="campus">
+		</property>
+		<property name="students" type="integer" column="students">
+		</property>
+		<property name="undergrads" type="integer" column="undergrads">
+		</property>
+		<property name="varsity" type="string" column="varsity">
+		</property>
+		<property name="ipedsID" type="integer" column="ipedsid">
+		</property>
+		<property name="opeID" type="integer" column="opeid">
+		</property>		
+		
+		<property name="housing" type="string" column="housing">
+		</property>		
+		
+	
+	</class>
+
+</hibernate-mapping>

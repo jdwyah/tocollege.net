@@ -13,6 +13,9 @@
 		<property name="username" type="string" column="user_name">
 			<meta attribute="use-in-equals">true</meta>
 		</property>
+		<property name="nickname" type="string" column="nickname">
+			<meta attribute="use-in-equals">true</meta>
+		</property>
 		
 		<property name="password" type="string" column="password">
 		</property>

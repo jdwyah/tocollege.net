@@ -17,10 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.BusinessException;
+import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
 import com.apress.progwt.server.service.PermissionDeniedException;
 import com.apress.progwt.server.service.UserService;
+import com.apress.progwt.server.web.domain.CreateUserRequestCommand;
 
 /**
  * 
@@ -76,6 +78,22 @@ public class UserServiceImpl implements UserService {
 
     public boolean couldBeOpenID(String username) {
         return username.contains(".") || username.contains("=");
+    }
+
+    public User createUser(CreateUserRequestCommand comm)
+            throws SiteException {
+
+        if (comm.isStandard()) {
+            return createUser(comm.getUsername(), comm.getPassword(),
+                    comm.getEmail());
+        } else if (comm.isOpenID()) {
+            return createUser(comm.getOpenIDusernameDoNormalization(),
+                    null, comm.getEmail());
+        } else {
+            throw new RuntimeException(
+                    "Command Neither standard nor open");
+        }
+
     }
 
     private User createUser(String username, String userpass, String email)
@@ -181,11 +199,8 @@ public class UserServiceImpl implements UserService {
         String username = "";
 
         if (obj instanceof UserDetails) {
-            log.debug("instance of UserDetails");
             username = ((UserDetails) obj).getUsername();
         } else {
-            log.debug("not a UserDetail, it's a "
-                    + obj.getClass().getName());
             username = obj.toString();
         }
 
@@ -233,6 +248,10 @@ public class UserServiceImpl implements UserService {
         } else {
             return userDAO.getUserByUsername(username);
         }
+    }
+
+    public User getUserByNickname(String nickname) {
+        return userDAO.getUserByNickname(nickname);
     }
 
     private String gm(String messageName) {
@@ -310,4 +329,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public List<User> getTopUsers() {
+        return getAllUsers();
+    }
 }
