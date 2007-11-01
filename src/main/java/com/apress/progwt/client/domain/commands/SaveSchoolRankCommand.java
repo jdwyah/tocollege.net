@@ -8,15 +8,23 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
         Serializable {
 
     private int rank;
+    private School school;
 
-    public SaveSchoolRankCommand(School dart, int rank) {
-        super(dart);
+    public SaveSchoolRankCommand() {
+        super();
+    }
+
+    public SaveSchoolRankCommand(School school, int rank) {
+        this.school = school;
         this.rank = rank;
     }
 
     @Override
-    public void executeCommand() {
-        System.out.println("Execute Command" + getObjects().get(0));
+    public void executeCommand(CommandService commandService) {
+        System.out.println("Execute Command");
+
+        commandService.setSchoolAtRank(school, rank);
+
     }
 
 }

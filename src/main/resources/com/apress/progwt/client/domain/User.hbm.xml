@@ -35,11 +35,21 @@
 			<column name="dateCreated" sql-type="timestamp" />
 		</property>
 
-		<list name="schoolRankings" table="UserSchoolRankings">
-		     <key column="userId" />
-		     <list-index column="sortOrder" />
-             <one-to-many class="SchoolAndAppProcess"/>		     
-		</list>
+
+        <!-- Note: Don't Cascade! -->
+        <!-- Cascade will try to save the SchoolAndAppProcess by itself, which will fail because it won't have a sort_order-->
+
+        <!-- <list name="schoolRankings" inverse="false">
+
+             <key column="user_id" />
+              <list-index column="sort_order" />
+             <one-to-many class="SchoolAndAppProcess" />
+        </list> -->
+         
+        <bag name="schoolRankings" inverse="false" order-by="sort_order"> 
+		     <key column="user_id"  />                              
+             <one-to-many class="SchoolAndAppProcess" />		     
+		</bag> 
 
 	</class>
 

@@ -1,7 +1,7 @@
 package com.apress.progwt.client.domain.generated;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.apress.progwt.client.domain.SchoolAndAppProcess;
@@ -27,7 +27,7 @@ public abstract class AbstractUser implements java.io.Serializable {
 
     private Date dateCreated;
 
-    private List<SchoolAndAppProcess> schoolRankings = new LinkedList<SchoolAndAppProcess>();
+    private List<SchoolAndAppProcess> schoolRankings = new ArrayList<SchoolAndAppProcess>();
 
     private boolean supervisor;
 
@@ -124,8 +124,7 @@ public abstract class AbstractUser implements java.io.Serializable {
         return schoolRankings;
     }
 
-    public void setSchoolRankings(
-            List<SchoolAndAppProcess> schoolRankings) {
+    public void setSchoolRankings(List<SchoolAndAppProcess> schoolRankings) {
         this.schoolRankings = schoolRankings;
     }
 

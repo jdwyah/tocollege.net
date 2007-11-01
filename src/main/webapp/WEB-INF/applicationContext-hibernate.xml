@@ -16,6 +16,9 @@
 		<property name="testConnectionOnCheckout" value="true"/>
 	</bean>
 	
+    <!-- Enable @Repository // from org.springframework.stereotype -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+     
 
 	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
@@ -26,13 +29,15 @@
                 <value>com/apress/progwt/client/domain/MailingList.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/SchoolAndAppProcess.hbm.xml</value>   			
                 <value>com/apress/progwt/client/domain/ApplicationProcess.hbm.xml</value>
+                <value>com/apress/progwt/client/domain/Foo.hbm.xml</value>
+                <value>com/apress/progwt/client/domain/Bar.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>			
 			
 				<prop key="hibernate.dialect">${db.dialect}</prop>
-				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
 				<prop key="hibernate.jdbc.batch_size">20</prop>
 				
@@ -56,12 +61,11 @@
 				
 				
 				<prop key="hibernate.c3p0.testConnectionOnCheckout">true</prop>
-
-
+               
 			</props>
 		</property>
 	</bean>
-	<bean id="userDAO" class="com.apress.progwt.server.dao.hibernate.UserDAOHibernateImpl">
+	<bean id="userDAO" class="com.apress.progwt.server.dao.hibernate.UserDAOHibernateImpl">     
 		<property name="sessionFactory" ref="mySessionFactory" />	
 	</bean>
      <bean id="schoolDAO" class="com.apress.progwt.server.dao.hibernate.SchoolDAOHibernateImpl">

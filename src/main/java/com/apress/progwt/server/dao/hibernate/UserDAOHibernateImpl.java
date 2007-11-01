@@ -8,6 +8,9 @@ import org.acegisecurity.userdetails.UserDetails;
 import org.acegisecurity.userdetails.UserDetailsService;
 import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Expression;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -15,7 +18,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
-import com.apress.progwt.server.service.UserService;
 
 public class UserDAOHibernateImpl extends HibernateDaoSupport implements
         UserDAO, UserDetailsService, CasAuthoritiesPopulator {
@@ -23,7 +25,7 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
     private static final Logger log = Logger
             .getLogger(UserDAOHibernateImpl.class);
 
-    private UserService userService;
+    // private UserService userService;
 
     public void delete(User user) {
         getHibernateTemplate().delete(user);
@@ -53,7 +55,7 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
                         + list.size() + " users for " + username);
             }
             throw new UsernameNotFoundException(
-                    "Username not found or duplicate.");
+                    "Username not found or duplicate: " + username);
         } else {
             log.debug("load user success " + list.get(0));
             User u = (User) list.get(0);
@@ -117,10 +119,6 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
         return user;
     }
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
     public User getForPaypalID(String paypalID) {
         return (User) DataAccessUtils.uniqueResult(getHibernateTemplate()
                 .findByNamedParam("from User where paypalId = :id", "id",
@@ -152,13 +150,32 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
         }
     }
 
-    public User getUserByNickname(String nickname) {
+    public User getUserByNicknameFetchAll(String nickname) {
+
+        DetachedCriteria crit = DetachedCriteria.forClass(User.class)
+                .add(Expression.eq("nickname", nickname.toLowerCase()))
+                .setFetchMode("schoolRankings", FetchMode.JOIN)
+                .setFetchMode("schoolRankings.school", FetchMode.JOIN)
+                .setFetchMode("schoolRankings.application",
+                        FetchMode.JOIN);
 
         User rtn = (User) DataAccessUtils
-                .uniqueResult(getHibernateTemplate().findByNamedParam(
-                        "from User where nickname = :name", "name",
-                        nickname.toLowerCase()));
+                .uniqueResult(getHibernateTemplate().findByCriteria(crit));
 
         return rtn;
+    }
+
+    public User getUserByUsernameFetchAll(String username) {
+        DetachedCriteria crit = DetachedCriteria.forClass(User.class)
+                .add(Expression.eq("username", username)).setFetchMode(
+                        "schoolRankings", FetchMode.JOIN).setFetchMode(
+                        "schoolRankings.school", FetchMode.JOIN)
+                .setFetchMode("schoolRankings.application",
+                        FetchMode.JOIN);
+
+        User rtn = (User) DataAccessUtils
+                .uniqueResult(getHibernateTemplate().findByCriteria(crit));
+        return rtn;
+
     }
 }

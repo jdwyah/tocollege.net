@@ -84,7 +84,7 @@
 
 <#macro signupNow>
 	<h2 id="signupNow">
-	 	<a href="<@spring.url "/site/signupIfPossible.html"/>"><@spring.message "login.signup"/></a>
+	 	<a href="<@spring.url "/site/signupifpossible.html"/>"><@spring.message "login.signup"/></a>
 	</h2>
 </#macro>
 

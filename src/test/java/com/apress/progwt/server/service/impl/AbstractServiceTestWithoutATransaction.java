@@ -6,23 +6,38 @@ import org.acegisecurity.context.SecurityContext;
 import org.acegisecurity.context.SecurityContextHolder;
 import org.acegisecurity.context.SecurityContextImpl;
 import org.acegisecurity.providers.TestingAuthenticationToken;
+import org.apache.log4j.PropertyConfigurator;
+import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
 
-import com.apress.progwt.server.dao.hibernate.HibernateTransactionalTest;
+public abstract class AbstractServiceTestWithoutATransaction extends
+        AbstractDependencyInjectionSpringContextTests {
 
-public class ServiceTestWithTransaction extends
-        HibernateTransactionalTest {
-
-    private String username = "test";
+    private String username = "test-with-data";
 
     @Override
-    protected void onSetUpInTransaction() throws Exception {
-        super.onSetUpInTransaction();
+    protected String[] getConfigLocations() {
+
+        PropertyConfigurator.configure(getClass().getResource(
+                "/log4j.properties"));
+
+        String path = "src/main/webapp/WEB-INF/";
+        String pathh = "file:" + path;
+        return new String[] {
+                pathh + "applicationContext-acegi-security.xml",
+                pathh + "applicationContext-hibernate.xml",
+                pathh + "applicationContext.xml" };
+
+    }
+
+    @Override
+    protected void onSetUp() throws Exception {
+        super.onSetUp();
         createSecureContext();
     }
 
     @Override
-    protected void onTearDownInTransaction() throws Exception {
-        super.onTearDownInTransaction();
+    protected void onTearDown() throws Exception {
+        super.onTearDown();
         destroySecureContext();
     }
 

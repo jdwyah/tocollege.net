@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.apress.progwt.server.domain.FrontPageData;
-import com.apress.progwt.server.service.impl.SchoolServiceImpl;
+import com.apress.progwt.server.service.SchoolService;
 
 public class IndexController extends BasicController {
 
-    private SchoolServiceImpl schoolService;
+    private SchoolService schoolService;
     private static final Logger log = Logger
             .getLogger(IndexController.class);
 
@@ -40,7 +40,7 @@ public class IndexController extends BasicController {
     }
 
     @Required
-    public void setSchoolService(SchoolServiceImpl schoolService) {
+    public void setSchoolService(SchoolService schoolService) {
         this.schoolService = schoolService;
     }
 

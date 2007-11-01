@@ -3,12 +3,15 @@ package com.apress.progwt.server.dao.hibernate;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 
+import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
 
-public class UserDAOHibernateImplTest extends HibernateTransactionalTest {
+public class UserDAOHibernateImplTest extends
+        AbstractHibernateTransactionalTest {
     private static final Logger log = Logger
             .getLogger(UserDAOHibernateImplTest.class);
 
@@ -117,6 +120,29 @@ public class UserDAOHibernateImplTest extends HibernateTransactionalTest {
 
         assertEquals(pre + 1, userDAO.getUserCount());
 
+    }
+
+    public void testGetUserByNicknameFetchAll() {
+        User u = new User();
+        u.setUsername(A);
+        u.setPassword(A);
+
+        List<User> list = userDAO.getAllUsers();
+
+        userDAO.save(u);
+
+        User saved = userDAO.getUserByNicknameFetchAll(A);
+
+        assertTrue(Hibernate.isInitialized(saved.getSchoolRankings()));
+
+        User test = userDAO.getUserByNicknameFetchAll("test");
+        assertTrue(Hibernate.isInitialized(test.getSchoolRankings()));
+
+        for (SchoolAndAppProcess sap : test.getSchoolRankings()) {
+            assertTrue(Hibernate.isInitialized(sap));
+            assertTrue(Hibernate.isInitialized(sap.getSchool()));
+            assertTrue(Hibernate.isInitialized(sap.getApplication()));
+        }
     }
 
 }

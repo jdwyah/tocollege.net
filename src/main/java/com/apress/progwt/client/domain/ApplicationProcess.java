@@ -11,17 +11,16 @@ public class ApplicationProcess extends AbstractApplicationProcess
 
     public ApplicationProcess() {
         Map<ApplicationCheckbox, Integer> appItems = new HashMap<ApplicationCheckbox, Integer>();
-        System.out.println("setting app items");
         setApplicationItems(appItems);
     }
 
     public ApplicationCheckboxValue getItemValue(
             ApplicationCheckbox applicationStatusType) {
-        System.out.println("getApItems " + getApplicationItems());
-        System.out.println("get: " + applicationStatusType);
-        System.out.println(getApplicationItems().get(
-                applicationStatusType));
-        System.out.println("foo");
+        // System.out.println("getApItems " + getApplicationItems());
+        // System.out.println("get: " + applicationStatusType);
+        // System.out.println(getApplicationItems().get(
+        // applicationStatusType));
+        // System.out.println("foo");
 
         return new ApplicationCheckboxValue(getApplicationItems().get(
                 applicationStatusType));

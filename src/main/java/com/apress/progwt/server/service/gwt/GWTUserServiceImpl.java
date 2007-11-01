@@ -9,28 +9,29 @@ import com.apress.progwt.client.service.remote.GWTUserService;
 import com.apress.progwt.server.gwt.GWTSpringControllerReplacement;
 import com.apress.progwt.server.service.UserService;
 
-public class GWTUserServiceImpl extends GWTSpringControllerReplacement implements GWTUserService {
-	private static final Logger log = Logger.getLogger(GWTUserServiceImpl.class);
+public class GWTUserServiceImpl extends GWTSpringControllerReplacement
+        implements GWTUserService {
+    private static final Logger log = Logger
+            .getLogger(GWTUserServiceImpl.class);
 
-	private UserService userService;
+    private UserService userService;
 
-	public User getCurrentUser() throws BusinessException {
+    public User getCurrentUser() throws BusinessException {
 
-		try {
-			User user = userService.getCurrentUser();
-			if (user != null) {
-				log.info("GWT get current user... " + user.getUsername());
-			}
-			return user;
-		} catch (UsernameNotFoundException u) {
-			throw new BusinessException(u.getMessage());
-		}
-	}
+        try {
+            User user = userService.getCurrentUser();
+            if (user != null) {
+                log.info("GWT get current user... " + user.getUsername());
+            }
+            return userService.getUserByNicknameFullFetch(user
+                    .getNickname());
+        } catch (UsernameNotFoundException u) {
+            throw new BusinessException(u.getMessage());
+        }
+    }
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
 }

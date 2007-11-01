@@ -58,7 +58,16 @@ a:visited {
 .TC-App-CheckBox {
 	width: 50px;
 }
-
+.TC-CollegEntry {
+	border: 1px solid #87B3FF;
+	background-color: #EEEEEE;
+	padding: 4px;
+}
+.TC-Popup {
+  background-color: white;
+  border: 1px solid #87B3FF;
+  padding: 4px;
+}
 .gwt-SuggestBoxPopup {
 	border: 2px solid #576B93;
 	background: white;

@@ -2,6 +2,7 @@ package com.apress.progwt.server.dao;
 
 import java.util.List;
 
+import com.apress.progwt.client.domain.Foo;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.School;
 
@@ -13,8 +14,16 @@ public interface SchoolDAO {
 
     List<School> getSchoolsMatching(String match);
 
-    Loadable get(Class<Loadable> loadable, Long id);
+    Loadable get(Class<? extends Loadable> loadable, Long id);
 
-    void save(Loadable loadable);
+    Loadable save(Loadable loadable);
+
+    // void executeAndSaveCommand(User u, AbstractCommand command);
+
+    Foo saveF();
+
+    void setSchoolAtRank(long id, School school, int rank);
+
+    void removeSchool(long id, School school);
 
 }

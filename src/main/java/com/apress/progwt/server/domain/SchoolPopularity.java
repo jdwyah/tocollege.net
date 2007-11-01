@@ -2,7 +2,7 @@ package com.apress.progwt.server.domain;
 
 import com.apress.progwt.client.domain.School;
 
-public class SchoolAndRank {
+public class SchoolPopularity {
 
     private School school;
     private double rank;
@@ -23,7 +23,7 @@ public class SchoolAndRank {
         this.rank = rank;
     }
 
-    public SchoolAndRank(School school, double rank) {
+    public SchoolPopularity(School school, double rank) {
         super();
         this.school = school;
         this.rank = rank;

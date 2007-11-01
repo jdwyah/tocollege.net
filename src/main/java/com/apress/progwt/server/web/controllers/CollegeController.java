@@ -13,11 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.server.service.impl.SchoolServiceImpl;
+import com.apress.progwt.server.service.SchoolService;
 
 public class CollegeController extends BasicController {
 
-    private SchoolServiceImpl schoolService;
+    private SchoolService schoolService;
 
     private String notFoundView;
 
@@ -60,7 +60,7 @@ public class CollegeController extends BasicController {
     }
 
     @Required
-    public void setSchoolService(SchoolServiceImpl schoolService) {
+    public void setSchoolService(SchoolService schoolService) {
         this.schoolService = schoolService;
     }
 

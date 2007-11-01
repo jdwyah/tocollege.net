@@ -20,8 +20,8 @@
   	<div id="side1">
   	
 	<@common.box "boxStyle", "list", "The List">
-	<#list user.schoolRankings as school>
-		${school.name}<br>
+	<#list user.schoolRankings as sap>
+		${sap.school.name}<br>
 	</#list>
 	
 	</@common.box>	

@@ -7,15 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.server.service.impl.SchoolServiceImpl;
+import com.apress.progwt.server.service.SchoolService;
 
 public class ViewUserController extends BasicController {
 
-    private SchoolServiceImpl schoolService;
+    private SchoolService schoolService;
 
     private String notFoundView;
 
@@ -43,7 +45,15 @@ public class ViewUserController extends BasicController {
 
         String nickname = pathParts[2];
 
-        User user = userService.getUserByNickname(nickname);
+        User user = userService.getUserByNicknameFullFetch(nickname);
+
+        log.debug("user u: " + user);
+        log.debug("isinit user " + Hibernate.isInitialized(user));
+        log.debug("isinit schools "
+                + Hibernate.isInitialized(user.getSchoolRankings()));
+        for (SchoolAndAppProcess sap : user.getSchoolRankings()) {
+            log.debug("isinit sap " + Hibernate.isInitialized(sap));
+        }
 
         if (user == null) {
             return new ModelAndView(getNotFoundView(), "message",
@@ -57,7 +67,7 @@ public class ViewUserController extends BasicController {
     }
 
     @Required
-    public void setSchoolService(SchoolServiceImpl schoolService) {
+    public void setSchoolService(SchoolService schoolService) {
         this.schoolService = schoolService;
     }
 

@@ -7,7 +7,7 @@ import com.apress.progwt.server.domain.MailingListEntry;
 import com.apress.progwt.server.web.domain.MailingListCommand;
 
 public class MailingListDAOHibernateImplTest extends
-        HibernateTransactionalTest {
+        AbstractHibernateTransactionalTest {
 
     private static final String A = "dfnsdiojio@dmfsdf.coim";
     private static final String B = "sd38242.432234.23eu8d";

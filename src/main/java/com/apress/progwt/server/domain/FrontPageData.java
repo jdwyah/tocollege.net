@@ -12,7 +12,7 @@ import com.apress.progwt.server.service.UserService;
 public class FrontPageData {
 
     private List<School> topSchools;
-    private List<SchoolAndRank> popularSchools;
+    private List<SchoolPopularity> popularSchools;
     private List<User> topUsers;
     private List<Post> forumPosts;
 
@@ -34,11 +34,11 @@ public class FrontPageData {
         this.topSchools = topSchools;
     }
 
-    public List<SchoolAndRank> getPopularSchools() {
+    public List<SchoolPopularity> getPopularSchools() {
         return popularSchools;
     }
 
-    public void setPopularSchools(List<SchoolAndRank> popularSchools) {
+    public void setPopularSchools(List<SchoolPopularity> popularSchools) {
         this.popularSchools = popularSchools;
     }
 

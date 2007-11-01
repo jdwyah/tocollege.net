@@ -9,9 +9,13 @@
 		<id name="id" type="long" column="id">
 			<generator class="native"></generator>
 		</id>
+       
+        <property name="sortOrder" column="sort_order" type="int"/>
 
-        <many-to-one name="school" column="school_id" class="School"></many-to-one>		
-        <many-to-one name="application" column="application_id" class="ApplicationProcess"></many-to-one>       
+<!-- <many-to-one name="user" column="user_id" class="User"/> -->
+        <many-to-one name="user" column="user_id" class="User" insert="false" update="false" />        
+        <many-to-one name="school" column="school_id" class="School" cascade="none" lazy="false"></many-to-one>		
+        <many-to-one name="application" column="application_id" class="ApplicationProcess" cascade="all" lazy="false"></many-to-one>       
 	
 	</class>
 

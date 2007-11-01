@@ -9,7 +9,7 @@ import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.dao.UserDAO;
 
 public class SchoolDAOHibernateImplTest extends
-        HibernateTransactionalTest {
+        AbstractHibernateTransactionalTest {
     private static final Logger log = Logger
             .getLogger(SchoolDAOHibernateImplTest.class);
 

@@ -2,10 +2,11 @@ package com.apress.progwt.client.domain;
 
 import java.io.Serializable;
 
+import com.apress.progwt.client.domain.commands.Orderable;
 import com.apress.progwt.client.domain.generated.AbstractSchoolAndAppProcess;
 
 public class SchoolAndAppProcess extends AbstractSchoolAndAppProcess
-        implements Serializable, Loadable {
+        implements Serializable, Loadable, Orderable {
 
     public SchoolAndAppProcess() {
     }
@@ -15,4 +16,9 @@ public class SchoolAndAppProcess extends AbstractSchoolAndAppProcess
         setApplication(new ApplicationProcess());
     }
 
+    @Override
+    public String toString() {
+        return "ScAndApp School: " + getSchool() + " App: "
+                + getApplication() + " User: " + getUser();
+    }
 }

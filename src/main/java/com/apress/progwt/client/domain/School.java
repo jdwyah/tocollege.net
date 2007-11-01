@@ -11,4 +11,9 @@ public class School extends AbstractSchool implements Serializable,
 
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
+
 }

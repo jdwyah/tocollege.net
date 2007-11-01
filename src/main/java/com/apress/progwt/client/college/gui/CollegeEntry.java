@@ -15,9 +15,11 @@ public class CollegeEntry extends Composite {
 
     private Label collegeNameLabel;
     private FocusPanel fp;
+    private SchoolAndAppProcess schoolAndApplication;
 
     public CollegeEntry(User thisUser,
             SchoolAndAppProcess schoolAndApplication) {
+        this.schoolAndApplication = schoolAndApplication;
 
         HorizontalPanel mainPanel = new HorizontalPanel();
 
@@ -43,10 +45,14 @@ public class CollegeEntry extends Composite {
         }
 
         mainPanel.add(checkBoxP);
-
+        mainPanel.setStyleName("TC-CollegEntry");
         fp = new FocusPanel(mainPanel);
         initWidget(fp);
 
+    }
+
+    public SchoolAndAppProcess getSchoolAndApplication() {
+        return schoolAndApplication;
     }
 
     public Widget getDragHandle() {

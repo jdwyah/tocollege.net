@@ -36,7 +36,7 @@
 
 					<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 				</configuration>
-			</plugin>      -->
+			</plugin>       -->
 			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

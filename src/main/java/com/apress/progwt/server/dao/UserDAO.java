@@ -28,6 +28,8 @@ public interface UserDAO {
 
     long getUserCount();
 
-    User getUserByNickname(String nickname);
+    User getUserByUsernameFetchAll(String username);
+
+    User getUserByNicknameFetchAll(String nickname);
 
 }

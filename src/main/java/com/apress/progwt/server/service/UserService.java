@@ -16,6 +16,8 @@ public interface UserService {
 
     boolean couldBeOpenID(String openIDusername);
 
+    User createUser(CreateUserRequestCommand comm) throws SiteException;
+
     User createUser(String user, String pass, String email, boolean superV)
             throws BusinessException;
 
@@ -30,9 +32,14 @@ public interface UserService {
 
     User getCurrentUser() throws UsernameNotFoundException;
 
-    User getUserWithNormalization(String username);
+    User getCurrentUser(boolean useUserCache)
+            throws UsernameNotFoundException;
 
-    User getUserByNickname(String nickname);
+    List<User> getTopUsers();
+
+    User getUserByNicknameFullFetch(String nickname);
+
+    User getUserWithNormalization(String username);
 
     boolean nowAcceptingSignups();
 
@@ -40,8 +47,6 @@ public interface UserService {
 
     void toggleSupervisor(Integer id) throws PermissionDeniedException;
 
-    User createUser(CreateUserRequestCommand comm) throws SiteException;
-
-    List<User> getTopUsers();
+    User save(User user);
 
 }

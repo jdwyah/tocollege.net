@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.apress.progwt.client.domain">
+
+	<class name="Foo" table="foo">
+		
+
+		<id name="id" type="long" column="user_id">
+			<generator class="native"></generator>
+		</id>
+        <property name="name" column="name" type="string"/>
+
+		<list name="barList" inverse="false" cascade="all-delete-orphan">
+		     <key column="foo_id" />
+		     <list-index column="sort_order" />
+               
+             <one-to-many class="Bar"/>		     
+		</list>
+          
+
+	</class>
+
+</hibernate-mapping>

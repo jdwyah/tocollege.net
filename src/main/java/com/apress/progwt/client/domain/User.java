@@ -71,4 +71,15 @@ public class User extends AbstractUser implements Serializable, Loadable {
         return rtn;
     }
 
+    public void addRanked(SchoolAndAppProcess schoolAndAppProcess) {
+        schoolAndAppProcess.setUser(this);
+        getSchoolRankings().add(schoolAndAppProcess);
+    }
+
+    public void addRanked(int rank, SchoolAndAppProcess sap) {
+        sap.setUser(this);
+        getSchoolRankings().remove(sap);
+        getSchoolRankings().add(rank, sap);
+    }
+
 }

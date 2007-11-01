@@ -41,6 +41,12 @@
 	     <property name="notFoundView" value="notFound" />
 	</bean>
      
+     <bean id="mylistController" class="com.apress.progwt.server.web.controllers.MyListController">
+         <property name="view" value="secure/myList"/>
+          <property name="schoolService" ref="schoolService" />
+          <property name="userService" ref="userService" />          
+     </bean>
+     
      
 	<bean id="loginController" class="com.apress.progwt.server.web.controllers.LoginController"></bean>
      <bean id="signupIfPossibleController" class="com.apress.progwt.server.web.controllers.SignupIfPossibleController">
@@ -82,10 +88,8 @@
 				
 				<prop key="/service/userService">GWTUserService</prop>
                 <prop key="/service/schoolService">GWTSchoolService</prop>
-												
-				<prop key="/site/acegilogin.html">loginController</prop>
-			
-                   
+				
+                <prop key="/site/secure/myList.html">mylistController</prop>
                 <prop key="/site/college/*">collegeController</prop>
                 <prop key="/site/user/*">viewUserController</prop>
 

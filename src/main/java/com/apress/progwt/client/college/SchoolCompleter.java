@@ -17,14 +17,14 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class SchoolCompleter extends Composite {
 
-    private TopicCache topicService;
+    private ServiceCache topicService;
     private SchoolCompleteOracle oracle;
     private CompleteListener completeListener;
     private SuggestBox suggestBox;
 
     private Timer keyboardEnterTimer;
 
-    public SchoolCompleter(TopicCache topicService) {
+    public SchoolCompleter(ServiceCache topicService) {
         super();
         this.topicService = topicService;
         if (oracle == null) {

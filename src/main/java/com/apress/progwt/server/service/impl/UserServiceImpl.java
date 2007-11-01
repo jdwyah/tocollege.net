@@ -71,9 +71,7 @@ public class UserServiceImpl implements UserService {
         if (newV >= 0) {
             inviter.setInvitations(newV);
         }
-        userDAO.save(inviter);
-
-        userCache.removeUserFromCache(inviter.getUsername());
+        save(inviter);
     }
 
     public boolean couldBeOpenID(String username) {
@@ -130,7 +128,7 @@ public class UserServiceImpl implements UserService {
         user.setInvitations(startingInvitations);
         user.setDateCreated(dateCreated);
 
-        user = userDAO.save(user);
+        user = save(user);
 
         if (userpass != null) {
 
@@ -141,7 +139,7 @@ public class UserServiceImpl implements UserService {
 
         }
 
-        User createdU = userDAO.save(user);
+        User createdU = save(user);
 
         // important. otherwise we were getting directed to the user page
         // in a logged in, but not
@@ -185,6 +183,11 @@ public class UserServiceImpl implements UserService {
     }
 
     public User getCurrentUser() throws UsernameNotFoundException {
+        return getCurrentUser(true);
+    }
+
+    public User getCurrentUser(boolean useCache)
+            throws UsernameNotFoundException {
 
         log.debug("getCurrentUser");
 
@@ -213,8 +216,11 @@ public class UserServiceImpl implements UserService {
 
         try {
 
-            ServerSideUser serverUser = (ServerSideUser) userCache
-                    .getUserFromCache(username);
+            ServerSideUser serverUser = null;
+            if (useCache) {
+                serverUser = (ServerSideUser) userCache
+                        .getUserFromCache(username);
+            }
 
             User u;
             if (serverUser == null) {
@@ -250,8 +256,8 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public User getUserByNickname(String nickname) {
-        return userDAO.getUserByNickname(nickname);
+    public User getUserByNicknameFullFetch(String nickname) {
+        return userDAO.getUserByNicknameFetchAll(nickname);
     }
 
     private String gm(String messageName) {
@@ -307,8 +313,7 @@ public class UserServiceImpl implements UserService {
         if (getCurrentUser().isSupervisor()) {
             User user = userDAO.getUserForId(id);
             user.setEnabled(!user.isEnabled());
-            userDAO.save(user);
-            userCache.removeUserFromCache(user.getUsername());
+            save(user);
         } else {
             throw new PermissionDeniedException(
                     "You don't have rights to do that.");
@@ -321,8 +326,7 @@ public class UserServiceImpl implements UserService {
             System.out.println("ID " + id);
             User user = userDAO.getUserForId(id);
             user.setSupervisor(!user.isSupervisor());
-            userDAO.save(user);
-            userCache.removeUserFromCache(user.getUsername());
+            save(user);
         } else {
             throw new PermissionDeniedException(
                     "You don't have rights to do that.");
@@ -331,5 +335,11 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getTopUsers() {
         return getAllUsers();
+    }
+
+    public User save(User user) {
+        User rtn = userDAO.save(user);
+        userCache.removeUserFromCache(rtn.getUsername());
+        return rtn;
     }
 }

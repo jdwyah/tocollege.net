@@ -42,9 +42,9 @@ public class SchoolCompleteOracle extends SuggestOracle {
         }
     }
 
-    private TopicCache serviceCache;
+    private ServiceCache serviceCache;
 
-    public SchoolCompleteOracle(TopicCache topicCache) {
+    public SchoolCompleteOracle(ServiceCache topicCache) {
         this.serviceCache = topicCache;
     }
 

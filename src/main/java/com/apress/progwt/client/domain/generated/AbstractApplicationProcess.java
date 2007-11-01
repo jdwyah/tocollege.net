@@ -31,6 +31,29 @@ public class AbstractApplicationProcess implements Serializable {
         this.id = id;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (id ^ (id >>> 32));
+        return result;
+    }
+
+    // TODO
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof AbstractApplicationProcess))
+            return false;
+        final AbstractApplicationProcess other = (AbstractApplicationProcess) obj;
+        if (id != other.id)
+            return false;
+        return true;
+    }
+
     // public ApplicationStatus getStatus() {
     // return status;
     // }

@@ -9,6 +9,7 @@ import com.apress.progwt.client.service.remote.GWTUserService;
 import com.apress.progwt.client.service.remote.GWTUserServiceAsync;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -20,6 +21,9 @@ public class CollegeBoundApp {
     private GWTSchoolServiceAsync schoolService;
     private GWTUserServiceAsync userService;
 
+    private ServiceCache serviceCache;
+    private LoginService loginService;
+
     private void loadGUI(Widget widget) {
         RootPanel.get("loading").setVisible(false);
         RootPanel.get(MAIN_DIV).add(widget);
@@ -27,6 +31,8 @@ public class CollegeBoundApp {
 
     public CollegeBoundApp() {
         try {
+
+            initConstants();
 
             initServices();
 
@@ -38,7 +44,23 @@ public class CollegeBoundApp {
     }
 
     private void setMeUp() {
-        loadGUI(new MyPage(this, new User()));
+
+        loginService.getUserOrDoLogin(new AsyncCallback<User>() {
+
+            public void onFailure(Throwable caught) {
+                System.out.println("setmeupFailure " + caught);
+            }
+
+            public void onSuccess(User result) {
+                loadGUI(new MyPage(CollegeBoundApp.this, result));
+            }
+        });
+
+    }
+
+    private void initConstants() {
+        // ConstHolder.myConstants = (Consts) GWT.create(Consts.class);
+        // ConstHolder.images = (Images) GWT.create(Images.class);
     }
 
     protected void initServices() {
@@ -60,6 +82,12 @@ public class CollegeBoundApp {
             Logger.error("Service was null.");
         }
 
+        serviceCache = new ServiceCache(this);
+        loginService = new LoginService(serviceCache);
+    }
+
+    public ServiceCache getServiceCache() {
+        return serviceCache;
     }
 
     public GWTSchoolServiceAsync getSchoolService() {
@@ -83,5 +111,9 @@ public class CollegeBoundApp {
 
         RootPanel.get("loading").setVisible(false);
         RootPanel.get("slot1").add(panel);
+    }
+
+    public LoginService getLoginService() {
+        return loginService;
     }
 }

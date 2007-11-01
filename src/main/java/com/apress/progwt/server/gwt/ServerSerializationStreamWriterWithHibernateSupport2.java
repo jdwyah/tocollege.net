@@ -23,9 +23,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
+import org.hibernate.collection.PersistentBag;
+import org.hibernate.collection.PersistentList;
 import org.hibernate.collection.PersistentSet;
 
 import com.apress.progwt.client.domain.ReallyCloneable;
@@ -316,22 +319,27 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
                 hashSet = (Set) value;
             }
             writeObject(hashSet);
+        } else if (type == java.util.List.class) {
+            List arrayList = new ArrayList();
+            if (value instanceof PersistentList) {
+
+                PersistentList persSet = (PersistentList) value;
+                if (persSet.wasInitialized()) {
+                    arrayList.addAll(persSet);
+                }
+
+            } else if (value instanceof PersistentBag) {
+
+                PersistentBag persBag = (PersistentBag) value;
+                if (persBag.wasInitialized()) {
+                    arrayList.addAll(persBag);
+                }
+
+            } else {
+                arrayList = (List) value;
+            }
+            writeObject(arrayList);
         }
-        // else if (type == java.util.List.class) {
-        // System.out.println("convert list "+value);
-        //      
-        // if (value instanceof PersistentList) {
-        // List arrayList = new ArrayList();
-        // PersistentList persSet = (PersistentList) value;
-        // if(persSet.wasInitialized()){
-        // arrayList.addAll(persSet);
-        // }
-        // writeObject(arrayList);
-        // } else{
-        // System.out.println("write "+value);
-        // writeObject(value);
-        // }
-        // }
         /*
          * if this is a CGLIB proxy object do a clone it. Using public
          * interface ReallyCloneable { public Object clone(); } Because
