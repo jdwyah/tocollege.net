@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apress.progwt.client.domain.Loadable;
+import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
@@ -152,5 +153,10 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     public void removeSchool(School school) {
         schoolDAO.removeSchool(userService.getCurrentUser().getId(),
                 school);
+    }
+
+    public List<ProcessType> matchProcessType(String queryString) {
+
+        return schoolDAO.matchProcessType(queryString);
     }
 }

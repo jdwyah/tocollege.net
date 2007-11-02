@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.exception.BusinessException;
@@ -34,6 +35,11 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
 
         schoolService.executeAndSaveCommand(comm);
         return true;
+    }
+
+    public List<ProcessType> matchProcessType(String queryString)
+            throws SiteException {
+        return schoolService.matchProcessType(queryString);
     }
 
 }

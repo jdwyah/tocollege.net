@@ -1,8 +1,7 @@
 package com.apress.progwt.client.college.gui;
 
-import com.apress.progwt.client.domain.ApplicationProcess;
-import com.apress.progwt.client.domain.ApplicationCheckbox;
-import com.apress.progwt.client.domain.ApplicationCheckboxValue;
+import com.apress.progwt.client.domain.ProcessType;
+import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
 import com.google.gwt.user.client.ui.Composite;
@@ -28,20 +27,16 @@ public class CollegeEntry extends Composite {
 
         mainPanel.add(collegeNameLabel);
 
-        ApplicationProcess application = schoolAndApplication
-                .getApplication();
-
         HorizontalPanel checkBoxP = new HorizontalPanel();
         checkBoxP.setStyleName("TC-App-CheckBoxes");
 
-        for (ApplicationCheckbox appCheckType : thisUser
-                .getApplicationStatusTypes()) {
-
-            ApplicationCheckboxValue value = application
-                    .getItemValue(appCheckType);
-
-            checkBoxP.add(new AppCheckboxWidget(appCheckType, value));
-
+        for (ProcessType processType : thisUser.getProcessTypes()) {
+            ProcessValue value = schoolAndApplication.getProcess().get(
+                    processType);
+            if (value == null) {
+                value = new ProcessValue();
+            }
+            checkBoxP.add(new AppCheckboxWidget(processType, value));
         }
 
         mainPanel.add(checkBoxP);

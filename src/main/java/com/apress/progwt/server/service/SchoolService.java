@@ -2,6 +2,7 @@ package com.apress.progwt.server.service;
 
 import java.util.List;
 
+import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.exception.SiteException;
@@ -21,5 +22,7 @@ public interface SchoolService {
 
     void executeAndSaveCommand(AbstractCommand comm, boolean useUserCache)
             throws SiteException;
+
+    List<ProcessType> matchProcessType(String queryString);
 
 }

@@ -3,6 +3,7 @@ package com.apress.progwt.client.college;
 import java.util.List;
 
 import com.apress.progwt.client.college.gui.CollegeEntry;
+import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
@@ -53,4 +54,9 @@ public class ServiceCache {
         userService.getCurrentUser(callback);
     }
 
+    public void matchProcessType(String queryString,
+            AsyncCallback<List<ProcessType>> callback) {
+
+        schoolService.matchProcessType(queryString, callback);
+    }
 }

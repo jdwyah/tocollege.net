@@ -3,8 +3,6 @@ package com.apress.progwt.client.domain;
 //Generated Jul 18, 2006 12:44:47 PM by Hibernate Tools 3.1.0.beta4
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.apress.progwt.client.domain.generated.AbstractUser;
 
@@ -55,20 +53,6 @@ public class User extends AbstractUser implements Serializable, Loadable {
 
     private boolean isOpenID() {
         return getPassword() == null;
-    }
-
-    public List<ApplicationCheckbox> getApplicationStatusTypes() {
-        List<ApplicationCheckbox> rtn = new ArrayList<ApplicationCheckbox>();
-
-        rtn.add(new ApplicationCheckbox("Considering"));
-        rtn.add(new ApplicationCheckbox("Applied"));
-        rtn.add(new ApplicationCheckbox("Visitting"));
-        rtn.add(new ApplicationCheckbox("Visitted"));
-        rtn.add(new ApplicationCheckbox("Essays"));
-        rtn.add(new ApplicationCheckbox("Application Done"));
-        rtn.add(new ApplicationCheckbox("Mailed Application"));
-
-        return rtn;
     }
 
     public void addRanked(SchoolAndAppProcess schoolAndAppProcess) {

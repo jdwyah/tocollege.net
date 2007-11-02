@@ -3,6 +3,8 @@ package com.apress.progwt.server.service.impl;
 import org.apache.log4j.Logger;
 
 import com.apress.progwt.client.domain.Foo;
+import com.apress.progwt.client.domain.ProcessType;
+import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
@@ -57,13 +59,34 @@ public class SchoolServiceImplTest extends
 
         System.out.println("currentUser " + currentUser);
 
-        currentUser.addRanked(new SchoolAndAppProcess(sc));
+        SchoolAndAppProcess sap = new SchoolAndAppProcess(sc);
+        currentUser.addRanked(sap);
+
+        String NAME = "Mailed";
+        ProcessType processType = new ProcessType(NAME);
+        currentUser.getProcessTypes().add(processType);
+
+        ProcessValue processValue = new ProcessValue();
+        sap.getProcess().put(processType, processValue);
 
         schoolDAO.save(currentUser);
 
         User savedUser = userDAO.getUserByUsername(currentUser
                 .getUsername());
         assertEquals(1, savedUser.getSchoolRankings().size());
+
+        assertEquals(1, savedUser.getProcessTypes().size());
+        ProcessType savedPT = currentUser.getProcessTypes().iterator()
+                .next();
+        assertEquals(NAME, savedPT.getName());
+
+        SchoolAndAppProcess savedSAP = savedUser.getSchoolRankings().get(
+                0);
+
+        ProcessValue savedPValue = savedSAP.getProcess().get(savedPT);
+
+        assertNotNull(savedPValue);
+        assertEquals(0.0, savedPValue.getPctComplete());
 
     }
 

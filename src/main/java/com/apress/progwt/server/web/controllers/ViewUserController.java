@@ -45,21 +45,23 @@ public class ViewUserController extends BasicController {
 
         String nickname = pathParts[2];
 
-        User user = userService.getUserByNicknameFullFetch(nickname);
+        User fetchedUser = userService
+                .getUserByNicknameFullFetch(nickname);
 
-        log.debug("user u: " + user);
-        log.debug("isinit user " + Hibernate.isInitialized(user));
+        log.debug("user u: " + fetchedUser);
+        log.debug("isinit user " + Hibernate.isInitialized(fetchedUser));
         log.debug("isinit schools "
-                + Hibernate.isInitialized(user.getSchoolRankings()));
-        for (SchoolAndAppProcess sap : user.getSchoolRankings()) {
+                + Hibernate
+                        .isInitialized(fetchedUser.getSchoolRankings()));
+        for (SchoolAndAppProcess sap : fetchedUser.getSchoolRankings()) {
             log.debug("isinit sap " + Hibernate.isInitialized(sap));
         }
 
-        if (user == null) {
+        if (fetchedUser == null) {
             return new ModelAndView(getNotFoundView(), "message",
                     "Couldn't find user with nickname: " + nickname);
         }
-        model.put("user", user);
+        model.put("viewUser", fetchedUser);
 
         ModelAndView mav = getMav();
         mav.addAllObjects(model);

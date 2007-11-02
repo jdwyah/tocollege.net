@@ -33,6 +33,20 @@
      </filter-mapping>
 
      <filter>
+          <filter-name>osivFilter</filter-name>
+          <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+     </filter>          
+     <filter-mapping>
+          <filter-name>osivFilter</filter-name>
+          <url-pattern>/site/*</url-pattern>
+     </filter-mapping>
+     <filter-mapping>
+          <filter-name>osivFilter</filter-name>
+          <url-pattern>/service/*</url-pattern>
+     </filter-mapping>
+
+
+     <filter>
           <filter-name>sitemesh</filter-name>
           <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
      </filter>

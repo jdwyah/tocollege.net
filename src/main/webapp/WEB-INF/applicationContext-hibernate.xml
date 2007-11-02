@@ -20,15 +20,15 @@
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
      
 
-	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mappingResources">
 			<list>
 				<value>com/apress/progwt/client/domain/User.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/School.hbm.xml</value>   
                 <value>com/apress/progwt/client/domain/MailingList.hbm.xml</value>
-                <value>com/apress/progwt/client/domain/SchoolAndAppProcess.hbm.xml</value>   			
-                <value>com/apress/progwt/client/domain/ApplicationProcess.hbm.xml</value>
+                <value>com/apress/progwt/client/domain/SchoolAndAppProcess.hbm.xml</value>   			                
+                <value>com/apress/progwt/client/domain/ProcessType.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/Foo.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/Bar.hbm.xml</value>
 			</list>
@@ -66,18 +66,18 @@
 		</property>
 	</bean>
 	<bean id="userDAO" class="com.apress.progwt.server.dao.hibernate.UserDAOHibernateImpl">     
-		<property name="sessionFactory" ref="mySessionFactory" />	
+		<property name="sessionFactory" ref="sessionFactory" />	
 	</bean>
      <bean id="schoolDAO" class="com.apress.progwt.server.dao.hibernate.SchoolDAOHibernateImpl">
-          <property name="sessionFactory" ref="mySessionFactory" />   
+          <property name="sessionFactory" ref="sessionFactory" />   
      </bean>
      
      <bean id="mailingListDAO" class="com.apress.progwt.server.dao.hibernate.MailingListDAOHibernateImpl">
-          <property name="sessionFactory" ref="mySessionFactory"/>    
+          <property name="sessionFactory" ref="sessionFactory"/>    
      </bean>   
      
 	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="mySessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	

@@ -3,7 +3,7 @@
 <#import "../common.ftl" as common/>
 <#import "../commonGWT.ftl" as gwt/>
 <head>
-  <title>Calculator</title>
+  <title>My List</title>
 </head>
 
 

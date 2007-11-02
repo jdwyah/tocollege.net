@@ -22,9 +22,12 @@ public class GWTUserServiceImpl extends GWTSpringControllerReplacement
             User user = userService.getCurrentUser();
             if (user != null) {
                 log.info("GWT get current user... " + user.getUsername());
+                return userService.getUserByNicknameFullFetch(user
+                        .getNickname());
+            } else {
+                return null;
             }
-            return userService.getUserByNicknameFullFetch(user
-                    .getNickname());
+
         } catch (UsernameNotFoundException u) {
             throw new BusinessException(u.getMessage());
         }

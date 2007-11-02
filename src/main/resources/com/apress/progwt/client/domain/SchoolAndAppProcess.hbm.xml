@@ -10,13 +10,19 @@
 			<generator class="native"></generator>
 		</id>
        
-        <property name="sortOrder" column="sort_order" type="int"/>
+        <property name="sortOrder" column="sort_order" type="int"/> 
 
-<!-- <many-to-one name="user" column="user_id" class="User"/> -->
         <many-to-one name="user" column="user_id" class="User" insert="false" update="false" />        
-        <many-to-one name="school" column="school_id" class="School" cascade="none" lazy="false"></many-to-one>		
-        <many-to-one name="application" column="application_id" class="ApplicationProcess" cascade="all" lazy="false"></many-to-one>       
-	
+        <many-to-one name="school" column="school_id" class="School" cascade="none" lazy="false"></many-to-one>		        
+
+        <map name="process" table="processmap" inverse="false" cascade="all-delete-orphan">
+             <key column="schoolandapp_id" not-null="true"/>
+             <map-key-many-to-many column="processtype_id" class="ProcessType" />
+             <composite-element class="ProcessValue">
+                  <property name="pctComplete" type="double" />
+                  <property name="dueDate" type="java.util.Date" />
+             </composite-element>
+        </map>
 	</class>
 
 </hibernate-mapping>

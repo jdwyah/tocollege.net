@@ -83,3 +83,35 @@ a:visited {
 	background-color: #C3D9FF;
 	padding: 1px;
 }
+.gwt-TabPanel .gwt-TabBar {	
+	border-bottom: 1px solid #8A8FB5;
+}
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarFirst { 
+   
+} 
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarSpacer { 
+   
+} 
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarRest { 
+   
+} 
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarItem { 
+	padding: 4px;
+    cursor: pointer; 
+    border-bottom: 1px solid #5a6782; 
+    color: white; 
+    background-color: #879bc3; 
+} 
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarItem-selected { 
+    cursor: pointer; 
+    border-top: 1px solid #5a6782; 
+    border-left: 1px solid #5a6782; 
+    border-right: 1px solid #5a6782; 
+    background-color: #cdd6ea; 
+} 
+.gwt-TabPanel .gwt-TabPanelBottom { 
+    border-left: 1px solid #5a6782; 
+    border-right: 1px solid #5a6782; 
+    border-bottom: 1px solid #5a6782; 
+    background-color: #cdd6ea; 
+} 

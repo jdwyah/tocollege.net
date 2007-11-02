@@ -13,12 +13,11 @@ public class SchoolAndAppProcess extends AbstractSchoolAndAppProcess
 
     public SchoolAndAppProcess(School school) {
         setSchool(school);
-        setApplication(new ApplicationProcess());
+
     }
 
     @Override
     public String toString() {
-        return "ScAndApp School: " + getSchool() + " App: "
-                + getApplication() + " User: " + getUser();
+        return "ScAndApp School: " + getSchool() + " User: " + getUser();
     }
 }

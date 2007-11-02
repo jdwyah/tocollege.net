@@ -24,11 +24,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
 import org.hibernate.collection.PersistentBag;
 import org.hibernate.collection.PersistentList;
+import org.hibernate.collection.PersistentMap;
 import org.hibernate.collection.PersistentSet;
 
 import com.apress.progwt.client.domain.ReallyCloneable;
@@ -339,6 +341,17 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
                 arrayList = (List) value;
             }
             writeObject(arrayList);
+        } else if (type == java.util.Map.class) {
+            Map hashMap = new HashMap();
+            if (value instanceof PersistentMap) {
+                PersistentMap persMap = (PersistentMap) value;
+                if (persMap.wasInitialized()) {
+                    hashMap.putAll(persMap);
+                }
+            } else {
+                hashMap = (Map) value;
+            }
+            writeObject(hashMap);
         }
         /*
          * if this is a CGLIB proxy object do a clone it. Using public

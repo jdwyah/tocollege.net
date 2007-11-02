@@ -141,7 +141,7 @@ public class UserDAOHibernateImplTest extends
         for (SchoolAndAppProcess sap : test.getSchoolRankings()) {
             assertTrue(Hibernate.isInitialized(sap));
             assertTrue(Hibernate.isInitialized(sap.getSchool()));
-            assertTrue(Hibernate.isInitialized(sap.getApplication()));
+
         }
     }
 

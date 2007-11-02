@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.apress.progwt.client.domain.Foo;
 import com.apress.progwt.client.domain.Loadable;
+import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 
 public interface SchoolDAO {
@@ -25,5 +26,7 @@ public interface SchoolDAO {
     void setSchoolAtRank(long id, School school, int rank);
 
     void removeSchool(long id, School school);
+
+    List<ProcessType> matchProcessType(String queryString);
 
 }

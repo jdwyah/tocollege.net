@@ -18,6 +18,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.apress.progwt.client.domain.Bar;
 import com.apress.progwt.client.domain.Foo;
 import com.apress.progwt.client.domain.Loadable;
+import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
@@ -140,8 +141,6 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
             System.out.println("\n----A3-LOOP----\n");
             if (scAndApp.getSchool().equals(school)) {
                 sap = scAndApp;
-                // iterator.remove();
-                // System.out.println("\n----A3-REMOVE----\n");
             }
         }
         System.out.println("\n----B----\n");
@@ -183,5 +182,20 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
             }
         }
         getHibernateTemplate().save(currentUser);
+    }
+
+    public List<ProcessType> matchProcessType(String queryString) {
+        DetachedCriteria crit = DetachedCriteria.forClass(
+                ProcessType.class)
+                .add(
+                        Expression.ilike("name", queryString,
+                                MatchMode.ANYWHERE)).addOrder(
+                        Order.asc("name"));
+
+        List<ProcessType> list = getHibernateTemplate().findByCriteria(
+                crit, 0, DEFAULT_AUTOCOMPLET_MAX);
+
+        return list;
+
     }
 }

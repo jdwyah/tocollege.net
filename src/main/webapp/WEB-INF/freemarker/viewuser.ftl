@@ -2,7 +2,7 @@
 <#import "/spring.ftl" as spring/>
 <#import "common.ftl" as common/>
 <head>
-  <title>${user.nickname}</title>
+  <title>${viewUser.nickname}</title>
 </head>
 
 
@@ -15,12 +15,12 @@
 	</div>
  </#if>			  	 	  
 
-<h1>${user.nickname}</h1>
+<h1>${viewUser.nickname}</h1>
   	
   	<div id="side1">
   	
 	<@common.box "boxStyle", "list", "The List">
-	<#list user.schoolRankings as sap>
+	<#list viewUser.schoolRankings as sap>
 		${sap.school.name}<br>
 	</#list>
 	
@@ -30,7 +30,7 @@
 	
   	<div id="side2">  		
 			
-	<@common.box "boxStyle", "userInfo", "About ${user.nickname}">
+	<@common.box "boxStyle", "userInfo", "About ${viewUser.nickname}">
 				
 		State: NH
 		
