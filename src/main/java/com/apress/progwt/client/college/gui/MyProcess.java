@@ -9,7 +9,6 @@ import com.allen_sauer.gwt.dragdrop.client.IndexedDragEndEvent;
 import com.allen_sauer.gwt.dragdrop.client.PickupDragController;
 import com.allen_sauer.gwt.dragdrop.client.VetoDragException;
 import com.allen_sauer.gwt.dragdrop.client.drop.IndexedDropController;
-import com.apress.progwt.client.college.ProcessCompleter;
 import com.apress.progwt.client.college.SchoolCompleter;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.ProcessType;
@@ -18,7 +17,6 @@ import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -29,6 +27,7 @@ public class MyProcess extends Composite implements DragHandler,
     private VerticalPanel rankPanelPanel;
     private PickupDragController entryDragController;
     private ServiceCache serviceCache;
+    private ProcessHeaderPanel headerPanel;
 
     public MyProcess(ServiceCache serviceCache, User thisUser) {
         this.thisUser = thisUser;
@@ -50,7 +49,7 @@ public class MyProcess extends Composite implements DragHandler,
 
         System.out.println("FOUND " + schoolAndApps.size() + " Schools ");
 
-        ProcessHeaderPanel headerPanel = new ProcessHeaderPanel(thisUser);
+        headerPanel = new ProcessHeaderPanel(thisUser);
 
         for (SchoolAndAppProcess schoolAndApp : schoolAndApps) {
             addEntry(new CollegeEntry(thisUser, schoolAndApp));
@@ -67,13 +66,15 @@ public class MyProcess extends Composite implements DragHandler,
 
     }
 
-    private void addEntry(CollegeEntry entry) {
+    private int addEntry(CollegeEntry entry) {
 
         entryDragController.makeDraggable(entry, entry.getDragHandle());
 
         int widgetCount = rankPanelPanel.getWidgetCount();
         rankPanelPanel.add(entry);
-        saveEntry(entry, widgetCount);
+
+        return widgetCount;
+
     }
 
     private void saveEntry(CollegeEntry entry, int rank) {
@@ -84,7 +85,14 @@ public class MyProcess extends Composite implements DragHandler,
         SchoolAndAppProcess schoolAndApp = new SchoolAndAppProcess(school);
 
         CollegeEntry entry = new CollegeEntry(thisUser, schoolAndApp);
-        addEntry(entry);
+        int index = addEntry(entry);
+        saveEntry(entry, index);
+    }
+
+    private void addNewProcessType(ProcessType result) {
+        System.out.println("Complete " + result);
+        headerPanel.addProcess(result);
+        // TODO save new process type
     }
 
     public void onDragEnd(DragEndEvent event) {
@@ -120,26 +128,35 @@ public class MyProcess extends Composite implements DragHandler,
     private class ProcessHeaderPanel extends Composite implements
             CompleteListener<ProcessType> {
 
-        private HorizontalPanel columnHeaders;
+        private EqualSpacedPanel columnHeaders;
 
         public ProcessHeaderPanel(User thisUser) {
-            columnHeaders = new HorizontalPanel();
+            columnHeaders = new EqualSpacedPanel(100, 30, thisUser
+                    .getProcessTypes().size());
+
+            System.out.println("Found "
+                    + thisUser.getProcessTypes().size() + " types.");
 
             for (ProcessType processType : thisUser.getProcessTypes()) {
-                columnHeaders.add(new Label(processType.getName()));
+                columnHeaders.add(processType.getName());
             }
 
-            ProcessCompleter completer = new ProcessCompleter(
-                    serviceCache, this);
+            // ProcessCompleter completer = new ProcessCompleter(
+            // serviceCache, this);
+            //
+            // columnHeaders.add(completer);
 
-            columnHeaders.add(completer);
-
+            columnHeaders.setStyleName("TC-ProcessTypes");
             initWidget(columnHeaders);
         }
 
-        public void completed(ProcessType result) {
-            System.out.println("Complete " + result);
+        public void addProcess(ProcessType result) {
             columnHeaders.add(new Label(result.getName()));
         }
+
+        public void completed(ProcessType result) {
+            addNewProcessType(result);
+        }
+
     }
 }

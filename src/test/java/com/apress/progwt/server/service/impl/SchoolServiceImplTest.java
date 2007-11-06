@@ -152,7 +152,7 @@ public class SchoolServiceImplTest extends
 
         log.debug("\n------Re-Order--------");
 
-        // re-order to Dart/Yale/Harvard
+        // re-order to Dart,Yale,Harvard
         comm = new SaveSchoolRankCommand(harvard, 2);
         schoolService.executeAndSaveCommand(comm, false);
 
@@ -164,6 +164,20 @@ public class SchoolServiceImplTest extends
         assertEquals(yale, savedUser.getSchoolRankings().get(1)
                 .getSchool());
         assertEquals(harvard, savedUser.getSchoolRankings().get(2)
+                .getSchool());
+
+        // re-order to Harvard,Dart,Yale
+        comm = new SaveSchoolRankCommand(harvard, 0);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        savedUser = getUser();
+        assertEquals(3, savedUser.getSchoolRankings().size());
+
+        assertEquals(harvard, savedUser.getSchoolRankings().get(0)
+                .getSchool());
+        assertEquals(dart, savedUser.getSchoolRankings().get(1)
+                .getSchool());
+        assertEquals(yale, savedUser.getSchoolRankings().get(2)
                 .getSchool());
 
     }

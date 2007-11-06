@@ -143,6 +143,7 @@ public class UserDAOHibernateImplTest extends
             assertTrue(Hibernate.isInitialized(sap.getSchool()));
 
         }
+
     }
 
 }

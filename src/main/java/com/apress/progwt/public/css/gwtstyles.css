@@ -63,6 +63,9 @@ a:visited {
 	background-color: #EEEEEE;
 	padding: 4px;
 }
+.TC-ProcessTypes {
+	font-size: 12pt;
+}
 .TC-Popup {
   background-color: white;
   border: 1px solid #87B3FF;

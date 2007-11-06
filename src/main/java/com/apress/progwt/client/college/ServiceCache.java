@@ -36,6 +36,9 @@ public class ServiceCache {
     }
 
     public void saveEntry(CollegeEntry entry, int index) {
+
+        System.out.println("SAVING ENTRY!!!!!!!!!");
+
         final SaveSchoolRankCommand comm = new SaveSchoolRankCommand(
                 entry.getSchoolAndApplication().getSchool(), index);
         schoolService.executeAndSaveCommand(comm,

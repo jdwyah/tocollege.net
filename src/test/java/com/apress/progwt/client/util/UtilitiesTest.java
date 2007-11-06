@@ -67,6 +67,32 @@ public class UtilitiesTest extends TestCase {
         assertEquals(new OrderableInteger(1), list.get(2));
         assertEquals(new OrderableInteger(3), list.get(3));
         assertEquals(new OrderableInteger(4), list.get(4));
+        assertEquals(5, list.size());
+
+        Utilities.reOrder(list, new OrderableInteger(0), 2);
+
+        assertEquals(new OrderableInteger(2), list.get(0));
+        assertEquals(new OrderableInteger(1), list.get(1));
+        assertEquals(new OrderableInteger(0), list.get(2));
+        assertEquals(new OrderableInteger(3), list.get(3));
+        assertEquals(new OrderableInteger(4), list.get(4));
+        assertEquals(5, list.size());
+
+        Utilities.reOrder(list, new OrderableInteger(2), 3);
+        assertEquals(new OrderableInteger(1), list.get(0));
+        assertEquals(new OrderableInteger(0), list.get(1));
+        assertEquals(new OrderableInteger(3), list.get(2));
+        assertEquals(new OrderableInteger(2), list.get(3));
+        assertEquals(new OrderableInteger(4), list.get(4));
+        assertEquals(5, list.size());
+
+        Utilities.reOrder(list, new OrderableInteger(1), 4);
+        assertEquals(new OrderableInteger(0), list.get(0));
+        assertEquals(new OrderableInteger(3), list.get(1));
+        assertEquals(new OrderableInteger(2), list.get(2));
+        assertEquals(new OrderableInteger(4), list.get(3));
+        assertEquals(new OrderableInteger(1), list.get(4));
+        assertEquals(5, list.size());
 
     }
 

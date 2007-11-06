@@ -27,9 +27,21 @@ public class CollegeEntry extends Composite {
 
         mainPanel.add(collegeNameLabel);
 
-        HorizontalPanel checkBoxP = new HorizontalPanel();
+        HorizontalPanel checkBoxP = getCheckBoxes(thisUser,
+                schoolAndApplication);
+
         checkBoxP.setStyleName("TC-App-CheckBoxes");
 
+        mainPanel.add(checkBoxP);
+        mainPanel.setStyleName("TC-CollegEntry");
+        fp = new FocusPanel(mainPanel);
+        initWidget(fp);
+
+    }
+
+    private HorizontalPanel getCheckBoxes(User thisUser,
+            SchoolAndAppProcess schoolAndApplication) {
+        HorizontalPanel checkBoxP = new HorizontalPanel();
         for (ProcessType processType : thisUser.getProcessTypes()) {
             ProcessValue value = schoolAndApplication.getProcess().get(
                     processType);
@@ -38,12 +50,7 @@ public class CollegeEntry extends Composite {
             }
             checkBoxP.add(new AppCheckboxWidget(processType, value));
         }
-
-        mainPanel.add(checkBoxP);
-        mainPanel.setStyleName("TC-CollegEntry");
-        fp = new FocusPanel(mainPanel);
-        initWidget(fp);
-
+        return checkBoxP;
     }
 
     public SchoolAndAppProcess getSchoolAndApplication() {

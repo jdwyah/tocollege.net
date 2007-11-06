@@ -38,6 +38,8 @@
 			
 				<prop key="hibernate.dialect">${db.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <!-- <prop key="hibernate.use_sql_comments">true</prop> -->
 				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
 				<prop key="hibernate.jdbc.batch_size">20</prop>
 				

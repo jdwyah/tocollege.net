@@ -22,8 +22,19 @@ public class GWTUserServiceImpl extends GWTSpringControllerReplacement
             User user = userService.getCurrentUser();
             if (user != null) {
                 log.info("GWT get current user... " + user.getUsername());
-                return userService.getUserByNicknameFullFetch(user
-                        .getNickname());
+                // System.out.println("\n\n\n---------------");
+                // System.out.println("user school rankings: "
+                // + user.getSchoolRankings().size());
+                // System.out.println("user process types: "
+                // + user.getProcessTypes().size());
+                User fetched = userService
+                        .getUserByNicknameFullFetch(user.getNickname());
+                System.out.println("\n\n---------------");
+                System.out.println("fetched school rankings: "
+                        + fetched.getSchoolRankings().size());
+                System.out.println("fetched process types: "
+                        + fetched.getProcessTypes().size());
+                return fetched;
             } else {
                 return null;
             }

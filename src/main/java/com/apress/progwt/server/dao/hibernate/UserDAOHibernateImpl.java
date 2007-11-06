@@ -9,6 +9,7 @@ import org.acegisecurity.userdetails.UserDetailsService;
 import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
 import org.hibernate.FetchMode;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Expression;
 import org.springframework.dao.DataAccessException;
@@ -150,14 +151,27 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
         }
     }
 
-    public User getUserByNicknameFetchAll(String nickname) {
-
-        DetachedCriteria crit = DetachedCriteria.forClass(User.class)
-                .add(Expression.eq("nickname", nickname.toLowerCase()))
-                .setFetchMode("schoolRankings", FetchMode.JOIN)
+    /**
+     * add all fetch mode concerns to the critera without
+     * DISTINCT_ROOT_ENTITY these fetches will create multiple rows
+     * 
+     * @param crit
+     * @return
+     */
+    private DetachedCriteria fetchAllUser(DetachedCriteria crit) {
+        return crit.setFetchMode("schoolRankings", FetchMode.JOIN)
                 .setFetchMode("schoolRankings.school", FetchMode.JOIN)
                 .setFetchMode("schoolRankings.application",
-                        FetchMode.JOIN);
+                        FetchMode.JOIN).setFetchMode("processTypes",
+                        FetchMode.JOIN).setResultTransformer(
+                        CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+    }
+
+    public User getUserByNicknameFetchAll(String nickname) {
+
+        DetachedCriteria crit = fetchAllUser(DetachedCriteria.forClass(
+                User.class).add(
+                Expression.eq("nickname", nickname.toLowerCase())));
 
         User rtn = (User) DataAccessUtils
                 .uniqueResult(getHibernateTemplate().findByCriteria(crit));
@@ -166,12 +180,8 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
     }
 
     public User getUserByUsernameFetchAll(String username) {
-        DetachedCriteria crit = DetachedCriteria.forClass(User.class)
-                .add(Expression.eq("username", username)).setFetchMode(
-                        "schoolRankings", FetchMode.JOIN).setFetchMode(
-                        "schoolRankings.school", FetchMode.JOIN)
-                .setFetchMode("schoolRankings.application",
-                        FetchMode.JOIN);
+        DetachedCriteria crit = fetchAllUser(DetachedCriteria.forClass(
+                User.class).add(Expression.eq("username", username)));
 
         User rtn = (User) DataAccessUtils
                 .uniqueResult(getHibernateTemplate().findByCriteria(crit));

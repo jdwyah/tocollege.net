@@ -15,9 +15,11 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.MessageSource;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
+import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
 import com.apress.progwt.server.service.PermissionDeniedException;
@@ -61,6 +63,7 @@ public class UserServiceImpl implements UserService {
     private UserCache userCache;
 
     private UserDAO userDAO;
+    private SchoolDAO schoolDAO;
 
     /**
      * don't let it go negative
@@ -141,11 +144,22 @@ public class UserServiceImpl implements UserService {
 
         User createdU = save(user);
 
+        createdU = setup(createdU);
+
         // important. otherwise we were getting directed to the user page
         // in a logged in, but not
         // authenticated state, despite our redirect:/site/index.html
         SecurityContextHolder.getContext().setAuthentication(null);
         return createdU;
+    }
+
+    private User setup(User createdU) {
+
+        for (ProcessType processType : schoolDAO.getDefaultProcessTypes()) {
+            createdU.getProcessTypes().add(processType);
+        }
+
+        return save(createdU);
     }
 
     public void delete(Integer id) throws PermissionDeniedException {
@@ -331,6 +345,11 @@ public class UserServiceImpl implements UserService {
             throw new PermissionDeniedException(
                     "You don't have rights to do that.");
         }
+    }
+
+    @Required
+    public void setSchoolDAO(SchoolDAO schoolDAO) {
+        this.schoolDAO = schoolDAO;
     }
 
     public List<User> getTopUsers() {

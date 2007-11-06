@@ -2,9 +2,7 @@ package com.apress.progwt.client.domain.generated;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.SchoolAndAppProcess;
@@ -32,7 +30,7 @@ public abstract class AbstractUser implements java.io.Serializable {
 
     private List<SchoolAndAppProcess> schoolRankings = new ArrayList<SchoolAndAppProcess>();
 
-    private Set<ProcessType> processTypes = new HashSet<ProcessType>();
+    private List<ProcessType> processTypes = new ArrayList<ProcessType>();
 
     private boolean supervisor;
 
@@ -161,11 +159,11 @@ public abstract class AbstractUser implements java.io.Serializable {
         this.dateCreated = dateCreated;
     }
 
-    public Set<ProcessType> getProcessTypes() {
+    public List<ProcessType> getProcessTypes() {
         return processTypes;
     }
 
-    public void setProcessTypes(Set<ProcessType> processTypes) {
+    public void setProcessTypes(List<ProcessType> processTypes) {
         this.processTypes = processTypes;
     }
 

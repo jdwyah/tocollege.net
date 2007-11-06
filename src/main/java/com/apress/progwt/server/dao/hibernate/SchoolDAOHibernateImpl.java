@@ -198,4 +198,21 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         return list;
 
     }
+
+    public ProcessType getProcessForName(String string) {
+        DetachedCriteria crit = DetachedCriteria.forClass(
+                ProcessType.class).add(Expression.eq("name", string));
+
+        return (ProcessType) DataAccessUtils
+                .uniqueResult(getHibernateTemplate().findByCriteria(crit));
+    }
+
+    public List<ProcessType> getDefaultProcessTypes() {
+        DetachedCriteria crit = DetachedCriteria.forClass(
+                ProcessType.class).add(
+                Expression.eq("useByDefault", true)).addOrder(
+                Order.asc("id"));
+
+        return getHibernateTemplate().findByCriteria(crit);
+    }
 }

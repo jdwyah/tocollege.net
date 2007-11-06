@@ -29,4 +29,8 @@ public interface SchoolDAO {
 
     List<ProcessType> matchProcessType(String queryString);
 
+    ProcessType getProcessForName(String string);
+
+    List<ProcessType> getDefaultProcessTypes();
+
 }

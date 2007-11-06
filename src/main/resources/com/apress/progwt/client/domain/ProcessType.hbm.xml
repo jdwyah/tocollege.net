@@ -11,6 +11,10 @@
 		</id>
        
         <property name="name" column="name" type="string"/> 
+        <property name="useByDefault" column="useByDefault" type="boolean"/>
+        <property name="status_order" column="status_order" type="int"/>
+        <property name="percentage" column="percentage" type="boolean"/>
+        <property name="dated" column="dated" type="boolean"/>
 
 	</class>
 
