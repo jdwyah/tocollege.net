@@ -1,5 +1,8 @@
 package com.apress.progwt.server.service.impl;
 
+import java.util.Calendar;
+import java.util.Iterator;
+
 import org.apache.log4j.Logger;
 
 import com.apress.progwt.client.domain.Foo;
@@ -9,6 +12,7 @@ import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.RemoveSchoolFromRankCommand;
+import com.apress.progwt.client.domain.commands.SaveProcessCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
@@ -75,9 +79,14 @@ public class SchoolServiceImplTest extends
                 .getUsername());
         assertEquals(1, savedUser.getSchoolRankings().size());
 
-        assertEquals(1, savedUser.getProcessTypes().size());
-        ProcessType savedPT = currentUser.getProcessTypes().iterator()
-                .next();
+        assertEquals(12, savedUser.getProcessTypes().size());
+
+        ProcessType savedPT = null;
+        // iterate to the last one
+        Iterator i = currentUser.getProcessTypes().iterator();
+        while (i.hasNext()) {
+            savedPT = (ProcessType) i.next();
+        }
         assertEquals(NAME, savedPT.getName());
 
         SchoolAndAppProcess savedSAP = savedUser.getSchoolRankings().get(
@@ -224,6 +233,56 @@ public class SchoolServiceImplTest extends
                 .getSchool());
         assertEquals(yale, savedUser.getSchoolRankings().get(1)
                 .getSchool());
+
+    }
+
+    public void testSaveProcessTypes() throws SiteException {
+        log.debug("\n\nSaveSchoolRankings\n\n");
+        School dart = schoolService.getSchoolsMatching("Dartmouth Col")
+                .get(0);
+        School harvard = schoolService.getSchoolsMatching("Harvard").get(
+                0);
+        School yale = schoolService.getSchoolsMatching("Yale").get(0);
+
+        // Save in order to Dart/Harvard/Yale
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart, 0);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        comm = new SaveSchoolRankCommand(harvard, 1);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        comm = new SaveSchoolRankCommand(yale, 2);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        User savedUser = getUser();
+        assertEquals(3, savedUser.getSchoolRankings().size());
+
+        SchoolAndAppProcess dartApplication = savedUser
+                .getSchoolRankings().get(0);
+
+        assertEquals(dart, dartApplication.getSchool());
+
+        ProcessType considering = getUser().getProcessTypes().get(0);
+
+        ProcessValue processValue = new ProcessValue();
+        Calendar d = Calendar.getInstance();
+        d.set(2005, 3, 10);
+        processValue.setDueDate(d.getTime());
+        processValue.setPctComplete(.34);
+
+        // re-order to Harvard,Dart,Yale
+        SaveProcessCommand processComm = new SaveProcessCommand(
+                dartApplication, considering, processValue);
+        schoolService.executeAndSaveCommand(processComm, false);
+
+        User savedUser2 = getUser();
+
+        SchoolAndAppProcess savedDart = savedUser2.getSchoolRankings()
+                .get(0);
+        ProcessValue savedValue = savedDart.getProcess().get(considering);
+
+        assertEquals(.34, savedValue.getPctComplete());
+        assertEquals(2005, savedValue.getDueDate().getYear() + 1900);
 
     }
 

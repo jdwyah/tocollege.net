@@ -65,6 +65,10 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
             RPCRequest rpcRequest = RPC.decodeRequest(payload, this
                     .getClass(), this);
 
+            // RPC.invokeAndEncodeResponse(this,
+            // rpcRequest.getMethod(), rpcRequest.getParameters(),
+            // rpcRequest.getSerializationPolicy());
+
             return RPCWithHibernateSupport.invokeAndEncodeResponse(this,
                     rpcRequest.getMethod(), rpcRequest.getParameters(),
                     rpcRequest.getSerializationPolicy());

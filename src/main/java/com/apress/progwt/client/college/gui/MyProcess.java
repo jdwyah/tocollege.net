@@ -23,6 +23,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class MyProcess extends Composite implements DragHandler,
         CompleteListener<School> {
 
+    private static final int HEADER_SPACING = 50;
+    private static final int HEADER_HEIGHT = 100;
+    private static final int EXTRA_HEADER = 50;
+
     private User thisUser;
     private VerticalPanel rankPanelPanel;
     private PickupDragController entryDragController;
@@ -52,7 +56,8 @@ public class MyProcess extends Composite implements DragHandler,
         headerPanel = new ProcessHeaderPanel(thisUser);
 
         for (SchoolAndAppProcess schoolAndApp : schoolAndApps) {
-            addEntry(new CollegeEntry(thisUser, schoolAndApp));
+            addEntry(new CollegeEntry(thisUser, schoolAndApp,
+                    serviceCache));
         }
 
         SchoolCompleter completer = new SchoolCompleter(serviceCache,
@@ -84,7 +89,8 @@ public class MyProcess extends Composite implements DragHandler,
     public void completed(School school) {
         SchoolAndAppProcess schoolAndApp = new SchoolAndAppProcess(school);
 
-        CollegeEntry entry = new CollegeEntry(thisUser, schoolAndApp);
+        CollegeEntry entry = new CollegeEntry(thisUser, schoolAndApp,
+                serviceCache);
         int index = addEntry(entry);
         saveEntry(entry, index);
     }
@@ -131,8 +137,9 @@ public class MyProcess extends Composite implements DragHandler,
         private EqualSpacedPanel columnHeaders;
 
         public ProcessHeaderPanel(User thisUser) {
-            columnHeaders = new EqualSpacedPanel(100, 30, thisUser
-                    .getProcessTypes().size());
+            columnHeaders = new EqualSpacedPanel(HEADER_HEIGHT,
+                    HEADER_SPACING, EXTRA_HEADER, thisUser
+                            .getProcessTypes().size());
 
             System.out.println("Found "
                     + thisUser.getProcessTypes().size() + " types.");
@@ -144,7 +151,6 @@ public class MyProcess extends Composite implements DragHandler,
             // ProcessCompleter completer = new ProcessCompleter(
             // serviceCache, this);
             //
-            // columnHeaders.add(completer);
 
             columnHeaders.setStyleName("TC-ProcessTypes");
             initWidget(columnHeaders);

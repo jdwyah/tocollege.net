@@ -9,6 +9,7 @@ import org.acegisecurity.userdetails.UserDetailsService;
 import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
 import org.hibernate.FetchMode;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Expression;
@@ -16,6 +17,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
@@ -152,40 +154,45 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
     }
 
     /**
-     * add all fetch mode concerns to the critera without
+     * add all fetch mode concerns to the critera. without
      * DISTINCT_ROOT_ENTITY these fetches will create multiple rows
+     * 
+     * If we join both schoolRankings & processTypes, we'll get duplicates
+     * again. Fetch one of the collections with a SELECT and initialize
+     * instead. Test in UserServiceImpl.testFetch()
+     * 
+     * Same with the process of each schoolRanking. Note, this is N+1
+     * selects.
      * 
      * @param crit
      * @return
      */
-    private DetachedCriteria fetchAllUser(DetachedCriteria crit) {
-        return crit.setFetchMode("schoolRankings", FetchMode.JOIN)
-                .setFetchMode("schoolRankings.school", FetchMode.JOIN)
-                .setFetchMode("schoolRankings.application",
-                        FetchMode.JOIN).setFetchMode("processTypes",
-                        FetchMode.JOIN).setResultTransformer(
-                        CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+    private User fetchAllUser(DetachedCriteria crit) {
+        crit.setFetchMode("schoolRankings", FetchMode.JOIN).setFetchMode(
+                "schoolRankings.school", FetchMode.JOIN).setFetchMode(
+                "schoolRankings.process", FetchMode.SELECT).setFetchMode(
+                "processTypes", FetchMode.SELECT).setResultTransformer(
+                CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+
+        User rtn = (User) DataAccessUtils
+                .uniqueResult(getHibernateTemplate().findByCriteria(crit));
+        Hibernate.initialize(rtn.getProcessTypes());
+        for (SchoolAndAppProcess application : rtn.getSchoolRankings()) {
+            Hibernate.initialize(application.getProcess());
+        }
+        // Hibernate.initialize(rtn.getSchoolRankings());
+        return rtn;
+
     }
 
     public User getUserByNicknameFetchAll(String nickname) {
 
-        DetachedCriteria crit = fetchAllUser(DetachedCriteria.forClass(
-                User.class).add(
+        return fetchAllUser(DetachedCriteria.forClass(User.class).add(
                 Expression.eq("nickname", nickname.toLowerCase())));
-
-        User rtn = (User) DataAccessUtils
-                .uniqueResult(getHibernateTemplate().findByCriteria(crit));
-
-        return rtn;
     }
 
     public User getUserByUsernameFetchAll(String username) {
-        DetachedCriteria crit = fetchAllUser(DetachedCriteria.forClass(
-                User.class).add(Expression.eq("username", username)));
-
-        User rtn = (User) DataAccessUtils
-                .uniqueResult(getHibernateTemplate().findByCriteria(crit));
-        return rtn;
-
+        return fetchAllUser(DetachedCriteria.forClass(User.class).add(
+                Expression.eq("username", username)));
     }
 }

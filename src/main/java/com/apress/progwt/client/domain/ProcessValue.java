@@ -13,12 +13,32 @@ public class ProcessValue extends AbstractProcessValue implements
         setPctComplete(0);
     }
 
-    public void increment() {
-        setPctComplete(getPctComplete() + .25);
+    public void increment(ProcessType type) {
+        if (type.isPercentage()) {
+            setPctComplete(getPctComplete() + .25);
+            if (getPctComplete() > 1) {
+                setPctComplete(0);
+            }
+        } else {
+            if (getPctComplete() == 1) {
+                setPctComplete(0);
+            } else {
+                setPctComplete(1);
+            }
+        }
     }
 
-    public String getString() {
-        return getPctComplete() + "%";
-    }
+    public String getString(ProcessType type) {
 
+        if (type.isPercentage()) {
+            return 100 * getPctComplete() + "%";
+        } else {
+            if (getPctComplete() == 0) {
+                return "No";
+            } else {
+                return "Yes";
+            }
+        }
+
+    }
 }

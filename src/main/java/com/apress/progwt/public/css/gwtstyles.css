@@ -50,22 +50,28 @@ a:visited {
 	text-align: right;
 }
 
-
+.TC-ProcessTypes {
+	left: 200px;
+	font-size: 12pt;
+}
 .TC-App-CheckBoxes {
 	position: absolute;
 	left: 200px;
 }
 .TC-App-CheckBox {
 	width: 50px;
+	background-color: #CDD6EA;
+}
+
+.TC-App-CheckBox Even{	
+	background-color: #D5EDE6;
 }
 .TC-CollegEntry {
 	border: 1px solid #87B3FF;
 	background-color: #EEEEEE;
 	padding: 4px;
 }
-.TC-ProcessTypes {
-	font-size: 12pt;
-}
+
 .TC-Popup {
   background-color: white;
   border: 1px solid #87B3FF;

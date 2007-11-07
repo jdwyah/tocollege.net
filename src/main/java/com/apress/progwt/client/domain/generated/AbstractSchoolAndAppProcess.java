@@ -90,6 +90,11 @@ public class AbstractSchoolAndAppProcess implements Serializable {
         if (!(obj instanceof AbstractSchoolAndAppProcess))
             return false;
         final AbstractSchoolAndAppProcess other = (AbstractSchoolAndAppProcess) obj;
+
+        // are they the same DB row?
+        if (id == other.id && id != 0) {
+            return true;
+        }
         if (process == null) {
             if (other.process != null)
                 return false;

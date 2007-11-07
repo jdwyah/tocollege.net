@@ -6,6 +6,7 @@ import com.apress.progwt.client.college.gui.CollegeEntry;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
 import com.apress.progwt.client.rpc.EZCallback;
 import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
@@ -62,4 +63,10 @@ public class ServiceCache {
 
         schoolService.matchProcessType(queryString, callback);
     }
+
+    public void executeCommand(AbstractCommand command,
+            AsyncCallback<Boolean> callback) {
+        schoolService.executeAndSaveCommand(command, callback);
+    }
+
 }

@@ -20,9 +20,35 @@
   	<div id="side1">
   	
 	<@common.box "boxStyle", "list", "The List">
+	
+	<table>
+	<tr>
+	<td>School</td>
+	<#list viewUser.processTypes as processType>
+	<td>
+		${processType.name}				
+	</td>
+		</#list>
+	</tr>
+	
+
+
+	
 	<#list viewUser.schoolRankings as sap>
+	<tr>
+	<td>
 		${sap.school.name}<br>
+	</td>
+		
+		<#list sap.process?keys as processType>
+		<td>		
+		${sap.getTheProcess(processType).pctComplete}
+		</td>		
+		</#list>
+	</tr>
 	</#list>
+	
+	</table>
 	
 	</@common.box>	
 	</div>  

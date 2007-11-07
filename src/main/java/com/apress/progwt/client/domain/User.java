@@ -37,7 +37,7 @@ public class User extends AbstractUser implements Serializable, Loadable {
 
     // @Override
     public String toString() {
-        return getId() + " " + getUsername();
+        return "|" + getId() + ":" + getUsername() + "|";
     }
 
     /**

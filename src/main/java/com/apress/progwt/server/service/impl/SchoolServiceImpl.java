@@ -3,16 +3,20 @@ package com.apress.progwt.server.service.impl;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
+import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.domain.commands.CommandService;
+import com.apress.progwt.client.exception.AccessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.domain.SchoolPopularity;
@@ -158,5 +162,27 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     public List<ProcessType> matchProcessType(String queryString) {
 
         return schoolDAO.matchProcessType(queryString);
+    }
+
+    public void saveProcessValue(long schoolAppID, long processTypeID,
+            ProcessValue value) throws UsernameNotFoundException,
+            AccessException {
+
+        SchoolAndAppProcess application = (SchoolAndAppProcess) schoolDAO
+                .get(SchoolAndAppProcess.class, schoolAppID);
+
+        if (!application.getUser().equals(userService.getCurrentUser())) {
+            String msg = "Invalid User " + userService.getCurrentUser()
+                    + " accessing " + application.getUser() + ".";
+            log.warn(msg);
+
+            throw new AccessException(msg);
+        } else {
+            ProcessType type = (ProcessType) schoolDAO.get(
+                    ProcessType.class, processTypeID);
+            application.getProcess().put(type, value);
+            schoolDAO.save(application);
+        }
+
     }
 }

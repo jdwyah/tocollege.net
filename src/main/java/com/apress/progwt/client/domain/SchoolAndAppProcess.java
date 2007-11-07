@@ -20,4 +20,16 @@ public class SchoolAndAppProcess extends AbstractSchoolAndAppProcess
     public String toString() {
         return "ScAndApp School: " + getSchool() + " User: " + getUser();
     }
+
+    /**
+     * Used by FTL templates. See
+     * http://fmpp.sourceforge.net/freemarker/app_faq.html#faq_question_12
+     * 
+     * @param type
+     * @return
+     */
+    public ProcessValue getTheProcess(ProcessType type) {
+        return getProcess().get(type);
+    }
+
 }
