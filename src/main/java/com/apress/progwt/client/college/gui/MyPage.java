@@ -19,12 +19,16 @@ public class MyPage extends Composite {
 
         TabPanel mainPanel = new TabPanel();
 
-        MyProcess process = new MyProcess(serviceCache, thisUser);
-        mainPanel.add(process, "My Process");
+        MyRankings rankings = new MyRankings(serviceCache, thisUser);
+        mainPanel.add(rankings, "My Rankings");
 
-        MyPriorities myPriorities = new MyPriorities(serviceCache,
+        MyApplications myApplications = new MyApplications(serviceCache,
                 thisUser);
-        mainPanel.add(myPriorities, "My Priorities");
+        mainPanel.add(myApplications, "My Applications");
+
+        MyDecision myPriorities = new MyDecision(serviceCache,
+                thisUser);
+        mainPanel.add(myPriorities, "My Decision");
 
         initWidget(mainPanel);
 

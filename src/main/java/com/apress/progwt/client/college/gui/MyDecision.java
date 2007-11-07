@@ -7,12 +7,12 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class MyPriorities extends Composite {
+public class MyDecision extends Composite {
 
     private ServiceCache serviceCache;
     private User thisUser;
 
-    public MyPriorities(ServiceCache serviceCache, User thisUser) {
+    public MyDecision(ServiceCache serviceCache, User thisUser) {
         this.thisUser = thisUser;
         this.serviceCache = serviceCache;
 

@@ -1,14 +1,13 @@
 package com.apress.progwt.client.college.gui;
 
 import com.apress.progwt.client.college.ServiceCache;
-import com.apress.progwt.client.domain.ProcessType;
-import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.FocusPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class CollegeEntry extends Composite {
@@ -23,45 +22,25 @@ public class CollegeEntry extends Composite {
             ServiceCache serviceCache) {
         this.schoolAndApplication = schoolAndApplication;
         this.serviceCache = serviceCache;
-        HorizontalPanel mainPanel = new HorizontalPanel();
 
         collegeNameLabel = new Label(schoolAndApplication.getSchool()
                 .getName());
 
-        mainPanel.add(collegeNameLabel);
+        VerticalPanel infoPanel = new VerticalPanel();
 
-        HorizontalPanel checkBoxP = getCheckBoxes(thisUser,
-                schoolAndApplication);
+        infoPanel.add(collegeNameLabel);
 
-        checkBoxP.setStyleName("TC-App-CheckBoxes");
+        infoPanel.add(new CollegeRatingPanel(thisUser,
+                schoolAndApplication));
+        infoPanel.add(new ProConPanel(thisUser, schoolAndApplication));
 
-        mainPanel.add(checkBoxP);
+        DisclosurePanel mainPanel = new DisclosurePanel(collegeNameLabel);
+        mainPanel.add(infoPanel);
         mainPanel.setStyleName("TC-CollegEntry");
-        fp = new FocusPanel(mainPanel);
-        initWidget(fp);
 
-    }
+        // fp = new FocusPanel(mainPanel);
+        initWidget(mainPanel);
 
-    private HorizontalPanel getCheckBoxes(User thisUser,
-            SchoolAndAppProcess schoolAndApplication) {
-        HorizontalPanel checkBoxP = new HorizontalPanel();
-        int i = 0;
-        for (ProcessType processType : thisUser.getProcessTypes()) {
-
-            ProcessValue value = schoolAndApplication.getProcess().get(
-                    processType);
-            if (value == null) {
-                value = new ProcessValue();
-            }
-            AppCheckboxWidget cell = new AppCheckboxWidget(processType,
-                    value, schoolAndApplication, serviceCache);
-            if (0 == i % 2) {
-                cell.addStyleName("Even");
-            }
-            checkBoxP.add(cell);
-            i++;
-        }
-        return checkBoxP;
     }
 
     public SchoolAndAppProcess getSchoolAndApplication() {

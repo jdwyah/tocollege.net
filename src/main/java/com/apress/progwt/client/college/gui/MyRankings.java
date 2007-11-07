@@ -11,29 +11,22 @@ import com.allen_sauer.gwt.dragdrop.client.VetoDragException;
 import com.allen_sauer.gwt.dragdrop.client.drop.IndexedDropController;
 import com.apress.progwt.client.college.SchoolCompleter;
 import com.apress.progwt.client.college.ServiceCache;
-import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.SchoolAndAppProcess;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class MyProcess extends Composite implements DragHandler,
+public class MyRankings extends Composite implements DragHandler,
         CompleteListener<School> {
-
-    private static final int HEADER_SPACING = 50;
-    private static final int HEADER_HEIGHT = 100;
-    private static final int EXTRA_HEADER = 50;
 
     private User thisUser;
     private VerticalPanel rankPanelPanel;
     private PickupDragController entryDragController;
     private ServiceCache serviceCache;
-    private ProcessHeaderPanel headerPanel;
 
-    public MyProcess(ServiceCache serviceCache, User thisUser) {
+    public MyRankings(ServiceCache serviceCache, User thisUser) {
         this.thisUser = thisUser;
         this.serviceCache = serviceCache;
 
@@ -53,8 +46,6 @@ public class MyProcess extends Composite implements DragHandler,
 
         System.out.println("FOUND " + schoolAndApps.size() + " Schools ");
 
-        headerPanel = new ProcessHeaderPanel(thisUser);
-
         for (SchoolAndAppProcess schoolAndApp : schoolAndApps) {
             addEntry(new CollegeEntry(thisUser, schoolAndApp,
                     serviceCache));
@@ -63,7 +54,6 @@ public class MyProcess extends Composite implements DragHandler,
         SchoolCompleter completer = new SchoolCompleter(serviceCache,
                 this);
 
-        mainPanel.add(headerPanel);
         mainPanel.add(rankPanelPanel);
         mainPanel.add(completer);
 
@@ -93,12 +83,6 @@ public class MyProcess extends Composite implements DragHandler,
                 serviceCache);
         int index = addEntry(entry);
         saveEntry(entry, index);
-    }
-
-    private void addNewProcessType(ProcessType result) {
-        System.out.println("Complete " + result);
-        headerPanel.addProcess(result);
-        // TODO save new process type
     }
 
     public void onDragEnd(DragEndEvent event) {
@@ -131,38 +115,4 @@ public class MyProcess extends Composite implements DragHandler,
             throws VetoDragException {
     }
 
-    private class ProcessHeaderPanel extends Composite implements
-            CompleteListener<ProcessType> {
-
-        private EqualSpacedPanel columnHeaders;
-
-        public ProcessHeaderPanel(User thisUser) {
-            columnHeaders = new EqualSpacedPanel(HEADER_HEIGHT,
-                    HEADER_SPACING, EXTRA_HEADER, thisUser
-                            .getProcessTypes().size());
-
-            System.out.println("Found "
-                    + thisUser.getProcessTypes().size() + " types.");
-
-            for (ProcessType processType : thisUser.getProcessTypes()) {
-                columnHeaders.add(processType.getName());
-            }
-
-            // ProcessCompleter completer = new ProcessCompleter(
-            // serviceCache, this);
-            //
-
-            columnHeaders.setStyleName("TC-ProcessTypes");
-            initWidget(columnHeaders);
-        }
-
-        public void addProcess(ProcessType result) {
-            columnHeaders.add(new Label(result.getName()));
-        }
-
-        public void completed(ProcessType result) {
-            addNewProcessType(result);
-        }
-
-    }
 }

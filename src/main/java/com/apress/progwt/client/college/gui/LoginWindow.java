@@ -113,6 +113,9 @@ public class LoginWindow extends PopupPanel {
         password.setName("j_password");
         password.addKeyboardListener(enterListener);
 
+        username.setText("test");
+        password.setText("testaroo");
+
         toggleL = new Label();
         toggleL.addClickListener(new ClickListener() {
             public void onClick(Widget sender) {

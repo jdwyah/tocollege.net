@@ -77,6 +77,21 @@ a:visited {
   border: 1px solid #87B3FF;
   padding: 4px;
 }
+.Rating {
+	font-size: 7pt;
+}
+.Rating-Hover {
+	font-size: 15pt;
+}
+.ProConPanel {
+}
+.ProConPanel-Pro {
+	background-color: #99FF99;
+}
+.ProConPanel-Con {
+	background-color: #FF9999;
+}
+
 .gwt-SuggestBoxPopup {
 	border: 2px solid #576B93;
 	background: white;
@@ -122,5 +137,5 @@ a:visited {
     border-left: 1px solid #5a6782; 
     border-right: 1px solid #5a6782; 
     border-bottom: 1px solid #5a6782; 
-    background-color: #cdd6ea; 
+    /*background-color: #cdd6ea;*/ 
 } 

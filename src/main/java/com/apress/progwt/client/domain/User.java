@@ -3,6 +3,8 @@ package com.apress.progwt.client.domain;
 //Generated Jul 18, 2006 12:44:47 PM by Hibernate Tools 3.1.0.beta4
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.apress.progwt.client.domain.generated.AbstractUser;
 
@@ -64,6 +66,17 @@ public class User extends AbstractUser implements Serializable, Loadable {
         sap.setUser(this);
         getSchoolRankings().remove(sap);
         getSchoolRankings().add(rank, sap);
+    }
+
+    public List<RatingType> getRatingTypes() {
+        ArrayList<RatingType> rtn = new ArrayList<RatingType>();
+        rtn.add(new RatingType("Campus"));
+        rtn.add(new RatingType("Location"));
+        rtn.add(new RatingType("Sports"));
+        rtn.add(new RatingType("Friendly"));
+        rtn.add(new RatingType("Weather"));
+        rtn.add(new RatingType("Teachers"));
+        return rtn;
     }
 
 }
