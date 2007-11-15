@@ -1,6 +1,6 @@
 package com.apress.progwt.client.college.gui;
 
-import com.apress.progwt.client.college.CollegeBoundApp;
+import com.apress.progwt.client.college.ToCollegeApp;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.User;
 import com.google.gwt.user.client.ui.Composite;
@@ -12,7 +12,7 @@ public class MyPage extends Composite {
 
     private User thisUser;
 
-    public MyPage(CollegeBoundApp collegeBoundApp, User thisUser) {
+    public MyPage(ToCollegeApp collegeBoundApp, User thisUser) {
         this.thisUser = thisUser;
 
         serviceCache = collegeBoundApp.getServiceCache();

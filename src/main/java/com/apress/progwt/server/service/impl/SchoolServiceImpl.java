@@ -185,4 +185,8 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         }
 
     }
+
+    public List<School> getAllSchools() {
+        return schoolDAO.getAllSchools();
+    }
 }

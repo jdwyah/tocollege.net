@@ -18,7 +18,10 @@ public class CollegeRatingPanel extends Composite {
         for (RatingType ratingType : thisUser.getRatingTypes()) {
             HorizontalPanel hp = new HorizontalPanel();
             hp.add(new Label(ratingType.getName()));
-            hp.add(new RatingChooser());
+
+            int rating = schoolAndApplication.getRating(ratingType);
+
+            hp.add(new RatingChooser(ratingType, rating));
             mainPanel.add(hp);
         }
 

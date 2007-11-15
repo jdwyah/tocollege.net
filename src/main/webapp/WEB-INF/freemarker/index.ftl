@@ -14,8 +14,6 @@
 	 <div class="message">${message}</div>
 	</div>
  </#if>			  	 	  
-
-
   	
   	<div id="side1">
   	
@@ -44,15 +42,13 @@
 	</div><!--end browseWidgets-->  
 
 	
-  	<div id="side2">  		
+  	<div id="side2">  					
 			
-			
-				
 	<#if !user?exists>
 	<@common.box "boxStyle", "signup", "Get Your Own!">
 	Signup and <a href="<@spring.url "/site/signupifpossible.html"/>">Pick a username here!</a>
   	</@common.box>	
-  	</#if>
+  	</#if>  	
   	
 	<@common.box "boxStyle", "popularSchools", "Who's Popular">
 				
@@ -63,8 +59,6 @@
 		</ol>		
 		
 	</@common.box>	
-	
-
   		
 	<@common.box "boxStyle", "topUsers", "Top Users">
 				

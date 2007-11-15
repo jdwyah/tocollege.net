@@ -16,7 +16,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CollegeBoundApp {
+public class ToCollegeApp {
     public static final String MAIN_DIV = "slot1";
     private GWTSchoolServiceAsync schoolService;
     private GWTUserServiceAsync userService;
@@ -29,7 +29,7 @@ public class CollegeBoundApp {
         RootPanel.get(MAIN_DIV).add(widget);
     }
 
-    public CollegeBoundApp() {
+    public ToCollegeApp() {
         try {
 
             initConstants();
@@ -52,11 +52,57 @@ public class CollegeBoundApp {
             }
 
             public void onSuccess(User result) {
-                loadGUI(new MyPage(CollegeBoundApp.this, result));
+                loadGUI(new MyPage(ToCollegeApp.this, result));
             }
         });
 
+        // schoolService.getAllSchools(new AsyncCallback<List<School>>() {
+        //
+        // public void onFailure(Throwable caught) {
+        // // TODO Auto-generated method stub
+        //
+        // }
+        //
+        // public void onSuccess(List<School> result) {
+        //
+        // GeoTimer geoCodeTimer = new GeoTimer(result);
+        // geoCodeTimer.scheduleRepeating(10000);
+        // }
+        // });
     }
+
+    // private class GeoTimer extends Timer {
+    //
+    // private List<School> schools;
+    // private Geocoder geocoder;
+    //
+    // public GeoTimer(List<School> schools) {
+    // this.schools = schools;
+    // geocoder = new Geocoder();
+    //
+    // }
+    //
+    // @Override
+    // public void run() {
+    // School school = schools.remove(0);
+    // if (school == null) {
+    // System.out.println("Finished");
+    // cancel();
+    // }
+    // final String full = school.getFullAddress();
+    // System.out.println("Fetch " + full);
+    // geocoder.getLatLng(full, new LatLngCallback() {
+    // public void onFailure() {
+    // System.out.println("Failure: " + full);
+    // }
+    //
+    // public void onSuccess(LatLng point) {
+    // System.out.println("succ : " + point);
+    // }
+    // });
+    // }
+    //
+    // }
 
     private void initConstants() {
         // ConstHolder.myConstants = (Consts) GWT.create(Consts.class);

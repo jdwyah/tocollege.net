@@ -25,4 +25,6 @@ public interface SchoolService {
 
     List<ProcessType> matchProcessType(String queryString);
 
+    List<School> getAllSchools();
+
 }

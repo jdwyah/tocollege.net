@@ -18,4 +18,6 @@ public interface GWTSchoolServiceAsync {
     void matchProcessType(String queryString,
             AsyncCallback<List<ProcessType>> callback);
 
+    void getAllSchools(AsyncCallback<List<School>> asyncCallback);
+
 }

@@ -77,11 +77,21 @@ a:visited {
   border: 1px solid #87B3FF;
   padding: 4px;
 }
-.Rating {
-	font-size: 7pt;
+.Rating {		
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+	font-size: 7pt;		
+}
+.RatingChooser {	
+	cursor: pointer;
 }
 .Rating-Hover {
 	font-size: 15pt;
+}
+.Rating-Selected {
+	font-weight: bold;
+	font-size: 10pt;
 }
 .ProConPanel {
 }

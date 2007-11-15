@@ -1,3 +1,5 @@
+package com.apress.progwt.server.gwt;
+
 /*
  * Copyright 2007 Google Inc.
  * 
@@ -13,7 +15,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.apress.progwt.server.gwt;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -52,7 +53,7 @@ import com.google.gwt.user.server.rpc.impl.ServerSerializationStreamReader;
  * 
  * {@example com.google.gwt.examples.rpc.server.AdvancedExample#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)}
  */
-public final class RPCWithHibernateSupport {
+public final class RPCWithHibernateSupport1529 {
 
     /**
      * Maps primitive wrapper classes to their corresponding primitive
@@ -184,7 +185,7 @@ public final class RPCWithHibernateSupport {
      *             </ul>
      */
     public static RPCRequest decodeRequest(String encodedRequest,
-            Class type) {
+            Class<?> type) {
         return decodeRequest(encodedRequest, type, null);
     }
 
@@ -250,7 +251,7 @@ public final class RPCWithHibernateSupport {
      *             </ul>
      */
     public static RPCRequest decodeRequest(String encodedRequest,
-            Class type,
+            Class<?> type,
             SerializationPolicyProvider serializationPolicyProvider) {
         if (encodedRequest == null) {
             throw new NullPointerException(
@@ -325,24 +326,24 @@ public final class RPCWithHibernateSupport {
                 }
             }
 
-            Method method = findInterfaceMethod(serviceIntf,
-                    serviceMethodName, parameterTypes, true);
+            try {
+                Method method = serviceIntf.getMethod(serviceMethodName,
+                        parameterTypes);
 
-            if (method == null) {
+                Object[] parameterValues = new Object[parameterTypes.length];
+                for (int i = 0; i < parameterValues.length; i++) {
+                    parameterValues[i] = streamReader
+                            .deserializeValue(parameterTypes[i]);
+                }
+
+                return new RPCRequest(method, parameterValues,
+                        serializationPolicy);
+
+            } catch (NoSuchMethodException e) {
                 throw new IncompatibleRemoteServiceException(
                         formatMethodNotFoundErrorMessage(serviceIntf,
                                 serviceMethodName, parameterTypes));
             }
-
-            Object[] parameterValues = new Object[parameterTypes.length];
-            for (int i = 0; i < parameterValues.length; i++) {
-                parameterValues[i] = streamReader
-                        .deserializeValue(parameterTypes[i]);
-            }
-
-            return new RPCRequest(method, parameterValues,
-                    serializationPolicy);
-
         } catch (SerializationException ex) {
             throw new IncompatibleRemoteServiceException(ex.getMessage(),
                     ex);
@@ -421,7 +422,7 @@ public final class RPCWithHibernateSupport {
         }
 
         if (serviceMethod != null
-                && !RPCWithHibernateSupport.isExpectedException(
+                && !RPCWithHibernateSupport1529.isExpectedException(
                         serviceMethod, cause)) {
             throw new UnexpectedException("Service method '"
                     + getSourceRepresentation(serviceMethod)
@@ -675,10 +676,7 @@ public final class RPCWithHibernateSupport {
             SerializationPolicy serializationPolicy)
             throws SerializationException {
 
-        // ServerSerializationStreamWriter stream = new
-        // ServerSerializationStreamWriter(
-        // serializationPolicy);
-        ServerSerializationStreamWriterWithHibernateSupport2 stream = new ServerSerializationStreamWriterWithHibernateSupport2(
+        ServerSerializationStreamWriter1529 stream = new ServerSerializationStreamWriter1529(
                 serializationPolicy);
 
         stream.prepareToWrite();
@@ -689,31 +687,6 @@ public final class RPCWithHibernateSupport {
         String bufferStr = (wasThrown ? "//EX" : "//OK")
                 + stream.toString();
         return bufferStr;
-    }
-
-    /**
-     * Find the invoked method on either the specified interface or any
-     * super.
-     */
-    private static Method findInterfaceMethod(Class<?> intf,
-            String methodName, Class<?>[] paramTypes,
-            boolean includeInherited) {
-        try {
-            return intf.getDeclaredMethod(methodName, paramTypes);
-        } catch (NoSuchMethodException e) {
-            if (includeInherited) {
-                Class<?>[] superintfs = intf.getInterfaces();
-                for (int i = 0; i < superintfs.length; i++) {
-                    Method method = findInterfaceMethod(superintfs[i],
-                            methodName, paramTypes, true);
-                    if (method != null) {
-                        return method;
-                    }
-                }
-            }
-
-            return null;
-        }
     }
 
     private static String formatIllegalAccessErrorMessage(Object target,
@@ -980,7 +953,7 @@ public final class RPCWithHibernateSupport {
     /**
      * Static classes have no constructability.
      */
-    private RPCWithHibernateSupport() {
+    private RPCWithHibernateSupport1529() {
         // Not instantiable
     }
 }

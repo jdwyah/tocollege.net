@@ -32,4 +32,19 @@ public class SchoolAndAppProcess extends AbstractSchoolAndAppProcess
         return getProcess().get(type);
     }
 
+    /**
+     * wrap possible null returns with default value.
+     * 
+     * @param ratingType
+     * @return
+     */
+    public int getRating(RatingType ratingType) {
+        Integer rating = getRatings().get(ratingType);
+        if (rating == null) {
+            return 5;
+        } else {
+            return rating;
+        }
+    }
+
 }

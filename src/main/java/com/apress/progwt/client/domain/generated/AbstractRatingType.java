@@ -1,9 +1,14 @@
 package com.apress.progwt.client.domain.generated;
 
-public abstract class AbstractApplicationCheckbox {
+import java.io.Serializable;
+
+public abstract class AbstractRatingType implements Serializable {
 
     private long id;
     private String name;
+
+    public AbstractRatingType() {
+    }
 
     public long getId() {
         return id;
@@ -20,4 +25,5 @@ public abstract class AbstractApplicationCheckbox {
     public void setName(String name) {
         this.name = name;
     }
+
 }

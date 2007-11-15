@@ -1,3 +1,5 @@
+package com.apress.progwt.server.gwt;
+
 /*
  * Copyright 2007 Google Inc.
  * 
@@ -13,7 +15,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.apress.progwt.server.gwt;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -21,20 +22,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.IdentityHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.hibernate.Hibernate;
-import org.hibernate.collection.PersistentBag;
-import org.hibernate.collection.PersistentList;
-import org.hibernate.collection.PersistentMap;
-import org.hibernate.collection.PersistentSet;
-
-import com.apress.progwt.client.domain.ReallyCloneable;
-import com.apress.progwt.client.exception.CouldntFixCGLIBException;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.client.rpc.SerializationStreamWriter;
 import com.google.gwt.user.client.rpc.impl.AbstractSerializationStreamWriter;
@@ -45,8 +35,206 @@ import com.google.gwt.user.server.rpc.impl.SerializabilityUtil;
  * For internal use only. Used for server call serialization. This class
  * is carefully matched with the client-side version.
  */
-public final class ServerSerializationStreamWriterWithHibernateSupport2
-        extends AbstractSerializationStreamWriter {
+public final class ServerSerializationStreamWriter1529 extends
+        AbstractSerializationStreamWriter {
+
+    /**
+     * Enumeration used to provided typed instance writers.
+     */
+    private enum ValueWriter {
+        BOOLEAN {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeBoolean(((Boolean) instance).booleanValue());
+            }
+        },
+        BYTE {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeByte(((Byte) instance).byteValue());
+            }
+        },
+        CHAR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeChar(((Character) instance).charValue());
+            }
+        },
+        DOUBLE {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeDouble(((Double) instance).doubleValue());
+            }
+        },
+        FLOAT {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeFloat(((Float) instance).floatValue());
+            }
+        },
+        INT {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeInt(((Integer) instance).intValue());
+            }
+        },
+        LONG {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeLong(((Long) instance).longValue());
+            }
+        },
+        OBJECT {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeObject(HibernateFilter.filter(instance));
+            }
+        },
+        SHORT {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeShort(((Short) instance).shortValue());
+            }
+        },
+        STRING {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                stream.writeString((String) instance);
+            }
+        };
+
+        abstract void write(ServerSerializationStreamWriter1529 stream,
+                Object instance) throws SerializationException;
+    }
+
+    /**
+     * Enumeration used to provided typed vector writers.
+     */
+    private enum VectorWriter {
+        BOOLEAN_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                boolean[] vector = (boolean[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeBoolean(vector[i]);
+                }
+            }
+        },
+        BYTE_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                byte[] vector = (byte[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeByte(vector[i]);
+                }
+            }
+        },
+        CHAR_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                char[] vector = (char[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeChar(vector[i]);
+                }
+            }
+        },
+        DOUBLE_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                double[] vector = (double[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeDouble(vector[i]);
+                }
+            }
+        },
+        FLOAT_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                float[] vector = (float[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeFloat(vector[i]);
+                }
+            }
+        },
+        INT_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                int[] vector = (int[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeInt(vector[i]);
+                }
+            }
+        },
+        LONG_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                long[] vector = (long[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeLong(vector[i]);
+                }
+            }
+        },
+        OBJECT_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                Object[] vector = (Object[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeObject(vector[i]);
+                }
+            }
+        },
+        SHORT_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                short[] vector = (short[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeShort(vector[i]);
+                }
+            }
+        },
+        STRING_VECTOR {
+            @Override
+            void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) {
+                String[] vector = (String[]) instance;
+                stream.writeInt(vector.length);
+                for (int i = 0, n = vector.length; i < n; ++i) {
+                    stream.writeString(vector[i]);
+                }
+            }
+        };
+
+        abstract void write(ServerSerializationStreamWriter1529 stream,
+                Object instance) throws SerializationException;
+    }
 
     private static final char NON_BREAKING_HYPHEN = '\u2011';
 
@@ -81,6 +269,16 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
             '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E',
             'F' };
 
+    /**
+     * Map of {@link Class} objects to {@link ValueWriter}s.
+     */
+    private static final Map<Class<?>, ValueWriter> CLASS_TO_VALUE_WRITER = new IdentityHashMap<Class<?>, ValueWriter>();
+
+    /**
+     * Map of {@link Class} vector objects to {@link VectorWriter}s.
+     */
+    private static final Map<Class<?>, VectorWriter> CLASS_TO_VECTOR_WRITER = new IdentityHashMap<Class<?>, VectorWriter>();
+
     static {
         /*
          * NOTE: The JS VM in IE6 & IE7 do not interpret \v correctly.
@@ -96,6 +294,37 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
         JS_CHARS_ESCAPED['\r'] = 'r';
         JS_CHARS_ESCAPED[JS_ESCAPE_CHAR] = JS_ESCAPE_CHAR;
         JS_CHARS_ESCAPED[JS_QUOTE_CHAR] = JS_QUOTE_CHAR;
+
+        CLASS_TO_VECTOR_WRITER.put(boolean[].class,
+                VectorWriter.BOOLEAN_VECTOR);
+        CLASS_TO_VECTOR_WRITER
+                .put(byte[].class, VectorWriter.BYTE_VECTOR);
+        CLASS_TO_VECTOR_WRITER
+                .put(char[].class, VectorWriter.CHAR_VECTOR);
+        CLASS_TO_VECTOR_WRITER.put(double[].class,
+                VectorWriter.DOUBLE_VECTOR);
+        CLASS_TO_VECTOR_WRITER.put(float[].class,
+                VectorWriter.FLOAT_VECTOR);
+        CLASS_TO_VECTOR_WRITER.put(int[].class, VectorWriter.INT_VECTOR);
+        CLASS_TO_VECTOR_WRITER
+                .put(long[].class, VectorWriter.LONG_VECTOR);
+        CLASS_TO_VECTOR_WRITER.put(Object[].class,
+                VectorWriter.OBJECT_VECTOR);
+        CLASS_TO_VECTOR_WRITER.put(short[].class,
+                VectorWriter.SHORT_VECTOR);
+        CLASS_TO_VECTOR_WRITER.put(String[].class,
+                VectorWriter.STRING_VECTOR);
+
+        CLASS_TO_VALUE_WRITER.put(boolean.class, ValueWriter.BOOLEAN);
+        CLASS_TO_VALUE_WRITER.put(byte.class, ValueWriter.BYTE);
+        CLASS_TO_VALUE_WRITER.put(char.class, ValueWriter.CHAR);
+        CLASS_TO_VALUE_WRITER.put(double.class, ValueWriter.DOUBLE);
+        CLASS_TO_VALUE_WRITER.put(float.class, ValueWriter.FLOAT);
+        CLASS_TO_VALUE_WRITER.put(int.class, ValueWriter.INT);
+        CLASS_TO_VALUE_WRITER.put(long.class, ValueWriter.LONG);
+        CLASS_TO_VALUE_WRITER.put(Object.class, ValueWriter.OBJECT);
+        CLASS_TO_VALUE_WRITER.put(short.class, ValueWriter.SHORT);
+        CLASS_TO_VALUE_WRITER.put(String.class, ValueWriter.STRING);
     }
 
     /**
@@ -245,7 +474,7 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
 
     private final SerializationPolicy serializationPolicy;
 
-    public ServerSerializationStreamWriterWithHibernateSupport2(
+    public ServerSerializationStreamWriter1529(
             SerializationPolicy serializationPolicy) {
         this.serializationPolicy = serializationPolicy;
     }
@@ -261,131 +490,14 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
 
     public void serializeValue(Object value, Class<?> type)
             throws SerializationException {
-        if (type == boolean.class) {
-            writeBoolean(((Boolean) value).booleanValue());
-        } else if (type == byte.class) {
-            writeByte(((Byte) value).byteValue());
-        } else if (type == char.class) {
-            writeChar(((Character) value).charValue());
-        } else if (type == double.class) {
-            writeDouble(((Double) value).doubleValue());
-        } else if (type == float.class) {
-            writeFloat(((Float) value).floatValue());
-        } else if (type == int.class) {
-            writeInt(((Integer) value).intValue());
-        } else if (type == long.class) {
-            writeLong(((Long) value).longValue());
-        } else if (type == short.class) {
-            writeShort(((Short) value).shortValue());
-        } else if (type == String.class) {
-            writeString((String) value);
-        }
-
-        /*
-         * make sure we dont return any java.sql.Timestamps
-         */
-        else if (type == java.util.Date.class) {
-            if (value != null) {
-                writeObject(new java.util.Date(((java.util.Date) value)
-                        .getTime()));
-            } else {
-                writeObject(value);
-            }
-        }
-        // /*
-        // * convert org.collection.hibernate.PersistentSet to HashSet
-        // */
-        // else if (type == TopicTypeConnector.class
-        // ||
-        // (value != null &&
-        // value.getClass().getName().contains("Type"))) {
-        // System.out.println("CONNECTOR ");
-        // System.out.println("TYPE "+type);
-        // System.out.println("VALUE "+value);
-        //       
-        // TopicTypeConnector t = (TopicTypeConnector) value;
-        //       
-        // System.out.println("cast "+t.getId()+" "+t.getTopic()+"
-        // "+t.getType());
-        //       
-        // writeObject(value);
-        // }
-        else if (type == java.util.Set.class) {
-            Set hashSet = new HashSet();
-            if (value instanceof PersistentSet) {
-                PersistentSet persSet = (PersistentSet) value;
-                if (persSet.wasInitialized()) {
-                    hashSet.addAll(persSet);
-                }
-            } else {
-                hashSet = (Set) value;
-            }
-            writeObject(hashSet);
-        } else if (type == java.util.List.class) {
-            List arrayList = new ArrayList();
-            if (value instanceof PersistentList) {
-
-                PersistentList persSet = (PersistentList) value;
-                if (persSet.wasInitialized()) {
-                    arrayList.addAll(persSet);
-                }
-
-            } else if (value instanceof PersistentBag) {
-
-                PersistentBag persBag = (PersistentBag) value;
-                if (persBag.wasInitialized()) {
-                    arrayList.addAll(persBag);
-                }
-
-            } else {
-                arrayList = (List) value;
-            }
-            writeObject(arrayList);
-        } else if (type == java.util.Map.class) {
-            Map hashMap = new HashMap();
-            if (value instanceof PersistentMap) {
-                PersistentMap persMap = (PersistentMap) value;
-                if (persMap.wasInitialized()) {
-                    hashMap.putAll(persMap);
-                }
-            } else {
-                hashMap = (Map) value;
-            }
-            writeObject(hashMap);
-        }
-        /*
-         * if this is a CGLIB proxy object do a clone it. Using public
-         * interface ReallyCloneable { public Object clone(); } Because
-         * std Cloneable doesn't actually define .clone()
-         * 
-         * NOTE: for polymorphic classes don't forget to implement
-         * .clone() for each class
-         */
-        else if (value != null
-                && value.getClass().getName().contains("CGLIB")) {
-
-            if (Hibernate.isInitialized(value)) {
-                if (value instanceof ReallyCloneable) {
-                    // System.out.println(value.getClass().getName()+"
-                    // CGLIBBB!! Cloning "+value);
-                    writeObject(((ReallyCloneable) value).clone());
-                } else {
-                    System.out
-                            .println("ServerSerializationStreamWriterWithHibernateSupport2.Uninitialized but doesn't implement ReallyCloneable"
-                                    + value.getClass());
-                    throw new CouldntFixCGLIBException(
-                            value.getClass()
-                                    + " must implement ReallyCloneable if we're to fix it.");
-                }
-            } else {
-                System.out
-                        .println("ServerSerializationStreamWriterWithHibernateSupport2.Uninitialized CGLIB");
-                writeObject(null);
-            }
+        ValueWriter valueWriter = CLASS_TO_VALUE_WRITER.get(type);
+        if (valueWriter != null) {
+            valueWriter.write(this, value);
         } else {
-            writeObject(value);
+            // Arrays of primitive or reference types need to go through
+            // writeObject.
+            ValueWriter.OBJECT.write(this, value);
         }
-
     }
 
     /**
@@ -472,13 +584,34 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
         serializeImpl(instance, clazz);
     }
 
+    /**
+     * Serialize an instance that is an array. Will default to serializing
+     * the instance as an Object vector if the instance is not a vector of
+     * primitives, Strings or Object.
+     * 
+     * @param instanceClass
+     * @param instance
+     * @throws SerializationException
+     */
+    private void serializeArray(Class<?> instanceClass, Object instance)
+            throws SerializationException {
+        assert (instanceClass.isArray());
+
+        VectorWriter instanceWriter = CLASS_TO_VECTOR_WRITER
+                .get(instanceClass);
+        if (instanceWriter != null) {
+            instanceWriter.write(this, instance);
+        } else {
+            VectorWriter.OBJECT_VECTOR.write(this, instance);
+        }
+    }
+
     private void serializeClass(Object instance, Class<?> instanceClass)
             throws SerializationException {
         assert (instance != null);
 
-        Field[] declFields = instanceClass.getDeclaredFields();
         Field[] serializableFields = SerializabilityUtil
-                .applyFieldSerializationPolicy(declFields);
+                .applyFieldSerializationPolicy(instanceClass);
         for (Field declField : serializableFields) {
             assert (declField != null);
 
@@ -521,14 +654,13 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
         Class<?> customSerializer = SerializabilityUtil
                 .hasCustomFieldSerializer(instanceClass);
         if (customSerializer != null) {
+            // Use custom field serializer
             serializeWithCustomSerializer(customSerializer, instance,
                     instanceClass);
+        } else if (instanceClass.isArray()) {
+            serializeArray(instanceClass, instance);
         } else {
-            // Arrays are serialized using custom serializers so we should
-            // never get
-            // here for array types.
-            //
-            assert (!instanceClass.isArray());
+            // Regular class instance
             serializeClass(instance, instanceClass);
         }
     }
@@ -539,12 +671,7 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
 
         Method serialize;
         try {
-            if (instanceClass.isArray()) {
-                Class<?> componentType = instanceClass.getComponentType();
-                if (!componentType.isPrimitive()) {
-                    instanceClass = Class.forName("[Ljava.lang.Object;");
-                }
-            }
+            assert (!instanceClass.isArray());
 
             serialize = customSerializer.getMethod("serialize",
                     SerializationStreamWriter.class, instanceClass);
@@ -564,9 +691,6 @@ public final class ServerSerializationStreamWriterWithHibernateSupport2
             throw new SerializationException(e);
 
         } catch (InvocationTargetException e) {
-            throw new SerializationException(e);
-
-        } catch (ClassNotFoundException e) {
             throw new SerializationException(e);
         }
     }

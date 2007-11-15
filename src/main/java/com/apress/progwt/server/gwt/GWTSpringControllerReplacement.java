@@ -69,9 +69,10 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
             // rpcRequest.getMethod(), rpcRequest.getParameters(),
             // rpcRequest.getSerializationPolicy());
 
-            return RPCWithHibernateSupport.invokeAndEncodeResponse(this,
-                    rpcRequest.getMethod(), rpcRequest.getParameters(),
-                    rpcRequest.getSerializationPolicy());
+            return RPCWithHibernateSupport1529.invokeAndEncodeResponse(
+                    this, rpcRequest.getMethod(), rpcRequest
+                            .getParameters(), rpcRequest
+                            .getSerializationPolicy());
 
         } catch (IncompatibleRemoteServiceException ex) {
             getServletContext()

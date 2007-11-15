@@ -2,7 +2,7 @@ package com.apress.progwt.client.domain.generated;
 
 import java.io.Serializable;
 
-public class AbstractProcessType implements Serializable {
+public abstract class AbstractProcessType implements Serializable {
     private long id;
     private String name;
     private boolean useByDefault;

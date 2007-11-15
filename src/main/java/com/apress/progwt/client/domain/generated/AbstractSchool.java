@@ -2,7 +2,7 @@ package com.apress.progwt.client.domain.generated;
 
 import java.io.Serializable;
 
-public class AbstractSchool implements Serializable {
+public abstract class AbstractSchool implements Serializable {
 
     private long id;
 

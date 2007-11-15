@@ -1,7 +1,7 @@
 package com.apress.progwt.client;
 
 import com.apress.progwt.client.calculator.CalculatorApp;
-import com.apress.progwt.client.college.CollegeBoundApp;
+import com.apress.progwt.client.college.ToCollegeApp;
 import com.apress.progwt.client.exception.MyUncaughtExceptionHandler;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.core.client.EntryPoint;
@@ -17,7 +17,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Interactive implements EntryPoint {
 
     public static final String LOCAL_HOST = "http://localhost:8080/";
-    public static final String REMOTE_HOST = "http://www.myhippocampus.com/";
+    public static final String REMOTE_HOST = "http://www.tocollege.net/";
 
     /**
      * Switch between localhost for testing &
@@ -37,7 +37,7 @@ public class Interactive implements EntryPoint {
 
             // Use to test compiled browser locally
             //
-            if (moduleBase.indexOf("myhippocampus.com") == -1) {
+            if (moduleBase.indexOf("tocollege.net") == -1) {
                 Logger.log("Testing. Using Localhost");
                 realModuleBase = LOCAL_HOST;
             }
@@ -73,7 +73,7 @@ public class Interactive implements EntryPoint {
             if (page.equals("Calculator")) {
                 CalculatorApp m = new CalculatorApp();
             } else if (page.equals("CollegeBound")) {
-                CollegeBoundApp c = new CollegeBoundApp();
+                ToCollegeApp c = new ToCollegeApp();
             } else {
                 throw new Exception("Vars['page'] not set.");
             }

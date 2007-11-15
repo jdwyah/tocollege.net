@@ -16,4 +16,20 @@ public class School extends AbstractSchool implements Serializable,
         return getName();
     }
 
+    public String getFullAddress() {
+        StringBuffer sb = new StringBuffer(getName());
+        sb.append(" ");
+        sb.append(getAddress());
+        sb.append(" ");
+        sb.append(getCity());
+        sb.append(", ");
+        sb.append(getState());
+        sb.append(" ");
+        sb.append(getZip());
+
+        return sb.toString();
+        // return
+        // school.getName()+school.getAddress()+school.getCity()+school.getState()+school.getZip()
+    }
+
 }

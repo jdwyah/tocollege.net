@@ -6,10 +6,11 @@ import java.util.Map;
 
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
+import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 
-public class AbstractSchoolAndAppProcess implements Serializable {
+public abstract class AbstractSchoolAndAppProcess implements Serializable {
 
     private long id;
     private School school;
@@ -24,6 +25,7 @@ public class AbstractSchoolAndAppProcess implements Serializable {
     private int sortOrder;
 
     private Map<ProcessType, ProcessValue> process = new HashMap<ProcessType, ProcessValue>();
+    private Map<RatingType, Integer> ratings = new HashMap<RatingType, Integer>();
 
     public AbstractSchoolAndAppProcess() {
     }
@@ -54,6 +56,14 @@ public class AbstractSchoolAndAppProcess implements Serializable {
 
     public User getUser() {
         return user;
+    }
+
+    public Map<RatingType, Integer> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Map<RatingType, Integer> ratings) {
+        this.ratings = ratings;
     }
 
     public void setUser(User user) {

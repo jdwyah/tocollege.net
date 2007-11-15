@@ -1,19 +1,16 @@
 package com.apress.progwt.client.domain;
 
-public class RatingType {
+import java.io.Serializable;
 
-    private String name;
+import com.apress.progwt.client.domain.generated.AbstractRatingType;
+
+public class RatingType extends AbstractRatingType implements
+        Serializable {
+    public RatingType() {
+    }
 
     public RatingType(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        setName(name);
     }
 
 }

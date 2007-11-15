@@ -19,4 +19,6 @@ public interface GWTSchoolService extends RemoteService {
 
     List<ProcessType> matchProcessType(String queryString)
             throws SiteException;
+
+    List<School> getAllSchools() throws SiteException;
 }

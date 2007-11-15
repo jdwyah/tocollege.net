@@ -2,7 +2,7 @@ package com.apress.progwt.client.domain.generated;
 
 import java.io.Serializable;
 
-public class AbstractForumPost implements Serializable {
+public abstract class AbstractForumPost implements Serializable {
 
     private long id;
     private long threadID;

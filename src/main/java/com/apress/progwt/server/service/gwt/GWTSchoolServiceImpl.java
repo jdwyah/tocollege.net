@@ -42,4 +42,8 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
         return schoolService.matchProcessType(queryString);
     }
 
+    public List<School> getAllSchools() throws SiteException {
+        return schoolService.getAllSchools();
+    }
+
 }

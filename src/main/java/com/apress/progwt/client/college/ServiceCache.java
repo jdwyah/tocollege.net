@@ -19,7 +19,7 @@ public class ServiceCache {
     private GWTUserServiceAsync userService;
     private GWTSchoolServiceAsync schoolService;
 
-    public ServiceCache(CollegeBoundApp collegeBoundApp) {
+    public ServiceCache(ToCollegeApp collegeBoundApp) {
         this.schoolService = collegeBoundApp.getSchoolService();
         this.userService = collegeBoundApp.getUserService();
     }

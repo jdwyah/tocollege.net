@@ -79,4 +79,8 @@ public class User extends AbstractUser implements Serializable, Loadable {
         return rtn;
     }
 
+    public int getPriority(RatingType ratingType) {
+        return 5;
+    }
+
 }

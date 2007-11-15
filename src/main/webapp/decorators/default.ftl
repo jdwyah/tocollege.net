@@ -12,8 +12,8 @@
   <meta name="keywords" content="College,Application,Social,Web 2.0,GWT" />
   <meta name="author" content="Jeff Dwyer/" />
   
-<link rel="icon" href="http://www.myhippocampus.com/favicon.ico" type="image/vnd.microsoft.icon" />
-<link rel="shortcut icon" href="http://www.myhippocampus.com/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="icon" href="http://www.tocollege.net/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="shortcut icon" href="http://www.tocollege.net/favicon.ico" type="image/vnd.microsoft.icon" />
 
   <link rel="stylesheet" type="text/css" href="<@spring.url "/css/style.css"/>"/>
 
@@ -28,13 +28,7 @@
 	<div id="main">
             
 	    <div id="header">
-	    
-	    	<!--<div id="header_logo">	    	
-	    		<a href="<@spring.url "/site/index.html"/>"><@common.pngImage src="/img/sideSeaHorse120px.png" width="67" height="120"/>
-	    		</a>
-    		</div>-->
-    		    	
-    		    	
+	        		    
     		<#if "true" == page.properties["meta.sm.showAccount"]?default("true")>
     		<div id="header_account">
     		  <#if user?exists>
