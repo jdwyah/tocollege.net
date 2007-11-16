@@ -91,7 +91,7 @@
 				
                 <prop key="/site/secure/myList.html">mylistController</prop>
                 <prop key="/site/college/*">collegeController</prop>
-
+                <prop key="/site/user/*">viewUserController</prop>
 
 				<prop key="/site/accessDenied.html">errorController</prop>
 				<prop key="/site/servletErrorView.html">errorController</prop>						

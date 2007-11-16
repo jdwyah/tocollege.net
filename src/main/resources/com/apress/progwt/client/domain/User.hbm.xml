@@ -49,7 +49,7 @@
          
         <bag name="schoolRankings" inverse="false" order-by="sort_order"> 
 		     <key column="user_id"  />                              
-             <one-to-many class="SchoolAndAppProcess" />		     
+             <one-to-many class="Application" />		     
 		</bag> 
 
 
@@ -62,6 +62,19 @@
              <key column="user_id" />            
              <many-to-many class="ProcessType" column="process_id" />
         </set> -->
+
+        <list name="ratingTypes" table="user_ratingtype" inverse="false" cascade="save-update">
+             <key column="user_id" />
+             <list-index column="sort_order"/>
+             <many-to-many class="RatingType" column="rating_id" />
+        </list>
+
+        
+         <map name="priorities" table="user_priorities_map" inverse="false" cascade="all-delete-orphan">
+             <key column="user_id" not-null="true"/>
+             <map-key-many-to-many column="ratingtype_id" class="RatingType" />
+             <element type="int" column="priority" not-null="true"/>             
+        </map>
 
 	</class>
 

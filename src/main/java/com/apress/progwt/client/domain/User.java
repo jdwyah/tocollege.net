@@ -4,6 +4,7 @@ package com.apress.progwt.client.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.apress.progwt.client.domain.generated.AbstractUser;
@@ -57,30 +58,35 @@ public class User extends AbstractUser implements Serializable, Loadable {
         return getPassword() == null;
     }
 
-    public void addRanked(SchoolAndAppProcess schoolAndAppProcess) {
+    public void addRanked(Application schoolAndAppProcess) {
         schoolAndAppProcess.setUser(this);
         getSchoolRankings().add(schoolAndAppProcess);
     }
 
-    public void addRanked(int rank, SchoolAndAppProcess sap) {
+    public void addRanked(int rank, Application sap) {
         sap.setUser(this);
         getSchoolRankings().remove(sap);
         getSchoolRankings().add(rank, sap);
     }
 
-    public List<RatingType> getRatingTypes() {
-        ArrayList<RatingType> rtn = new ArrayList<RatingType>();
-        rtn.add(new RatingType("Campus"));
-        rtn.add(new RatingType("Location"));
-        rtn.add(new RatingType("Sports"));
-        rtn.add(new RatingType("Friendly"));
-        rtn.add(new RatingType("Weather"));
-        rtn.add(new RatingType("Teachers"));
-        return rtn;
+    public int getPriority(RatingType ratingType) {
+        Integer priority = getPriorities().get(ratingType);
+        if (priority == null) {
+            return 5;
+        }
+        return priority;
     }
 
-    public int getPriority(RatingType ratingType) {
-        return 5;
+    public List<ApplicationAndScore> getPrioritizedRankings() {
+        List<ApplicationAndScore> rtn = new ArrayList<ApplicationAndScore>();
+
+        for (Application application : getSchoolRankings()) {
+            rtn.add(application.getAppAndScore(getRatingTypes(), this));
+        }
+
+        Collections.sort(rtn);
+
+        return rtn;
     }
 
 }

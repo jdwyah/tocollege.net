@@ -11,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
+import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.domain.commands.CommandService;
+import com.apress.progwt.client.domain.commands.SaveRatingCommand;
 import com.apress.progwt.client.exception.AccessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
@@ -81,7 +83,7 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
 
         log.info("Going to execute Command...");
 
-        command.executeCommand(this);
+        command.executeCommandServer(this);
 
         // schoolDAO.executeAndSaveCommand(u, command);
 
@@ -168,8 +170,8 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
             ProcessValue value) throws UsernameNotFoundException,
             AccessException {
 
-        SchoolAndAppProcess application = (SchoolAndAppProcess) schoolDAO
-                .get(SchoolAndAppProcess.class, schoolAppID);
+        Application application = (Application) schoolDAO.get(
+                Application.class, schoolAppID);
 
         if (!application.getUser().equals(userService.getCurrentUser())) {
             String msg = "Invalid User " + userService.getCurrentUser()
@@ -188,5 +190,19 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
 
     public List<School> getAllSchools() {
         return schoolDAO.getAllSchools();
+    }
+
+    public void saveRatingCommand(SaveRatingCommand command) {
+
+        Application application = (Application) schoolDAO.get(
+                Application.class, command.getApplicationID());
+        RatingType ratingType = (RatingType) schoolDAO.get(
+                RatingType.class, command.getRatingID());
+
+        application.getRatings().put(ratingType,
+                command.getSelectedRating());
+
+        schoolDAO.save(application);
+
     }
 }

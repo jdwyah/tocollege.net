@@ -17,7 +17,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
@@ -177,8 +177,10 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
         User rtn = (User) DataAccessUtils
                 .uniqueResult(getHibernateTemplate().findByCriteria(crit));
         Hibernate.initialize(rtn.getProcessTypes());
-        for (SchoolAndAppProcess application : rtn.getSchoolRankings()) {
+        Hibernate.initialize(rtn.getRatingTypes());
+        for (Application application : rtn.getSchoolRankings()) {
             Hibernate.initialize(application.getProcess());
+            Hibernate.initialize(application.getRatings());
         }
         // Hibernate.initialize(rtn.getSchoolRankings());
         return rtn;

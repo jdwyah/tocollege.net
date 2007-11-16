@@ -13,4 +13,6 @@ public interface CommandService {
     void saveProcessValue(long schoolAppID, long processTypeID,
             ProcessValue value) throws SiteException;
 
+    void saveRatingCommand(SaveRatingCommand saveRatingCommand);
+
 }

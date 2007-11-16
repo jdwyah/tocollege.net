@@ -11,7 +11,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.service.SchoolService;
 
@@ -53,7 +53,7 @@ public class ViewUserController extends BasicController {
         log.debug("isinit schools "
                 + Hibernate
                         .isInitialized(fetchedUser.getSchoolRankings()));
-        for (SchoolAndAppProcess sap : fetchedUser.getSchoolRankings()) {
+        for (Application sap : fetchedUser.getSchoolRankings()) {
             log.debug("isinit sap " + Hibernate.isInitialized(sap));
         }
 

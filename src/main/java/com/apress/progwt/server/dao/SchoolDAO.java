@@ -5,6 +5,7 @@ import java.util.List;
 import com.apress.progwt.client.domain.Foo;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
+import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
 
 public interface SchoolDAO {
@@ -32,5 +33,7 @@ public interface SchoolDAO {
     ProcessType getProcessForName(String string);
 
     List<ProcessType> getDefaultProcessTypes();
+
+    List<RatingType> getDefaultRatingTypes();
 
 }

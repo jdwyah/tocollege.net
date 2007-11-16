@@ -3,8 +3,9 @@ package com.apress.progwt.server.service.impl;
 import org.apache.log4j.Logger;
 
 import com.apress.progwt.client.domain.ProcessType;
+import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.server.dao.SchoolDAO;
@@ -17,6 +18,11 @@ public class UserServiceImplTest extends
 
     private static final Logger log = Logger
             .getLogger(UserServiceImplTest.class);
+
+    private static final int PROCESS_TYPES = 8;
+
+    private static final int RATING_TYPES = 5;
+
     private SchoolDAO schoolDAO;
     private UserDAO userDAO;
     private SchoolService schoolService;
@@ -40,10 +46,16 @@ public class UserServiceImplTest extends
 
         User saved = userService.getUserWithNormalization("username");
 
-        assertEquals(11, saved.getProcessTypes().size());
+        assertEquals(PROCESS_TYPES, saved.getProcessTypes().size());
 
         for (ProcessType pType : saved.getProcessTypes()) {
             assertNotNull(pType);
+        }
+
+        assertEquals(RATING_TYPES, saved.getRatingTypes().size());
+
+        for (RatingType rType : saved.getRatingTypes()) {
+            assertNotNull(rType);
         }
     }
 
@@ -55,10 +67,10 @@ public class UserServiceImplTest extends
         School dart = schoolService.getSchoolsMatching(
                 "Dartmouth College").get(0);
 
-        saved.addRanked(new SchoolAndAppProcess(dart));
+        saved.addRanked(new Application(dart));
         userDAO.save(saved);
 
-        assertEquals(11, saved.getProcessTypes().size());
+        assertEquals(PROCESS_TYPES, saved.getProcessTypes().size());
 
         for (ProcessType pType : saved.getProcessTypes()) {
             assertNotNull(pType);
@@ -66,12 +78,13 @@ public class UserServiceImplTest extends
 
         User fetched = userService.getUserByNicknameFullFetch("username");
 
-        assertEquals(11, fetched.getProcessTypes().size());
+        assertEquals(PROCESS_TYPES, fetched.getProcessTypes().size());
         assertEquals(1, fetched.getSchoolRankings().size());
 
         User fetched2 = userService.getUserByNicknameFullFetch("test");
 
-        assertEquals(11, fetched2.getProcessTypes().size());
+        assertEquals(PROCESS_TYPES, fetched2.getProcessTypes().size());
+        assertEquals(RATING_TYPES, fetched2.getRatingTypes().size());
         assertEquals(1, fetched2.getSchoolRankings().size());
         assertEquals(4, fetched2.getSchoolRankings().get(0).getProcess()
                 .size());

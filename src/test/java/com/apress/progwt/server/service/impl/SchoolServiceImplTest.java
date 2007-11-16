@@ -8,11 +8,13 @@ import org.apache.log4j.Logger;
 import com.apress.progwt.client.domain.Foo;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
+import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.RemoveSchoolFromRankCommand;
 import com.apress.progwt.client.domain.commands.SaveProcessCommand;
+import com.apress.progwt.client.domain.commands.SaveRatingCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
@@ -63,7 +65,7 @@ public class SchoolServiceImplTest extends
 
         System.out.println("currentUser " + currentUser);
 
-        SchoolAndAppProcess sap = new SchoolAndAppProcess(sc);
+        Application sap = new Application(sc);
         currentUser.addRanked(sap);
 
         String NAME = "Mailed";
@@ -89,8 +91,7 @@ public class SchoolServiceImplTest extends
         }
         assertEquals(NAME, savedPT.getName());
 
-        SchoolAndAppProcess savedSAP = savedUser.getSchoolRankings().get(
-                0);
+        Application savedSAP = savedUser.getSchoolRankings().get(0);
 
         ProcessValue savedPValue = savedSAP.getProcess().get(savedPT);
 
@@ -121,7 +122,7 @@ public class SchoolServiceImplTest extends
         User currentUser = getUser();
         assertEquals(0, currentUser.getSchoolRankings().size());
 
-        currentUser.addRanked(new SchoolAndAppProcess(sc));
+        currentUser.addRanked(new Application(sc));
 
         schoolDAO.save(currentUser);
 
@@ -237,7 +238,7 @@ public class SchoolServiceImplTest extends
     }
 
     public void testSaveProcessTypes() throws SiteException {
-        log.debug("\n\nSaveSchoolRankings\n\n");
+        log.debug("\ntestSaveProcessTypes\n\n");
         School dart = schoolService.getSchoolsMatching("Dartmouth Col")
                 .get(0);
         School harvard = schoolService.getSchoolsMatching("Harvard").get(
@@ -257,8 +258,8 @@ public class SchoolServiceImplTest extends
         User savedUser = getUser();
         assertEquals(3, savedUser.getSchoolRankings().size());
 
-        SchoolAndAppProcess dartApplication = savedUser
-                .getSchoolRankings().get(0);
+        Application dartApplication = savedUser.getSchoolRankings()
+                .get(0);
 
         assertEquals(dart, dartApplication.getSchool());
 
@@ -277,12 +278,54 @@ public class SchoolServiceImplTest extends
 
         User savedUser2 = getUser();
 
-        SchoolAndAppProcess savedDart = savedUser2.getSchoolRankings()
-                .get(0);
+        Application savedDart = savedUser2.getSchoolRankings().get(0);
         ProcessValue savedValue = savedDart.getProcess().get(considering);
 
         assertEquals(.34, savedValue.getPctComplete());
         assertEquals(2005, savedValue.getDueDate().getYear() + 1900);
+
+    }
+
+    public void testSaveRatingTypes() throws SiteException {
+        log.debug("\n\nSaveratingTypes\n\n");
+        School dart = schoolService.getSchoolsMatching("Dartmouth Col")
+                .get(0);
+        School harvard = schoolService.getSchoolsMatching("Harvard").get(
+                0);
+        School yale = schoolService.getSchoolsMatching("Yale").get(0);
+
+        // Save in order to Dart/Harvard/Yale
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart, 0);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        comm = new SaveSchoolRankCommand(harvard, 1);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        comm = new SaveSchoolRankCommand(yale, 2);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        User savedUser = getUser();
+        assertEquals(3, savedUser.getSchoolRankings().size());
+
+        Application dartApplication = savedUser.getSchoolRankings()
+                .get(0);
+
+        assertEquals(dart, dartApplication.getSchool());
+
+        RatingType ratingOne = getUser().getRatingTypes().get(0);
+        RatingType ratingTwo = getUser().getRatingTypes().get(1);
+
+        SaveRatingCommand command = new SaveRatingCommand(ratingOne, 3,
+                dartApplication);
+
+        schoolService.executeAndSaveCommand(command, false);
+
+        User savedUser2 = getUser();
+
+        Application savedDart = savedUser2.getSchoolRankings().get(0);
+
+        assertEquals(3, savedDart.getRating(ratingOne));
+        assertEquals(5, savedDart.getRating(ratingTwo));
 
     }
 

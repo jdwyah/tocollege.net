@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.apress.progwt.client.domain">
+
+	<class name="Application" table="applications">
+		<meta attribute="generated-class">com.apress.progwt.client.domain.generated.AbstractApplication</meta>
+		<meta attribute="scope-class">public abstract</meta>
+
+		<id name="id" type="long" column="id">
+			<generator class="native"></generator>
+		</id>
+       
+        <property name="sortOrder" column="sort_order" type="int"/>
+        <property name="notes" column="notes" type="string"/>  
+
+        <many-to-one name="user" column="user_id" class="User" insert="false" update="false" />        
+        <many-to-one name="school" column="school_id" class="School" cascade="none" lazy="false"></many-to-one>		        
+
+        <map name="process" table="application_process_map" inverse="false" cascade="all-delete-orphan">
+             <key column="application_id" not-null="true"/>
+             <map-key-many-to-many column="processtype_id" class="ProcessType" />
+             <composite-element class="ProcessValue">
+                  <property name="pctComplete" type="double" />
+                  <property name="dueDate" type="java.util.Date" />
+             </composite-element>
+        </map>
+        
+         <map name="ratings" table="application_ratings_map" inverse="false" cascade="all-delete-orphan">
+             <key column="application_id" not-null="true"/>
+             <map-key-many-to-many column="ratingtype_id" class="RatingType" />     
+             <element type="int" column="rating" not-null="true"/>     
+        </map>
+        
+        <list name="pros" table="application_pros" inverse="false" cascade="save-update">
+             <key column="application_id" />
+             <list-index column="sort_order"/>
+             <element type="string" column="value" not-null="true"/>             
+        </list>
+        <list name="cons" table="application_cons" inverse="false" cascade="save-update">
+             <key column="application_id" />
+             <list-index column="sort_order"/>
+             <element type="string" column="value" not-null="true"/>             
+        </list>
+        
+	</class>
+
+</hibernate-mapping>

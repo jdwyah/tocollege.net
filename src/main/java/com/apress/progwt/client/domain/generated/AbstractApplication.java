@@ -1,7 +1,9 @@
 package com.apress.progwt.client.domain.generated;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.apress.progwt.client.domain.ProcessType;
@@ -10,7 +12,7 @@ import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 
-public abstract class AbstractSchoolAndAppProcess implements Serializable {
+public abstract class AbstractApplication implements Serializable {
 
     private long id;
     private School school;
@@ -27,7 +29,11 @@ public abstract class AbstractSchoolAndAppProcess implements Serializable {
     private Map<ProcessType, ProcessValue> process = new HashMap<ProcessType, ProcessValue>();
     private Map<RatingType, Integer> ratings = new HashMap<RatingType, Integer>();
 
-    public AbstractSchoolAndAppProcess() {
+    private List<String> pros = new ArrayList<String>();
+    private List<String> cons = new ArrayList<String>();
+    private String notes;
+
+    public AbstractApplication() {
     }
 
     public School getSchool() {
@@ -97,9 +103,9 @@ public abstract class AbstractSchoolAndAppProcess implements Serializable {
             return true;
         if (obj == null)
             return false;
-        if (!(obj instanceof AbstractSchoolAndAppProcess))
+        if (!(obj instanceof AbstractApplication))
             return false;
-        final AbstractSchoolAndAppProcess other = (AbstractSchoolAndAppProcess) obj;
+        final AbstractApplication other = (AbstractApplication) obj;
 
         // are they the same DB row?
         if (id == other.id && id != 0) {
@@ -123,6 +129,30 @@ public abstract class AbstractSchoolAndAppProcess implements Serializable {
         } else if (!user.equals(other.user))
             return false;
         return true;
+    }
+
+    public List<String> getPros() {
+        return pros;
+    }
+
+    public void setPros(List<String> pros) {
+        this.pros = pros;
+    }
+
+    public List<String> getCons() {
+        return cons;
+    }
+
+    public void setCons(List<String> cons) {
+        this.cons = cons;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
 }

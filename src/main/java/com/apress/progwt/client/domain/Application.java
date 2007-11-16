@@ -1,17 +1,18 @@
 package com.apress.progwt.client.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.apress.progwt.client.domain.commands.Orderable;
-import com.apress.progwt.client.domain.generated.AbstractSchoolAndAppProcess;
+import com.apress.progwt.client.domain.generated.AbstractApplication;
 
-public class SchoolAndAppProcess extends AbstractSchoolAndAppProcess
-        implements Serializable, Loadable, Orderable {
+public class Application extends AbstractApplication implements
+        Serializable, Loadable, Orderable {
 
-    public SchoolAndAppProcess() {
+    public Application() {
     }
 
-    public SchoolAndAppProcess(School school) {
+    public Application(School school) {
         setSchool(school);
 
     }
@@ -45,6 +46,28 @@ public class SchoolAndAppProcess extends AbstractSchoolAndAppProcess
         } else {
             return rating;
         }
+    }
+
+    public ApplicationAndScore getAppAndScore(
+            List<RatingType> ratingTypes, User user) {
+        ApplicationAndScore rtn = new ApplicationAndScore(this);
+
+        int myScore = 0;
+        int totalScore = 0;
+
+        for (RatingType ratingType : ratingTypes) {
+            int score = getRating(ratingType);
+            int priority = user.getPriority(ratingType);
+
+            myScore += score * priority;
+            totalScore += 10 * priority;
+        }
+
+        rtn.setScore(myScore);
+        rtn.setTotal(totalScore);
+
+        return rtn;
+
     }
 
 }

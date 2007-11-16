@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
@@ -138,7 +138,7 @@ public class UserDAOHibernateImplTest extends
         User test = userDAO.getUserByNicknameFetchAll("test");
         assertTrue(Hibernate.isInitialized(test.getSchoolRankings()));
 
-        for (SchoolAndAppProcess sap : test.getSchoolRankings()) {
+        for (Application sap : test.getSchoolRankings()) {
             assertTrue(Hibernate.isInitialized(sap));
             assertTrue(Hibernate.isInitialized(sap.getSchool()));
 

@@ -12,11 +12,15 @@ import com.allen_sauer.gwt.dragdrop.client.drop.IndexedDropController;
 import com.apress.progwt.client.college.SchoolCompleter;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.util.Logger;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 public class MyRankings extends Composite implements DragHandler,
         CompleteListener<School> {
@@ -25,6 +29,7 @@ public class MyRankings extends Composite implements DragHandler,
     private VerticalPanel rankPanelPanel;
     private PickupDragController entryDragController;
     private ServiceCache serviceCache;
+    private SchoolCompleter completer;
 
     public MyRankings(ServiceCache serviceCache, User thisUser) {
         this.thisUser = thisUser;
@@ -41,18 +46,25 @@ public class MyRankings extends Composite implements DragHandler,
 
         entryDragController.addDragHandler(this);
 
-        List<SchoolAndAppProcess> schoolAndApps = thisUser
-                .getSchoolRankings();
+        List<Application> schoolAndApps = thisUser.getSchoolRankings();
 
         System.out.println("FOUND " + schoolAndApps.size() + " Schools ");
 
-        for (SchoolAndAppProcess schoolAndApp : schoolAndApps) {
+        for (Application schoolAndApp : schoolAndApps) {
             addEntry(new CollegeEntry(thisUser, schoolAndApp,
                     serviceCache));
         }
 
-        SchoolCompleter completer = new SchoolCompleter(serviceCache,
-                this);
+        HorizontalPanel completerP = new HorizontalPanel();
+        completer = new SchoolCompleter(serviceCache, this);
+        Button completeB = new Button("Add School");
+        completeB.addClickListener(new ClickListener() {
+            public void onClick(Widget sender) {
+                completer.complete();
+            }
+        });
+        completerP.add(completer);
+        completerP.add(completeB);
 
         mainPanel.add(rankPanelPanel);
         mainPanel.add(completer);
@@ -77,7 +89,7 @@ public class MyRankings extends Composite implements DragHandler,
     }
 
     public void completed(School school) {
-        SchoolAndAppProcess schoolAndApp = new SchoolAndAppProcess(school);
+        Application schoolAndApp = new Application(school);
 
         CollegeEntry entry = new CollegeEntry(thisUser, schoolAndApp,
                 serviceCache);

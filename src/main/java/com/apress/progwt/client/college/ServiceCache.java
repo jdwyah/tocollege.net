@@ -8,6 +8,7 @@ import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
+import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.rpc.EZCallback;
 import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
 import com.apress.progwt.client.service.remote.GWTUserServiceAsync;
@@ -64,9 +65,25 @@ public class ServiceCache {
         schoolService.matchProcessType(queryString, callback);
     }
 
-    public void executeCommand(AbstractCommand command,
-            AsyncCallback<Boolean> callback) {
-        schoolService.executeAndSaveCommand(command, callback);
-    }
+    public void executeCommand(final AbstractCommand command,
+            final AsyncCallback<Boolean> callback) {
 
+        schoolService.executeAndSaveCommand(command,
+                new AsyncCallback<Boolean>() {
+
+                    public void onSuccess(Boolean result) {
+                        try {
+                            command.executeCommandClient();
+                        } catch (SiteException e) {
+                            callback.onFailure(e);
+                        }
+                        callback.onSuccess(result);
+                    }
+
+                    public void onFailure(Throwable caught) {
+                        callback.onFailure(caught);
+                    }
+                });
+
+    }
 }

@@ -1,7 +1,7 @@
 package com.apress.progwt.client.college.gui;
 
 import com.apress.progwt.client.college.ServiceCache;
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DisclosurePanel;
@@ -14,25 +14,23 @@ public class CollegeEntry extends Composite {
 
     private Label collegeNameLabel;
     private FocusPanel fp;
-    private SchoolAndAppProcess schoolAndApplication;
+    private Application application;
     private ServiceCache serviceCache;
 
-    public CollegeEntry(User thisUser,
-            SchoolAndAppProcess schoolAndApplication,
+    public CollegeEntry(User thisUser, Application application,
             ServiceCache serviceCache) {
-        this.schoolAndApplication = schoolAndApplication;
+        this.application = application;
         this.serviceCache = serviceCache;
 
-        collegeNameLabel = new Label(schoolAndApplication.getSchool()
-                .getName());
+        collegeNameLabel = new Label(application.getSchool().getName());
 
         VerticalPanel infoPanel = new VerticalPanel();
 
         infoPanel.add(collegeNameLabel);
 
-        infoPanel.add(new CollegeRatingPanel(thisUser,
-                schoolAndApplication));
-        infoPanel.add(new ProConPanel(thisUser, schoolAndApplication));
+        infoPanel.add(new CollegeRatingPanel(serviceCache, thisUser,
+                application));
+        infoPanel.add(new ProConPanel(thisUser, application));
 
         DisclosurePanel mainPanel = new DisclosurePanel(collegeNameLabel);
         mainPanel.add(infoPanel);
@@ -43,8 +41,8 @@ public class CollegeEntry extends Composite {
 
     }
 
-    public SchoolAndAppProcess getSchoolAndApplication() {
-        return schoolAndApplication;
+    public Application getSchoolAndApplication() {
+        return application;
     }
 
     public Widget getDragHandle() {

@@ -2,10 +2,13 @@ package com.apress.progwt.client.domain.generated;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.ProcessType;
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.RatingType;
 
 // Generated Oct 31, 2006 9:16:47 AM by Hibernate Tools 3.1.0.beta5
 
@@ -28,9 +31,13 @@ public abstract class AbstractUser implements java.io.Serializable {
 
     private Date dateCreated;
 
-    private List<SchoolAndAppProcess> schoolRankings = new ArrayList<SchoolAndAppProcess>();
+    private List<Application> schoolRankings = new ArrayList<Application>();
 
     private List<ProcessType> processTypes = new ArrayList<ProcessType>();
+
+    private List<RatingType> ratingTypes = new ArrayList<RatingType>();
+
+    private Map<RatingType, Integer> priorities = new HashMap<RatingType, Integer>();
 
     private boolean supervisor;
 
@@ -123,11 +130,11 @@ public abstract class AbstractUser implements java.io.Serializable {
         this.supervisor = supervisor;
     }
 
-    public List<SchoolAndAppProcess> getSchoolRankings() {
+    public List<Application> getSchoolRankings() {
         return schoolRankings;
     }
 
-    public void setSchoolRankings(List<SchoolAndAppProcess> schoolRankings) {
+    public void setSchoolRankings(List<Application> schoolRankings) {
         this.schoolRankings = schoolRankings;
     }
 
@@ -165,6 +172,22 @@ public abstract class AbstractUser implements java.io.Serializable {
 
     public void setProcessTypes(List<ProcessType> processTypes) {
         this.processTypes = processTypes;
+    }
+
+    public List<RatingType> getRatingTypes() {
+        return ratingTypes;
+    }
+
+    public Map<RatingType, Integer> getPriorities() {
+        return priorities;
+    }
+
+    public void setPriorities(Map<RatingType, Integer> priorities) {
+        this.priorities = priorities;
+    }
+
+    public void setRatingTypes(List<RatingType> ratingTypes) {
+        this.ratingTypes = ratingTypes;
     }
 
 }

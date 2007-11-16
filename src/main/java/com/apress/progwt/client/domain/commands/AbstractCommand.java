@@ -9,6 +9,9 @@ public abstract class AbstractCommand implements Serializable {
     public AbstractCommand() {
     }
 
-    public abstract void executeCommand(CommandService commandService)
+    public abstract void executeCommandServer(CommandService commandService)
             throws SiteException;
+
+    public abstract void executeCommandClient() throws SiteException;
+
 }

@@ -27,8 +27,9 @@
 				<value>com/apress/progwt/client/domain/User.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/School.hbm.xml</value>   
                 <value>com/apress/progwt/client/domain/MailingList.hbm.xml</value>
-                <value>com/apress/progwt/client/domain/SchoolAndAppProcess.hbm.xml</value>   			                
+                <value>com/apress/progwt/client/domain/Application.hbm.xml</value>   			                
                 <value>com/apress/progwt/client/domain/ProcessType.hbm.xml</value>
+                <value>com/apress/progwt/client/domain/RatingType.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/Foo.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/Bar.hbm.xml</value>
 			</list>

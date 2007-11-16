@@ -16,6 +16,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apress.progwt.client.domain.ProcessType;
+import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
@@ -157,6 +158,9 @@ public class UserServiceImpl implements UserService {
 
         for (ProcessType processType : schoolDAO.getDefaultProcessTypes()) {
             createdU.getProcessTypes().add(processType);
+        }
+        for (RatingType ratingType : schoolDAO.getDefaultRatingTypes()) {
+            createdU.getRatingTypes().add(ratingType);
         }
 
         return save(createdU);

@@ -5,7 +5,7 @@ import java.util.List;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
@@ -22,7 +22,7 @@ public class MyApplications extends Composite {
 
         List<ProcessType> processTypes = thisUser.getProcessTypes();
 
-        List<SchoolAndAppProcess> schoolAndApps = thisUser
+        List<Application> schoolAndApps = thisUser
                 .getSchoolRankings();
 
         Grid mainGrid = new Grid(schoolAndApps.size() + 1, processTypes
@@ -36,7 +36,7 @@ public class MyApplications extends Composite {
         }
 
         row++;
-        for (SchoolAndAppProcess schoolAndApp : schoolAndApps) {
+        for (Application schoolAndApp : schoolAndApps) {
             col = 0;
 
             mainGrid.setWidget(row, col, new Label(schoolAndApp

@@ -3,7 +3,7 @@ package com.apress.progwt.client.college.gui;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
-import com.apress.progwt.client.domain.SchoolAndAppProcess;
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.commands.SaveProcessCommand;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.ui.ClickListener;
@@ -18,10 +18,10 @@ public class AppCheckboxWidget extends Composite implements ClickListener {
     private ProcessValue value;
     private Label theLabel;
     private ServiceCache serviceCache;
-    private SchoolAndAppProcess application;
+    private Application application;
 
     public AppCheckboxWidget(ProcessType appCheckType,
-            ProcessValue value, SchoolAndAppProcess application,
+            ProcessValue value, Application application,
             ServiceCache serviceCache) {
         this.appCheckType = appCheckType;
         this.value = value;
