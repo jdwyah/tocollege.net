@@ -61,22 +61,22 @@ public class HibernateFilter {
             return hashMap;
         }
         if (instance.getClass().getName().contains("CGLIB")) {
+
             if (Hibernate.isInitialized(instance)) {
                 if (instance instanceof ReallyCloneable) {
-                    // System.out.println(value.getClass().getName()+"
-                    // CGLIBBB!! Cloning "+value);
+                    log.debug(instance.getClass().getName()
+                            + " CGLIB Cloning " + instance);
                     return ((ReallyCloneable) instance).clone();
                 } else {
                     log
-                            .warn("ServerSerializationStreamWriterWithHibernateSupport2.Uninitialized but doesn't implement ReallyCloneable"
+                            .warn("Uninitialized but doesn't implement ReallyCloneable"
                                     + instance.getClass());
                     throw new CouldntFixCGLIBException(
                             instance.getClass()
                                     + " must implement ReallyCloneable if we're to fix it.");
                 }
             } else {
-                log
-                        .debug("ServerSerializationStreamWriterWithHibernateSupport2.Uninitialized CGLIB");
+                log.debug("Uninitialized CGLIB");
                 return null;
             }
         }

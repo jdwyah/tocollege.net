@@ -8,6 +8,7 @@ import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
+import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.rpc.EZCallback;
 import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
@@ -37,21 +38,21 @@ public class ServiceCache {
         // asyncCallback.onSuccess(rtn);
     }
 
-    public void saveEntry(CollegeEntry entry, int index) {
+    public void saveEntry(CollegeEntry entry, User thisUser, int index) {
 
         System.out.println("SAVING ENTRY!!!!!!!!!");
 
         final SaveSchoolRankCommand comm = new SaveSchoolRankCommand(
-                entry.getSchoolAndApplication().getSchool(), index);
-        schoolService.executeAndSaveCommand(comm,
-                new EZCallback<Boolean>() {
-                    public void onSuccess(Boolean success) {
-                        Logger.debug("Success");
+                entry.getSchoolAndApplication().getSchool(), thisUser,
+                index);
+        executeCommand(comm, new EZCallback<SiteCommand>() {
+            public void onSuccess(SiteCommand success) {
+                Logger.debug("Success");
 
-                        // comm.setCurrentUser()
-                        // comm.executeCommand();
-                    }
-                });
+                // comm.setCurrentUser()
+                // comm.executeCommand();
+            }
+        });
 
     }
 
@@ -66,14 +67,14 @@ public class ServiceCache {
     }
 
     public void executeCommand(final AbstractCommand command,
-            final AsyncCallback<Boolean> callback) {
+            final AsyncCallback<SiteCommand> callback) {
 
         schoolService.executeAndSaveCommand(command,
-                new AsyncCallback<Boolean>() {
+                new AsyncCallback<SiteCommand>() {
 
-                    public void onSuccess(Boolean result) {
+                    public void onSuccess(SiteCommand result) {
                         try {
-                            command.executeCommandClient();
+                            command.execute(command);
                         } catch (SiteException e) {
                             callback.onFailure(e);
                         }

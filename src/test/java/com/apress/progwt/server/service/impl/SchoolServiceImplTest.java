@@ -141,13 +141,14 @@ public class SchoolServiceImplTest extends
         School yale = schoolService.getSchoolsMatching("Yale").get(0);
 
         // Save in order to Dart/Harvard/Yale
-        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart, 0);
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
+                getUser(), 0);
         schoolService.executeAndSaveCommand(comm, false);
 
-        comm = new SaveSchoolRankCommand(harvard, 1);
+        comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
         schoolService.executeAndSaveCommand(comm, false);
 
-        comm = new SaveSchoolRankCommand(yale, 2);
+        comm = new SaveSchoolRankCommand(yale, getUser(), 2);
         schoolService.executeAndSaveCommand(comm, false);
 
         User savedUser = getUser();
@@ -163,7 +164,7 @@ public class SchoolServiceImplTest extends
         log.debug("\n------Re-Order--------");
 
         // re-order to Dart,Yale,Harvard
-        comm = new SaveSchoolRankCommand(harvard, 2);
+        comm = new SaveSchoolRankCommand(harvard, getUser(), 2);
         schoolService.executeAndSaveCommand(comm, false);
 
         savedUser = getUser();
@@ -177,7 +178,7 @@ public class SchoolServiceImplTest extends
                 .getSchool());
 
         // re-order to Harvard,Dart,Yale
-        comm = new SaveSchoolRankCommand(harvard, 0);
+        comm = new SaveSchoolRankCommand(harvard, getUser(), 0);
         schoolService.executeAndSaveCommand(comm, false);
 
         savedUser = getUser();
@@ -201,13 +202,14 @@ public class SchoolServiceImplTest extends
         School yale = schoolService.getSchoolsMatching("Yale").get(0);
 
         // Save in order to Dart/Harvard/Yale
-        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart, 0);
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
+                getUser(), 0);
         schoolService.executeAndSaveCommand(comm, false);
 
-        comm = new SaveSchoolRankCommand(harvard, 1);
+        comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
         schoolService.executeAndSaveCommand(comm, false);
 
-        comm = new SaveSchoolRankCommand(yale, 2);
+        comm = new SaveSchoolRankCommand(yale, getUser(), 2);
         schoolService.executeAndSaveCommand(comm, false);
 
         User currentUser = userService.getCurrentUser();
@@ -224,7 +226,7 @@ public class SchoolServiceImplTest extends
 
         // remove middle to Dart/Yale
         RemoveSchoolFromRankCommand comm2 = new RemoveSchoolFromRankCommand(
-                harvard);
+                harvard, getUser());
         schoolService.executeAndSaveCommand(comm2, false);
 
         savedUser = userDAO.getUserByUsername(currentUser.getUsername());
@@ -246,13 +248,14 @@ public class SchoolServiceImplTest extends
         School yale = schoolService.getSchoolsMatching("Yale").get(0);
 
         // Save in order to Dart/Harvard/Yale
-        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart, 0);
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
+                getUser(), 0);
         schoolService.executeAndSaveCommand(comm, false);
 
-        comm = new SaveSchoolRankCommand(harvard, 1);
+        comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
         schoolService.executeAndSaveCommand(comm, false);
 
-        comm = new SaveSchoolRankCommand(yale, 2);
+        comm = new SaveSchoolRankCommand(yale, getUser(), 2);
         schoolService.executeAndSaveCommand(comm, false);
 
         User savedUser = getUser();
@@ -295,13 +298,14 @@ public class SchoolServiceImplTest extends
         School yale = schoolService.getSchoolsMatching("Yale").get(0);
 
         // Save in order to Dart/Harvard/Yale
-        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart, 0);
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
+                getUser(), 0);
         schoolService.executeAndSaveCommand(comm, false);
 
-        comm = new SaveSchoolRankCommand(harvard, 1);
+        comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
         schoolService.executeAndSaveCommand(comm, false);
 
-        comm = new SaveSchoolRankCommand(yale, 2);
+        comm = new SaveSchoolRankCommand(yale, getUser(), 2);
         schoolService.executeAndSaveCommand(comm, false);
 
         User savedUser = getUser();

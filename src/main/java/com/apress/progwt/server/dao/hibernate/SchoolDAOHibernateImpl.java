@@ -1,7 +1,6 @@
 package com.apress.progwt.server.dao.hibernate;
 
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -21,9 +20,6 @@ import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.Application;
-import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.util.Utilities;
 import com.apress.progwt.server.dao.SchoolDAO;
 
 public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
@@ -70,35 +66,6 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
                 .uniqueResult(getHibernateTemplate().findByCriteria(crit));
     }
 
-    // public void executeAndSaveCommand(final User u,
-    // final AbstractCommand command) {
-    //
-    // getHibernateTemplate().execute(new HibernateCallback() {
-    //
-    // public Object doInHibernate(Session session)
-    // throws HibernateException, SQLException {
-    //
-    // command.setCurrentUser((User) session.load(User.class, u
-    // .getId()));
-    //
-    // List<Loadable> loadedObjs = new ArrayList<Loadable>(
-    // command.getObjects().size());
-    // for (Loadable loadable : command.getObjects()) {
-    //
-    // Loadable l = get(loadable.getClass(), loadable
-    // .getId());
-    //
-    // loadedObjs.add(l);
-    // }
-    // command.setObjects(loadedObjs);
-    //
-    // command.executeCommand();
-    // return null;
-    // }
-    // });
-    //
-    // }
-
     public School getSchoolFromName(String name) {
         return (School) DataAccessUtils
                 .uniqueResult(getHibernateTemplate().find(
@@ -132,20 +99,6 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
 
     }
 
-    public void removeSchool(long userID, School school) {
-        User currentUser = (User) getHibernateTemplate().get(User.class,
-                userID);
-        List<Application> rankings = currentUser.getSchoolRankings();
-
-        for (Iterator iterator = rankings.iterator(); iterator.hasNext();) {
-            Application scAndApp = (Application) iterator.next();
-            if (scAndApp.getSchool().equals(school)) {
-                iterator.remove();
-            }
-        }
-        getHibernateTemplate().save(currentUser);
-    }
-
     public Loadable save(Loadable loadable) {
         getHibernateTemplate().saveOrUpdate(loadable);
         return loadable;
@@ -175,50 +128,4 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
 
     }
 
-    public void setSchoolAtRank(long userID, School school, int rank) {
-
-        System.out.println("\n----A----\n");
-        User currentUser = (User) getHibernateTemplate().get(User.class,
-                userID);
-
-        List<Application> rankings = currentUser.getSchoolRankings();
-
-        System.out.println("\n----A2----\n");
-
-        // Utilities.reOrder(rankings, currentUser, rank)
-
-        Application sap = null;
-
-        for (Iterator iterator = rankings.iterator(); iterator.hasNext();) {
-            Application scAndApp = (Application) iterator.next();
-
-            System.out.println("\n----A3-LOOP----\n");
-            if (scAndApp.getSchool().equals(school)) {
-                sap = scAndApp;
-            }
-        }
-        System.out.println("\n----B----\n");
-
-        if (null == sap) {
-            System.out.println("\n----B-CREATE-NEW-SAP----\n");
-            sap = new Application(school);
-            getHibernateTemplate().save(sap);
-            currentUser.addRanked(rank, sap);
-        }
-
-        // use this to set the orderProperty, since the list
-        // implementation didn't work
-        Utilities.reOrder(rankings, sap, rank);
-
-        System.out.println("\n----C----\n");
-
-        System.out.println("Command Executed");
-        System.out.println("User " + currentUser);
-
-        for (Application ranked : currentUser.getSchoolRankings()) {
-            System.out.println("Command.Ranks To Save: Rank: " + ranked);
-        }
-        getHibernateTemplate().save(currentUser);
-
-    }
 }

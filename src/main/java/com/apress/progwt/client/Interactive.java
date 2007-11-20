@@ -17,7 +17,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Interactive implements EntryPoint {
 
     public static final String LOCAL_HOST = "http://localhost:8080/";
-    public static final String REMOTE_HOST = "http://www.tocollege.net/";
+    public static final String REMOTE_HOST = "http://www.myhippocampus.com/ProGWT-1.0-SNAPSHOT/";
 
     /**
      * Switch between localhost for testing &
@@ -37,7 +37,7 @@ public class Interactive implements EntryPoint {
 
             // Use to test compiled browser locally
             //
-            if (moduleBase.indexOf("tocollege.net") == -1) {
+            if (moduleBase.indexOf("localhost") != -1) {
                 Logger.log("Testing. Using Localhost");
                 realModuleBase = LOCAL_HOST;
             }

@@ -20,13 +20,7 @@ public interface SchoolDAO {
 
     Loadable save(Loadable loadable);
 
-    // void executeAndSaveCommand(User u, AbstractCommand command);
-
     Foo saveF();
-
-    void setSchoolAtRank(long id, School school, int rank);
-
-    void removeSchool(long id, School school);
 
     List<ProcessType> matchProcessType(String queryString);
 

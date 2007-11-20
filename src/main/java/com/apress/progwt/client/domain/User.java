@@ -43,16 +43,16 @@ public class User extends AbstractUser implements Serializable, Loadable {
         return "|" + getId() + ":" + getUsername() + "|";
     }
 
-    /**
-     * TODO PEND HIGH
-     */
-    public String getNickname() {
-        if (isOpenID()) {
-            String half = getUsername().replaceAll("http://", "");
-            return half.replaceAll("/", "");
-        }
-        return getUsername();
-    }
+    // /**
+    // * TODO PEND HIGH
+    // */
+    // public String getNickname() {
+    // if (isOpenID()) {
+    // String half = getUsername().replaceAll("http://", "");
+    // return half.replaceAll("/", "");
+    // }
+    // return getUsername();
+    // }
 
     private boolean isOpenID() {
         return getPassword() == null;

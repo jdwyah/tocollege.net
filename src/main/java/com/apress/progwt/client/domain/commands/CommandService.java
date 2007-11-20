@@ -1,18 +1,10 @@
 package com.apress.progwt.client.domain.commands;
 
-import com.apress.progwt.client.domain.ProcessValue;
-import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.exception.SiteException;
+import com.apress.progwt.client.domain.Loadable;
 
 public interface CommandService {
 
-    void setSchoolAtRank(School school, int rank);
+    <T> T get(Class<T> clazz, long id);
 
-    void removeSchool(School school);
-
-    void saveProcessValue(long schoolAppID, long processTypeID,
-            ProcessValue value) throws SiteException;
-
-    void saveRatingCommand(SaveRatingCommand saveRatingCommand);
-
+    void save(Loadable o);
 }

@@ -85,7 +85,7 @@ public class MyRankings extends Composite implements DragHandler,
     }
 
     private void saveEntry(CollegeEntry entry, int rank) {
-        serviceCache.saveEntry(entry, rank);
+        serviceCache.saveEntry(entry, thisUser, rank);
     }
 
     public void completed(School school) {

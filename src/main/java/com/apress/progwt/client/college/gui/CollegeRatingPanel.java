@@ -5,6 +5,7 @@ import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.SaveRatingCommand;
+import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.ui.ChangeListener;
 import com.google.gwt.user.client.ui.Composite;
@@ -55,7 +56,7 @@ public class CollegeRatingPanel extends Composite implements
             RatingChooser chooser = (RatingChooser) sender;
             serviceCache.executeCommand(new SaveRatingCommand(chooser
                     .getRatingType(), chooser.getSelectedRating(),
-                    application), new StdAsyncCallback<Boolean>(
+                    application), new StdAsyncCallback<SiteCommand>(
                     "Rating Save"));
         }
 

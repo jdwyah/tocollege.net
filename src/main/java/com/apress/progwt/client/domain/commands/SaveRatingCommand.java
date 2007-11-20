@@ -2,15 +2,13 @@ package com.apress.progwt.client.domain.commands;
 
 import java.io.Serializable;
 
-import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.Application;
+import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.exception.SiteException;
 
 public class SaveRatingCommand extends AbstractCommand implements
         Serializable {
 
-    private transient Application application;
-    private transient RatingType ratingType;
     private long applicationID;
     private int selectedRating;
     private long ratingID;
@@ -20,9 +18,8 @@ public class SaveRatingCommand extends AbstractCommand implements
 
     public SaveRatingCommand(RatingType ratingType, int selectedRating,
             Application application) {
+        super(ratingType, application);
 
-        this.application = application;
-        this.ratingType = ratingType;
         this.ratingID = ratingType.getId();
         this.selectedRating = selectedRating;
         this.applicationID = application.getId();
@@ -30,10 +27,30 @@ public class SaveRatingCommand extends AbstractCommand implements
     }
 
     @Override
-    public void executeCommandServer(CommandService commandService)
+    public String toString() {
+        return "SaveRatingCommand AppID " + applicationID
+                + " RatingType " + ratingID + " Value " + selectedRating;
+    }
+
+    public void execute(CommandService commandService)
             throws SiteException {
 
-        commandService.saveRatingCommand(this);
+        Application application = (Application) commandService.get(
+                Application.class, getApplicationID());
+        RatingType ratingType = (RatingType) commandService.get(
+                RatingType.class, getRatingID());
+
+        System.out.println(toString());
+        System.out.println("application " + application + " rating "
+                + ratingType);
+        if (application != null) {
+            System.out
+                    .println("app.ratings: " + application.getRatings());
+        }
+
+        application.getRatings().put(ratingType, getSelectedRating());
+
+        commandService.save(application);
 
     }
 
@@ -47,11 +64,6 @@ public class SaveRatingCommand extends AbstractCommand implements
 
     public long getRatingID() {
         return ratingID;
-    }
-
-    @Override
-    public void executeCommandClient() throws SiteException {
-        application.getRatings().put(ratingType, getSelectedRating());
     }
 
 }

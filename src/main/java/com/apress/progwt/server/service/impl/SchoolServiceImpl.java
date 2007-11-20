@@ -3,22 +3,16 @@ package com.apress.progwt.server.service.impl;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
-import com.apress.progwt.client.domain.ProcessValue;
-import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.domain.commands.CommandService;
-import com.apress.progwt.client.domain.commands.SaveRatingCommand;
-import com.apress.progwt.client.exception.AccessException;
+import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.domain.SchoolPopularity;
@@ -59,16 +53,16 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return ranked;
     }
 
-    public void executeAndSaveCommand(AbstractCommand command)
+    public SiteCommand executeAndSaveCommand(SiteCommand command)
             throws SiteException {
-        executeAndSaveCommand(command, true);
+        return executeAndSaveCommand(command, true);
     }
 
     /**
      * Can turn off the userCache which avoid some problems with our
      * transactional testing.
      */
-    public void executeAndSaveCommand(AbstractCommand command,
+    public SiteCommand executeAndSaveCommand(SiteCommand command,
             boolean useUserCache) throws SiteException {
 
         User u = userService.getCurrentUser(useUserCache);
@@ -83,7 +77,7 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
 
         log.info("Going to execute Command...");
 
-        command.executeCommandServer(this);
+        command.execute(this);
 
         // schoolDAO.executeAndSaveCommand(u, command);
 
@@ -97,9 +91,13 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         // log.info("Saved");
         //
         // deleteCommand(command);
+        return command;
     }
 
-    private void save(Loadable loadable) {
+    /**
+     * TODO protect?
+     */
+    public void save(Loadable loadable) {
         if (loadable instanceof User) {
             User user = (User) loadable;
             userService.save(user);
@@ -150,59 +148,18 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return schoolDAO.getSchoolsMatching(match);
     }
 
-    public void setSchoolAtRank(School school, int rank) {
-        schoolDAO.setSchoolAtRank(userService.getCurrentUser().getId(),
-                school, rank);
-
-    }
-
-    public void removeSchool(School school) {
-        schoolDAO.removeSchool(userService.getCurrentUser().getId(),
-                school);
-    }
-
     public List<ProcessType> matchProcessType(String queryString) {
 
         return schoolDAO.matchProcessType(queryString);
-    }
-
-    public void saveProcessValue(long schoolAppID, long processTypeID,
-            ProcessValue value) throws UsernameNotFoundException,
-            AccessException {
-
-        Application application = (Application) schoolDAO.get(
-                Application.class, schoolAppID);
-
-        if (!application.getUser().equals(userService.getCurrentUser())) {
-            String msg = "Invalid User " + userService.getCurrentUser()
-                    + " accessing " + application.getUser() + ".";
-            log.warn(msg);
-
-            throw new AccessException(msg);
-        } else {
-            ProcessType type = (ProcessType) schoolDAO.get(
-                    ProcessType.class, processTypeID);
-            application.getProcess().put(type, value);
-            schoolDAO.save(application);
-        }
-
     }
 
     public List<School> getAllSchools() {
         return schoolDAO.getAllSchools();
     }
 
-    public void saveRatingCommand(SaveRatingCommand command) {
-
-        Application application = (Application) schoolDAO.get(
-                Application.class, command.getApplicationID());
-        RatingType ratingType = (RatingType) schoolDAO.get(
-                RatingType.class, command.getRatingID());
-
-        application.getRatings().put(ratingType,
-                command.getSelectedRating());
-
-        schoolDAO.save(application);
+    public <T> T get(Class<T> clazz, long id) {
+        return (T) schoolDAO.get((Class<? extends Loadable>) clazz, id);
 
     }
+
 }

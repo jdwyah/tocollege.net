@@ -1,33 +1,42 @@
 package com.apress.progwt.client.domain.commands;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.List;
 
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.exception.SiteException;
+import com.apress.progwt.client.domain.User;
 
 public class RemoveSchoolFromRankCommand extends AbstractCommand
         implements Serializable {
 
-    private School school;
+    private long userID;
+    private long schoolID;
 
     public RemoveSchoolFromRankCommand() {
         super();
     }
 
-    public RemoveSchoolFromRankCommand(School school) {
-        this.school = school;
+    public RemoveSchoolFromRankCommand(School school, User user) {
+        super(school, user);
+        this.schoolID = school.getId();
+        this.userID = user.getId();
     }
 
-    @Override
-    public void executeCommandServer(CommandService commandService) {
+    public void execute(CommandService commandService) {
 
-        commandService.removeSchool(school);
+        User currentUser = commandService.get(User.class, userID);
+        School school = commandService.get(School.class, schoolID);
+        List<Application> rankings = currentUser.getSchoolRankings();
 
-    }
-
-    @Override
-    public void executeCommandClient() throws SiteException {
-        // TODO Auto-generated method stub
+        for (Iterator iterator = rankings.iterator(); iterator.hasNext();) {
+            Application scAndApp = (Application) iterator.next();
+            if (scAndApp.getSchool().equals(school)) {
+                iterator.remove();
+            }
+        }
+        commandService.save(currentUser);
 
     }
 

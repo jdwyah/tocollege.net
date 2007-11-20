@@ -2,17 +2,16 @@ package com.apress.progwt.client.domain.commands;
 
 import java.io.Serializable;
 
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
-import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.exception.SiteException;
 
 public class SaveProcessCommand extends AbstractCommand implements
         Serializable {
 
     private ProcessValue value;
-    private transient Application application;
-    private transient ProcessType type;
+
     private long processTypeID;
     private long schoolAppID;
 
@@ -21,22 +20,23 @@ public class SaveProcessCommand extends AbstractCommand implements
 
     public SaveProcessCommand(Application application, ProcessType type,
             ProcessValue value) {
+        super(application, type);
         this.value = value;
-        this.application = application;
-        this.type = type;
         this.schoolAppID = application.getId();
         this.processTypeID = type.getId();
     }
 
-    @Override
-    public void executeCommandServer(CommandService commandService)
+    public void execute(CommandService commandService)
             throws SiteException {
-        commandService
-                .saveProcessValue(schoolAppID, processTypeID, value);
+
+        Application application = commandService.get(Application.class,
+                schoolAppID);
+
+        ProcessType type = (ProcessType) commandService.get(
+                ProcessType.class, processTypeID);
+        application.getProcess().put(type, value);
+        commandService.save(application);
+
     }
 
-    @Override
-    public void executeCommandClient() throws SiteException {
-        application.getProcess().put(type, value);
-    }
 }

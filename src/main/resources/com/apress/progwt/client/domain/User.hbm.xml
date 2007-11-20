@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.apress.progwt.client.domain">
 
-	<class name="User" table="Users">
+	<class name="User" table="users">
 		<meta attribute="generated-class">com.apress.progwt.client.domain.generated.AbstractUser</meta>
 		<meta attribute="scope-class">public abstract</meta>
 
@@ -32,7 +32,7 @@
 		
 		<property name="dateCreated" type="java.util.Date">			
 			<meta attribute="field-description">User Was Created</meta>
-			<column name="dateCreated" sql-type="timestamp" />
+			<column name="dateCreated" sql-type="datetime" />
 		</property>
 
 
