@@ -10,5 +10,16 @@
 		<config>src/main/webapp/WEB-INF/dispatcher-servlet.xml</config>
 	</configs>
 	<configSets>
+		<configSet>
+			<name><![CDATA[All]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/webapp/WEB-INF/applicationContext.xml</config>
+				<config>src/main/webapp/WEB-INF/applicationContext-acegi-security.xml</config>
+				<config>src/main/webapp/WEB-INF/applicationContext-hibernate.xml</config>
+				<config>src/main/webapp/WEB-INF/dispatcher-servlet.xml</config>
+			</configs>
+		</configSet>
 	</configSets>
 </beansProjectDescription>

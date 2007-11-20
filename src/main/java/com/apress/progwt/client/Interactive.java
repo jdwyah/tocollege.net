@@ -53,6 +53,14 @@ public class Interactive implements EntryPoint {
         return realModuleBase + url;
     }
 
+    public static void recordPageHit(String pageName) {
+        tickleUrchin(pageName);
+    }
+
+    private native static void tickleUrchin(String pageName) /*-{
+           $wnd.urchinTracker(pageName);
+       }-*/;
+
     /**
      * EntryPoint. Dispatch based on javascript dictionary that tells us
      * what we should load.

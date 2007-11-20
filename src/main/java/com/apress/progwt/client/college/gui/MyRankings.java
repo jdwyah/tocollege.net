@@ -1,5 +1,6 @@
 package com.apress.progwt.client.college.gui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.allen_sauer.gwt.dragdrop.client.DragEndEvent;
@@ -11,10 +12,14 @@ import com.allen_sauer.gwt.dragdrop.client.VetoDragException;
 import com.allen_sauer.gwt.dragdrop.client.drop.IndexedDropController;
 import com.apress.progwt.client.college.SchoolCompleter;
 import com.apress.progwt.client.college.ServiceCache;
-import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.Application;
+import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
+import com.apress.progwt.client.domain.commands.SiteCommand;
+import com.apress.progwt.client.rpc.EZCallback;
 import com.apress.progwt.client.util.Logger;
+import com.apress.progwt.client.util.Utilities;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
@@ -23,10 +28,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class MyRankings extends Composite implements DragHandler,
-        CompleteListener<School> {
+        MyPageTab, CompleteListener<School> {
 
     private User thisUser;
     private VerticalPanel rankPanelPanel;
+    private List<CollegeEntry> rankedEntries = new ArrayList<CollegeEntry>();
     private PickupDragController entryDragController;
     private ServiceCache serviceCache;
     private SchoolCompleter completer;
@@ -67,9 +73,11 @@ public class MyRankings extends Composite implements DragHandler,
         completerP.add(completeB);
 
         mainPanel.add(rankPanelPanel);
-        mainPanel.add(completer);
+        mainPanel.add(completerP);
 
         initWidget(mainPanel);
+
+        refreshRankings();
 
     }
 
@@ -79,13 +87,37 @@ public class MyRankings extends Composite implements DragHandler,
 
         int widgetCount = rankPanelPanel.getWidgetCount();
         rankPanelPanel.add(entry);
-
+        rankedEntries.add(entry);
         return widgetCount;
 
     }
 
-    private void saveEntry(CollegeEntry entry, int rank) {
-        serviceCache.saveEntry(entry, thisUser, rank);
+    private void saveEntry(final CollegeEntry entry, int rank) {
+
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(entry
+                .getApplication().getSchool(), thisUser, rank);
+
+        serviceCache.executeCommand(comm, new EZCallback<SiteCommand>() {
+            public void onSuccess(SiteCommand success) {
+                Logger.debug("Success");
+
+                SaveSchoolRankCommand rtn = (SaveSchoolRankCommand) success;
+                entry.getApplication().setId(rtn.getSavedApplicationID());
+            }
+        });
+
+        Utilities.reOrder(rankedEntries, entry, rank);
+
+        refreshRankings();
+
+    }
+
+    private void refreshRankings() {
+        int i = 1;
+        for (CollegeEntry entry : rankedEntries) {
+            entry.setSortOrder(i++);
+        }
+
     }
 
     public void completed(School school) {
@@ -125,6 +157,15 @@ public class MyRankings extends Composite implements DragHandler,
 
     public void onPreviewDragStart(DragStartEvent event)
             throws VetoDragException {
+    }
+
+    public void refresh() {
+        // TODO Auto-generated method stub
+
+    }
+
+    public String getHistoryName() {
+        return "MyRankings";
     }
 
 }

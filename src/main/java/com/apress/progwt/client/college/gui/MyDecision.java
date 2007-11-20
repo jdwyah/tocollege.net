@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MyDecision extends Composite {
+public class MyDecision extends Composite implements MyPageTab {
 
     private ServiceCache serviceCache;
     private User thisUser;
@@ -71,9 +71,17 @@ public class MyDecision extends Composite {
 
                 thisUser.getPriorities().put(choose.getRatingType(),
                         choose.getSelectedRating());
-                schoolRanks.refresh();
+                refresh();
             }
 
         }
+    }
+
+    public void refresh() {
+        schoolRanks.refresh();
+    }
+
+    public String getHistoryName() {
+        return "MyDecision";
     }
 }

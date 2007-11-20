@@ -16,6 +16,8 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
     private long schoolID;
     private long userID;
 
+    private long savedApplicationID;
+
     public SaveSchoolRankCommand() {
         super();
     }
@@ -74,8 +76,13 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
         }
         commandService.save(currentUser);
 
+        this.savedApplicationID = sap.getId();
         // commandService.setSchoolAtRank(school, rank);
 
+    }
+
+    public long getSavedApplicationID() {
+        return savedApplicationID;
     }
 
 }

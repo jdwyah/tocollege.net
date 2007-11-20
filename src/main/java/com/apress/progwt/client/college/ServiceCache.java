@@ -2,18 +2,14 @@ package com.apress.progwt.client.college;
 
 import java.util.List;
 
-import com.apress.progwt.client.college.gui.CollegeEntry;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
-import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.exception.SiteException;
-import com.apress.progwt.client.rpc.EZCallback;
 import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
 import com.apress.progwt.client.service.remote.GWTUserServiceAsync;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class ServiceCache {
@@ -38,23 +34,24 @@ public class ServiceCache {
         // asyncCallback.onSuccess(rtn);
     }
 
-    public void saveEntry(CollegeEntry entry, User thisUser, int index) {
-
-        System.out.println("SAVING ENTRY!!!!!!!!!");
-
-        final SaveSchoolRankCommand comm = new SaveSchoolRankCommand(
-                entry.getSchoolAndApplication().getSchool(), thisUser,
-                index);
-        executeCommand(comm, new EZCallback<SiteCommand>() {
-            public void onSuccess(SiteCommand success) {
-                Logger.debug("Success");
-
-                // comm.setCurrentUser()
-                // comm.executeCommand();
-            }
-        });
-
-    }
+    // public void saveEntry(CollegeEntry entry, User thisUser, int index)
+    // {
+    //
+    // System.out.println("SAVING ENTRY!!!!!!!!!");
+    //
+    // final SaveSchoolRankCommand comm = new SaveSchoolRankCommand(
+    // entry.getSchoolAndApplication().getSchool(), thisUser,
+    // index);
+    // executeCommand(comm, new EZCallback<SiteCommand>() {
+    // public void onSuccess(SiteCommand success) {
+    // Logger.debug("Success");
+    //
+    // // comm.setCurrentUser()
+    // // comm.executeCommand();
+    // }
+    // });
+    //
+    // }
 
     public void getCurrentUser(AsyncCallback<User> callback) {
         userService.getCurrentUser(callback);

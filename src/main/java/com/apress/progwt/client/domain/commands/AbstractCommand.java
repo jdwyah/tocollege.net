@@ -13,14 +13,18 @@ public abstract class AbstractCommand implements Serializable,
 
     public AbstractCommand(Object... arguments) {
         for (Object o : arguments) {
-            objects.add(arguments);
+            objects.add(o);
         }
     }
 
     public <T> T get(Class<T> clazz, long id) {
+        System.out.println("Load " + clazz + " " + id);
         for (Object o : objects) {
+            System.out.println("O: " + o + " " + o.getClass());
             if (o.getClass() == clazz) {
+
                 Loadable l = (Loadable) o;
+                System.out.println("l: " + l + " " + l.getId());
                 if (l.getId() == id) {
                     return (T) o;
                 }
@@ -30,7 +34,7 @@ public abstract class AbstractCommand implements Serializable,
     }
 
     public void save(Loadable o) {
-        // Do Nothing
+        // do nothing
     }
 
 }

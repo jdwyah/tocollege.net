@@ -89,4 +89,21 @@ public class User extends AbstractUser implements Serializable, Loadable {
         return rtn;
     }
 
+    public List<ProcessType> getNonStatusProcessTypes() {
+        return getProcessTypes(false);
+    }
+
+    public List<ProcessType> getStatusProcessTypes() {
+        return getProcessTypes(true);
+    }
+
+    private List<ProcessType> getProcessTypes(boolean status) {
+        List<ProcessType> rtn = new ArrayList<ProcessType>();
+        for (ProcessType processType : getProcessTypes()) {
+            if (status == processType.getStatus_order() > 0) {
+                rtn.add(processType);
+            }
+        }
+        return rtn;
+    }
 }

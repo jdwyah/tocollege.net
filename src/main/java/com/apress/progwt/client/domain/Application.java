@@ -48,6 +48,13 @@ public class Application extends AbstractApplication implements
         }
     }
 
+    /**
+     * Return the DecisionMatrix score for the given ratingTypes.
+     * 
+     * @param ratingTypes
+     * @param user
+     * @return
+     */
     public ApplicationAndScore getAppAndScore(
             List<RatingType> ratingTypes, User user) {
         ApplicationAndScore rtn = new ApplicationAndScore(this);
@@ -70,4 +77,30 @@ public class Application extends AbstractApplication implements
 
     }
 
+    /**
+     * return the highest valued, completed status process type.
+     * 
+     * @return
+     */
+    public ProcessType getStatus() {
+        ProcessType rtn = null;
+        for (ProcessType processType : getUser().getStatusProcessTypes()) {
+
+            System.out.println("get status type " + processType);
+            ProcessValue value = getProcess().get(processType);
+
+            // TODO ditch .equals()
+            if (processType.getName().equals("Considering")
+                    || (value != null && value.getPctComplete() == 1.0)) {
+
+                System.out.println("==consider");
+                if (rtn == null
+                        || rtn.getStatus_order() < processType
+                                .getStatus_order())
+                    System.out.println("set rtn");
+                rtn = processType;
+            }
+        }
+        return rtn;
+    }
 }

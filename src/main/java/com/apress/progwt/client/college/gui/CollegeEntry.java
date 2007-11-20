@@ -3,16 +3,19 @@ package com.apress.progwt.client.college.gui;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.commands.Orderable;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CollegeEntry extends Composite {
+public class CollegeEntry extends Composite implements Orderable {
 
     private Label collegeNameLabel;
+    private Label rankLabel;
     private FocusPanel fp;
     private Application application;
     private ServiceCache serviceCache;
@@ -23,6 +26,8 @@ public class CollegeEntry extends Composite {
         this.serviceCache = serviceCache;
 
         collegeNameLabel = new Label(application.getSchool().getName());
+        rankLabel = new Label();
+        rankLabel.setStyleName("TC-CollegeEntry-RankLabel");
 
         VerticalPanel infoPanel = new VerticalPanel();
 
@@ -32,21 +37,33 @@ public class CollegeEntry extends Composite {
                 application));
         infoPanel.add(new ProConPanel(thisUser, application));
 
-        DisclosurePanel mainPanel = new DisclosurePanel(collegeNameLabel);
-        mainPanel.add(infoPanel);
+        DisclosurePanel disclosurePanel = new DisclosurePanel(" ");
+        disclosurePanel.add(infoPanel);
+
+        HorizontalPanel mainPanel = new HorizontalPanel();
+        mainPanel.add(rankLabel);
+        mainPanel.add(collegeNameLabel);
+        mainPanel.add(disclosurePanel);
         mainPanel.setStyleName("TC-CollegEntry");
 
-        // fp = new FocusPanel(mainPanel);
         initWidget(mainPanel);
 
     }
 
-    public Application getSchoolAndApplication() {
+    public Application getApplication() {
         return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
     }
 
     public Widget getDragHandle() {
 
         return collegeNameLabel;
+    }
+
+    public void setSortOrder(int order) {
+        rankLabel.setText(order + "");
     }
 }

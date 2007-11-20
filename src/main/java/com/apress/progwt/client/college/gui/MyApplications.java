@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.Label;
 
-public class MyApplications extends Composite {
+public class MyApplications extends Composite implements MyPageTab {
 
     private User thisUser;
     private ServiceCache serviceCache;
@@ -20,38 +20,49 @@ public class MyApplications extends Composite {
         this.thisUser = thisUser;
         this.serviceCache = serviceCache;
 
-        List<ProcessType> processTypes = thisUser.getProcessTypes();
+        List<ProcessType> processTypes = thisUser
+                .getNonStatusProcessTypes();
 
-        List<Application> schoolAndApps = thisUser
-                .getSchoolRankings();
+        List<Application> schoolAndApps = thisUser.getSchoolRankings();
 
         Grid mainGrid = new Grid(schoolAndApps.size() + 1, processTypes
-                .size() + 1);
+                .size() + 2);
 
         int row = 0;
         int col = 1;
-        for (ProcessType processType : thisUser.getProcessTypes()) {
+
+        mainGrid.setWidget(0, col, new Label("Status"));
+        col++;
+
+        for (ProcessType processType : thisUser
+                .getNonStatusProcessTypes()) {
             mainGrid.setWidget(0, col, new Label(processType.getName()));
             col++;
         }
 
         row++;
-        for (Application schoolAndApp : schoolAndApps) {
+        for (Application application : schoolAndApps) {
             col = 0;
 
-            mainGrid.setWidget(row, col, new Label(schoolAndApp
+            mainGrid.setWidget(row, col, new Label(application
                     .getSchool().getName()));
             col++;
 
-            for (ProcessType processType : thisUser.getProcessTypes()) {
+            ApplicationStatusChooserWidget statusChooser = new ApplicationStatusChooserWidget(
+                    application, serviceCache);
+            mainGrid.setWidget(row, col, statusChooser);
+            col++;
 
-                ProcessValue value = schoolAndApp.getProcess().get(
+            for (ProcessType processType : thisUser
+                    .getNonStatusProcessTypes()) {
+
+                ProcessValue value = application.getProcess().get(
                         processType);
                 if (value == null) {
                     value = new ProcessValue();
                 }
                 AppCheckboxWidget checkW = new AppCheckboxWidget(
-                        processType, value, schoolAndApp, serviceCache);
+                        processType, value, application, serviceCache);
 
                 mainGrid.setWidget(row, col, checkW);
                 col++;
@@ -63,6 +74,15 @@ public class MyApplications extends Composite {
 
         initWidget(mainGrid);
 
+    }
+
+    public void refresh() {
+        // TODO Auto-generated method stub
+
+    }
+
+    public String getHistoryName() {
+        return "MyApplications";
     }
 
 }
