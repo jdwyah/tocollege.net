@@ -14,7 +14,7 @@
   </repositories>
 
   <build>
-		<plugins>  <!-- 
+		<plugins>  
 			<plugin>
 				<groupId>org.xi8ix</groupId>
 				<artifactId>xi8ix-gwtc</artifactId>
@@ -36,7 +36,7 @@
 
 					<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 				</configuration>
-			</plugin>         -->
+			</plugin>         
 			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -87,24 +87,24 @@
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>1.5.0.build1529</version>
+			<version>1.5.0.build1627</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-dev-windows</artifactId>
-			<version>1.5.0.build1529</version>
+			<version>1.5.0.build1627</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-servlet</artifactId>
-			<version>1.5.0.build1529</version>
+			<version>1.5.0.build1627</version>
 		</dependency>
            <dependency>
                <groupId>com.google</groupId>
                <artifactId>gwt-google-apis</artifactId>
-               <version>1.4.0.r48</version>
+               <version>1.5.0.build53</version>
           </dependency>
           <dependency>
                <groupId>com.google</groupId>
@@ -120,7 +120,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
-			<version>2.5-rc2</version>
+			<version>2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>aspectj</groupId>
@@ -137,7 +137,7 @@
 		<dependency>
 		     <groupId>org.springframework</groupId>
 		     <artifactId>spring-webmvc</artifactId>
-		     <version>2.5-rc2</version>
+		     <version>2.5</version>
 		</dependency>
 		<dependency>
 		     <groupId>org.acegisecurity</groupId>
@@ -160,9 +160,24 @@
                          <groupId>xml-apis</groupId>
                          <artifactId>xml-apis</artifactId>
                     </exclusion>
-                    <exclusion>
-                         <groupId>org.springframework</groupId>                         
-                    </exclusion>
+
+                       <!-- necessary to avoid including spring 2.0.4 jars, which will screw up with http://opensource.atlassian.com/projects/spring/browse/SPR-4161 -->
+                     <exclusion>
+                          <groupId>org.springframework</groupId>
+                          <artifactId>spring-mock</artifactId>
+                     </exclusion>
+                     <exclusion>
+                          <groupId>org.springframework</groupId>
+                          <artifactId>spring-remoting</artifactId>
+                     </exclusion>
+                     <exclusion>
+                          <groupId>org.springframework</groupId>
+                          <artifactId>spring-jdbc</artifactId>
+                     </exclusion>
+                     <exclusion>
+                          <groupId>org.springframework</groupId>
+                          <artifactId>spring-support</artifactId>
+                     </exclusion>
 		     </exclusions>
 		</dependency>
 		<dependency>
@@ -185,8 +200,18 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>2.5-rc2</version>
+			<version>2.5</version>
 		</dependency>
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>2.5</version>
+        </dependency>
+          <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>2.5</version>
+        </dependency>
 		<dependency><!-- override default 1.2.3 inclusion -->
 		     <groupId>net.sf.ehcache</groupId>
 		     <artifactId>ehcache</artifactId>
@@ -225,8 +250,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-mock</artifactId>
-			<version>2.1-m3</version>
+			<artifactId>spring-test</artifactId>
+			<version>2.5</version>
 			<scope>test</scope>
 		</dependency>
 			<dependency>

@@ -30,15 +30,16 @@ import com.google.gwt.user.client.ui.Widget;
 public class MyRankings extends Composite implements DragHandler,
         MyPageTab, CompleteListener<School> {
 
-    private User thisUser;
+    private User user;
     private VerticalPanel rankPanelPanel;
     private List<CollegeEntry> rankedEntries = new ArrayList<CollegeEntry>();
     private PickupDragController entryDragController;
     private ServiceCache serviceCache;
     private SchoolCompleter completer;
+    private Button completeB;
 
-    public MyRankings(ServiceCache serviceCache, User thisUser) {
-        this.thisUser = thisUser;
+    public MyRankings(ServiceCache serviceCache) {
+
         this.serviceCache = serviceCache;
 
         VerticalPanel mainPanel = new VerticalPanel();
@@ -52,18 +53,9 @@ public class MyRankings extends Composite implements DragHandler,
 
         entryDragController.addDragHandler(this);
 
-        List<Application> schoolAndApps = thisUser.getSchoolRankings();
-
-        System.out.println("FOUND " + schoolAndApps.size() + " Schools ");
-
-        for (Application schoolAndApp : schoolAndApps) {
-            addEntry(new CollegeEntry(thisUser, schoolAndApp,
-                    serviceCache));
-        }
-
         HorizontalPanel completerP = new HorizontalPanel();
         completer = new SchoolCompleter(serviceCache, this);
-        Button completeB = new Button("Add School");
+        completeB = new Button("Add School");
         completeB.addClickListener(new ClickListener() {
             public void onClick(Widget sender) {
                 completer.complete();
@@ -72,12 +64,12 @@ public class MyRankings extends Composite implements DragHandler,
         completerP.add(completer);
         completerP.add(completeB);
 
+        completeB.setEnabled(false);
+
         mainPanel.add(rankPanelPanel);
         mainPanel.add(completerP);
 
         initWidget(mainPanel);
-
-        refreshRankings();
 
     }
 
@@ -95,7 +87,7 @@ public class MyRankings extends Composite implements DragHandler,
     private void saveEntry(final CollegeEntry entry, int rank) {
 
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(entry
-                .getApplication().getSchool(), thisUser, rank);
+                .getApplication().getSchool(), user, rank);
 
         serviceCache.executeCommand(comm, new EZCallback<SiteCommand>() {
             public void onSuccess(SiteCommand success) {
@@ -123,7 +115,7 @@ public class MyRankings extends Composite implements DragHandler,
     public void completed(School school) {
         Application schoolAndApp = new Application(school);
 
-        CollegeEntry entry = new CollegeEntry(thisUser, schoolAndApp,
+        CollegeEntry entry = new CollegeEntry(user, schoolAndApp,
                 serviceCache);
         int index = addEntry(entry);
         saveEntry(entry, index);
@@ -166,6 +158,20 @@ public class MyRankings extends Composite implements DragHandler,
 
     public String getHistoryName() {
         return "MyRankings";
+    }
+
+    public void load(User user) {
+        this.user = user;
+
+        List<Application> schoolAndApps = user.getSchoolRankings();
+
+        System.out.println("FOUND " + schoolAndApps.size() + " Schools ");
+
+        for (Application schoolAndApp : schoolAndApps) {
+            addEntry(new CollegeEntry(user, schoolAndApp, serviceCache));
+        }
+        completeB.setEnabled(true);
+        refreshRankings();
     }
 
 }

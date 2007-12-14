@@ -3,12 +3,12 @@ package com.apress.progwt.client;
 import com.apress.progwt.client.calculator.CalculatorApp;
 import com.apress.progwt.client.college.ToCollegeApp;
 import com.apress.progwt.client.exception.MyUncaughtExceptionHandler;
+import com.apress.progwt.client.map.CollegeMap;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.Dictionary;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
@@ -58,8 +58,8 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-           $wnd.urchinTracker(pageName);
-       }-*/;
+                                               $wnd.urchinTracker(pageName);
+                                           }-*/;
 
     /**
      * EntryPoint. Dispatch based on javascript dictionary that tells us
@@ -77,17 +77,23 @@ public class Interactive implements EntryPoint {
             Dictionary dictionary = Dictionary.getDictionary("Vars");
 
             String page = dictionary.get("page");
+            String pageIDStr = dictionary.get("pageIDNum");
+            int pageID = Integer.parseInt(pageIDStr);
 
             if (page.equals("Calculator")) {
-                CalculatorApp m = new CalculatorApp();
+                CalculatorApp m = new CalculatorApp(pageID);
             } else if (page.equals("CollegeBound")) {
-                ToCollegeApp c = new ToCollegeApp();
+                Logger.log("Do CollegeBound");
+                ToCollegeApp c = new ToCollegeApp(pageID);
+            } else if (page.equals("CollegeMap")) {
+                Logger.log("Do CollegeMap");
+                CollegeMap c = new CollegeMap(pageID);
             } else {
                 throw new Exception("Vars['page'] not set.");
             }
 
         } catch (Exception e) {
-            Logger.log("e: " + e);
+            Logger.error("e: " + e);
 
             e.printStackTrace();
 
@@ -96,8 +102,7 @@ public class Interactive implements EntryPoint {
             panel.add(new Label("Error"));
             panel.add(new Label(e.getMessage()));
 
-            RootPanel.get("loading").setVisible(false);
-            RootPanel.get("slot1").add(panel);
+            GWTApp.show(1, panel);
 
         }
 

@@ -1,0 +1,1913 @@
+
+UPDATE schools SET latitude = '32.465812',longitude  = '-99.711592' WHERE id =1 LIMIT 1 ;
+UPDATE schools SET latitude = '44.861882',longitude  = '-93.25864' WHERE id =2 LIMIT 1 ;
+UPDATE schools SET latitude = '37.787726',longitude  = '-122.400731' WHERE id =3 LIMIT 1 ;
+UPDATE schools SET latitude = '37.471618',longitude  = '-105.880747' WHERE id =4 LIMIT 1 ;
+UPDATE schools SET latitude = '40.722786',longitude  = '-73.654359' WHERE id =5 LIMIT 1 ;
+UPDATE schools SET latitude = '41.89898',longitude  = '-84.0584' WHERE id =6 LIMIT 1 ;
+UPDATE schools SET latitude = '33.770005',longitude  = '-84.295651' WHERE id =7 LIMIT 1 ;
+UPDATE schools SET latitude = '25.789554',longitude  = '-80.189086' WHERE id =8 LIMIT 1 ;
+UPDATE schools SET latitude = '34.792795',longitude  = '-86.572032' WHERE id =9 LIMIT 1 ;
+UPDATE schools SET latitude = '32.366228',longitude  = '-86.296225' WHERE id =10 LIMIT 1 ;
+UPDATE schools SET latitude = '61.189432',longitude  = '-149.814433' WHERE id =11 LIMIT 1 ;
+UPDATE schools SET latitude = '42.65251',longitude  = '-73.77737' WHERE id =12 LIMIT 1 ;
+UPDATE schools SET latitude = '31.570333',longitude  = '-84.142536' WHERE id =13 LIMIT 1 ;
+UPDATE schools SET latitude = '43.654906',longitude  = '-116.67602' WHERE id =14 LIMIT 1 ;
+UPDATE schools SET latitude = '41.330692',longitude  = '-72.921406' WHERE id =15 LIMIT 1 ;
+UPDATE schools SET latitude = '42.243739',longitude  = '-84.745204' WHERE id =16 LIMIT 1 ;
+UPDATE schools SET latitude = '40.360894',longitude  = '-75.911562' WHERE id =17 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.159064',longitude  = '-80.051034' WHERE id =19 LIMIT 1 ;
+UPDATE schools SET latitude = '42.253959',longitude  = '-77.790396' WHERE id =20 LIMIT 1 ;
+UPDATE schools SET latitude = '37.335159',longitude  = '-82.872228' WHERE id =21 LIMIT 1 ;
+UPDATE schools SET latitude = '41.650407',longitude  = '-80.144635' WHERE id =22 LIMIT 1 ;
+UPDATE schools SET latitude = '40.866832',longitude  = '-80.860512' WHERE id =23 LIMIT 1 ;
+UPDATE schools SET latitude = '42.531781',longitude  = '-92.33819' WHERE id =24 LIMIT 1 ;
+UPDATE schools SET latitude = '34.010218',longitude  = '-81.020959' WHERE id =25 LIMIT 1 ;
+UPDATE schools SET latitude = '32.898034',longitude  = '-117.101511' WHERE id =26 LIMIT 1 ;
+UPDATE schools SET latitude = '43.378975',longitude  = '-84.669981' WHERE id =27 LIMIT 1 ;
+UPDATE schools SET latitude = '40.313515',longitude  = '-75.932938' WHERE id =28 LIMIT 1 ;
+UPDATE schools SET latitude = '42.98289',longitude  = '-87.967923' WHERE id =29 LIMIT 1 ;
+UPDATE schools SET latitude = '32.859747',longitude  = '-96.653589' WHERE id =30 LIMIT 1 ;
+UPDATE schools SET latitude = '41.87785',longitude  = '-87.624373' WHERE id =31 LIMIT 1 ;
+UPDATE schools SET latitude = '36.203171',longitude  = '-86.789151' WHERE id =32 LIMIT 1 ;
+UPDATE schools SET latitude = '33.577423',longitude  = '-112.091235' WHERE id =33 LIMIT 1 ;
+UPDATE schools SET latitude = '29.728684',longitude  = '-95.548905' WHERE id =34 LIMIT 1 ;
+UPDATE schools SET latitude = '33.978469',longitude  = '-118.415736' WHERE id =35 LIMIT 1 ;
+UPDATE schools SET latitude = '33.844814',longitude  = '-84.36952' WHERE id =36 LIMIT 1 ;
+UPDATE schools SET latitude = '26.091399',longitude  = '-80.367101' WHERE id =37 LIMIT 1 ;
+UPDATE schools SET latitude = '42.069641',longitude  = '-88.219379' WHERE id =38 LIMIT 1 ;
+UPDATE schools SET latitude = '33.933602',longitude  = '-84.353918' WHERE id =39 LIMIT 1 ;
+UPDATE schools SET latitude = '42.113734',longitude  = '-72.557372' WHERE id =40 LIMIT 1 ;
+UPDATE schools SET latitude = '38.938231',longitude  = '-77.086383' WHERE id =41 LIMIT 1 ;
+UPDATE schools SET latitude = '18.338688',longitude  = '-66.099415' WHERE id =42 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.373197',longitude  = '-72.51887' WHERE id =44 LIMIT 1 ;
+UPDATE schools SET latitude = '34.512076',longitude  = '-82.637699' WHERE id =45 LIMIT 1 ;
+UPDATE schools SET latitude = '40.111154',longitude  = '-85.665511' WHERE id =46 LIMIT 1 ;
+UPDATE schools SET latitude = '41.960816',longitude  = '-86.339436' WHERE id =47 LIMIT 1 ;
+UPDATE schools SET latitude = '31.443422',longitude  = '-100.466071' WHERE id =48 LIMIT 1 ;
+UPDATE schools SET latitude = '42.325562',longitude  = '-71.916172' WHERE id =49 LIMIT 1 ;
+UPDATE schools SET latitude = '39.796753',longitude  = '-83.890149' WHERE id =50 LIMIT 1 ;
+UPDATE schools SET latitude = '39.796822',longitude  = '-83.890144' WHERE id =51 LIMIT 1 ;
+UPDATE schools SET latitude = '33.987606',longitude  = '-118.384668' WHERE id =52 LIMIT 1 ;
+UPDATE schools SET latitude = '34.422836',longitude  = '-119.695907' WHERE id =53 LIMIT 1 ;
+UPDATE schools SET latitude = '47.616919',longitude  = '-122.342611' WHERE id =54 LIMIT 1 ;
+UPDATE schools SET latitude = '35.925777',longitude  = '-78.845812' WHERE id =55 LIMIT 1 ;
+UPDATE schools SET latitude = '44.949048',longitude  = '-92.96554' WHERE id =56 LIMIT 1 ;
+
+UPDATE schools SET latitude = '36.210185',longitude  = '-81.692653' WHERE id =58 LIMIT 1 ;
+UPDATE schools SET latitude = '42.957973',longitude  = '-85.629352' WHERE id =59 LIMIT 1 ;
+UPDATE schools SET latitude = '36.093203',longitude  = '-86.849976' WHERE id =60 LIMIT 1 ;
+UPDATE schools SET latitude = '40.089971',longitude  = '-75.163835' WHERE id =61 LIMIT 1 ;
+UPDATE schools SET latitude = '33.918932',longitude  = '-84.356731' WHERE id =62 LIMIT 1 ;
+UPDATE schools SET latitude = '41.888463',longitude  = '-87.636719' WHERE id =63 LIMIT 1 ;
+UPDATE schools SET latitude = '32.871883',longitude  = '-96.767439' WHERE id =64 LIMIT 1 ;
+UPDATE schools SET latitude = '39.735293',longitude  = '-104.986132' WHERE id =65 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.695707',longitude  = '-117.917753' WHERE id =67 LIMIT 1 ;
+UPDATE schools SET latitude = '33.567568',longitude  = '-112.10654' WHERE id =68 LIMIT 1 ;
+UPDATE schools SET latitude = '37.918776',longitude  = '-122.374627' WHERE id =69 LIMIT 1 ;
+UPDATE schools SET latitude = '27.351927',longitude  = '-82.46479' WHERE id =70 LIMIT 1 ;
+UPDATE schools SET latitude = '42.047477',longitude  = '-88.043265' WHERE id =71 LIMIT 1 ;
+UPDATE schools SET latitude = '47.628293',longitude  = '-122.341024' WHERE id =72 LIMIT 1 ;
+UPDATE schools SET latitude = '27.981458',longitude  = '-82.501346' WHERE id =73 LIMIT 1 ;
+UPDATE schools SET latitude = '44.83782',longitude  = '-93.1723' WHERE id =74 LIMIT 1 ;
+UPDATE schools SET latitude = '38.894604',longitude  = '-77.075308' WHERE id =75 LIMIT 1 ;
+UPDATE schools SET latitude = '33.452553',longitude  = '-112.073823' WHERE id =76 LIMIT 1 ;
+UPDATE schools SET latitude = '33.307156',longitude  = '-111.683441' WHERE id =77 LIMIT 1 ;
+UPDATE schools SET latitude = '33.373212',longitude  = '-111.894063' WHERE id =78 LIMIT 1 ;
+UPDATE schools SET latitude = '33.610627',longitude  = '-112.161254' WHERE id =79 LIMIT 1 ;
+
+UPDATE schools SET latitude = '32.735914',longitude  = '-97.157493' WHERE id =83 LIMIT 1 ;
+UPDATE schools SET latitude = '31.982433',longitude  = '-81.161371' WHERE id =84 LIMIT 1 ;
+UPDATE schools SET latitude = '39.108819',longitude  = '-84.514051' WHERE id =85 LIMIT 1 ;
+UPDATE schools SET latitude = '34.17082',longitude  = '-118.186881' WHERE id =86 LIMIT 1 ;
+UPDATE schools SET latitude = '37.862196',longitude  = '-84.662264' WHERE id =87 LIMIT 1 ;
+UPDATE schools SET latitude = '41.849574',longitude  = '-90.198108' WHERE id =88 LIMIT 1 ;
+UPDATE schools SET latitude = '40.862287',longitude  = '-82.319158' WHERE id =89 LIMIT 1 ;
+UPDATE schools SET latitude = '42.289162',longitude  = '-71.829366' WHERE id =90 LIMIT 1 ;
+UPDATE schools SET latitude = '34.805529',longitude  = '-86.967586' WHERE id =91 LIMIT 1 ;
+UPDATE schools SET latitude = '33.68286',longitude  = '-84.472978' WHERE id =92 LIMIT 1 ;
+UPDATE schools SET latitude = '18.35758',longitude  = '-66.110682' WHERE id =93 LIMIT 1 ;
+UPDATE schools SET latitude = '26.122202',longitude  = '-80.142477' WHERE id =94 LIMIT 1 ;
+UPDATE schools SET latitude = '42.445228',longitude  = '-71.683874' WHERE id =95 LIMIT 1 ;
+
+UPDATE schools SET latitude = '32.366618',longitude  = '-86.174683' WHERE id =97 LIMIT 1 ;
+UPDATE schools SET latitude = '44.967426',longitude  = '-93.240707' WHERE id =98 LIMIT 1 ;
+UPDATE schools SET latitude = '33.478259',longitude  = '-82.022768' WHERE id =99 LIMIT 1 ;
+UPDATE schools SET latitude = '43.527256',longitude  = '-96.736269' WHERE id =100 LIMIT 1 ;
+UPDATE schools SET latitude = '41.505809',longitude  = '-90.547537' WHERE id =101 LIMIT 1 ;
+UPDATE schools SET latitude = '41.754999',longitude  = '-88.346873' WHERE id =102 LIMIT 1 ;
+UPDATE schools SET latitude = '33.647799',longitude  = '-96.59508' WHERE id =103 LIMIT 1 ;
+UPDATE schools SET latitude = '30.281416',longitude  = '-97.739778' WHERE id =104 LIMIT 1 ;
+UPDATE schools SET latitude = '36.531386',longitude  = '-87.353728' WHERE id =105 LIMIT 1 ;
+UPDATE schools SET latitude = '42.248775',longitude  = '-83.616134' WHERE id =106 LIMIT 1 ;
+
+UPDATE schools SET latitude = '36.576733',longitude  = '-79.413303' WHERE id =108 LIMIT 1 ;
+UPDATE schools SET latitude = '38.898194',longitude  = '-94.594655' WHERE id =109 LIMIT 1 ;
+UPDATE schools SET latitude = '34.128832',longitude  = '-117.890009' WHERE id =110 LIMIT 1 ;
+UPDATE schools SET latitude = '42.2988',longitude  = '-71.2601' WHERE id =111 LIMIT 1 ;
+UPDATE schools SET latitude = '35.775566',longitude  = '-95.333788' WHERE id =112 LIMIT 1 ;
+UPDATE schools SET latitude = '41.059457',longitude  = '-73.534825' WHERE id =113 LIMIT 1 ;
+UPDATE schools SET latitude = '41.113657',longitude  = '-74.069056' WHERE id =114 LIMIT 1 ;
+UPDATE schools SET latitude = '42.973981',longitude  = '-83.696919' WHERE id =115 LIMIT 1 ;
+UPDATE schools SET latitude = '42.974004',longitude  = '-83.694548' WHERE id =116 LIMIT 1 ;
+UPDATE schools SET latitude = '42.275852',longitude  = '-83.202933' WHERE id =117 LIMIT 1 ;
+UPDATE schools SET latitude = '42.668551',longitude  = '-83.236568' WHERE id =118 LIMIT 1 ;
+UPDATE schools SET latitude = '44.267046',longitude  = '-85.383376' WHERE id =119 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.974004',longitude  = '-83.694548' WHERE id =121 LIMIT 1 ;
+UPDATE schools SET latitude = '42.276491',longitude  = '-84.453247' WHERE id =122 LIMIT 1 ;
+UPDATE schools SET latitude = '43.245128',longitude  = '-86.196474' WHERE id =123 LIMIT 1 ;
+UPDATE schools SET latitude = '42.987763',longitude  = '-84.170804' WHERE id =124 LIMIT 1 ;
+UPDATE schools SET latitude = '42.979095',longitude  = '-82.468019' WHERE id =125 LIMIT 1 ;
+UPDATE schools SET latitude = '38.776766',longitude  = '-95.18883' WHERE id =126 LIMIT 1 ;
+UPDATE schools SET latitude = '41.368221',longitude  = '-81.843923' WHERE id =127 LIMIT 1 ;
+UPDATE schools SET latitude = '40.197651',longitude  = '-85.410263' WHERE id =128 LIMIT 1 ;
+UPDATE schools SET latitude = '39.355312',longitude  = '-76.687624' WHERE id =129 LIMIT 1 ;
+UPDATE schools SET latitude = '39.28874',longitude  = '-76.610166' WHERE id =130 LIMIT 1 ;
+UPDATE schools SET latitude = '37.240663',longitude  = '-93.285006' WHERE id =131 LIMIT 1 ;
+UPDATE schools SET latitude = '41.497514',longitude  = '-75.684229' WHERE id =132 LIMIT 1 ;
+UPDATE schools SET latitude = '35.139118',longitude  = '-90.029206' WHERE id =133 LIMIT 1 ;
+UPDATE schools SET latitude = '31.978731',longitude  = '-95.253781' WHERE id =134 LIMIT 1 ;
+
+UPDATE schools SET latitude = '37.620573',longitude  = '-99.10494' WHERE id =136 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.808778',longitude  = '-73.963464' WHERE id =138 LIMIT 1 ;
+UPDATE schools SET latitude = '38.638378',longitude  = '-90.265777' WHERE id =139 LIMIT 1 ;
+UPDATE schools SET latitude = '25.878787',longitude  = '-80.194103' WHERE id =140 LIMIT 1 ;
+
+UPDATE schools SET latitude = '47.733028',longitude  = '-122.246137' WHERE id =142 LIMIT 1 ;
+UPDATE schools SET latitude = '44.107329',longitude  = '-70.205251' WHERE id =143 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.05474',longitude  = '-72.581795' WHERE id =145 LIMIT 1 ;
+
+UPDATE schools SET latitude = '31.545426',longitude  = '-97.118425' WHERE id =147 LIMIT 1 ;
+UPDATE schools SET latitude = '28.811051',longitude  = '-81.874979' WHERE id =148 LIMIT 1 ;
+UPDATE schools SET latitude = '32.530797',longitude  = '-84.957075' WHERE id =149 LIMIT 1 ;
+UPDATE schools SET latitude = '42.269042',longitude  = '-71.811454' WHERE id =150 LIMIT 1 ;
+UPDATE schools SET latitude = '39.016875',longitude  = '-84.642804' WHERE id =151 LIMIT 1 ;
+UPDATE schools SET latitude = '40.596747',longitude  = '-73.751134' WHERE id =152 LIMIT 1 ;
+UPDATE schools SET latitude = '32.318409',longitude  = '-90.170983' WHERE id =153 LIMIT 1 ;
+UPDATE schools SET latitude = '38.218827',longitude  = '-85.709043' WHERE id =154 LIMIT 1 ;
+UPDATE schools SET latitude = '41.151429',longitude  = '-95.917713' WHERE id =155 LIMIT 1 ;
+UPDATE schools SET latitude = '44.502298',longitude  = '-88.010363' WHERE id =156 LIMIT 1 ;
+UPDATE schools SET latitude = '35.263634',longitude  = '-81.042569' WHERE id =157 LIMIT 1 ;
+UPDATE schools SET latitude = '36.135215',longitude  = '-86.795583' WHERE id =158 LIMIT 1 ;
+UPDATE schools SET latitude = '42.504441',longitude  = '-89.029544' WHERE id =159 LIMIT 1 ;
+UPDATE schools SET latitude = '47.482909',longitude  = '-94.875657' WHERE id =160 LIMIT 1 ;
+UPDATE schools SET latitude = '34.011185',longitude  = '-81.021409' WHERE id =161 LIMIT 1 ;
+UPDATE schools SET latitude = '39.57229',longitude  = '-95.115147' WHERE id =162 LIMIT 1 ;
+UPDATE schools SET latitude = '41.778235',longitude  = '-88.093783' WHERE id =163 LIMIT 1 ;
+UPDATE schools SET latitude = '42.345889',longitude  = '-71.070451' WHERE id =164 LIMIT 1 ;
+UPDATE schools SET latitude = '36.069227',longitude  = '-79.778503' WHERE id =165 LIMIT 1 ;
+UPDATE schools SET latitude = '42.91234',longitude  = '-73.225311' WHERE id =166 LIMIT 1 ;
+UPDATE schools SET latitude = '42.390789',longitude  = '-71.222375' WHERE id =167 LIMIT 1 ;
+UPDATE schools SET latitude = '37.571791',longitude  = '-84.289593' WHERE id =168 LIMIT 1 ;
+UPDATE schools SET latitude = '40.90137',longitude  = '-74.187782' WHERE id =169 LIMIT 1 ;
+UPDATE schools SET latitude = '40.754033',longitude  = '-73.980161' WHERE id =170 LIMIT 1 ;
+UPDATE schools SET latitude = '42.346826',longitude  = '-71.089484' WHERE id =171 LIMIT 1 ;
+UPDATE schools SET latitude = '34.288778',longitude  = '-85.180947' WHERE id =172 LIMIT 1 ;
+UPDATE schools SET latitude = '40.635508',longitude  = '-73.980857' WHERE id =173 LIMIT 1 ;
+UPDATE schools SET latitude = '40.605192',longitude  = '-73.993076' WHERE id =174 LIMIT 1 ;
+UPDATE schools SET latitude = '40.095435',longitude  = '-74.220907' WHERE id =175 LIMIT 1 ;
+UPDATE schools SET latitude = '38.578641',longitude  = '-97.672976' WHERE id =176 LIMIT 1 ;
+UPDATE schools SET latitude = '40.189154',longitude  = '-80.577646' WHERE id =177 LIMIT 1 ;
+UPDATE schools SET latitude = '44.166543',longitude  = '-93.990392' WHERE id =178 LIMIT 1 ;
+UPDATE schools SET latitude = '37.075224',longitude  = '-121.993766' WHERE id =179 LIMIT 1 ;
+UPDATE schools SET latitude = '38.074785',longitude  = '-97.344342' WHERE id =180 LIMIT 1 ;
+UPDATE schools SET latitude = '41.680277',longitude  = '-86.195274' WHERE id =181 LIMIT 1 ;
+UPDATE schools SET latitude = '36.13675',longitude  = '-88.516732' WHERE id =182 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.842149',longitude  = '-117.941614' WHERE id =184 LIMIT 1 ;
+UPDATE schools SET latitude = '29.211789',longitude  = '-81.031661' WHERE id =185 LIMIT 1 ;
+UPDATE schools SET latitude = '33.736482',longitude  = '-84.358037' WHERE id =186 LIMIT 1 ;
+UPDATE schools SET latitude = '33.90733',longitude  = '-118.018804' WHERE id =187 LIMIT 1 ;
+UPDATE schools SET latitude = '33.516874',longitude  = '-86.850293' WHERE id =188 LIMIT 1 ;
+UPDATE schools SET latitude = '45.476531',longitude  = '-122.537987' WHERE id =189 LIMIT 1 ;
+UPDATE schools SET latitude = '44.495633',longitude  = '-103.870321' WHERE id =190 LIMIT 1 ;
+UPDATE schools SET latitude = '39.285837',longitude  = '-89.873043' WHERE id =191 LIMIT 1 ;
+UPDATE schools SET latitude = '39.935624',longitude  = '-91.39833' WHERE id =192 LIMIT 1 ;
+UPDATE schools SET latitude = '40.794823',longitude  = '-74.196937' WHERE id =193 LIMIT 1 ;
+UPDATE schools SET latitude = '41.005533',longitude  = '-76.451225' WHERE id =194 LIMIT 1 ;
+UPDATE schools SET latitude = '34.671092',longitude  = '-89.028227' WHERE id =195 LIMIT 1 ;
+UPDATE schools SET latitude = '37.240093',longitude  = '-81.256675' WHERE id =196 LIMIT 1 ;
+UPDATE schools SET latitude = '37.267047',longitude  = '-81.23504' WHERE id =197 LIMIT 1 ;
+UPDATE schools SET latitude = '40.895575',longitude  = '-83.897956' WHERE id =198 LIMIT 1 ;
+UPDATE schools SET latitude = '34.876283',longitude  = '-82.364589' WHERE id =199 LIMIT 1 ;
+UPDATE schools SET latitude = '43.659055',longitude  = '-116.292468' WHERE id =200 LIMIT 1 ;
+UPDATE schools SET latitude = '43.602944',longitude  = '-116.204662' WHERE id =201 LIMIT 1 ;
+UPDATE schools SET latitude = '40.833411',longitude  = '-73.945483' WHERE id =202 LIMIT 1 ;
+UPDATE schools SET latitude = '42.348758',longitude  = '-71.085699' WHERE id =203 LIMIT 1 ;
+UPDATE schools SET latitude = '42.253717',longitude  = '-71.110801' WHERE id =204 LIMIT 1 ;
+UPDATE schools SET latitude = '42.337631',longitude  = '-71.17152' WHERE id =205 LIMIT 1 ;
+UPDATE schools SET latitude = '42.349378',longitude  = '-71.100557' WHERE id =206 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.017377',longitude  = '-76.764527' WHERE id =208 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.696386',longitude  = '-89.616024' WHERE id =210 LIMIT 1 ;
+UPDATE schools SET latitude = '42.365441',longitude  = '-71.255804' WHERE id =211 LIMIT 1 ;
+UPDATE schools SET latitude = '34.301999',longitude  = '-83.8225' WHERE id =212 LIMIT 1 ;
+UPDATE schools SET latitude = '37.769241',longitude  = '-87.113018' WHERE id =213 LIMIT 1 ;
+UPDATE schools SET latitude = '35.24001',longitude  = '-82.723581' WHERE id =214 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.526863',longitude  = '-96.423232' WHERE id =216 LIMIT 1 ;
+UPDATE schools SET latitude = '40.760034',longitude  = '-73.489553' WHERE id =217 LIMIT 1 ;
+UPDATE schools SET latitude = '41.631335',longitude  = '-72.921565' WHERE id =218 LIMIT 1 ;
+UPDATE schools SET latitude = '38.3801',longitude  = '-78.973586' WHERE id =219 LIMIT 1 ;
+UPDATE schools SET latitude = '41.99013',longitude  = '-70.963099' WHERE id =220 LIMIT 1 ;
+
+UPDATE schools SET latitude = '21.64542',longitude  = '-157.92482' WHERE id =222 LIMIT 1 ;
+UPDATE schools SET latitude = '43.817085',longitude  = '-111.783798' WHERE id =223 LIMIT 1 ;
+UPDATE schools SET latitude = '34.437358',longitude  = '-119.694651' WHERE id =224 LIMIT 1 ;
+UPDATE schools SET latitude = '44.863598',longitude  = '-93.168939' WHERE id =225 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.496039',longitude  = '-84.99835' WHERE id =227 LIMIT 1 ;
+UPDATE schools SET latitude = '40.797398',longitude  = '-96.650904' WHERE id =228 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.886522',longitude  = '-78.874099' WHERE id =230 LIMIT 1 ;
+UPDATE schools SET latitude = '41.503537',longitude  = '-81.684278' WHERE id =231 LIMIT 1 ;
+UPDATE schools SET latitude = '42.790812',longitude  = '-78.767289' WHERE id =232 LIMIT 1 ;
+UPDATE schools SET latitude = '43.038786',longitude  = '-87.914677' WHERE id =233 LIMIT 1 ;
+UPDATE schools SET latitude = '41.405132',longitude  = '-81.783707' WHERE id =234 LIMIT 1 ;
+UPDATE schools SET latitude = '37.46158',longitude  = '-77.54356' WHERE id =235 LIMIT 1 ;
+UPDATE schools SET latitude = '36.828122',longitude  = '-76.137182' WHERE id =236 LIMIT 1 ;
+UPDATE schools SET latitude = '41.582675',longitude  = '-81.486323' WHERE id =237 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.120208',longitude  = '-75.037793' WHERE id =239 LIMIT 1 ;
+UPDATE schools SET latitude = '40.025366',longitude  = '-75.318427' WHERE id =240 LIMIT 1 ;
+UPDATE schools SET latitude = '40.954732',longitude  = '-76.884793' WHERE id =241 LIMIT 1 ;
+UPDATE schools SET latitude = '42.642544',longitude  = '-95.207894' WHERE id =242 LIMIT 1 ;
+UPDATE schools SET latitude = '44.483553',longitude  = '-73.221635' WHERE id =243 LIMIT 1 ;
+UPDATE schools SET latitude = '39.839414',longitude  = '-86.168962' WHERE id =244 LIMIT 1 ;
+UPDATE schools SET latitude = '35.438823',longitude  = '-80.601474' WHERE id =245 LIMIT 1 ;
+UPDATE schools SET latitude = '40.048411',longitude  = '-75.363135' WHERE id =246 LIMIT 1 ;
+UPDATE schools SET latitude = '40.834326',longitude  = '-74.268034' WHERE id =247 LIMIT 1 ;
+UPDATE schools SET latitude = '33.931534',longitude  = '-117.426836' WHERE id =248 LIMIT 1 ;
+UPDATE schools SET latitude = '36.76662',longitude  = '-119.73268' WHERE id =249 LIMIT 1 ;
+UPDATE schools SET latitude = '37.835825',longitude  = '-122.251445' WHERE id =250 LIMIT 1 ;
+UPDATE schools SET latitude = '32.770246',longitude  = '-117.133311' WHERE id =251 LIMIT 1 ;
+
+UPDATE schools SET latitude = '34.135899',longitude  = '-118.126182' WHERE id =254 LIMIT 1 ;
+
+UPDATE schools SET latitude = '34.226074',longitude  = '-118.874423' WHERE id =256 LIMIT 1 ;
+UPDATE schools SET latitude = '38.073812',longitude  = '-122.230843' WHERE id =257 LIMIT 1 ;
+UPDATE schools SET latitude = '35.301683',longitude  = '-120.660121' WHERE id =258 LIMIT 1 ;
+UPDATE schools SET latitude = '34.050425',longitude  = '-117.820702' WHERE id =259 LIMIT 1 ;
+UPDATE schools SET latitude = '35.354324',longitude  = '-119.103263' WHERE id =260 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.867142',longitude  = '-118.258693' WHERE id =263 LIMIT 1 ;
+UPDATE schools SET latitude = '37.658747',longitude  = '-122.061864' WHERE id =264 LIMIT 1 ;
+UPDATE schools SET latitude = '36.81532',longitude  = '-119.745223' WHERE id =265 LIMIT 1 ;
+UPDATE schools SET latitude = '33.878987',longitude  = '-117.889658' WHERE id =266 LIMIT 1 ;
+UPDATE schools SET latitude = '33.786818',longitude  = '-118.123186' WHERE id =267 LIMIT 1 ;
+UPDATE schools SET latitude = '34.06234',longitude  = '-118.171585' WHERE id =268 LIMIT 1 ;
+UPDATE schools SET latitude = '36.650247',longitude  = '-121.793404' WHERE id =269 LIMIT 1 ;
+UPDATE schools SET latitude = '34.235482',longitude  = '-118.527584' WHERE id =270 LIMIT 1 ;
+UPDATE schools SET latitude = '38.566816',longitude  = '-121.427823' WHERE id =271 LIMIT 1 ;
+UPDATE schools SET latitude = '34.177951',longitude  = '-117.3282' WHERE id =272 LIMIT 1 ;
+UPDATE schools SET latitude = '33.131628',longitude  = '-117.164472' WHERE id =273 LIMIT 1 ;
+UPDATE schools SET latitude = '37.521897',longitude  = '-120.858201' WHERE id =274 LIMIT 1 ;
+UPDATE schools SET latitude = '40.065962',longitude  = '-79.886502' WHERE id =275 LIMIT 1 ;
+UPDATE schools SET latitude = '41.67099',longitude  = '-87.492969' WHERE id =276 LIMIT 1 ;
+UPDATE schools SET latitude = '38.839661',longitude  = '-94.547164' WHERE id =277 LIMIT 1 ;
+UPDATE schools SET latitude = '42.926925',longitude  = '-85.589101' WHERE id =278 LIMIT 1 ;
+UPDATE schools SET latitude = '42.369195',longitude  = '-71.110789' WHERE id =279 LIMIT 1 ;
+UPDATE schools SET latitude = '34.608858',longitude  = '-98.432171' WHERE id =280 LIMIT 1 ;
+UPDATE schools SET latitude = '35.407015',longitude  = '-78.739057' WHERE id =281 LIMIT 1 ;
+UPDATE schools SET latitude = '37.345247',longitude  = '-85.346124' WHERE id =282 LIMIT 1 ;
+UPDATE schools SET latitude = '42.925562',longitude  = '-78.853722' WHERE id =283 LIMIT 1 ;
+UPDATE schools SET latitude = '44.976579',longitude  = '-93.268353' WHERE id =284 LIMIT 1 ;
+UPDATE schools SET latitude = '39.957245',longitude  = '-82.940036' WHERE id =285 LIMIT 1 ;
+UPDATE schools SET latitude = '39.03214',longitude  = '-76.840433' WHERE id =286 LIMIT 1 ;
+UPDATE schools SET latitude = '43.140342',longitude  = '-87.906129' WHERE id =287 LIMIT 1 ;
+
+UPDATE schools SET latitude = '18.381137',longitude  = '-65.957388' WHERE id =289 LIMIT 1 ;
+UPDATE schools SET latitude = '18.317749',longitude  = '-65.661236' WHERE id =290 LIMIT 1 ;
+
+UPDATE schools SET latitude = '44.463828',longitude  = '-93.154305' WHERE id =292 LIMIT 1 ;
+
+UPDATE schools SET latitude = '25.795911',longitude  = '-80.357122' WHERE id =294 LIMIT 1 ;
+UPDATE schools SET latitude = '40.438541',longitude  = '-79.962906' WHERE id =295 LIMIT 1 ;
+UPDATE schools SET latitude = '40.444579',longitude  = '-79.942892' WHERE id =296 LIMIT 1 ;
+UPDATE schools SET latitude = '36.147923',longitude  = '-80.194018' WHERE id =297 LIMIT 1 ;
+UPDATE schools SET latitude = '46.602771',longitude  = '-112.041369' WHERE id =298 LIMIT 1 ;
+UPDATE schools SET latitude = '43.003023',longitude  = '-88.226755' WHERE id =299 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.619956',longitude  = '-87.824922' WHERE id =301 LIMIT 1 ;
+UPDATE schools SET latitude = '45.522717',longitude  = '-122.569992' WHERE id =302 LIMIT 1 ;
+UPDATE schools SET latitude = '41.50486',longitude  = '-81.61032' WHERE id =303 LIMIT 1 ;
+UPDATE schools SET latitude = '43.609393',longitude  = '-73.177639' WHERE id =304 LIMIT 1 ;
+UPDATE schools SET latitude = '35.690892',longitude  = '-80.482007' WHERE id =305 LIMIT 1 ;
+UPDATE schools SET latitude = '33.660798',longitude  = '-78.928727' WHERE id =306 LIMIT 1 ;
+UPDATE schools SET latitude = '38.93253',longitude  = '-76.997766' WHERE id =307 LIMIT 1 ;
+UPDATE schools SET latitude = '42.932716',longitude  = '-75.855216' WHERE id =308 LIMIT 1 ;
+UPDATE schools SET latitude = '40.58638',longitude  = '-75.514375' WHERE id =309 LIMIT 1 ;
+UPDATE schools SET latitude = '39.746505',longitude  = '-83.808586' WHERE id =310 LIMIT 1 ;
+UPDATE schools SET latitude = '40.848774',longitude  = '-74.831266' WHERE id =311 LIMIT 1 ;
+UPDATE schools SET latitude = '32.483819',longitude  = '-93.733833' WHERE id =312 LIMIT 1 ;
+UPDATE schools SET latitude = '35.08459',longitude  = '-92.444126' WHERE id =313 LIMIT 1 ;
+UPDATE schools SET latitude = '37.251674',longitude  = '-93.297063' WHERE id =314 LIMIT 1 ;
+UPDATE schools SET latitude = '38.357228',longitude  = '-97.666861' WHERE id =315 LIMIT 1 ;
+UPDATE schools SET latitude = '39.394764',longitude  = '-92.428929' WHERE id =316 LIMIT 1 ;
+UPDATE schools SET latitude = '41.400197',longitude  = '-92.918576' WHERE id =317 LIMIT 1 ;
+UPDATE schools SET latitude = '41.69152',longitude  = '-72.771101' WHERE id =318 LIMIT 1 ;
+UPDATE schools SET latitude = '39.148111',longitude  = '-92.684954' WHERE id =319 LIMIT 1 ;
+UPDATE schools SET latitude = '39.148111',longitude  = '-92.684954' WHERE id =320 LIMIT 1 ;
+UPDATE schools SET latitude = '43.5975',longitude  = '-84.7675' WHERE id =321 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.715643',longitude  = '-83.880757' WHERE id =323 LIMIT 1 ;
+UPDATE schools SET latitude = '46.999758',longitude  = '-120.542574' WHERE id =324 LIMIT 1 ;
+UPDATE schools SET latitude = '40.627758',longitude  = '-73.970892' WHERE id =325 LIMIT 1 ;
+UPDATE schools SET latitude = '37.645098',longitude  = '-84.778836' WHERE id =326 LIMIT 1 ;
+UPDATE schools SET latitude = '42.821304',longitude  = '-103.001942' WHERE id =327 LIMIT 1 ;
+UPDATE schools SET latitude = '38.631031',longitude  = '-90.287951' WHERE id =328 LIMIT 1 ;
+UPDATE schools SET latitude = '21.287907',longitude  = '-157.809106' WHERE id =329 LIMIT 1 ;
+UPDATE schools SET latitude = '44.47665',longitude  = '-73.205526' WHERE id =330 LIMIT 1 ;
+UPDATE schools SET latitude = '32.236286',longitude  = '-110.895009' WHERE id =331 LIMIT 1 ;
+UPDATE schools SET latitude = '33.793285',longitude  = '-117.853089' WHERE id =332 LIMIT 1 ;
+UPDATE schools SET latitude = '33.793285',longitude  = '-117.853089' WHERE id =333 LIMIT 1 ;
+UPDATE schools SET latitude = '33.924654',longitude  = '-118.242429' WHERE id =334 LIMIT 1 ;
+UPDATE schools SET latitude = '32.977121',longitude  = '-80.069699' WHERE id =335 LIMIT 1 ;
+UPDATE schools SET latitude = '61.195388',longitude  = '-149.839703' WHERE id =336 LIMIT 1 ;
+UPDATE schools SET latitude = '41.688578',longitude  = '-72.768579' WHERE id =337 LIMIT 1 ;
+UPDATE schools SET latitude = '40.44776',longitude  = '-79.923497' WHERE id =338 LIMIT 1 ;
+UPDATE schools SET latitude = '42.95886',longitude  = '-71.259563' WHERE id =339 LIMIT 1 ;
+UPDATE schools SET latitude = '40.084467',longitude  = '-75.22812' WHERE id =340 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.721847',longitude  = '-87.614077' WHERE id =342 LIMIT 1 ;
+UPDATE schools SET latitude = '30.787964',longitude  = '-85.231068' WHERE id =343 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.128158',longitude  = '-89.983792' WHERE id =345 LIMIT 1 ;
+UPDATE schools SET latitude = '42.073409',longitude  = '-87.929734' WHERE id =346 LIMIT 1 ;
+UPDATE schools SET latitude = '37.062284',longitude  = '-76.493946' WHERE id =347 LIMIT 1 ;
+UPDATE schools SET latitude = '39.111245',longitude  = '-84.555538' WHERE id =348 LIMIT 1 ;
+UPDATE schools SET latitude = '39.207578',longitude  = '-84.505659' WHERE id =349 LIMIT 1 ;
+UPDATE schools SET latitude = '32.796781',longitude  = '-79.958006' WHERE id =350 LIMIT 1 ;
+UPDATE schools SET latitude = '26.188097',longitude  = '-80.169828' WHERE id =351 LIMIT 1 ;
+
+UPDATE schools SET latitude = '29.631507',longitude  = '-82.339479' WHERE id =353 LIMIT 1 ;
+UPDATE schools SET latitude = '47.610024',longitude  = '-122.181513' WHERE id =354 LIMIT 1 ;
+UPDATE schools SET latitude = '33.482898',longitude  = '-80.853653' WHERE id =355 LIMIT 1 ;
+UPDATE schools SET latitude = '34.102608',longitude  = '-117.706949' WHERE id =356 LIMIT 1 ;
+UPDATE schools SET latitude = '41.211251',longitude  = '-79.380387' WHERE id =357 LIMIT 1 ;
+UPDATE schools SET latitude = '33.76063',longitude  = '-84.412652' WHERE id =358 LIMIT 1 ;
+UPDATE schools SET latitude = '42.250387',longitude  = '-71.821975' WHERE id =359 LIMIT 1 ;
+UPDATE schools SET latitude = '42.510521',longitude  = '-90.689687' WHERE id =360 LIMIT 1 ;
+UPDATE schools SET latitude = '41.25965',longitude  = '-95.975754' WHERE id =361 LIMIT 1 ;
+UPDATE schools SET latitude = '44.6618',longitude  = '-74.994714' WHERE id =362 LIMIT 1 ;
+UPDATE schools SET latitude = '33.593774',longitude  = '-84.333357' WHERE id =363 LIMIT 1 ;
+UPDATE schools SET latitude = '36.721275',longitude  = '-83.723752' WHERE id =364 LIMIT 1 ;
+UPDATE schools SET latitude = '27.961212',longitude  = '-82.697847' WHERE id =365 LIMIT 1 ;
+UPDATE schools SET latitude = '42.305424',longitude  = '-83.691408' WHERE id =366 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.011568',longitude  = '-94.57698' WHERE id =368 LIMIT 1 ;
+UPDATE schools SET latitude = '34.081364',longitude  = '-118.291706' WHERE id =369 LIMIT 1 ;
+UPDATE schools SET latitude = '41.508988',longitude  = '-81.610539' WHERE id =370 LIMIT 1 ;
+UPDATE schools SET latitude = '41.511696',longitude  = '-81.609184' WHERE id =371 LIMIT 1 ;
+UPDATE schools SET latitude = '41.501597',longitude  = '-81.675648' WHERE id =372 LIMIT 1 ;
+UPDATE schools SET latitude = '33.797126',longitude  = '-79.018622' WHERE id =373 LIMIT 1 ;
+UPDATE schools SET latitude = '41.985207',longitude  = '-91.657311' WHERE id =374 LIMIT 1 ;
+UPDATE schools SET latitude = '37.408282',longitude  = '-122.023576' WHERE id =375 LIMIT 1 ;
+UPDATE schools SET latitude = '34.376914',longitude  = '-80.069626' WHERE id =376 LIMIT 1 ;
+UPDATE schools SET latitude = '44.556048',longitude  = '-69.653246' WHERE id =377 LIMIT 1 ;
+UPDATE schools SET latitude = '43.411019',longitude  = '-71.977697' WHERE id =378 LIMIT 1 ;
+UPDATE schools SET latitude = '32.820944',longitude  = '-117.137217' WHERE id =382 LIMIT 1 ;
+UPDATE schools SET latitude = '42.819664',longitude  = '-75.535592' WHERE id =383 LIMIT 1 ;
+UPDATE schools SET latitude = '38.840875',longitude  = '-104.759958' WHERE id =384 LIMIT 1 ;
+UPDATE schools SET latitude = '39.691385',longitude  = '-104.940695' WHERE id =385 LIMIT 1 ;
+UPDATE schools SET latitude = '40.52351',longitude  = '-105.078989' WHERE id =386 LIMIT 1 ;
+UPDATE schools SET latitude = '42.360881',longitude  = '-83.064252' WHERE id =387 LIMIT 1 ;
+UPDATE schools SET latitude = '41.342145',longitude  = '-75.969778' WHERE id =388 LIMIT 1 ;
+UPDATE schools SET latitude = '29.716392',longitude  = '-95.505693' WHERE id =389 LIMIT 1 ;
+UPDATE schools SET latitude = '32.783142',longitude  = '-79.937225' WHERE id =390 LIMIT 1 ;
+UPDATE schools SET latitude = '40.912468',longitude  = '-73.902593' WHERE id =391 LIMIT 1 ;
+UPDATE schools SET latitude = '39.096304',longitude  = '-84.637389' WHERE id =392 LIMIT 1 ;
+UPDATE schools SET latitude = '39.351464',longitude  = '-76.62313' WHERE id =393 LIMIT 1 ;
+UPDATE schools SET latitude = '42.141851',longitude  = '-72.60259' WHERE id =394 LIMIT 1 ;
+UPDATE schools SET latitude = '45.564114',longitude  = '-94.317589' WHERE id =395 LIMIT 1 ;
+UPDATE schools SET latitude = '40.778969',longitude  = '-74.442546' WHERE id =396 LIMIT 1 ;
+UPDATE schools SET latitude = '41.2379',longitude  = '-96.020114' WHERE id =397 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.101939',longitude  = '-106.593389' WHERE id =399 LIMIT 1 ;
+UPDATE schools SET latitude = '44.927046',longitude  = '-93.182909' WHERE id =400 LIMIT 1 ;
+UPDATE schools SET latitude = '43.601012',longitude  = '-73.007008' WHERE id =401 LIMIT 1 ;
+UPDATE schools SET latitude = '44.393975',longitude  = '-68.22174' WHERE id =402 LIMIT 1 ;
+UPDATE schools SET latitude = '42.236149',longitude  = '-71.81105' WHERE id =403 LIMIT 1 ;
+
+UPDATE schools SET latitude = '32.775133',longitude  = '-103.194988' WHERE id =405 LIMIT 1 ;
+UPDATE schools SET latitude = '44.943378',longitude  = '-93.114299' WHERE id =406 LIMIT 1 ;
+UPDATE schools SET latitude = '37.328676',longitude  = '-76.670234' WHERE id =407 LIMIT 1 ;
+UPDATE schools SET latitude = '33.416139',longitude  = '-111.960817' WHERE id =408 LIMIT 1 ;
+UPDATE schools SET latitude = '39.71098',longitude  = '-105.095426' WHERE id =409 LIMIT 1 ;
+UPDATE schools SET latitude = '38.846562',longitude  = '-104.824335' WHERE id =410 LIMIT 1 ;
+UPDATE schools SET latitude = '39.751229',longitude  = '-105.222265' WHERE id =411 LIMIT 1 ;
+
+UPDATE schools SET latitude = '38.303371',longitude  = '-104.581369' WHERE id =413 LIMIT 1 ;
+UPDATE schools SET latitude = '39.090276',longitude  = '-94.57759' WHERE id =414 LIMIT 1 ;
+UPDATE schools SET latitude = '39.612275',longitude  = '-104.886328' WHERE id =415 LIMIT 1 ;
+UPDATE schools SET latitude = '38.895217',longitude  = '-104.83576' WHERE id =416 LIMIT 1 ;
+UPDATE schools SET latitude = '43.497863',longitude  = '-96.77394' WHERE id =417 LIMIT 1 ;
+
+UPDATE schools SET latitude = '18.034031',longitude  = '-66.84891' WHERE id =420 LIMIT 1 ;
+UPDATE schools SET latitude = '38.956583',longitude  = '-92.326311' WHERE id =421 LIMIT 1 ;
+UPDATE schools SET latitude = '34.046035',longitude  = '-81.033208' WHERE id =422 LIMIT 1 ;
+UPDATE schools SET latitude = '41.874415',longitude  = '-87.624298' WHERE id =423 LIMIT 1 ;
+UPDATE schools SET latitude = '34.179949',longitude  = '-118.538062' WHERE id =424 LIMIT 1 ;
+UPDATE schools SET latitude = '34.080973',longitude  = '-81.068008' WHERE id =425 LIMIT 1 ;
+UPDATE schools SET latitude = '38.985019',longitude  = '-76.998624' WHERE id =426 LIMIT 1 ;
+UPDATE schools SET latitude = '40.807965',longitude  = '-73.963799' WHERE id =427 LIMIT 1 ;
+UPDATE schools SET latitude = '39.966394',longitude  = '-82.988925' WHERE id =428 LIMIT 1 ;
+UPDATE schools SET latitude = '32.504243',longitude  = '-84.938097' WHERE id =429 LIMIT 1 ;
+UPDATE schools SET latitude = '36.15912',longitude  = '-115.233657' WHERE id =430 LIMIT 1 ;
+UPDATE schools SET latitude = '40.242441',longitude  = '-94.70781' WHERE id =431 LIMIT 1 ;
+UPDATE schools SET latitude = '37.423225',longitude  = '-81.016252' WHERE id =432 LIMIT 1 ;
+UPDATE schools SET latitude = '40.942538',longitude  = '-73.820687' WHERE id =433 LIMIT 1 ;
+UPDATE schools SET latitude = '32.423325',longitude  = '-87.018645' WHERE id =434 LIMIT 1 ;
+UPDATE schools SET latitude = '46.86516',longitude  = '-96.767977' WHERE id =435 LIMIT 1 ;
+UPDATE schools SET latitude = '40.916565',longitude  = '-97.091941' WHERE id =436 LIMIT 1 ;
+UPDATE schools SET latitude = '41.897707',longitude  = '-87.810202' WHERE id =437 LIMIT 1 ;
+
+UPDATE schools SET latitude = '45.568227',longitude  = '-122.637873' WHERE id =439 LIMIT 1 ;
+UPDATE schools SET latitude = '30.291926',longitude  = '-97.721728' WHERE id =440 LIMIT 1 ;
+UPDATE schools SET latitude = '42.274653',longitude  = '-83.682241' WHERE id =441 LIMIT 1 ;
+UPDATE schools SET latitude = '44.948891',longitude  = '-93.154289' WHERE id =442 LIMIT 1 ;
+UPDATE schools SET latitude = '43.250484',longitude  = '-87.917811' WHERE id =443 LIMIT 1 ;
+UPDATE schools SET latitude = '41.378195',longitude  = '-72.103596' WHERE id =444 LIMIT 1 ;
+UPDATE schools SET latitude = '34.954037',longitude  = '-81.91702' WHERE id =445 LIMIT 1 ;
+UPDATE schools SET latitude = '40.728809',longitude  = '-73.990071' WHERE id =446 LIMIT 1 ;
+UPDATE schools SET latitude = '39.309532',longitude  = '-76.657169' WHERE id =447 LIMIT 1 ;
+UPDATE schools SET latitude = '44.882837',longitude  = '-122.962646' WHERE id =448 LIMIT 1 ;
+UPDATE schools SET latitude = '38.895414',longitude  = '-77.039459' WHERE id =449 LIMIT 1 ;
+UPDATE schools SET latitude = '41.925137',longitude  = '-91.421965' WHERE id =450 LIMIT 1 ;
+UPDATE schools SET latitude = '42.447119',longitude  = '-76.478183' WHERE id =451 LIMIT 1 ;
+UPDATE schools SET latitude = '42.980414',longitude  = '-85.590767' WHERE id =452 LIMIT 1 ;
+UPDATE schools SET latitude = '47.617867',longitude  = '-122.336171' WHERE id =453 LIMIT 1 ;
+UPDATE schools SET latitude = '34.972199',longitude  = '-85.370624' WHERE id =454 LIMIT 1 ;
+UPDATE schools SET latitude = '41.264771',longitude  = '-95.948555' WHERE id =455 LIMIT 1 ;
+UPDATE schools SET latitude = '35.139311',longitude  = '-89.944847' WHERE id =456 LIMIT 1 ;
+UPDATE schools SET latitude = '39.779244',longitude  = '-86.040611' WHERE id =457 LIMIT 1 ;
+UPDATE schools SET latitude = '43.998902',longitude  = '-92.47517' WHERE id =458 LIMIT 1 ;
+
+UPDATE schools SET latitude = '47.177498',longitude  = '-122.46305' WHERE id =460 LIMIT 1 ;
+UPDATE schools SET latitude = '41.746257',longitude  = '-73.931839' WHERE id =461 LIMIT 1 ;
+UPDATE schools SET latitude = '40.130784',longitude  = '-91.530677' WHERE id =462 LIMIT 1 ;
+UPDATE schools SET latitude = '36.194504',longitude  = '-86.293506' WHERE id =463 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.63196',longitude  = '-73.952696' WHERE id =465 LIMIT 1 ;
+UPDATE schools SET latitude = '40.823664',longitude  = '-73.946935' WHERE id =466 LIMIT 1 ;
+UPDATE schools SET latitude = '40.608805',longitude  = '-74.153366' WHERE id =467 LIMIT 1 ;
+UPDATE schools SET latitude = '40.748882',longitude  = '-73.984182' WHERE id =468 LIMIT 1 ;
+UPDATE schools SET latitude = '40.769019',longitude  = '-73.965194' WHERE id =469 LIMIT 1 ;
+UPDATE schools SET latitude = '40.769815',longitude  = '-73.988042' WHERE id =470 LIMIT 1 ;
+UPDATE schools SET latitude = '40.874479',longitude  = '-73.891615' WHERE id =471 LIMIT 1 ;
+UPDATE schools SET latitude = '40.666285',longitude  = '-73.956651' WHERE id =472 LIMIT 1 ;
+UPDATE schools SET latitude = '40.695568',longitude  = '-73.987188' WHERE id =473 LIMIT 1 ;
+UPDATE schools SET latitude = '40.736143',longitude  = '-73.814742' WHERE id =474 LIMIT 1 ;
+UPDATE schools SET latitude = '40.702592',longitude  = '-73.795597' WHERE id =475 LIMIT 1 ;
+UPDATE schools SET latitude = '42.246318',longitude  = '-71.104159' WHERE id =476 LIMIT 1 ;
+UPDATE schools SET latitude = '42.963851',longitude  = '-78.790148' WHERE id =477 LIMIT 1 ;
+UPDATE schools SET latitude = '44.013418',longitude  = '-97.109743' WHERE id =478 LIMIT 1 ;
+UPDATE schools SET latitude = '43.698847',longitude  = '-98.032728' WHERE id =479 LIMIT 1 ;
+UPDATE schools SET latitude = '32.71126',longitude  = '-96.951563' WHERE id =480 LIMIT 1 ;
+UPDATE schools SET latitude = '32.91443',longitude  = '-96.889178' WHERE id =481 LIMIT 1 ;
+UPDATE schools SET latitude = '34.776965',longitude  = '-85.001645' WHERE id =482 LIMIT 1 ;
+UPDATE schools SET latitude = '41.551621',longitude  = '-96.156098' WHERE id =483 LIMIT 1 ;
+UPDATE schools SET latitude = '42.77557',longitude  = '-71.511461' WHERE id =484 LIMIT 1 ;
+UPDATE schools SET latitude = '40.626586',longitude  = '-73.948586' WHERE id =485 LIMIT 1 ;
+UPDATE schools SET latitude = '43.716069',longitude  = '-72.197482' WHERE id =486 LIMIT 1 ;
+UPDATE schools SET latitude = '42.876415',longitude  = '-85.528147' WHERE id =487 LIMIT 1 ;
+UPDATE schools SET latitude = '41.503331',longitude  = '-81.660135' WHERE id =488 LIMIT 1 ;
+UPDATE schools SET latitude = '35.499282',longitude  = '-80.848469' WHERE id =489 LIMIT 1 ;
+UPDATE schools SET latitude = '38.928067',longitude  = '-79.846993' WHERE id =490 LIMIT 1 ;
+UPDATE schools SET latitude = '42.102676',longitude  = '-75.962014' WHERE id =491 LIMIT 1 ;
+UPDATE schools SET latitude = '29.200191',longitude  = '-81.047848' WHERE id =492 LIMIT 1 ;
+UPDATE schools SET latitude = '42.084921',longitude  = '-71.399014' WHERE id =493 LIMIT 1 ;
+UPDATE schools SET latitude = '41.295749',longitude  = '-84.360812' WHERE id =494 LIMIT 1 ;
+UPDATE schools SET latitude = '39.183767',longitude  = '-75.533205' WHERE id =495 LIMIT 1 ;
+UPDATE schools SET latitude = '40.299028',longitude  = '-75.160008' WHERE id =496 LIMIT 1 ;
+UPDATE schools SET latitude = '33.789943',longitude  = '-90.849609' WHERE id =497 LIMIT 1 ;
+UPDATE schools SET latitude = '40.069227',longitude  = '-82.520043' WHERE id =498 LIMIT 1 ;
+UPDATE schools SET latitude = '41.878166',longitude  = '-87.629582' WHERE id =499 LIMIT 1 ;
+UPDATE schools SET latitude = '39.641736',longitude  = '-86.860663' WHERE id =500 LIMIT 1 ;
+UPDATE schools SET latitude = '40.535242',longitude  = '-75.380136' WHERE id =501 LIMIT 1 ;
+UPDATE schools SET latitude = '32.880352',longitude  = '-117.167824' WHERE id =502 LIMIT 1 ;
+UPDATE schools SET latitude = '40.745104',longitude  = '-73.936586' WHERE id =503 LIMIT 1 ;
+UPDATE schools SET latitude = '33.56758',longitude  = '-112.104662' WHERE id =504 LIMIT 1 ;
+UPDATE schools SET latitude = '34.063445',longitude  = '-117.803112' WHERE id =505 LIMIT 1 ;
+UPDATE schools SET latitude = '39.918345',longitude  = '-105.007147' WHERE id =506 LIMIT 1 ;
+UPDATE schools SET latitude = '28.49319',longitude  = '-81.42772' WHERE id =507 LIMIT 1 ;
+UPDATE schools SET latitude = '33.781457',longitude  = '-84.277507' WHERE id =508 LIMIT 1 ;
+UPDATE schools SET latitude = '41.931039',longitude  = '-88.042216' WHERE id =509 LIMIT 1 ;
+
+UPDATE schools SET latitude = '38.984001',longitude  = '-77.091486' WHERE id =511 LIMIT 1 ;
+UPDATE schools SET latitude = '44.863702',longitude  = '-93.328958' WHERE id =512 LIMIT 1 ;
+UPDATE schools SET latitude = '38.923617',longitude  = '-94.583572' WHERE id =513 LIMIT 1 ;
+UPDATE schools SET latitude = '36.019155',longitude  = '-115.098729' WHERE id =514 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.151212',longitude  = '-80.828654' WHERE id =516 LIMIT 1 ;
+UPDATE schools SET latitude = '39.940555',longitude  = '-82.94344' WHERE id =517 LIMIT 1 ;
+UPDATE schools SET latitude = '35.537385',longitude  = '-97.591121' WHERE id =518 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.137597',longitude  = '-75.177318' WHERE id =520 LIMIT 1 ;
+UPDATE schools SET latitude = '32.933403',longitude  = '-97.011551' WHERE id =521 LIMIT 1 ;
+UPDATE schools SET latitude = '40.581389',longitude  = '-111.886508' WHERE id =522 LIMIT 1 ;
+UPDATE schools SET latitude = '38.851987',longitude  = '-77.049867' WHERE id =523 LIMIT 1 ;
+UPDATE schools SET latitude = '47.293399',longitude  = '-122.289295' WHERE id =524 LIMIT 1 ;
+UPDATE schools SET latitude = '43.032007',longitude  = '-88.174285' WHERE id =525 LIMIT 1 ;
+UPDATE schools SET latitude = '40.203645',longitude  = '-77.196217' WHERE id =526 LIMIT 1 ;
+UPDATE schools SET latitude = '46.88192',longitude  = '-102.800283' WHERE id =527 LIMIT 1 ;
+UPDATE schools SET latitude = '47.653578',longitude  = '-122.140869' WHERE id =528 LIMIT 1 ;
+UPDATE schools SET latitude = '29.993373',longitude  = '-90.066465' WHERE id =529 LIMIT 1 ;
+UPDATE schools SET latitude = '42.440916',longitude  = '-90.931959' WHERE id =530 LIMIT 1 ;
+UPDATE schools SET latitude = '37.104285',longitude  = '-113.56847' WHERE id =531 LIMIT 1 ;
+UPDATE schools SET latitude = '40.622628',longitude  = '-96.951895' WHERE id =532 LIMIT 1 ;
+UPDATE schools SET latitude = '40.816174',longitude  = '-96.648827' WHERE id =533 LIMIT 1 ;
+UPDATE schools SET latitude = '41.051258',longitude  = '-73.951721' WHERE id =534 LIMIT 1 ;
+UPDATE schools SET latitude = '37.880772',longitude  = '-122.264809' WHERE id =535 LIMIT 1 ;
+UPDATE schools SET latitude = '41.901152',longitude  = '-87.821898' WHERE id =536 LIMIT 1 ;
+UPDATE schools SET latitude = '37.980015',longitude  = '-122.513945' WHERE id =537 LIMIT 1 ;
+UPDATE schools SET latitude = '43.082097',longitude  = '-96.169872' WHERE id =538 LIMIT 1 ;
+UPDATE schools SET latitude = '40.739559',longitude  = '-73.149054' WHERE id =539 LIMIT 1 ;
+UPDATE schools SET latitude = '41.600414',longitude  = '-93.651204' WHERE id =540 LIMIT 1 ;
+UPDATE schools SET latitude = '40.765208',longitude  = '-74.426061' WHERE id =541 LIMIT 1 ;
+UPDATE schools SET latitude = '39.953548',longitude  = '-75.185466' WHERE id =542 LIMIT 1 ;
+UPDATE schools SET latitude = '37.217384',longitude  = '-93.287618' WHERE id =543 LIMIT 1 ;
+UPDATE schools SET latitude = '35.972901',longitude  = '-78.811816' WHERE id =544 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.902212',longitude  = '-78.890435' WHERE id =546 LIMIT 1 ;
+UPDATE schools SET latitude = '39.826401',longitude  = '-84.91284' WHERE id =547 LIMIT 1 ;
+UPDATE schools SET latitude = '35.606647',longitude  = '-77.356003' WHERE id =548 LIMIT 1 ;
+UPDATE schools SET latitude = '34.771353',longitude  = '-96.664235' WHERE id =549 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.99701',longitude  = '-75.177628' WHERE id =550 LIMIT 1 ;
+UPDATE schools SET latitude = '36.304687',longitude  = '-82.363209' WHERE id =551 LIMIT 1 ;
+UPDATE schools SET latitude = '32.169018',longitude  = '-94.789108' WHERE id =552 LIMIT 1 ;
+UPDATE schools SET latitude = '27.367975',longitude  = '-82.551831' WHERE id =553 LIMIT 1 ;
+UPDATE schools SET latitude = '41.714682',longitude  = '-72.218985' WHERE id =554 LIMIT 1 ;
+UPDATE schools SET latitude = '39.484336',longitude  = '-88.175103' WHERE id =555 LIMIT 1 ;
+UPDATE schools SET latitude = '37.743341',longitude  = '-84.301401' WHERE id =556 LIMIT 1 ;
+UPDATE schools SET latitude = '38.471504',longitude  = '-78.878108' WHERE id =557 LIMIT 1 ;
+UPDATE schools SET latitude = '42.201745',longitude  = '-83.621906' WHERE id =558 LIMIT 1 ;
+UPDATE schools SET latitude = '42.271455',longitude  = '-71.012421' WHERE id =559 LIMIT 1 ;
+UPDATE schools SET latitude = '47.489652',longitude  = '-117.578336' WHERE id =563 LIMIT 1 ;
+UPDATE schools SET latitude = '41.87164',longitude  = '-87.624222' WHERE id =564 LIMIT 1 ;
+UPDATE schools SET latitude = '27.718987',longitude  = '-82.686069' WHERE id =566 LIMIT 1 ;
+UPDATE schools SET latitude = '37.499986',longitude  = '-77.582353' WHERE id =567 LIMIT 1 ;
+UPDATE schools SET latitude = '43.060519',longitude  = '-89.421634' WHERE id =568 LIMIT 1 ;
+UPDATE schools SET latitude = '41.870269',longitude  = '-80.129012' WHERE id =569 LIMIT 1 ;
+
+UPDATE schools SET latitude = '18.336345',longitude  = '-66.991537' WHERE id =571 LIMIT 1 ;
+UPDATE schools SET latitude = '30.343854',longitude  = '-81.683394' WHERE id =572 LIMIT 1 ;
+UPDATE schools SET latitude = '36.273562',longitude  = '-76.210104' WHERE id =573 LIMIT 1 ;
+UPDATE schools SET latitude = '40.150668',longitude  = '-76.594465' WHERE id =574 LIMIT 1 ;
+UPDATE schools SET latitude = '41.898104',longitude  = '-87.944837' WHERE id =575 LIMIT 1 ;
+UPDATE schools SET latitude = '42.092849',longitude  = '-76.810019' WHERE id =576 LIMIT 1 ;
+
+UPDATE schools SET latitude = '29.188896',longitude  = '-81.045112' WHERE id =578 LIMIT 1 ;
+UPDATE schools SET latitude = '34.597022',longitude  = '-112.463934' WHERE id =579 LIMIT 1 ;
+UPDATE schools SET latitude = '29.188896',longitude  = '-81.045112' WHERE id =580 LIMIT 1 ;
+UPDATE schools SET latitude = '42.352486',longitude  = '-71.065921' WHERE id =581 LIMIT 1 ;
+UPDATE schools SET latitude = '42.341725',longitude  = '-71.102252' WHERE id =582 LIMIT 1 ;
+
+
+
+UPDATE schools SET latitude = '42.507763',longitude  = '-90.706488' WHERE id =584 LIMIT 1 ;
+UPDATE schools SET latitude = '36.77245',longitude  = '-81.832798' WHERE id =585 LIMIT 1 ;
+UPDATE schools SET latitude = '33.790386',longitude  = '-84.328023' WHERE id =586 LIMIT 1 ;
+UPDATE schools SET latitude = '38.411679',longitude  = '-96.180169' WHERE id =587 LIMIT 1 ;
+UPDATE schools SET latitude = '42.551004',longitude  = '-70.84119' WHERE id =588 LIMIT 1 ;
+UPDATE schools SET latitude = '34.330573',longitude  = '-82.391149' WHERE id =589 LIMIT 1 ;
+
+UPDATE schools SET latitude = '44.034735',longitude  = '-123.154912' WHERE id =591 LIMIT 1 ;
+UPDATE schools SET latitude = '40.71443',longitude  = '-89.269368' WHERE id =592 LIMIT 1 ;
+UPDATE schools SET latitude = '37.220956',longitude  = '-93.26159' WHERE id =593 LIMIT 1 ;
+UPDATE schools SET latitude = '37.182287',longitude  = '-93.303171' WHERE id =594 LIMIT 1 ;
+UPDATE schools SET latitude = '26.393615',longitude  = '-80.107811' WHERE id =595 LIMIT 1 ;
+UPDATE schools SET latitude = '37.847219',longitude  = '-122.294871' WHERE id =596 LIMIT 1 ;
+UPDATE schools SET latitude = '41.158805',longitude  = '-73.252787' WHERE id =597 LIMIT 1 ;
+UPDATE schools SET latitude = '40.7729',longitude  = '-74.438799' WHERE id =598 LIMIT 1 ;
+UPDATE schools SET latitude = '40.894768',longitude  = '-74.02996' WHERE id =599 LIMIT 1 ;
+UPDATE schools SET latitude = '39.48197',longitude  = '-80.160117' WHERE id =600 LIMIT 1 ;
+UPDATE schools SET latitude = '41.735459',longitude  = '-93.624262' WHERE id =601 LIMIT 1 ;
+UPDATE schools SET latitude = '47.279906',longitude  = '-122.515924' WHERE id =602 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.753545',longitude  = '-73.422275' WHERE id =604 LIMIT 1 ;
+UPDATE schools SET latitude = '40.746936',longitude  = '-73.994573' WHERE id =605 LIMIT 1 ;
+UPDATE schools SET latitude = '32.381859',longitude  = '-86.216373' WHERE id =606 LIMIT 1 ;
+UPDATE schools SET latitude = '35.070494',longitude  = '-78.893698' WHERE id =607 LIMIT 1 ;
+UPDATE schools SET latitude = '40.866147',longitude  = '-74.09274' WHERE id =608 LIMIT 1 ;
+UPDATE schools SET latitude = '43.690327',longitude  = '-85.483656' WHERE id =609 LIMIT 1 ;
+UPDATE schools SET latitude = '36.924515',longitude  = '-80.018688' WHERE id =610 LIMIT 1 ;
+UPDATE schools SET latitude = '47.126491',longitude  = '-88.58915' WHERE id =611 LIMIT 1 ;
+UPDATE schools SET latitude = '42.355018',longitude  = '-71.074082' WHERE id =612 LIMIT 1 ;
+UPDATE schools SET latitude = '36.166583',longitude  = '-86.803398' WHERE id =613 LIMIT 1 ;
+UPDATE schools SET latitude = '42.58783',longitude  = '-71.788872' WHERE id =614 LIMIT 1 ;
+UPDATE schools SET latitude = '40.791088',longitude  = '-73.366609' WHERE id =615 LIMIT 1 ;
+UPDATE schools SET latitude = '29.892116',longitude  = '-81.314249' WHERE id =616 LIMIT 1 ;
+UPDATE schools SET latitude = '30.4469',longitude  = '-84.337952' WHERE id =617 LIMIT 1 ;
+UPDATE schools SET latitude = '30.425322',longitude  = '-84.287631' WHERE id =618 LIMIT 1 ;
+UPDATE schools SET latitude = '26.364922',longitude  = '-80.101286' WHERE id =619 LIMIT 1 ;
+UPDATE schools SET latitude = '28.296357',longitude  = '-81.360897' WHERE id =620 LIMIT 1 ;
+UPDATE schools SET latitude = '28.03326',longitude  = '-82.38415' WHERE id =621 LIMIT 1 ;
+
+UPDATE schools SET latitude = '28.57672',longitude  = '-81.369171' WHERE id =623 LIMIT 1 ;
+UPDATE schools SET latitude = '28.063918',longitude  = '-80.624549' WHERE id =624 LIMIT 1 ;
+UPDATE schools SET latitude = '25.761018',longitude  = '-80.376527' WHERE id =625 LIMIT 1 ;
+UPDATE schools SET latitude = '25.942575',longitude  = '-80.201876' WHERE id =626 LIMIT 1 ;
+UPDATE schools SET latitude = '26.233831',longitude  = '-80.102903' WHERE id =627 LIMIT 1 ;
+UPDATE schools SET latitude = '27.97913',longitude  = '-82.349793' WHERE id =628 LIMIT 1 ;
+UPDATE schools SET latitude = '30.218562',longitude  = '-81.584643' WHERE id =629 LIMIT 1 ;
+UPDATE schools SET latitude = '28.054991',longitude  = '-81.945064' WHERE id =630 LIMIT 1 ;
+UPDATE schools SET latitude = '28.145757',longitude  = '-80.636421' WHERE id =631 LIMIT 1 ;
+UPDATE schools SET latitude = '28.61065',longitude  = '-81.387656' WHERE id =632 LIMIT 1 ;
+UPDATE schools SET latitude = '30.188613',longitude  = '-81.706665' WHERE id =633 LIMIT 1 ;
+UPDATE schools SET latitude = '28.011055',longitude  = '-82.709012' WHERE id =634 LIMIT 1 ;
+
+UPDATE schools SET latitude = '27.996108',longitude  = '-82.496991' WHERE id =636 LIMIT 1 ;
+UPDATE schools SET latitude = '28.029802',longitude  = '-81.943826' WHERE id =637 LIMIT 1 ;
+UPDATE schools SET latitude = '30.456736',longitude  = '-84.294421' WHERE id =638 LIMIT 1 ;
+UPDATE schools SET latitude = '38.644516',longitude  = '-90.302726' WHERE id =639 LIMIT 1 ;
+UPDATE schools SET latitude = '40.860762',longitude  = '-73.889469' WHERE id =640 LIMIT 1 ;
+UPDATE schools SET latitude = '38.872038',longitude  = '-99.339908' WHERE id =641 LIMIT 1 ;
+UPDATE schools SET latitude = '37.275387',longitude  = '-107.868963' WHERE id =642 LIMIT 1 ;
+UPDATE schools SET latitude = '32.540967',longitude  = '-83.896197' WHERE id =643 LIMIT 1 ;
+UPDATE schools SET latitude = '36.027786',longitude  = '-83.922395' WHERE id =644 LIMIT 1 ;
+UPDATE schools SET latitude = '42.297355',longitude  = '-71.437202' WHERE id =645 LIMIT 1 ;
+UPDATE schools SET latitude = '34.196339',longitude  = '-79.663044' WHERE id =646 LIMIT 1 ;
+UPDATE schools SET latitude = '40.37437',longitude  = '-80.623417' WHERE id =647 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.511204',longitude  = '-86.078634' WHERE id =649 LIMIT 1 ;
+UPDATE schools SET latitude = '42.770301',longitude  = '-72.058083' WHERE id =650 LIMIT 1 ;
+UPDATE schools SET latitude = '39.959837',longitude  = '-82.990424' WHERE id =651 LIMIT 1 ;
+UPDATE schools SET latitude = '42.29185',longitude  = '-71.263787' WHERE id =652 LIMIT 1 ;
+UPDATE schools SET latitude = '36.134513',longitude  = '-86.82539' WHERE id =653 LIMIT 1 ;
+UPDATE schools SET latitude = '35.440491',longitude  = '-88.639407' WHERE id =654 LIMIT 1 ;
+UPDATE schools SET latitude = '36.72606',longitude  = '-119.736414' WHERE id =655 LIMIT 1 ;
+UPDATE schools SET latitude = '37.676918',longitude  = '-97.366029' WHERE id =656 LIMIT 1 ;
+UPDATE schools SET latitude = '39.648495',longitude  = '-78.931623' WHERE id =657 LIMIT 1 ;
+UPDATE schools SET latitude = '28.597251',longitude  = '-81.301446' WHERE id =658 LIMIT 1 ;
+UPDATE schools SET latitude = '34.926009',longitude  = '-82.433189' WHERE id =659 LIMIT 1 ;
+UPDATE schools SET latitude = '38.905299',longitude  = '-76.996161' WHERE id =660 LIMIT 1 ;
+UPDATE schools SET latitude = '42.128794',longitude  = '-80.086995' WHERE id =661 LIMIT 1 ;
+UPDATE schools SET latitude = '35.300514',longitude  = '-81.687581' WHERE id =662 LIMIT 1 ;
+UPDATE schools SET latitude = '40.772686',longitude  = '-80.322452' WHERE id =663 LIMIT 1 ;
+UPDATE schools SET latitude = '45.30364',longitude  = '-122.970548' WHERE id =664 LIMIT 1 ;
+UPDATE schools SET latitude = '38.835055',longitude  = '-77.310809' WHERE id =665 LIMIT 1 ;
+UPDATE schools SET latitude = '38.90068',longitude  = '-77.047109' WHERE id =666 LIMIT 1 ;
+
+
+
+
+
+
+
+
+
+UPDATE schools SET latitude = '39.835528',longitude  = '-77.23334' WHERE id =676 LIMIT 1 ;
+UPDATE schools SET latitude = '38.910606',longitude  = '-77.224447' WHERE id =677 LIMIT 1 ;
+UPDATE schools SET latitude = '38.93464',longitude  = '-80.833819' WHERE id =678 LIMIT 1 ;
+UPDATE schools SET latitude = '44.963296',longitude  = '-92.9604' WHERE id =679 LIMIT 1 ;
+UPDATE schools SET latitude = '40.714736',longitude  = '-74.005828' WHERE id =680 LIMIT 1 ;
+UPDATE schools SET latitude = '44.279398',longitude  = '-72.438668' WHERE id =681 LIMIT 1 ;
+UPDATE schools SET latitude = '39.115229',longitude  = '-84.506512' WHERE id =682 LIMIT 1 ;
+UPDATE schools SET latitude = '37.789197',longitude  = '-122.398325' WHERE id =683 LIMIT 1 ;
+UPDATE schools SET latitude = '39.74138',longitude  = '-75.691425' WHERE id =684 LIMIT 1 ;
+UPDATE schools SET latitude = '47.668414',longitude  = '-117.402804' WHERE id =685 LIMIT 1 ;
+UPDATE schools SET latitude = '42.59131',longitude  = '-70.825137' WHERE id =686 LIMIT 1 ;
+UPDATE schools SET latitude = '41.565622',longitude  = '-85.828591' WHERE id =687 LIMIT 1 ;
+UPDATE schools SET latitude = '39.409436',longitude  = '-76.600635' WHERE id =688 LIMIT 1 ;
+UPDATE schools SET latitude = '41.447188',longitude  = '-87.693513' WHERE id =689 LIMIT 1 ;
+UPDATE schools SET latitude = '42.918397',longitude  = '-85.689324' WHERE id =690 LIMIT 1 ;
+UPDATE schools SET latitude = '41.226995',longitude  = '-85.814589' WHERE id =691 LIMIT 1 ;
+UPDATE schools SET latitude = '41.246994',longitude  = '-95.928139' WHERE id =692 LIMIT 1 ;
+
+
+UPDATE schools SET latitude = '33.509459',longitude  = '-112.1299' WHERE id =695 LIMIT 1 ;
+UPDATE schools SET latitude = '42.96153',longitude  = '-85.888734' WHERE id =696 LIMIT 1 ;
+UPDATE schools SET latitude = '41.620457',longitude  = '-93.604264' WHERE id =697 LIMIT 1 ;
+UPDATE schools SET latitude = '43.190212',longitude  = '-71.507222' WHERE id =698 LIMIT 1 ;
+UPDATE schools SET latitude = '39.250303',longitude  = '-94.66327' WHERE id =699 LIMIT 1 ;
+UPDATE schools SET latitude = '40.068677',longitude  = '-75.134288' WHERE id =700 LIMIT 1 ;
+UPDATE schools SET latitude = '40.841739',longitude  = '-115.768463' WHERE id =701 LIMIT 1 ;
+UPDATE schools SET latitude = '42.755493',longitude  = '-84.638802' WHERE id =702 LIMIT 1 ;
+UPDATE schools SET latitude = '43.522564',longitude  = '-73.241296' WHERE id =703 LIMIT 1 ;
+UPDATE schools SET latitude = '36.072971',longitude  = '-79.799894' WHERE id =704 LIMIT 1 ;
+UPDATE schools SET latitude = '38.892776',longitude  = '-89.409086' WHERE id =705 LIMIT 1 ;
+UPDATE schools SET latitude = '41.747766',longitude  = '-92.722527' WHERE id =706 LIMIT 1 ;
+UPDATE schools SET latitude = '41.15764',longitude  = '-80.079664' WHERE id =707 LIMIT 1 ;
+UPDATE schools SET latitude = '36.089811',longitude  = '-79.888812' WHERE id =708 LIMIT 1 ;
+UPDATE schools SET latitude = '44.322313',longitude  = '-93.973182' WHERE id =709 LIMIT 1 ;
+UPDATE schools SET latitude = '44.039133',longitude  = '-123.07467' WHERE id =710 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.646121',longitude  = '-93.780011' WHERE id =712 LIMIT 1 ;
+UPDATE schools SET latitude = '42.474953',longitude  = '-92.447606' WHERE id =713 LIMIT 1 ;
+UPDATE schools SET latitude = '43.050556',longitude  = '-75.407751' WHERE id =714 LIMIT 1 ;
+UPDATE schools SET latitude = '41.244014',longitude  = '-95.827044' WHERE id =715 LIMIT 1 ;
+
+
+
+UPDATE schools SET latitude = '41.28937',longitude  = '-96.052866' WHERE id =719 LIMIT 1 ;
+UPDATE schools SET latitude = '41.57458',longitude  = '-90.56068' WHERE id =720 LIMIT 1 ;
+UPDATE schools SET latitude = '44.966456',longitude  = '-93.165404' WHERE id =721 LIMIT 1 ;
+UPDATE schools SET latitude = '37.24828',longitude  = '-78.451739' WHERE id =722 LIMIT 1 ;
+UPDATE schools SET latitude = '42.355363',longitude  = '-72.520826' WHERE id =723 LIMIT 1 ;
+UPDATE schools SET latitude = '37.020366',longitude  = '-76.332127' WHERE id =724 LIMIT 1 ;
+UPDATE schools SET latitude = '39.725619',longitude  = '-91.388452' WHERE id =725 LIMIT 1 ;
+UPDATE schools SET latitude = '38.71441',longitude  = '-85.480645' WHERE id =726 LIMIT 1 ;
+UPDATE schools SET latitude = '35.248761',longitude  = '-91.74638' WHERE id =727 LIMIT 1 ;
+UPDATE schools SET latitude = '32.474566',longitude  = '-99.734873' WHERE id =728 LIMIT 1 ;
+UPDATE schools SET latitude = '41.881935',longitude  = '-87.633851' WHERE id =729 LIMIT 1 ;
+UPDATE schools SET latitude = '40.260265',longitude  = '-76.881207' WHERE id =730 LIMIT 1 ;
+UPDATE schools SET latitude = '38.632633',longitude  = '-90.22515' WHERE id =731 LIMIT 1 ;
+UPDATE schools SET latitude = '42.461086',longitude  = '-75.07019' WHERE id =732 LIMIT 1 ;
+UPDATE schools SET latitude = '42.375946',longitude  = '-71.118601' WHERE id =733 LIMIT 1 ;
+UPDATE schools SET latitude = '34.105418',longitude  = '-117.712038' WHERE id =734 LIMIT 1 ;
+UPDATE schools SET latitude = '38.940102',longitude  = '-95.235166' WHERE id =735 LIMIT 1 ;
+UPDATE schools SET latitude = '40.590335',longitude  = '-98.374989' WHERE id =736 LIMIT 1 ;
+UPDATE schools SET latitude = '40.012533',longitude  = '-75.300234' WHERE id =737 LIMIT 1 ;
+UPDATE schools SET latitude = '21.309896',longitude  = '-157.859559' WHERE id =738 LIMIT 1 ;
+UPDATE schools SET latitude = '21.504676',longitude  = '-158.003132' WHERE id =739 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.011018',longitude  = '-87.76151' WHERE id =741 LIMIT 1 ;
+UPDATE schools SET latitude = '41.116689',longitude  = '-83.168556' WHERE id =742 LIMIT 1 ;
+UPDATE schools SET latitude = '42.317922',longitude  = '-71.130256' WHERE id =743 LIMIT 1 ;
+UPDATE schools SET latitude = '34.125524',longitude  = '-93.05977' WHERE id =744 LIMIT 1 ;
+UPDATE schools SET latitude = '35.100051',longitude  = '-92.444227' WHERE id =745 LIMIT 1 ;
+UPDATE schools SET latitude = '35.267989',longitude  = '-78.614017' WHERE id =746 LIMIT 1 ;
+UPDATE schools SET latitude = '34.860545',longitude  = '-87.660645' WHERE id =747 LIMIT 1 ;
+UPDATE schools SET latitude = '46.375357',longitude  = '-120.402049' WHERE id =748 LIMIT 1 ;
+UPDATE schools SET latitude = '28.579252',longitude  = '-81.308656' WHERE id =749 LIMIT 1 ;
+
+
+UPDATE schools SET latitude = '45.055983',longitude  = '-93.366813' WHERE id =752 LIMIT 1 ;
+UPDATE schools SET latitude = '33.468',longitude  = '-86.832287' WHERE id =753 LIMIT 1 ;
+UPDATE schools SET latitude = '33.8507',longitude  = '-84.372023' WHERE id =754 LIMIT 1 ;
+UPDATE schools SET latitude = '42.973208',longitude  = '-71.468276' WHERE id =755 LIMIT 1 ;
+UPDATE schools SET latitude = '38.702382',longitude  = '-90.445218' WHERE id =756 LIMIT 1 ;
+UPDATE schools SET latitude = '35.968705',longitude  = '-79.994149' WHERE id =757 LIMIT 1 ;
+UPDATE schools SET latitude = '33.494746',longitude  = '-112.049657' WHERE id =758 LIMIT 1 ;
+UPDATE schools SET latitude = '42.754587',longitude  = '-78.824561' WHERE id =759 LIMIT 1 ;
+UPDATE schools SET latitude = '35.397047',longitude  = '-97.494678' WHERE id =760 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.875795',longitude  = '-76.955616' WHERE id =762 LIMIT 1 ;
+UPDATE schools SET latitude = '27.064028',longitude  = '-80.129721' WHERE id =763 LIMIT 1 ;
+UPDATE schools SET latitude = '40.714183',longitude  = '-73.603529' WHERE id =764 LIMIT 1 ;
+UPDATE schools SET latitude = '37.319603',longitude  = '-79.954971' WHERE id =765 LIMIT 1 ;
+UPDATE schools SET latitude = '41.607387',longitude  = '-72.646925' WHERE id =766 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.060481',longitude  = '-74.990382' WHERE id =768 LIMIT 1 ;
+UPDATE schools SET latitude = '37.803544',longitude  = '-122.189249' WHERE id =769 LIMIT 1 ;
+UPDATE schools SET latitude = '39.420027',longitude  = '-77.419942' WHERE id =770 LIMIT 1 ;
+UPDATE schools SET latitude = '42.786692',longitude  = '-86.105204' WHERE id =771 LIMIT 1 ;
+UPDATE schools SET latitude = '33.877463',longitude  = '-117.89743' WHERE id =772 LIMIT 1 ;
+UPDATE schools SET latitude = '42.427408',longitude  = '-78.156219' WHERE id =773 LIMIT 1 ;
+UPDATE schools SET latitude = '29.698138',longitude  = '-95.515397' WHERE id =774 LIMIT 1 ;
+UPDATE schools SET latitude = '31.716008',longitude  = '-98.985358' WHERE id =775 LIMIT 1 ;
+UPDATE schools SET latitude = '38.923817',longitude  = '-77.021295' WHERE id =776 LIMIT 1 ;
+UPDATE schools SET latitude = '40.874154',longitude  = '-124.081632' WHERE id =777 LIMIT 1 ;
+UPDATE schools SET latitude = '38.011159',longitude  = '-121.317192' WHERE id =778 LIMIT 1 ;
+UPDATE schools SET latitude = '32.352053',longitude  = '-86.285313' WHERE id =779 LIMIT 1 ;
+UPDATE schools SET latitude = '40.896164',longitude  = '-85.494771' WHERE id =780 LIMIT 1 ;
+UPDATE schools SET latitude = '44.824662',longitude  = '-68.790809' WHERE id =781 LIMIT 1 ;
+UPDATE schools SET latitude = '30.264223',longitude  = '-97.721339' WHERE id =782 LIMIT 1 ;
+UPDATE schools SET latitude = '42.874081',longitude  = '-112.448603' WHERE id =783 LIMIT 1 ;
+UPDATE schools SET latitude = '39.732518',longitude  = '-90.24552' WHERE id =784 LIMIT 1 ;
+UPDATE schools SET latitude = '41.835734',longitude  = '-87.623379' WHERE id =785 LIMIT 1 ;
+UPDATE schools SET latitude = '41.8346',longitude  = '-87.628893' WHERE id =786 LIMIT 1 ;
+UPDATE schools SET latitude = '41.666931',longitude  = '-87.634296' WHERE id =787 LIMIT 1 ;
+UPDATE schools SET latitude = '40.490334',longitude  = '-88.990071' WHERE id =788 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.079109',longitude  = '-85.117082' WHERE id =790 LIMIT 1 ;
+UPDATE schools SET latitude = '39.468661',longitude  = '-87.407068' WHERE id =791 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.166461',longitude  = '-86.526924' WHERE id =793 LIMIT 1 ;
+UPDATE schools SET latitude = '39.866256',longitude  = '-84.888457' WHERE id =794 LIMIT 1 ;
+UPDATE schools SET latitude = '40.461113',longitude  = '-86.133752' WHERE id =795 LIMIT 1 ;
+UPDATE schools SET latitude = '41.556678',longitude  = '-87.336641' WHERE id =796 LIMIT 1 ;
+UPDATE schools SET latitude = '41.113723',longitude  = '-85.113043' WHERE id =797 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.66576',longitude  = '-86.22318' WHERE id =799 LIMIT 1 ;
+UPDATE schools SET latitude = '38.342434',longitude  = '-85.816988' WHERE id =800 LIMIT 1 ;
+UPDATE schools SET latitude = '40.51905',longitude  = '-85.668439' WHERE id =801 LIMIT 1 ;
+
+
+
+
+
+
+
+
+
+UPDATE schools SET latitude = '18.080442',longitude  = '-67.036833' WHERE id =811 LIMIT 1 ;
+UPDATE schools SET latitude = '32.668292',longitude  = '-117.106234' WHERE id =812 LIMIT 1 ;
+UPDATE schools SET latitude = '33.641877',longitude  = '-117.865885' WHERE id =813 LIMIT 1 ;
+UPDATE schools SET latitude = '41.882034',longitude  = '-87.627807' WHERE id =814 LIMIT 1 ;
+UPDATE schools SET latitude = '27.992093',longitude  = '-82.546223' WHERE id =815 LIMIT 1 ;
+UPDATE schools SET latitude = '47.450127',longitude  = '-122.25437' WHERE id =816 LIMIT 1 ;
+UPDATE schools SET latitude = '36.021592',longitude  = '-115.0973' WHERE id =817 LIMIT 1 ;
+UPDATE schools SET latitude = '28.470175',longitude  = '-81.40293' WHERE id =818 LIMIT 1 ;
+UPDATE schools SET latitude = '42.550724',longitude  = '-83.119148' WHERE id =819 LIMIT 1 ;
+UPDATE schools SET latitude = '36.166769',longitude  = '-86.691182' WHERE id =820 LIMIT 1 ;
+UPDATE schools SET latitude = '33.393039',longitude  = '-111.893918' WHERE id =821 LIMIT 1 ;
+UPDATE schools SET latitude = '41.033245',longitude  = '-85.257151' WHERE id =822 LIMIT 1 ;
+UPDATE schools SET latitude = '26.276607',longitude  = '-81.737778' WHERE id =823 LIMIT 1 ;
+UPDATE schools SET latitude = '33.398715',longitude  = '-111.788186' WHERE id =824 LIMIT 1 ;
+UPDATE schools SET latitude = '33.52464',longitude  = '-112.151464' WHERE id =825 LIMIT 1 ;
+UPDATE schools SET latitude = '35.085484',longitude  = '-106.686046' WHERE id =826 LIMIT 1 ;
+UPDATE schools SET latitude = '32.206983',longitude  = '-110.876235' WHERE id =827 LIMIT 1 ;
+UPDATE schools SET latitude = '40.915217',longitude  = '-73.784838' WHERE id =828 LIMIT 1 ;
+UPDATE schools SET latitude = '42.015009',longitude  = '-93.614636' WHERE id =829 LIMIT 1 ;
+UPDATE schools SET latitude = '40.972385',longitude  = '-91.552206' WHERE id =830 LIMIT 1 ;
+UPDATE schools SET latitude = '42.421529',longitude  = '-76.501111' WHERE id =831 LIMIT 1 ;
+UPDATE schools SET latitude = '35.164993',longitude  = '-106.592725' WHERE id =832 LIMIT 1 ;
+UPDATE schools SET latitude = '33.838939',longitude  = '-117.950182' WHERE id =833 LIMIT 1 ;
+UPDATE schools SET latitude = '38.40904',longitude  = '-90.386216' WHERE id =834 LIMIT 1 ;
+UPDATE schools SET latitude = '33.338146',longitude  = '-86.914177' WHERE id =835 LIMIT 1 ;
+UPDATE schools SET latitude = '43.659529',longitude  = '-116.334568' WHERE id =836 LIMIT 1 ;
+UPDATE schools SET latitude = '41.762169',longitude  = '-87.931901' WHERE id =837 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.183128',longitude  = '-80.920741' WHERE id =839 LIMIT 1 ;
+UPDATE schools SET latitude = '36.836599',longitude  = '-119.700088' WHERE id =840 LIMIT 1 ;
+UPDATE schools SET latitude = '35.179383',longitude  = '-89.812951' WHERE id =841 LIMIT 1 ;
+UPDATE schools SET latitude = '34.047533',longitude  = '-84.177166' WHERE id =842 LIMIT 1 ;
+
+UPDATE schools SET latitude = '44.84172',longitude  = '-93.443199' WHERE id =844 LIMIT 1 ;
+UPDATE schools SET latitude = '47.929841',longitude  = '-122.25859' WHERE id =845 LIMIT 1 ;
+UPDATE schools SET latitude = '26.079897',longitude  = '-80.251267' WHERE id =846 LIMIT 1 ;
+UPDATE schools SET latitude = '41.177027',longitude  = '-85.106718' WHERE id =847 LIMIT 1 ;
+UPDATE schools SET latitude = '42.91549',longitude  = '-85.568322' WHERE id =848 LIMIT 1 ;
+UPDATE schools SET latitude = '44.557273',longitude  = '-88.101974' WHERE id =849 LIMIT 1 ;
+UPDATE schools SET latitude = '42.959451',longitude  = '-87.99248' WHERE id =850 LIMIT 1 ;
+UPDATE schools SET latitude = '34.835273',longitude  = '-82.299951' WHERE id =851 LIMIT 1 ;
+UPDATE schools SET latitude = '36.03911',longitude  = '-115.029263' WHERE id =852 LIMIT 1 ;
+UPDATE schools SET latitude = '39.925058',longitude  = '-86.223742' WHERE id =853 LIMIT 1 ;
+UPDATE schools SET latitude = '30.196732',longitude  = '-81.751271' WHERE id =854 LIMIT 1 ;
+UPDATE schools SET latitude = '39.04827',longitude  = '-94.474316' WHERE id =855 LIMIT 1 ;
+UPDATE schools SET latitude = '34.007971',longitude  = '-84.583958' WHERE id =856 LIMIT 1 ;
+UPDATE schools SET latitude = '35.917636',longitude  = '-84.129946' WHERE id =857 LIMIT 1 ;
+
+UPDATE schools SET latitude = '37.808309',longitude  = '-121.296105' WHERE id =859 LIMIT 1 ;
+UPDATE schools SET latitude = '38.032611',longitude  = '-84.445293' WHERE id =860 LIMIT 1 ;
+UPDATE schools SET latitude = '34.711688',longitude  = '-92.343381' WHERE id =861 LIMIT 1 ;
+UPDATE schools SET latitude = '38.233797',longitude  = '-85.571283' WHERE id =862 LIMIT 1 ;
+UPDATE schools SET latitude = '25.782692',longitude  = '-80.325069' WHERE id =863 LIMIT 1 ;
+UPDATE schools SET latitude = '42.075805',longitude  = '-87.913701' WHERE id =864 LIMIT 1 ;
+UPDATE schools SET latitude = '40.67376',longitude  = '-111.919197' WHERE id =865 LIMIT 1 ;
+UPDATE schools SET latitude = '36.147763',longitude  = '-86.6634' WHERE id =866 LIMIT 1 ;
+UPDATE schools SET latitude = '37.980438',longitude  = '-87.449646' WHERE id =867 LIMIT 1 ;
+UPDATE schools SET latitude = '36.853212',longitude  = '-76.201895' WHERE id =868 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.211449',longitude  = '-96.067314' WHERE id =870 LIMIT 1 ;
+UPDATE schools SET latitude = '39.41962',longitude  = '-76.801417' WHERE id =871 LIMIT 1 ;
+UPDATE schools SET latitude = '34.220278',longitude  = '-119.144917' WHERE id =872 LIMIT 1 ;
+UPDATE schools SET latitude = '45.567229',longitude  = '-122.582545' WHERE id =873 LIMIT 1 ;
+UPDATE schools SET latitude = '38.591002',longitude  = '-121.282354' WHERE id =874 LIMIT 1 ;
+UPDATE schools SET latitude = '37.498808',longitude  = '-77.556378' WHERE id =875 LIMIT 1 ;
+UPDATE schools SET latitude = '29.980089',longitude  = '-90.285117' WHERE id =876 LIMIT 1 ;
+UPDATE schools SET latitude = '34.057574',longitude  = '-117.569864' WHERE id =877 LIMIT 1 ;
+UPDATE schools SET latitude = '32.806739',longitude  = '-117.119388' WHERE id =878 LIMIT 1 ;
+UPDATE schools SET latitude = '34.10306',longitude  = '-117.81935' WHERE id =879 LIMIT 1 ;
+UPDATE schools SET latitude = '47.488538',longitude  = '-122.275299' WHERE id =880 LIMIT 1 ;
+
+UPDATE schools SET latitude = '38.740846',longitude  = '-77.198191' WHERE id =882 LIMIT 1 ;
+UPDATE schools SET latitude = '34.300046',longitude  = '-118.473939' WHERE id =883 LIMIT 1 ;
+UPDATE schools SET latitude = '27.98172',longitude  = '-82.55444' WHERE id =884 LIMIT 1 ;
+UPDATE schools SET latitude = '33.381237',longitude  = '-111.969716' WHERE id =885 LIMIT 1 ;
+UPDATE schools SET latitude = '39.848975',longitude  = '-104.979718' WHERE id =886 LIMIT 1 ;
+UPDATE schools SET latitude = '33.849277',longitude  = '-118.290503' WHERE id =887 LIMIT 1 ;
+UPDATE schools SET latitude = '32.297313',longitude  = '-110.997521' WHERE id =888 LIMIT 1 ;
+UPDATE schools SET latitude = '36.093728',longitude  = '-95.890335' WHERE id =889 LIMIT 1 ;
+UPDATE schools SET latitude = '41.553947',longitude  = '-87.897622' WHERE id =890 LIMIT 1 ;
+UPDATE schools SET latitude = '32.297576',longitude  = '-90.209711' WHERE id =891 LIMIT 1 ;
+UPDATE schools SET latitude = '33.824114',longitude  = '-85.763595' WHERE id =892 LIMIT 1 ;
+UPDATE schools SET latitude = '30.351644',longitude  = '-81.602623' WHERE id =893 LIMIT 1 ;
+UPDATE schools SET latitude = '33.957624',longitude  = '-118.417151' WHERE id =1348 LIMIT 1 ;
+UPDATE schools SET latitude = '38.602861',longitude  = '-95.265903' WHERE id =1349 LIMIT 1 ;
+
+UPDATE schools SET latitude = '38.930336',longitude  = '-94.700388' WHERE id =1351 LIMIT 1 ;
+UPDATE schools SET latitude = '43.029783',longitude  = '-88.114384' WHERE id =1352 LIMIT 1 ;
+UPDATE schools SET latitude = '33.577776',longitude  = '-112.113424' WHERE id =1353 LIMIT 1 ;
+
+UPDATE schools SET latitude = '34.12455',longitude  = '-93.051356' WHERE id =1355 LIMIT 1 ;
+UPDATE schools SET latitude = '29.910042',longitude  = '-89.993324' WHERE id =1356 LIMIT 1 ;
+UPDATE schools SET latitude = '30.396228',longitude  = '-91.111588' WHERE id =1357 LIMIT 1 ;
+UPDATE schools SET latitude = '29.425393',longitude  = '-98.543043' WHERE id =1358 LIMIT 1 ;
+UPDATE schools SET latitude = '37.101525',longitude  = '-94.512713' WHERE id =1359 LIMIT 1 ;
+UPDATE schools SET latitude = '40.71169',longitude  = '-74.005859' WHERE id =1360 LIMIT 1 ;
+UPDATE schools SET latitude = '34.075906',longitude  = '-117.74298' WHERE id =1361 LIMIT 1 ;
+
+UPDATE schools SET latitude = '47.145465',longitude  = '-122.437121' WHERE id =1363 LIMIT 1 ;
+UPDATE schools SET latitude = '45.528634',longitude  = '-122.683758' WHERE id =1364 LIMIT 1 ;
+UPDATE schools SET latitude = '34.151892',longitude  = '-118.160262' WHERE id =1365 LIMIT 1 ;
+UPDATE schools SET latitude = '34.04508',longitude  = '-118.309026' WHERE id =1366 LIMIT 1 ;
+UPDATE schools SET latitude = '38.570858',longitude  = '-122.441233' WHERE id =1367 LIMIT 1 ;
+UPDATE schools SET latitude = '45.520982',longitude  = '-123.11097' WHERE id =1368 LIMIT 1 ;
+UPDATE schools SET latitude = '41.347922',longitude  = '-72.935051' WHERE id =1369 LIMIT 1 ;
+UPDATE schools SET latitude = '33.46947',longitude  = '-81.992267' WHERE id =1370 LIMIT 1 ;
+UPDATE schools SET latitude = '26.705386',longitude  = '-80.049122' WHERE id =1371 LIMIT 1 ;
+UPDATE schools SET latitude = '41.52978',longitude  = '-90.57403' WHERE id =1372 LIMIT 1 ;
+UPDATE schools SET latitude = '39.187775',longitude  = '-94.679726' WHERE id =1373 LIMIT 1 ;
+UPDATE schools SET latitude = '32.880969',longitude  = '-96.894254' WHERE id =1374 LIMIT 1 ;
+UPDATE schools SET latitude = '37.78613',longitude  = '-122.219121' WHERE id =1375 LIMIT 1 ;
+UPDATE schools SET latitude = '32.675685',longitude  = '-96.756981' WHERE id =1376 LIMIT 1 ;
+UPDATE schools SET latitude = '44.4381',longitude  = '-74.251458' WHERE id =1377 LIMIT 1 ;
+UPDATE schools SET latitude = '35.788032',longitude  = '-78.638388' WHERE id =1378 LIMIT 1 ;
+UPDATE schools SET latitude = '39.945676',longitude  = '-75.166094' WHERE id =1379 LIMIT 1 ;
+UPDATE schools SET latitude = '40.040982',longitude  = '-76.308341' WHERE id =1380 LIMIT 1 ;
+UPDATE schools SET latitude = '40.08648',longitude  = '-75.128036' WHERE id =1381 LIMIT 1 ;
+UPDATE schools SET latitude = '41.233597',longitude  = '-77.022766' WHERE id =1382 LIMIT 1 ;
+UPDATE schools SET latitude = '40.127841',longitude  = '-75.128614' WHERE id =1383 LIMIT 1 ;
+UPDATE schools SET latitude = '40.538513',longitude  = '-78.405729' WHERE id =1384 LIMIT 1 ;
+UPDATE schools SET latitude = '40.677291',longitude  = '-80.294294' WHERE id =1385 LIMIT 1 ;
+UPDATE schools SET latitude = '40.363665',longitude  = '-75.974362' WHERE id =1386 LIMIT 1 ;
+UPDATE schools SET latitude = '39.926383',longitude  = '-75.445774' WHERE id =1387 LIMIT 1 ;
+UPDATE schools SET latitude = '41.126827',longitude  = '-78.753158' WHERE id =1388 LIMIT 1 ;
+UPDATE schools SET latitude = '42.123497',longitude  = '-79.980632' WHERE id =1389 LIMIT 1 ;
+UPDATE schools SET latitude = '39.94598',longitude  = '-79.656063' WHERE id =1390 LIMIT 1 ;
+UPDATE schools SET latitude = '40.343343',longitude  = '-79.828988' WHERE id =1391 LIMIT 1 ;
+UPDATE schools SET latitude = '40.196888',longitude  = '-76.743344' WHERE id =1392 LIMIT 1 ;
+UPDATE schools SET latitude = '40.984167',longitude  = '-76.031546' WHERE id =1393 LIMIT 1 ;
+UPDATE schools SET latitude = '40.597683',longitude  = '-75.647919' WHERE id =1394 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.841281',longitude  = '-77.543114' WHERE id =1396 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.639084',longitude  = '-76.170689' WHERE id =1398 LIMIT 1 ;
+UPDATE schools SET latitude = '41.234851',longitude  = '-80.508394' WHERE id =1399 LIMIT 1 ;
+UPDATE schools SET latitude = '41.307153',longitude  = '-75.981925' WHERE id =1400 LIMIT 1 ;
+UPDATE schools SET latitude = '41.456374',longitude  = '-75.608789' WHERE id =1401 LIMIT 1 ;
+UPDATE schools SET latitude = '39.952168',longitude  = '-76.699928' WHERE id =1402 LIMIT 1 ;
+UPDATE schools SET latitude = '34.034743',longitude  = '-118.704237' WHERE id =1403 LIMIT 1 ;
+UPDATE schools SET latitude = '40.475712',longitude  = '-95.731945' WHERE id =1404 LIMIT 1 ;
+UPDATE schools SET latitude = '35.496719',longitude  = '-80.307817' WHERE id =1405 LIMIT 1 ;
+UPDATE schools SET latitude = '40.162759',longitude  = '-74.910888' WHERE id =1406 LIMIT 1 ;
+UPDATE schools SET latitude = '40.020439',longitude  = '-75.192447' WHERE id =1407 LIMIT 1 ;
+UPDATE schools SET latitude = '34.737297',longitude  = '-92.27984' WHERE id =1408 LIMIT 1 ;
+UPDATE schools SET latitude = '36.088282',longitude  = '-80.249839' WHERE id =1409 LIMIT 1 ;
+UPDATE schools SET latitude = '34.554984',longitude  = '-83.546398' WHERE id =1410 LIMIT 1 ;
+UPDATE schools SET latitude = '39.48197',longitude  = '-80.160117' WHERE id =1411 LIMIT 1 ;
+UPDATE schools SET latitude = '37.481425',longitude  = '-82.51981' WHERE id =1412 LIMIT 1 ;
+UPDATE schools SET latitude = '46.847917',longitude  = '-92.090442' WHERE id =1413 LIMIT 1 ;
+UPDATE schools SET latitude = '42.322244',longitude  = '-71.156018' WHERE id =1414 LIMIT 1 ;
+
+UPDATE schools SET latitude = '37.392351',longitude  = '-94.705027' WHERE id =1416 LIMIT 1 ;
+UPDATE schools SET latitude = '34.104269',longitude  = '-117.707112' WHERE id =1417 LIMIT 1 ;
+UPDATE schools SET latitude = '35.609814',longitude  = '-97.563568' WHERE id =1418 LIMIT 1 ;
+UPDATE schools SET latitude = '39.660664',longitude  = '-104.855215' WHERE id =1419 LIMIT 1 ;
+UPDATE schools SET latitude = '34.082667',longitude  = '-118.151955' WHERE id =1420 LIMIT 1 ;
+UPDATE schools SET latitude = '33.733887',longitude  = '-117.994198' WHERE id =1421 LIMIT 1 ;
+UPDATE schools SET latitude = '34.069907',longitude  = '-117.571799' WHERE id =1422 LIMIT 1 ;
+UPDATE schools SET latitude = '32.76339',longitude  = '-117.063833' WHERE id =1423 LIMIT 1 ;
+UPDATE schools SET latitude = '43.760251',longitude  = '-71.688451' WHERE id =1424 LIMIT 1 ;
+UPDATE schools SET latitude = '32.718403',longitude  = '-117.251477' WHERE id =1425 LIMIT 1 ;
+UPDATE schools SET latitude = '40.438427',longitude  = '-80.00193' WHERE id =1426 LIMIT 1 ;
+UPDATE schools SET latitude = '40.693713',longitude  = '-73.987159' WHERE id =1427 LIMIT 1 ;
+UPDATE schools SET latitude = '34.089677',longitude  = '-117.667248' WHERE id =1428 LIMIT 1 ;
+UPDATE schools SET latitude = '18.456838',longitude  = '-66.086456' WHERE id =1429 LIMIT 1 ;
+UPDATE schools SET latitude = '18.181091',longitude  = '-67.144766' WHERE id =1430 LIMIT 1 ;
+UPDATE schools SET latitude = '18.003465',longitude  = '-66.62012' WHERE id =1431 LIMIT 1 ;
+UPDATE schools SET latitude = '40.118957',longitude  = '-83.01629' WHERE id =1432 LIMIT 1 ;
+UPDATE schools SET latitude = '45.511252',longitude  = '-122.683571' WHERE id =1433 LIMIT 1 ;
+UPDATE schools SET latitude = '41.536684',longitude  = '-73.079476' WHERE id =1434 LIMIT 1 ;
+UPDATE schools SET latitude = '38.950692',longitude  = '-77.078741' WHERE id =1435 LIMIT 1 ;
+UPDATE schools SET latitude = '38.962042',longitude  = '-77.398095' WHERE id =1436 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.692071',longitude  = '-73.96389' WHERE id =1438 LIMIT 1 ;
+UPDATE schools SET latitude = '34.467002',longitude  = '-81.879907' WHERE id =1439 LIMIT 1 ;
+UPDATE schools SET latitude = '34.544651',longitude  = '-112.476287' WHERE id =1440 LIMIT 1 ;
+UPDATE schools SET latitude = '45.481058',longitude  = '-98.488015' WHERE id =1441 LIMIT 1 ;
+UPDATE schools SET latitude = '40.344272',longitude  = '-74.655018' WHERE id =1442 LIMIT 1 ;
+
+
+
+UPDATE schools SET latitude = '47.9831',longitude  = '-122.207142' WHERE id =1446 LIMIT 1 ;
+UPDATE schools SET latitude = '41.588375',longitude  = '-87.476119' WHERE id =1447 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.514565',longitude  = '-86.945482' WHERE id =1449 LIMIT 1 ;
+UPDATE schools SET latitude = '35.189142',longitude  = '-80.830569' WHERE id =1450 LIMIT 1 ;
+UPDATE schools SET latitude = '39.939248',longitude  = '-91.387065' WHERE id =1451 LIMIT 1 ;
+UPDATE schools SET latitude = '41.425537',longitude  = '-72.875879' WHERE id =1452 LIMIT 1 ;
+UPDATE schools SET latitude = '40.500526',longitude  = '-74.398362' WHERE id =1453 LIMIT 1 ;
+UPDATE schools SET latitude = '40.618667',longitude  = '-73.963933' WHERE id =1454 LIMIT 1 ;
+UPDATE schools SET latitude = '41.113598',longitude  = '-74.071941' WHERE id =1455 LIMIT 1 ;
+UPDATE schools SET latitude = '40.631897',longitude  = '-73.985433' WHERE id =1456 LIMIT 1 ;
+UPDATE schools SET latitude = '40.809586',longitude  = '-74.502739' WHERE id =1457 LIMIT 1 ;
+UPDATE schools SET latitude = '40.626637',longitude  = '-73.979748' WHERE id =1458 LIMIT 1 ;
+UPDATE schools SET latitude = '40.58616',longitude  = '-73.669971' WHERE id =1459 LIMIT 1 ;
+UPDATE schools SET latitude = '40.704259',longitude  = '-73.95662' WHERE id =1460 LIMIT 1 ;
+UPDATE schools SET latitude = '41.596749',longitude  = '-81.48737' WHERE id =1461 LIMIT 1 ;
+UPDATE schools SET latitude = '40.628057',longitude  = '-73.989648' WHERE id =1462 LIMIT 1 ;
+UPDATE schools SET latitude = '40.706506',longitude  = '-73.960675' WHERE id =1463 LIMIT 1 ;
+UPDATE schools SET latitude = '40.723259',longitude  = '-73.81773' WHERE id =1464 LIMIT 1 ;
+UPDATE schools SET latitude = '37.130933',longitude  = '-80.579961' WHERE id =1465 LIMIT 1 ;
+UPDATE schools SET latitude = '41.083958',longitude  = '-74.176627' WHERE id =1466 LIMIT 1 ;
+UPDATE schools SET latitude = '37.760061',longitude  = '-77.477995' WHERE id =1467 LIMIT 1 ;
+UPDATE schools SET latitude = '37.434878',longitude  = '-79.17034' WHERE id =1468 LIMIT 1 ;
+UPDATE schools SET latitude = '38.65283',longitude  = '-90.24898' WHERE id =1469 LIMIT 1 ;
+UPDATE schools SET latitude = '45.479189',longitude  = '-122.630352' WHERE id =1470 LIMIT 1 ;
+UPDATE schools SET latitude = '27.81077',longitude  = '-80.61406' WHERE id =1471 LIMIT 1 ;
+UPDATE schools SET latitude = '36.804782',longitude  = '-76.193707' WHERE id =1472 LIMIT 1 ;
+UPDATE schools SET latitude = '32.367293',longitude  = '-86.171506' WHERE id =1473 LIMIT 1 ;
+UPDATE schools SET latitude = '42.352044',longitude  = '-71.305077' WHERE id =1474 LIMIT 1 ;
+UPDATE schools SET latitude = '39.787539',longitude  = '-105.030332' WHERE id =1475 LIMIT 1 ;
+UPDATE schools SET latitude = '34.320549',longitude  = '-84.557455' WHERE id =1476 LIMIT 1 ;
+UPDATE schools SET latitude = '38.918006',longitude  = '-104.787403' WHERE id =1477 LIMIT 1 ;
+UPDATE schools SET latitude = '21.309464',longitude  = '-157.860149' WHERE id =1478 LIMIT 1 ;
+UPDATE schools SET latitude = '30.247653',longitude  = '-81.583088' WHERE id =1479 LIMIT 1 ;
+UPDATE schools SET latitude = '27.894367',longitude  = '-82.757339' WHERE id =1480 LIMIT 1 ;
+UPDATE schools SET latitude = '35.070761',longitude  = '-89.990238' WHERE id =1481 LIMIT 1 ;
+UPDATE schools SET latitude = '30.67238',longitude  = '-88.144464' WHERE id =1482 LIMIT 1 ;
+UPDATE schools SET latitude = '32.761854',longitude  = '-117.16627' WHERE id =1483 LIMIT 1 ;
+UPDATE schools SET latitude = '28.032636',longitude  = '-82.432441' WHERE id =1484 LIMIT 1 ;
+UPDATE schools SET latitude = '33.349083',longitude  = '-111.953148' WHERE id =1485 LIMIT 1 ;
+UPDATE schools SET latitude = '42.731393',longitude  = '-73.683947' WHERE id =1486 LIMIT 1 ;
+UPDATE schools SET latitude = '39.006993',longitude  = '-94.557285' WHERE id =1487 LIMIT 1 ;
+
+
+UPDATE schools SET latitude = '35.155804',longitude  = '-89.982325' WHERE id =1490 LIMIT 1 ;
+UPDATE schools SET latitude = '29.72064',longitude  = '-95.393772' WHERE id =1491 LIMIT 1 ;
+UPDATE schools SET latitude = '40.278794',longitude  = '-74.73226' WHERE id =1492 LIMIT 1 ;
+UPDATE schools SET latitude = '27.359887',longitude  = '-82.548975' WHERE id =1493 LIMIT 1 ;
+UPDATE schools SET latitude = '43.842981',longitude  = '-88.840827' WHERE id =1494 LIMIT 1 ;
+UPDATE schools SET latitude = '42.742772',longitude  = '-71.459356' WHERE id =1495 LIMIT 1 ;
+UPDATE schools SET latitude = '36.303754',longitude  = '-76.217664' WHERE id =1496 LIMIT 1 ;
+UPDATE schools SET latitude = '37.294387',longitude  = '-80.058564' WHERE id =1497 LIMIT 1 ;
+UPDATE schools SET latitude = '41.876925',longitude  = '-87.627651' WHERE id =1498 LIMIT 1 ;
+
+UPDATE schools SET latitude = '43.126796',longitude  = '-77.798377' WHERE id =1500 LIMIT 1 ;
+UPDATE schools SET latitude = '42.665932',longitude  = '-83.148902' WHERE id =1501 LIMIT 1 ;
+UPDATE schools SET latitude = '43.092108',longitude  = '-77.675238' WHERE id =1502 LIMIT 1 ;
+UPDATE schools SET latitude = '42.264126',longitude  = '-89.01928' WHERE id =1503 LIMIT 1 ;
+UPDATE schools SET latitude = '39.032641',longitude  = '-94.573467' WHERE id =1504 LIMIT 1 ;
+UPDATE schools SET latitude = '45.79495',longitude  = '-108.553585' WHERE id =1505 LIMIT 1 ;
+UPDATE schools SET latitude = '39.741919',longitude  = '-105.071967' WHERE id =1506 LIMIT 1 ;
+
+UPDATE schools SET latitude = '36.318562',longitude  = '-95.630583' WHERE id =1508 LIMIT 1 ;
+UPDATE schools SET latitude = '28.592143',longitude  = '-81.360225' WHERE id =1509 LIMIT 1 ;
+UPDATE schools SET latitude = '41.87658',longitude  = '-87.624351' WHERE id =1510 LIMIT 1 ;
+UPDATE schools SET latitude = '42.302828',longitude  = '-87.861531' WHERE id =1511 LIMIT 1 ;
+UPDATE schools SET latitude = '39.480949',longitude  = '-87.323482' WHERE id =1512 LIMIT 1 ;
+UPDATE schools SET latitude = '40.033488',longitude  = '-75.326755' WHERE id =1513 LIMIT 1 ;
+UPDATE schools SET latitude = '39.710314',longitude  = '-75.12479' WHERE id =1514 LIMIT 1 ;
+UPDATE schools SET latitude = '41.874137',longitude  = '-87.669071' WHERE id =1515 LIMIT 1 ;
+UPDATE schools SET latitude = '42.728039',longitude  = '-73.693954' WHERE id =1516 LIMIT 1 ;
+UPDATE schools SET latitude = '34.774294',longitude  = '-89.446837' WHERE id =1517 LIMIT 1 ;
+UPDATE schools SET latitude = '39.947829',longitude  = '-75.119818' WHERE id =1518 LIMIT 1 ;
+UPDATE schools SET latitude = '40.49794',longitude  = '-74.446041' WHERE id =1519 LIMIT 1 ;
+UPDATE schools SET latitude = '40.739069',longitude  = '-74.175196' WHERE id =1520 LIMIT 1 ;
+UPDATE schools SET latitude = '42.379832',longitude  = '-83.101844' WHERE id =1521 LIMIT 1 ;
+UPDATE schools SET latitude = '41.222699',longitude  = '-73.240769' WHERE id =1522 LIMIT 1 ;
+UPDATE schools SET latitude = '42.652647',longitude  = '-73.779277' WHERE id =1523 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.538297',longitude  = '-90.580201' WHERE id =1525 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.266011',longitude  = '-89.006105' WHERE id =1527 LIMIT 1 ;
+UPDATE schools SET latitude = '41.972606',longitude  = '-87.663684' WHERE id =1528 LIMIT 1 ;
+UPDATE schools SET latitude = '35.784219',longitude  = '-78.620919' WHERE id =1529 LIMIT 1 ;
+UPDATE schools SET latitude = '42.098878',longitude  = '-78.51365' WHERE id =1530 LIMIT 1 ;
+UPDATE schools SET latitude = '37.710409',longitude  = '-85.260199' WHERE id =1531 LIMIT 1 ;
+UPDATE schools SET latitude = '40.002798',longitude  = '-75.27121' WHERE id =1532 LIMIT 1 ;
+UPDATE schools SET latitude = '45.552572',longitude  = '-94.152698' WHERE id =1533 LIMIT 1 ;
+UPDATE schools SET latitude = '30.231932',longitude  = '-97.758799' WHERE id =1534 LIMIT 1 ;
+UPDATE schools SET latitude = '40.702508',longitude  = '-89.586686' WHERE id =1535 LIMIT 1 ;
+UPDATE schools SET latitude = '40.517906',longitude  = '-78.62847' WHERE id =1536 LIMIT 1 ;
+UPDATE schools SET latitude = '35.361771',longitude  = '-96.951464' WHERE id =1537 LIMIT 1 ;
+UPDATE schools SET latitude = '43.117053',longitude  = '-77.516988' WHERE id =1538 LIMIT 1 ;
+UPDATE schools SET latitude = '25.742366',longitude  = '-80.335778' WHERE id =1539 LIMIT 1 ;
+UPDATE schools SET latitude = '42.345332',longitude  = '-71.163025' WHERE id =1540 LIMIT 1 ;
+UPDATE schools SET latitude = '45.594202',longitude  = '-94.364665' WHERE id =1541 LIMIT 1 ;
+UPDATE schools SET latitude = '41.778828',longitude  = '-72.731782' WHERE id =1542 LIMIT 1 ;
+UPDATE schools SET latitude = '30.524132',longitude  = '-90.115467' WHERE id =1543 LIMIT 1 ;
+UPDATE schools SET latitude = '41.015693',longitude  = '-87.151647' WHERE id =1544 LIMIT 1 ;
+UPDATE schools SET latitude = '43.822861',longitude  = '-70.481158' WHERE id =1545 LIMIT 1 ;
+UPDATE schools SET latitude = '40.69058',longitude  = '-73.968306' WHERE id =1546 LIMIT 1 ;
+UPDATE schools SET latitude = '40.774635',longitude  = '-73.022921' WHERE id =1547 LIMIT 1 ;
+UPDATE schools SET latitude = '39.997038',longitude  = '-75.235367' WHERE id =1548 LIMIT 1 ;
+UPDATE schools SET latitude = '28.335588',longitude  = '-82.25921' WHERE id =1549 LIMIT 1 ;
+UPDATE schools SET latitude = '38.774741',longitude  = '-90.295365' WHERE id =1550 LIMIT 1 ;
+UPDATE schools SET latitude = '38.637539',longitude  = '-90.232627' WHERE id =1551 LIMIT 1 ;
+UPDATE schools SET latitude = '38.977358',longitude  = '-94.606852' WHERE id =1552 LIMIT 1 ;
+UPDATE schools SET latitude = '47.037091',longitude  = '-122.815804' WHERE id =1553 LIMIT 1 ;
+UPDATE schools SET latitude = '40.113361',longitude  = '-88.169266' WHERE id =1554 LIMIT 1 ;
+
+UPDATE schools SET latitude = '37.84737',longitude  = '-122.108974' WHERE id =1556 LIMIT 1 ;
+UPDATE schools SET latitude = '44.04556',longitude  = '-91.696383' WHERE id =1557 LIMIT 1 ;
+UPDATE schools SET latitude = '44.494463',longitude  = '-73.17643' WHERE id =1558 LIMIT 1 ;
+UPDATE schools SET latitude = '44.445064',longitude  = '-88.065226' WHERE id =1559 LIMIT 1 ;
+UPDATE schools SET latitude = '36.760621',longitude  = '-77.85082' WHERE id =1560 LIMIT 1 ;
+UPDATE schools SET latitude = '40.726893',longitude  = '-74.071198' WHERE id =1561 LIMIT 1 ;
+UPDATE schools SET latitude = '41.04001',longitude  = '-73.93599' WHERE id =1562 LIMIT 1 ;
+UPDATE schools SET latitude = '25.976133',longitude  = '-80.210335' WHERE id =1563 LIMIT 1 ;
+UPDATE schools SET latitude = '40.290644',longitude  = '-79.40111' WHERE id =1564 LIMIT 1 ;
+UPDATE schools SET latitude = '41.706047',longitude  = '-87.71489' WHERE id =1565 LIMIT 1 ;
+UPDATE schools SET latitude = '36.087616',longitude  = '-80.241395' WHERE id =1566 LIMIT 1 ;
+UPDATE schools SET latitude = '39.28303',longitude  = '-80.567009' WHERE id =1567 LIMIT 1 ;
+UPDATE schools SET latitude = '42.502925',longitude  = '-70.889313' WHERE id =1568 LIMIT 1 ;
+UPDATE schools SET latitude = '38.346592',longitude  = '-75.608432' WHERE id =1569 LIMIT 1 ;
+UPDATE schools SET latitude = '47.595903',longitude  = '-114.119146' WHERE id =1570 LIMIT 1 ;
+
+UPDATE schools SET latitude = '30.715639',longitude  = '-95.547671' WHERE id =1572 LIMIT 1 ;
+UPDATE schools SET latitude = '33.463148',longitude  = '-86.790106' WHERE id =1573 LIMIT 1 ;
+UPDATE schools SET latitude = '37.820839',longitude  = '-122.263607' WHERE id =1574 LIMIT 1 ;
+UPDATE schools SET latitude = '32.800841',longitude  = '-116.904748' WHERE id =1575 LIMIT 1 ;
+UPDATE schools SET latitude = '32.772886',longitude  = '-117.071665' WHERE id =1576 LIMIT 1 ;
+UPDATE schools SET latitude = '32.672171',longitude  = '-115.493543' WHERE id =1577 LIMIT 1 ;
+UPDATE schools SET latitude = '37.803357',longitude  = '-122.416523' WHERE id =1578 LIMIT 1 ;
+UPDATE schools SET latitude = '37.775323',longitude  = '-122.4202' WHERE id =1579 LIMIT 1 ;
+UPDATE schools SET latitude = '37.72084',longitude  = '-122.476619' WHERE id =1580 LIMIT 1 ;
+UPDATE schools SET latitude = '37.348597',longitude  = '-121.882954' WHERE id =1581 LIMIT 1 ;
+UPDATE schools SET latitude = '38.523761',longitude  = '-90.475575' WHERE id =1582 LIMIT 1 ;
+UPDATE schools SET latitude = '37.352729',longitude  = '-121.938178' WHERE id =1583 LIMIT 1 ;
+UPDATE schools SET latitude = '40.93435',longitude  = '-73.84348' WHERE id =1584 LIMIT 1 ;
+UPDATE schools SET latitude = '32.07298',longitude  = '-81.094179' WHERE id =1585 LIMIT 1 ;
+
+UPDATE schools SET latitude = '27.91672',longitude  = '-82.784418' WHERE id =1587 LIMIT 1 ;
+UPDATE schools SET latitude = '41.881608',longitude  = '-87.626146' WHERE id =1588 LIMIT 1 ;
+UPDATE schools SET latitude = '42.338967',longitude  = '-71.096959' WHERE id =1589 LIMIT 1 ;
+UPDATE schools SET latitude = '40.738734',longitude  = '-73.982922' WHERE id =1590 LIMIT 1 ;
+UPDATE schools SET latitude = '30.028133',longitude  = '-99.132546' WHERE id =1591 LIMIT 1 ;
+UPDATE schools SET latitude = '33.50213',longitude  = '-111.905794' WHERE id =1592 LIMIT 1 ;
+UPDATE schools SET latitude = '34.069143',longitude  = '-117.73072' WHERE id =1593 LIMIT 1 ;
+UPDATE schools SET latitude = '47.649637',longitude  = '-122.360875' WHERE id =1594 LIMIT 1 ;
+UPDATE schools SET latitude = '47.610215',longitude  = '-122.320741' WHERE id =1595 LIMIT 1 ;
+UPDATE schools SET latitude = '40.744593',longitude  = '-74.248395' WHERE id =1596 LIMIT 1 ;
+UPDATE schools SET latitude = '40.309771',longitude  = '-79.5579' WHERE id =1597 LIMIT 1 ;
+UPDATE schools SET latitude = '35.203842',longitude  = '-85.921005' WHERE id =1598 LIMIT 1 ;
+UPDATE schools SET latitude = '40.564573',longitude  = '-122.314802' WHERE id =1599 LIMIT 1 ;
+UPDATE schools SET latitude = '35.772108',longitude  = '-78.637576' WHERE id =1600 LIMIT 1 ;
+UPDATE schools SET latitude = '38.731511',longitude  = '-82.997743' WHERE id =1601 LIMIT 1 ;
+UPDATE schools SET latitude = '57.047746',longitude  = '-135.319478' WHERE id =1602 LIMIT 1 ;
+UPDATE schools SET latitude = '39.166126',longitude  = '-78.159546' WHERE id =1603 LIMIT 1 ;
+UPDATE schools SET latitude = '39.433287',longitude  = '-77.804479' WHERE id =1604 LIMIT 1 ;
+UPDATE schools SET latitude = '41.832387',longitude  = '-87.626626' WHERE id =1605 LIMIT 1 ;
+UPDATE schools SET latitude = '40.057525',longitude  = '-77.522369' WHERE id =1606 LIMIT 1 ;
+UPDATE schools SET latitude = '40.605207',longitude  = '-73.741868' WHERE id =1607 LIMIT 1 ;
+UPDATE schools SET latitude = '34.263563',longitude  = '-85.189605' WHERE id =1608 LIMIT 1 ;
+UPDATE schools SET latitude = '33.908713',longitude  = '-84.42657' WHERE id =1609 LIMIT 1 ;
+UPDATE schools SET latitude = '42.717112',longitude  = '-73.755309' WHERE id =1610 LIMIT 1 ;
+UPDATE schools SET latitude = '41.905158',longitude  = '-84.014572' WHERE id =1611 LIMIT 1 ;
+UPDATE schools SET latitude = '39.245198',longitude  = '-119.937458' WHERE id =1612 LIMIT 1 ;
+UPDATE schools SET latitude = '37.84676',longitude  = '-122.291545' WHERE id =1613 LIMIT 1 ;
+UPDATE schools SET latitude = '37.513638',longitude  = '-121.981573' WHERE id =1614 LIMIT 1 ;
+UPDATE schools SET latitude = '37.39838',longitude  = '-121.890932' WHERE id =1615 LIMIT 1 ;
+UPDATE schools SET latitude = '44.071391',longitude  = '-87.7409' WHERE id =1616 LIMIT 1 ;
+UPDATE schools SET latitude = '42.339203',longitude  = '-71.099151' WHERE id =1617 LIMIT 1 ;
+UPDATE schools SET latitude = '42.207369',longitude  = '-73.384539' WHERE id =1618 LIMIT 1 ;
+UPDATE schools SET latitude = '41.366498',longitude  = '-93.565019' WHERE id =1619 LIMIT 1 ;
+UPDATE schools SET latitude = '40.618085',longitude  = '-122.329546' WHERE id =1620 LIMIT 1 ;
+
+UPDATE schools SET latitude = '43.094935',longitude  = '-73.779948' WHERE id =1622 LIMIT 1 ;
+UPDATE schools SET latitude = '41.060308',longitude  = '-80.052469' WHERE id =1623 LIMIT 1 ;
+UPDATE schools SET latitude = '42.319411',longitude  = '-72.63706' WHERE id =1624 LIMIT 1 ;
+UPDATE schools SET latitude = '39.296136',longitude  = '-76.59746' WHERE id =1625 LIMIT 1 ;
+UPDATE schools SET latitude = '33.557855',longitude  = '-117.73234' WHERE id =1626 LIMIT 1 ;
+UPDATE schools SET latitude = '38.336187',longitude  = '-122.676484' WHERE id =1627 LIMIT 1 ;
+UPDATE schools SET latitude = '33.848186',longitude  = '-117.959068' WHERE id =1628 LIMIT 1 ;
+UPDATE schools SET latitude = '33.513471',longitude  = '-80.848375' WHERE id =1629 LIMIT 1 ;
+UPDATE schools SET latitude = '35.959205',longitude  = '-83.977407' WHERE id =1630 LIMIT 1 ;
+UPDATE schools SET latitude = '35.508153',longitude  = '-82.525649' WHERE id =1631 LIMIT 1 ;
+UPDATE schools SET latitude = '44.076269',longitude  = '-103.207309' WHERE id =1632 LIMIT 1 ;
+
+UPDATE schools SET latitude = '34.099363',longitude  = '-80.963071' WHERE id =1634 LIMIT 1 ;
+UPDATE schools SET latitude = '32.342444',longitude  = '-86.21775' WHERE id =1635 LIMIT 1 ;
+UPDATE schools SET latitude = '31.999697',longitude  = '-81.104482' WHERE id =1636 LIMIT 1 ;
+UPDATE schools SET latitude = '26.698594',longitude  = '-80.0868' WHERE id =1637 LIMIT 1 ;
+
+UPDATE schools SET latitude = '31.746525',longitude  = '-89.148916' WHERE id =1639 LIMIT 1 ;
+UPDATE schools SET latitude = '33.365257',longitude  = '-86.763803' WHERE id =1640 LIMIT 1 ;
+UPDATE schools SET latitude = '30.511963',longitude  = '-90.468857' WHERE id =1641 LIMIT 1 ;
+UPDATE schools SET latitude = '34.00502',longitude  = '-96.37759' WHERE id =1642 LIMIT 1 ;
+UPDATE schools SET latitude = '38.879251',longitude  = '-77.018898' WHERE id =1643 LIMIT 1 ;
+UPDATE schools SET latitude = '28.032375',longitude  = '-81.920182' WHERE id =1644 LIMIT 1 ;
+UPDATE schools SET latitude = '35.048243',longitude  = '-85.051236' WHERE id =1645 LIMIT 1 ;
+UPDATE schools SET latitude = '33.288708',longitude  = '-93.235314' WHERE id =1646 LIMIT 1 ;
+UPDATE schools SET latitude = '33.888931',longitude  = '-117.886856' WHERE id =1647 LIMIT 1 ;
+UPDATE schools SET latitude = '34.045986',longitude  = '-118.233613' WHERE id =1648 LIMIT 1 ;
+
+UPDATE schools SET latitude = '32.803273',longitude  = '-116.900503' WHERE id =1650 LIMIT 1 ;
+UPDATE schools SET latitude = '35.139227',longitude  = '-90.019732' WHERE id =1651 LIMIT 1 ;
+UPDATE schools SET latitude = '41.330976',longitude  = '-72.946818' WHERE id =1652 LIMIT 1 ;
+UPDATE schools SET latitude = '37.735391',longitude  = '-89.20469' WHERE id =1653 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.482293',longitude  = '-80.858634' WHERE id =1655 LIMIT 1 ;
+UPDATE schools SET latitude = '32.844299',longitude  = '-96.785675' WHERE id =1656 LIMIT 1 ;
+UPDATE schools SET latitude = '35.511845',longitude  = '-97.63013' WHERE id =1657 LIMIT 1 ;
+UPDATE schools SET latitude = '43.037778',longitude  = '-71.45385' WHERE id =1658 LIMIT 1 ;
+UPDATE schools SET latitude = '42.186427',longitude  = '-122.693916' WHERE id =1659 LIMIT 1 ;
+UPDATE schools SET latitude = '33.942212',longitude  = '-84.520453' WHERE id =1660 LIMIT 1 ;
+
+UPDATE schools SET latitude = '30.023211',longitude  = '-90.043918' WHERE id =1662 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.876027',longitude  = '-73.215082' WHERE id =1664 LIMIT 1 ;
+UPDATE schools SET latitude = '37.740489',longitude  = '-79.351705' WHERE id =1665 LIMIT 1 ;
+UPDATE schools SET latitude = '34.724286',longitude  = '-82.771924' WHERE id =1666 LIMIT 1 ;
+UPDATE schools SET latitude = '37.599767',longitude  = '-93.40791' WHERE id =1667 LIMIT 1 ;
+UPDATE schools SET latitude = '44.452196',longitude  = '-95.762375' WHERE id =1668 LIMIT 1 ;
+UPDATE schools SET latitude = '32.396231',longitude  = '-97.326526' WHERE id =1669 LIMIT 1 ;
+UPDATE schools SET latitude = '32.403652',longitude  = '-96.854969' WHERE id =1670 LIMIT 1 ;
+UPDATE schools SET latitude = '32.736224',longitude  = '-96.284987' WHERE id =1671 LIMIT 1 ;
+UPDATE schools SET latitude = '35.513604',longitude  = '-97.639341' WHERE id =1672 LIMIT 1 ;
+UPDATE schools SET latitude = '33.596728',longitude  = '-112.026289' WHERE id =1673 LIMIT 1 ;
+UPDATE schools SET latitude = '37.249448',longitude  = '-96.978388' WHERE id =1674 LIMIT 1 ;
+UPDATE schools SET latitude = '35.534801',longitude  = '-98.70775' WHERE id =1675 LIMIT 1 ;
+UPDATE schools SET latitude = '30.63335',longitude  = '-97.667982' WHERE id =1676 LIMIT 1 ;
+UPDATE schools SET latitude = '38.243064',longitude  = '-85.758909' WHERE id =1677 LIMIT 1 ;
+UPDATE schools SET latitude = '36.177057',longitude  = '-95.880578' WHERE id =1678 LIMIT 1 ;
+UPDATE schools SET latitude = '33.744913',longitude  = '-84.408695' WHERE id =1679 LIMIT 1 ;
+UPDATE schools SET latitude = '42.205268',longitude  = '-84.553835' WHERE id =1680 LIMIT 1 ;
+UPDATE schools SET latitude = '30.685696',longitude  = '-88.148403' WHERE id =1681 LIMIT 1 ;
+UPDATE schools SET latitude = '42.102723',longitude  = '-72.557074' WHERE id =1682 LIMIT 1 ;
+UPDATE schools SET latitude = '34.751967',longitude  = '-79.478988' WHERE id =1683 LIMIT 1 ;
+UPDATE schools SET latitude = '41.060883',longitude  = '-73.526256' WHERE id =1684 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.805244',longitude  = '-89.64346' WHERE id =1686 LIMIT 1 ;
+UPDATE schools SET latitude = '38.980918',longitude  = '-76.490511' WHERE id =1687 LIMIT 1 ;
+UPDATE schools SET latitude = '35.668656',longitude  = '-105.907253' WHERE id =1688 LIMIT 1 ;
+UPDATE schools SET latitude = '44.593597',longitude  = '-75.159272' WHERE id =1689 LIMIT 1 ;
+UPDATE schools SET latitude = '38.637194',longitude  = '-90.260421' WHERE id =1690 LIMIT 1 ;
+UPDATE schools SET latitude = '38.187901',longitude  = '-76.425685' WHERE id =1691 LIMIT 1 ;
+UPDATE schools SET latitude = '29.453893',longitude  = '-98.560288' WHERE id =1692 LIMIT 1 ;
+UPDATE schools SET latitude = '27.899297',longitude  = '-82.712644' WHERE id =1693 LIMIT 1 ;
+UPDATE schools SET latitude = '27.813369',longitude  = '-82.789756' WHERE id =1694 LIMIT 1 ;
+UPDATE schools SET latitude = '41.512239',longitude  = '-75.403527' WHERE id =1695 LIMIT 1 ;
+UPDATE schools SET latitude = '40.725682',longitude  = '-73.791754' WHERE id =1696 LIMIT 1 ;
+UPDATE schools SET latitude = '39.360492',longitude  = '-76.635177' WHERE id =1697 LIMIT 1 ;
+UPDATE schools SET latitude = '44.460472',longitude  = '-93.179637' WHERE id =1698 LIMIT 1 ;
+UPDATE schools SET latitude = '37.419497',longitude  = '-122.156088' WHERE id =1699 LIMIT 1 ;
+UPDATE schools SET latitude = '31.621005',longitude  = '-94.652521' WHERE id =1700 LIMIT 1 ;
+UPDATE schools SET latitude = '38.951473',longitude  = '-92.323655' WHERE id =1701 LIMIT 1 ;
+UPDATE schools SET latitude = '44.652089',longitude  = '-72.382362' WHERE id =1702 LIMIT 1 ;
+UPDATE schools SET latitude = '38.220276',longitude  = '-98.207455' WHERE id =1703 LIMIT 1 ;
+UPDATE schools SET latitude = '29.033903',longitude  = '-81.303578' WHERE id =1704 LIMIT 1 ;
+UPDATE schools SET latitude = '41.719008',longitude  = '-111.835279' WHERE id =1705 LIMIT 1 ;
+UPDATE schools SET latitude = '40.74849',longitude  = '-74.025374' WHERE id =1706 LIMIT 1 ;
+UPDATE schools SET latitude = '40.660585',longitude  = '-111.902913' WHERE id =1707 LIMIT 1 ;
+UPDATE schools SET latitude = '40.280425',longitude  = '-111.714401' WHERE id =1708 LIMIT 1 ;
+UPDATE schools SET latitude = '41.22961',longitude  = '-112.010716' WHERE id =1709 LIMIT 1 ;
+UPDATE schools SET latitude = '33.200783',longitude  = '-87.582902' WHERE id =1710 LIMIT 1 ;
+UPDATE schools SET latitude = '42.05853',longitude  = '-71.0866' WHERE id =1711 LIMIT 1 ;
+UPDATE schools SET latitude = '40.911806',longitude  = '-73.122977' WHERE id =1712 LIMIT 1 ;
+UPDATE schools SET latitude = '38.907949',longitude  = '-77.213005' WHERE id =1713 LIMIT 1 ;
+UPDATE schools SET latitude = '38.904365',longitude  = '-77.034589' WHERE id =1714 LIMIT 1 ;
+
+UPDATE schools SET latitude = '30.362859',longitude  = '-103.653736' WHERE id =1716 LIMIT 1 ;
+UPDATE schools SET latitude = '38.212619',longitude  = '-85.672243' WHERE id =1717 LIMIT 1 ;
+UPDATE schools SET latitude = '41.862309',longitude  = '-103.658574' WHERE id =1718 LIMIT 1 ;
+UPDATE schools SET latitude = '42.689852',longitude  = '-73.820618' WHERE id =1719 LIMIT 1 ;
+UPDATE schools SET latitude = '42.09553',longitude  = '-75.970959' WHERE id =1720 LIMIT 1 ;
+UPDATE schools SET latitude = '42.955998',longitude  = '-78.820498' WHERE id =1721 LIMIT 1 ;
+UPDATE schools SET latitude = '42.450265',longitude  = '-79.334172' WHERE id =1722 LIMIT 1 ;
+UPDATE schools SET latitude = '42.795738',longitude  = '-77.819524' WHERE id =1723 LIMIT 1 ;
+UPDATE schools SET latitude = '43.209515',longitude  = '-77.957986' WHERE id =1724 LIMIT 1 ;
+UPDATE schools SET latitude = '42.932654',longitude  = '-78.876966' WHERE id =1725 LIMIT 1 ;
+UPDATE schools SET latitude = '42.606548',longitude  = '-76.177685' WHERE id =1726 LIMIT 1 ;
+UPDATE schools SET latitude = '41.725257',longitude  = '-74.096605' WHERE id =1727 LIMIT 1 ;
+UPDATE schools SET latitude = '40.779444',longitude  = '-73.573998' WHERE id =1728 LIMIT 1 ;
+UPDATE schools SET latitude = '42.466719',longitude  = '-75.065878' WHERE id =1729 LIMIT 1 ;
+UPDATE schools SET latitude = '43.459455',longitude  = '-76.486878' WHERE id =1730 LIMIT 1 ;
+UPDATE schools SET latitude = '44.694894',longitude  = '-73.464797' WHERE id =1731 LIMIT 1 ;
+UPDATE schools SET latitude = '41.037907',longitude  = '-73.70334' WHERE id =1732 LIMIT 1 ;
+UPDATE schools SET latitude = '42.736004',longitude  = '-74.491648' WHERE id =1733 LIMIT 1 ;
+UPDATE schools SET latitude = '43.035404',longitude  = '-76.136689' WHERE id =1734 LIMIT 1 ;
+UPDATE schools SET latitude = '42.253826',longitude  = '-77.790645' WHERE id =1735 LIMIT 1 ;
+UPDATE schools SET latitude = '44.607323',longitude  = '-75.18506' WHERE id =1736 LIMIT 1 ;
+UPDATE schools SET latitude = '42.268612',longitude  = '-74.922042' WHERE id =1737 LIMIT 1 ;
+UPDATE schools SET latitude = '43.077822',longitude  = '-73.78267' WHERE id =1738 LIMIT 1 ;
+UPDATE schools SET latitude = '40.655731',longitude  = '-73.944716' WHERE id =1739 LIMIT 1 ;
+UPDATE schools SET latitude = '43.042685',longitude  = '-76.14054' WHERE id =1740 LIMIT 1 ;
+UPDATE schools SET latitude = '43.132311',longitude  = '-75.221809' WHERE id =1741 LIMIT 1 ;
+UPDATE schools SET latitude = '40.809116',longitude  = '-73.801857' WHERE id =1742 LIMIT 1 ;
+UPDATE schools SET latitude = '44.662254',longitude  = '-74.977503' WHERE id =1743 LIMIT 1 ;
+UPDATE schools SET latitude = '40.799624',longitude  = '-76.869707' WHERE id =1744 LIMIT 1 ;
+UPDATE schools SET latitude = '39.906564',longitude  = '-75.351879' WHERE id =1745 LIMIT 1 ;
+
+UPDATE schools SET latitude = '43.035979',longitude  = '-76.135844' WHERE id =1747 LIMIT 1 ;
+UPDATE schools SET latitude = '38.351237',longitude  = '-97.200582' WHERE id =1748 LIMIT 1 ;
+UPDATE schools SET latitude = '33.433018',longitude  = '-86.111997' WHERE id =1749 LIMIT 1 ;
+UPDATE schools SET latitude = '25.794811',longitude  = '-80.141379' WHERE id =1750 LIMIT 1 ;
+UPDATE schools SET latitude = '40.212165',longitude  = '-74.234986' WHERE id =1751 LIMIT 1 ;
+UPDATE schools SET latitude = '43.147375',longitude  = '-77.575192' WHERE id =1752 LIMIT 1 ;
+UPDATE schools SET latitude = '40.669816',longitude  = '-73.946166' WHERE id =1753 LIMIT 1 ;
+UPDATE schools SET latitude = '39.989437',longitude  = '-75.248543' WHERE id =1754 LIMIT 1 ;
+UPDATE schools SET latitude = '32.215067',longitude  = '-98.213371' WHERE id =1755 LIMIT 1 ;
+UPDATE schools SET latitude = '40.459156',longitude  = '-85.496939' WHERE id =1756 LIMIT 1 ;
+UPDATE schools SET latitude = '41.050031',longitude  = '-85.150918' WHERE id =1757 LIMIT 1 ;
+UPDATE schools SET latitude = '39.662086',longitude  = '-105.025141' WHERE id =1758 LIMIT 1 ;
+UPDATE schools SET latitude = '41.975544',longitude  = '-87.716877' WHERE id =1759 LIMIT 1 ;
+UPDATE schools SET latitude = '39.299486',longitude  = '-84.503209' WHERE id =1760 LIMIT 1 ;
+UPDATE schools SET latitude = '39.980242',longitude  = '-75.157551' WHERE id =1761 LIMIT 1 ;
+UPDATE schools SET latitude = '36.166182',longitude  = '-86.832087' WHERE id =1762 LIMIT 1 ;
+UPDATE schools SET latitude = '36.174247',longitude  = '-85.503608' WHERE id =1763 LIMIT 1 ;
+UPDATE schools SET latitude = '35.033039',longitude  = '-85.277686' WHERE id =1764 LIMIT 1 ;
+UPDATE schools SET latitude = '35.444907',longitude  = '-84.592695' WHERE id =1765 LIMIT 1 ;
+UPDATE schools SET latitude = '27.571357',longitude  = '-99.431027' WHERE id =1766 LIMIT 1 ;
+UPDATE schools SET latitude = '30.608359',longitude  = '-96.350119' WHERE id =1767 LIMIT 1 ;
+UPDATE schools SET latitude = '29.301141',longitude  = '-94.827155' WHERE id =1768 LIMIT 1 ;
+UPDATE schools SET latitude = '30.637744',longitude  = '-96.328462' WHERE id =1769 LIMIT 1 ;
+UPDATE schools SET latitude = '33.243177',longitude  = '-95.908754' WHERE id =1770 LIMIT 1 ;
+UPDATE schools SET latitude = '27.717534',longitude  = '-97.32877' WHERE id =1771 LIMIT 1 ;
+UPDATE schools SET latitude = '27.525915',longitude  = '-97.882443' WHERE id =1772 LIMIT 1 ;
+UPDATE schools SET latitude = '33.442786',longitude  = '-94.080332' WHERE id =1773 LIMIT 1 ;
+UPDATE schools SET latitude = '29.665726',longitude  = '-95.150865' WHERE id =1774 LIMIT 1 ;
+UPDATE schools SET latitude = '32.711687',longitude  = '-97.360385' WHERE id =1775 LIMIT 1 ;
+UPDATE schools SET latitude = '32.374093',longitude  = '-95.310929' WHERE id =1776 LIMIT 1 ;
+UPDATE schools SET latitude = '29.544773',longitude  = '-98.140125' WHERE id =1777 LIMIT 1 ;
+UPDATE schools SET latitude = '29.725056',longitude  = '-95.363247' WHERE id =1778 LIMIT 1 ;
+UPDATE schools SET latitude = '29.887825',longitude  = '-97.935602' WHERE id =1779 LIMIT 1 ;
+UPDATE schools SET latitude = '33.584512',longitude  = '-101.870688' WHERE id =1780 LIMIT 1 ;
+UPDATE schools SET latitude = '33.592333',longitude  = '-101.886684' WHERE id =1781 LIMIT 1 ;
+UPDATE schools SET latitude = '32.732501',longitude  = '-97.281056' WHERE id =1782 LIMIT 1 ;
+UPDATE schools SET latitude = '33.226515',longitude  = '-97.127313' WHERE id =1783 LIMIT 1 ;
+UPDATE schools SET latitude = '35.089245',longitude  = '-106.58968' WHERE id =1784 LIMIT 1 ;
+UPDATE schools SET latitude = '32.253072',longitude  = '-110.926821' WHERE id =1785 LIMIT 1 ;
+UPDATE schools SET latitude = '33.933602',longitude  = '-84.353918' WHERE id =1786 LIMIT 1 ;
+UPDATE schools SET latitude = '34.070351',longitude  = '-117.27158' WHERE id =1787 LIMIT 1 ;
+UPDATE schools SET latitude = '34.019756',longitude  = '-118.451626' WHERE id =1788 LIMIT 1 ;
+UPDATE schools SET latitude = '33.695701',longitude  = '-117.918558' WHERE id =1789 LIMIT 1 ;
+UPDATE schools SET latitude = '32.777814',longitude  = '-117.155891' WHERE id =1790 LIMIT 1 ;
+UPDATE schools SET latitude = '37.779356',longitude  = '-122.414003' WHERE id =1791 LIMIT 1 ;
+UPDATE schools SET latitude = '39.735293',longitude  = '-104.986132' WHERE id =1792 LIMIT 1 ;
+UPDATE schools SET latitude = '32.871883',longitude  = '-96.767439' WHERE id =1793 LIMIT 1 ;
+UPDATE schools SET latitude = '26.100855',longitude  = '-80.12229' WHERE id =1794 LIMIT 1 ;
+UPDATE schools SET latitude = '29.74688',longitude  = '-95.470836' WHERE id =1795 LIMIT 1 ;
+UPDATE schools SET latitude = '39.920346',longitude  = '-86.222373' WHERE id =1796 LIMIT 1 ;
+UPDATE schools SET latitude = '36.025812',longitude  = '-115.088126' WHERE id =1797 LIMIT 1 ;
+UPDATE schools SET latitude = '39.951312',longitude  = '-75.167558' WHERE id =1798 LIMIT 1 ;
+UPDATE schools SET latitude = '33.567568',longitude  = '-112.10654' WHERE id =1799 LIMIT 1 ;
+UPDATE schools SET latitude = '40.435144',longitude  = '-79.985781' WHERE id =1800 LIMIT 1 ;
+UPDATE schools SET latitude = '45.524386',longitude  = '-122.682405' WHERE id =1801 LIMIT 1 ;
+UPDATE schools SET latitude = '47.612235',longitude  = '-122.348499' WHERE id =1802 LIMIT 1 ;
+UPDATE schools SET latitude = '36.154049',longitude  = '-86.635055' WHERE id =1803 LIMIT 1 ;
+UPDATE schools SET latitude = '38.895955',longitude  = '-77.068426' WHERE id =1804 LIMIT 1 ;
+UPDATE schools SET latitude = '44.976058',longitude  = '-93.276415' WHERE id =1805 LIMIT 1 ;
+UPDATE schools SET latitude = '30.963068',longitude  = '-85.505543' WHERE id =1806 LIMIT 1 ;
+UPDATE schools SET latitude = '42.346391',longitude  = '-71.090226' WHERE id =1807 LIMIT 1 ;
+UPDATE schools SET latitude = '40.289442',longitude  = '-74.785094' WHERE id =1808 LIMIT 1 ;
+UPDATE schools SET latitude = '40.901402',longitude  = '-73.781536' WHERE id =1809 LIMIT 1 ;
+UPDATE schools SET latitude = '42.664699',longitude  = '-73.786165' WHERE id =1810 LIMIT 1 ;
+UPDATE schools SET latitude = '46.818544',longitude  = '-92.100426' WHERE id =1811 LIMIT 1 ;
+UPDATE schools SET latitude = '32.707433',longitude  = '-97.356524' WHERE id =1812 LIMIT 1 ;
+UPDATE schools SET latitude = '40.811688',longitude  = '-81.934271' WHERE id =1813 LIMIT 1 ;
+UPDATE schools SET latitude = '39.948928',longitude  = '-75.17033' WHERE id =1814 LIMIT 1 ;
+UPDATE schools SET latitude = '47.051186',longitude  = '-122.976215' WHERE id =1815 LIMIT 1 ;
+UPDATE schools SET latitude = '41.888429',longitude  = '-87.636695' WHERE id =1816 LIMIT 1 ;
+UPDATE schools SET latitude = '42.047477',longitude  = '-88.043265' WHERE id =1817 LIMIT 1 ;
+
+UPDATE schools SET latitude = '34.382193',longitude  = '-118.517624' WHERE id =1819 LIMIT 1 ;
+UPDATE schools SET latitude = '37.358862',longitude  = '-121.815075' WHERE id =1820 LIMIT 1 ;
+UPDATE schools SET latitude = '42.341363',longitude  = '-71.086532' WHERE id =1821 LIMIT 1 ;
+UPDATE schools SET latitude = '42.33199',longitude  = '-71.115306' WHERE id =1822 LIMIT 1 ;
+UPDATE schools SET latitude = '40.735571',longitude  = '-73.996719' WHERE id =1823 LIMIT 1 ;
+UPDATE schools SET latitude = '39.954642',longitude  = '-75.206821' WHERE id =1824 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.333856',longitude  = '-85.179752' WHERE id =1826 LIMIT 1 ;
+UPDATE schools SET latitude = '38.246409',longitude  = '-85.685598' WHERE id =1827 LIMIT 1 ;
+UPDATE schools SET latitude = '33.208859',longitude  = '-87.542319' WHERE id =1828 LIMIT 1 ;
+UPDATE schools SET latitude = '41.052566',longitude  = '-83.650092' WHERE id =1829 LIMIT 1 ;
+UPDATE schools SET latitude = '46.859918',longitude  = '-113.980194' WHERE id =1830 LIMIT 1 ;
+UPDATE schools SET latitude = '45.210637',longitude  = '-112.639436' WHERE id =1831 LIMIT 1 ;
+UPDATE schools SET latitude = '27.945508',longitude  = '-82.46388' WHERE id =1832 LIMIT 1 ;
+UPDATE schools SET latitude = '35.95262',longitude  = '-83.927279' WHERE id =1833 LIMIT 1 ;
+UPDATE schools SET latitude = '35.045764',longitude  = '-85.301106' WHERE id =1834 LIMIT 1 ;
+UPDATE schools SET latitude = '36.343436',longitude  = '-88.862413' WHERE id =1835 LIMIT 1 ;
+UPDATE schools SET latitude = '32.728403',longitude  = '-97.11497' WHERE id =1836 LIMIT 1 ;
+UPDATE schools SET latitude = '30.2854',longitude  = '-97.733175' WHERE id =1837 LIMIT 1 ;
+UPDATE schools SET latitude = '25.900574',longitude  = '-97.492374' WHERE id =1838 LIMIT 1 ;
+UPDATE schools SET latitude = '32.978299',longitude  = '-96.748529' WHERE id =1839 LIMIT 1 ;
+UPDATE schools SET latitude = '31.770824',longitude  = '-106.503916' WHERE id =1840 LIMIT 1 ;
+UPDATE schools SET latitude = '29.579176',longitude  = '-98.60947' WHERE id =1841 LIMIT 1 ;
+UPDATE schools SET latitude = '32.312098',longitude  = '-95.252358' WHERE id =1842 LIMIT 1 ;
+UPDATE schools SET latitude = '29.703657',longitude  = '-95.402934' WHERE id =1843 LIMIT 1 ;
+UPDATE schools SET latitude = '29.506109',longitude  = '-98.572158' WHERE id =1844 LIMIT 1 ;
+
+UPDATE schools SET latitude = '29.311227',longitude  = '-94.775624' WHERE id =1846 LIMIT 1 ;
+UPDATE schools SET latitude = '31.881496',longitude  = '-102.321475' WHERE id =1847 LIMIT 1 ;
+UPDATE schools SET latitude = '26.297443',longitude  = '-98.133702' WHERE id =1848 LIMIT 1 ;
+UPDATE schools SET latitude = '39.94639',longitude  = '-75.164905' WHERE id =1849 LIMIT 1 ;
+UPDATE schools SET latitude = '36.967072',longitude  = '-82.552393' WHERE id =1850 LIMIT 1 ;
+UPDATE schools SET latitude = '30.540565',longitude  = '-87.21943' WHERE id =1851 LIMIT 1 ;
+UPDATE schools SET latitude = '41.411989',longitude  = '-80.385114' WHERE id =1852 LIMIT 1 ;
+UPDATE schools SET latitude = '34.380714',longitude  = '-119.068148' WHERE id =1853 LIMIT 1 ;
+UPDATE schools SET latitude = '44.526498',longitude  = '-69.666169' WHERE id =1854 LIMIT 1 ;
+UPDATE schools SET latitude = '40.220546',longitude  = '-74.768126' WHERE id =1855 LIMIT 1 ;
+UPDATE schools SET latitude = '39.948538',longitude  = '-75.15772' WHERE id =1856 LIMIT 1 ;
+UPDATE schools SET latitude = '39.023845',longitude  = '-84.565466' WHERE id =1857 LIMIT 1 ;
+UPDATE schools SET latitude = '42.808037',longitude  = '-71.484532' WHERE id =1858 LIMIT 1 ;
+UPDATE schools SET latitude = '30.816687',longitude  = '-83.96719' WHERE id =1859 LIMIT 1 ;
+UPDATE schools SET latitude = '41.118201',longitude  = '-83.183234' WHERE id =1860 LIMIT 1 ;
+
+UPDATE schools SET latitude = '40.636004',longitude  = '-73.972422' WHERE id =1862 LIMIT 1 ;
+UPDATE schools SET latitude = '32.40017',longitude  = '-90.166301' WHERE id =1863 LIMIT 1 ;
+UPDATE schools SET latitude = '40.741992',longitude  = '-73.990624' WHERE id =1864 LIMIT 1 ;
+UPDATE schools SET latitude = '39.393442',longitude  = '-76.604326' WHERE id =1865 LIMIT 1 ;
+UPDATE schools SET latitude = '38.052117',longitude  = '-84.495381' WHERE id =1866 LIMIT 1 ;
+UPDATE schools SET latitude = '36.145835',longitude  = '-86.753455' WHERE id =1867 LIMIT 1 ;
+UPDATE schools SET latitude = '30.311185',longitude  = '-81.793436' WHERE id =1868 LIMIT 1 ;
+UPDATE schools SET latitude = '46.001842',longitude  = '-98.52023' WHERE id =1869 LIMIT 1 ;
+UPDATE schools SET latitude = '41.673436',longitude  = '-87.782888' WHERE id =1870 LIMIT 1 ;
+UPDATE schools SET latitude = '41.748052',longitude  = '-72.693215' WHERE id =1871 LIMIT 1 ;
+UPDATE schools SET latitude = '28.19437',longitude  = '-82.679973' WHERE id =1872 LIMIT 1 ;
+UPDATE schools SET latitude = '41.485585',longitude  = '-90.57048' WHERE id =1873 LIMIT 1 ;
+UPDATE schools SET latitude = '37.972766',longitude  = '-87.394313' WHERE id =1874 LIMIT 1 ;
+UPDATE schools SET latitude = '26.100136',longitude  = '-80.256428' WHERE id =1875 LIMIT 1 ;
+UPDATE schools SET latitude = '42.200189',longitude  = '-87.881485' WHERE id =1876 LIMIT 1 ;
+UPDATE schools SET latitude = '38.66164',longitude  = '-121.364464' WHERE id =1877 LIMIT 1 ;
+UPDATE schools SET latitude = '47.570435',longitude  = '-122.035928' WHERE id =1878 LIMIT 1 ;
+UPDATE schools SET latitude = '29.463681',longitude  = '-98.482324' WHERE id =1879 LIMIT 1 ;
+UPDATE schools SET latitude = '38.92714',longitude  = '-77.005823' WHERE id =1880 LIMIT 1 ;
+UPDATE schools SET latitude = '38.426101',longitude  = '-82.579725' WHERE id =1881 LIMIT 1 ;
+UPDATE schools SET latitude = '41.634384',longitude  = '-85.005733' WHERE id =1882 LIMIT 1 ;
+UPDATE schools SET latitude = '41.174742',longitude  = '-85.11141' WHERE id =1883 LIMIT 1 ;
+UPDATE schools SET latitude = '41.67637',longitude  = '-86.252154' WHERE id =1884 LIMIT 1 ;
+UPDATE schools SET latitude = '31.79687',longitude  = '-85.950146' WHERE id =1885 LIMIT 1 ;
+UPDATE schools SET latitude = '34.594848',longitude  = '-83.748759' WHERE id =1886 LIMIT 1 ;
+UPDATE schools SET latitude = '40.190063',longitude  = '-92.58314' WHERE id =1887 LIMIT 1 ;
+UPDATE schools SET latitude = '42.424993',longitude  = '-71.111104' WHERE id =1888 LIMIT 1 ;
+UPDATE schools SET latitude = '29.935626',longitude  = '-90.124418' WHERE id =1889 LIMIT 1 ;
+
+UPDATE schools SET latitude = '36.174217',longitude  = '-82.75972' WHERE id =1891 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.814625',longitude  = '-73.931613' WHERE id =1893 LIMIT 1 ;
+UPDATE schools SET latitude = '40.77498',longitude  = '-96.654045' WHERE id =1894 LIMIT 1 ;
+UPDATE schools SET latitude = '36.868975',longitude  = '-83.887883' WHERE id =1895 LIMIT 1 ;
+UPDATE schools SET latitude = '37.075594',longitude  = '-84.12356' WHERE id =1896 LIMIT 1 ;
+UPDATE schools SET latitude = '39.126588',longitude  = '-84.500355' WHERE id =1897 LIMIT 1 ;
+UPDATE schools SET latitude = '35.681367',longitude  = '-88.857017' WHERE id =1898 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.373941',longitude  = '-72.10217' WHERE id =1900 LIMIT 1 ;
+UPDATE schools SET latitude = '40.809192',longitude  = '-73.752256' WHERE id =1901 LIMIT 1 ;
+UPDATE schools SET latitude = '38.982292',longitude  = '-76.486544' WHERE id =1902 LIMIT 1 ;
+UPDATE schools SET latitude = '30.64006',longitude  = '-87.912559' WHERE id =1903 LIMIT 1 ;
+UPDATE schools SET latitude = '40.701902',longitude  = '-73.961298' WHERE id =1904 LIMIT 1 ;
+UPDATE schools SET latitude = '44.594482',longitude  = '-69.322182' WHERE id =1905 LIMIT 1 ;
+
+
+
+
+UPDATE schools SET latitude = '18.421904',longitude  = '-66.056818' WHERE id =1910 LIMIT 1 ;
+UPDATE schools SET latitude = '33.378142',longitude  = '-111.976505' WHERE id =1911 LIMIT 1 ;
+UPDATE schools SET latitude = '41.078106',longitude  = '-81.511176' WHERE id =1912 LIMIT 1 ;
+
+UPDATE schools SET latitude = '34.723856',longitude  = '-86.644008' WHERE id =1914 LIMIT 1 ;
+UPDATE schools SET latitude = '61.188102',longitude  = '-149.827773' WHERE id =1915 LIMIT 1 ;
+
+UPDATE schools SET latitude = '58.381934',longitude  = '-134.638918' WHERE id =1917 LIMIT 1 ;
+UPDATE schools SET latitude = '32.232056',longitude  = '-110.950911' WHERE id =1918 LIMIT 1 ;
+UPDATE schools SET latitude = '34.726964',longitude  = '-92.341839' WHERE id =1919 LIMIT 1 ;
+UPDATE schools SET latitude = '33.589342',longitude  = '-91.800841' WHERE id =1920 LIMIT 1 ;
+
+
+
+UPDATE schools SET latitude = '35.385372',longitude  = '-94.374268' WHERE id =1924 LIMIT 1 ;
+UPDATE schools SET latitude = '39.305439',longitude  = '-76.616198' WHERE id =1925 LIMIT 1 ;
+UPDATE schools SET latitude = '41.164529',longitude  = '-73.190638' WHERE id =1926 LIMIT 1 ;
+UPDATE schools SET latitude = '37.874602',longitude  = '-122.25467' WHERE id =1927 LIMIT 1 ;
+UPDATE schools SET latitude = '38.539852',longitude  = '-121.752112' WHERE id =1928 LIMIT 1 ;
+UPDATE schools SET latitude = '33.645473',longitude  = '-117.840305' WHERE id =1929 LIMIT 1 ;
+UPDATE schools SET latitude = '34.074025',longitude  = '-118.437884' WHERE id =1930 LIMIT 1 ;
+UPDATE schools SET latitude = '37.120896',longitude  = '-120.268007' WHERE id =1931 LIMIT 1 ;
+UPDATE schools SET latitude = '33.975883',longitude  = '-117.331116' WHERE id =1932 LIMIT 1 ;
+UPDATE schools SET latitude = '32.877065',longitude  = '-117.23793' WHERE id =1933 LIMIT 1 ;
+UPDATE schools SET latitude = '37.762968',longitude  = '-122.459808' WHERE id =1934 LIMIT 1 ;
+UPDATE schools SET latitude = '34.414418',longitude  = '-119.847477' WHERE id =1935 LIMIT 1 ;
+UPDATE schools SET latitude = '36.97712',longitude  = '-122.052287' WHERE id =1936 LIMIT 1 ;
+UPDATE schools SET latitude = '35.079274',longitude  = '-92.454172' WHERE id =1937 LIMIT 1 ;
+UPDATE schools SET latitude = '28.595804',longitude  = '-81.204529' WHERE id =1938 LIMIT 1 ;
+UPDATE schools SET latitude = '38.781838',longitude  = '-93.723488' WHERE id =1939 LIMIT 1 ;
+UPDATE schools SET latitude = '35.655873',longitude  = '-97.475029' WHERE id =1940 LIMIT 1 ;
+UPDATE schools SET latitude = '38.332622',longitude  = '-81.618847' WHERE id =1941 LIMIT 1 ;
+UPDATE schools SET latitude = '41.789504',longitude  = '-87.601111' WHERE id =1942 LIMIT 1 ;
+UPDATE schools SET latitude = '39.130209',longitude  = '-84.520583' WHERE id =1943 LIMIT 1 ;
+UPDATE schools SET latitude = '39.232872',longitude  = '-84.396648' WHERE id =1944 LIMIT 1 ;
+UPDATE schools SET latitude = '40.003483',longitude  = '-105.267698' WHERE id =1945 LIMIT 1 ;
+UPDATE schools SET latitude = '38.891338',longitude  = '-104.800772' WHERE id =1946 LIMIT 1 ;
+UPDATE schools SET latitude = '39.7393',longitude  = '-104.9844' WHERE id =1947 LIMIT 1 ;
+UPDATE schools SET latitude = '41.807038',longitude  = '-72.251674' WHERE id =1948 LIMIT 1 ;
+UPDATE schools SET latitude = '32.844375',longitude  = '-96.917835' WHERE id =1949 LIMIT 1 ;
+UPDATE schools SET latitude = '39.741049',longitude  = '-84.180562' WHERE id =1950 LIMIT 1 ;
+UPDATE schools SET latitude = '39.678733',longitude  = '-75.753479' WHERE id =1951 LIMIT 1 ;
+UPDATE schools SET latitude = '39.677096',longitude  = '-104.959387' WHERE id =1952 LIMIT 1 ;
+UPDATE schools SET latitude = '42.417171',longitude  = '-83.138368' WHERE id =1953 LIMIT 1 ;
+UPDATE schools SET latitude = '42.498541',longitude  = '-90.692055' WHERE id =1954 LIMIT 1 ;
+UPDATE schools SET latitude = '37.969942',longitude  = '-87.532021' WHERE id =1955 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.957354',longitude  = '-83.376804' WHERE id =1957 LIMIT 1 ;
+
+
+UPDATE schools SET latitude = '41.794683',longitude  = '-72.717615' WHERE id =1960 LIMIT 1 ;
+UPDATE schools SET latitude = '19.700744',longitude  = '-155.077479' WHERE id =1961 LIMIT 1 ;
+UPDATE schools SET latitude = '21.299359',longitude  = '-157.819563' WHERE id =1962 LIMIT 1 ;
+UPDATE schools SET latitude = '21.393076',longitude  = '-157.979209' WHERE id =1963 LIMIT 1 ;
+UPDATE schools SET latitude = '29.711392',longitude  = '-95.396686' WHERE id =1964 LIMIT 1 ;
+UPDATE schools SET latitude = '29.577456',longitude  = '-95.106603' WHERE id =1965 LIMIT 1 ;
+UPDATE schools SET latitude = '29.7562',longitude  = '-95.365614' WHERE id =1966 LIMIT 1 ;
+UPDATE schools SET latitude = '28.814912',longitude  = '-96.974717' WHERE id =1967 LIMIT 1 ;
+UPDATE schools SET latitude = '46.728748',longitude  = '-117.022195' WHERE id =1968 LIMIT 1 ;
+UPDATE schools SET latitude = '41.872691',longitude  = '-87.651185' WHERE id =1969 LIMIT 1 ;
+UPDATE schools SET latitude = '39.726928',longitude  = '-89.618188' WHERE id =1970 LIMIT 1 ;
+UPDATE schools SET latitude = '40.109115',longitude  = '-88.230368' WHERE id =1971 LIMIT 1 ;
+UPDATE schools SET latitude = '39.708286',longitude  = '-86.134554' WHERE id =1972 LIMIT 1 ;
+UPDATE schools SET latitude = '41.661453',longitude  = '-91.537674' WHERE id =1973 LIMIT 1 ;
+UPDATE schools SET latitude = '34.12925',longitude  = '-118.471774' WHERE id =1974 LIMIT 1 ;
+UPDATE schools SET latitude = '38.957116',longitude  = '-95.253091' WHERE id =1975 LIMIT 1 ;
+UPDATE schools SET latitude = '39.055071',longitude  = '-94.611826' WHERE id =1976 LIMIT 1 ;
+UPDATE schools SET latitude = '38.043141',longitude  = '-84.649124' WHERE id =1977 LIMIT 1 ;
+UPDATE schools SET latitude = '34.101289',longitude  = '-117.773103' WHERE id =1978 LIMIT 1 ;
+UPDATE schools SET latitude = '30.21727',longitude  = '-92.019002' WHERE id =1979 LIMIT 1 ;
+UPDATE schools SET latitude = '32.528298',longitude  = '-92.075638' WHERE id =1980 LIMIT 1 ;
+UPDATE schools SET latitude = '38.215617',longitude  = '-85.762014' WHERE id =1981 LIMIT 1 ;
+UPDATE schools SET latitude = '44.90172',longitude  = '-68.668137' WHERE id =1982 LIMIT 1 ;
+UPDATE schools SET latitude = '44.340704',longitude  = '-69.796286' WHERE id =1983 LIMIT 1 ;
+UPDATE schools SET latitude = '44.667751',longitude  = '-70.148803' WHERE id =1984 LIMIT 1 ;
+UPDATE schools SET latitude = '47.250925',longitude  = '-68.589671' WHERE id =1985 LIMIT 1 ;
+UPDATE schools SET latitude = '44.710752',longitude  = '-67.457828' WHERE id =1986 LIMIT 1 ;
+UPDATE schools SET latitude = '46.670347',longitude  = '-68.013735' WHERE id =1987 LIMIT 1 ;
+UPDATE schools SET latitude = '46.72232',longitude  = '-100.745492' WHERE id =1988 LIMIT 1 ;
+UPDATE schools SET latitude = '31.065196',longitude  = '-97.463245' WHERE id =1989 LIMIT 1 ;
+UPDATE schools SET latitude = '38.299963',longitude  = '-77.474941' WHERE id =1990 LIMIT 1 ;
+UPDATE schools SET latitude = '39.28743',longitude  = '-76.62244' WHERE id =1991 LIMIT 1 ;
+UPDATE schools SET latitude = '39.259514',longitude  = '-76.7092' WHERE id =1992 LIMIT 1 ;
+UPDATE schools SET latitude = '38.980479',longitude  = '-76.922497' WHERE id =1993 LIMIT 1 ;
+UPDATE schools SET latitude = '38.322394',longitude  = '-75.623632' WHERE id =1994 LIMIT 1 ;
+UPDATE schools SET latitude = '38.997366',longitude  = '-76.993696' WHERE id =1995 LIMIT 1 ;
+UPDATE schools SET latitude = '42.39115',longitude  = '-72.524315' WHERE id =1996 LIMIT 1 ;
+UPDATE schools SET latitude = '42.31183',longitude  = '-71.046066' WHERE id =1997 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.652538',longitude  = '-71.325287' WHERE id =1999 LIMIT 1 ;
+UPDATE schools SET latitude = '40.743226',longitude  = '-74.190938' WHERE id =2000 LIMIT 1 ;
+UPDATE schools SET latitude = '35.118967',longitude  = '-89.93724' WHERE id =2001 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.285638',longitude  = '-83.716729' WHERE id =2003 LIMIT 1 ;
+UPDATE schools SET latitude = '42.317314',longitude  = '-83.22883' WHERE id =2004 LIMIT 1 ;
+UPDATE schools SET latitude = '43.017451',longitude  = '-83.690132' WHERE id =2005 LIMIT 1 ;
+
+
+
+UPDATE schools SET latitude = '44.976118',longitude  = '-93.233838' WHERE id =2009 LIMIT 1 ;
+UPDATE schools SET latitude = '34.364725',longitude  = '-89.538322' WHERE id =2010 LIMIT 1 ;
+UPDATE schools SET latitude = '32.328669',longitude  = '-90.175585' WHERE id =2011 LIMIT 1 ;
+UPDATE schools SET latitude = '38.945304',longitude  = '-92.328029' WHERE id =2012 LIMIT 1 ;
+UPDATE schools SET latitude = '39.034506',longitude  = '-94.575728' WHERE id =2013 LIMIT 1 ;
+
+UPDATE schools SET latitude = '38.715869',longitude  = '-90.305439' WHERE id =2015 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.240505',longitude  = '-86.851369' WHERE id =2017 LIMIT 1 ;
+UPDATE schools SET latitude = '40.700677',longitude  = '-99.093982' WHERE id =2018 LIMIT 1 ;
+UPDATE schools SET latitude = '40.816932',longitude  = '-96.701136' WHERE id =2019 LIMIT 1 ;
+UPDATE schools SET latitude = '41.259593',longitude  = '-96.004952' WHERE id =2020 LIMIT 1 ;
+
+UPDATE schools SET latitude = '36.107696',longitude  = '-115.137378' WHERE id =2022 LIMIT 1 ;
+UPDATE schools SET latitude = '39.51694',longitude  = '-119.816228' WHERE id =2023 LIMIT 1 ;
+UPDATE schools SET latitude = '43.458684',longitude  = '-70.390246' WHERE id =2024 LIMIT 1 ;
+UPDATE schools SET latitude = '43.128762',longitude  = '-70.926382' WHERE id =2025 LIMIT 1 ;
+UPDATE schools SET latitude = '42.991829',longitude  = '-71.467621' WHERE id =2026 LIMIT 1 ;
+UPDATE schools SET latitude = '41.293956',longitude  = '-72.95954' WHERE id =2027 LIMIT 1 ;
+UPDATE schools SET latitude = '35.091192',longitude  = '-106.620256' WHERE id =2028 LIMIT 1 ;
+UPDATE schools SET latitude = '30.03243',longitude  = '-90.070055' WHERE id =2029 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.614461',longitude  = '-82.562981' WHERE id =2031 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.302548',longitude  = '-80.729174' WHERE id =2033 LIMIT 1 ;
+UPDATE schools SET latitude = '36.066503',longitude  = '-79.805474' WHERE id =2034 LIMIT 1 ;
+UPDATE schools SET latitude = '34.686138',longitude  = '-79.20492' WHERE id =2035 LIMIT 1 ;
+UPDATE schools SET latitude = '34.227158',longitude  = '-77.879165' WHERE id =2036 LIMIT 1 ;
+
+
+UPDATE schools SET latitude = '33.211433',longitude  = '-97.148426' WHERE id =2039 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.51308',longitude  = '-92.457167' WHERE id =2041 LIMIT 1 ;
+UPDATE schools SET latitude = '40.759398',longitude  = '-84.147063' WHERE id =2042 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.475586',longitude  = '-97.500834' WHERE id =2044 LIMIT 1 ;
+UPDATE schools SET latitude = '35.210278',longitude  = '-97.445364' WHERE id =2045 LIMIT 1 ;
+UPDATE schools SET latitude = '44.102629',longitude  = '-123.042346' WHERE id =2046 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.978839',longitude  = '-84.341002' WHERE id =2048 LIMIT 1 ;
+UPDATE schools SET latitude = '30.186269',longitude  = '-97.877881' WHERE id =2049 LIMIT 1 ;
+UPDATE schools SET latitude = '37.408842',longitude  = '-121.944387' WHERE id =2050 LIMIT 1 ;
+UPDATE schools SET latitude = '42.210213',longitude  = '-70.999748' WHERE id =2051 LIMIT 1 ;
+UPDATE schools SET latitude = '28.623795',longitude  = '-81.390411' WHERE id =2052 LIMIT 1 ;
+UPDATE schools SET latitude = '42.287523',longitude  = '-71.585609' WHERE id =2053 LIMIT 1 ;
+UPDATE schools SET latitude = '36.854989',longitude  = '-119.784106' WHERE id =2054 LIMIT 1 ;
+UPDATE schools SET latitude = '35.151594',longitude  = '-80.948664' WHERE id =2055 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.056189',longitude  = '-88.042605' WHERE id =2057 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.397405',longitude  = '-81.655892' WHERE id =2059 LIMIT 1 ;
+UPDATE schools SET latitude = '32.509334',longitude  = '-84.969718' WHERE id =2060 LIMIT 1 ;
+UPDATE schools SET latitude = '40.140803',longitude  = '-82.965589' WHERE id =2061 LIMIT 1 ;
+UPDATE schools SET latitude = '32.917093',longitude  = '-96.769143' WHERE id =2062 LIMIT 1 ;
+UPDATE schools SET latitude = '39.55187',longitude  = '-104.872292' WHERE id =2063 LIMIT 1 ;
+UPDATE schools SET latitude = '41.594133',longitude  = '-93.796825' WHERE id =2064 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.097751',longitude  = '-73.444718' WHERE id =2066 LIMIT 1 ;
+UPDATE schools SET latitude = '40.310956',longitude  = '-76.831168' WHERE id =2067 LIMIT 1 ;
+UPDATE schools SET latitude = '21.308491',longitude  = '-157.86329' WHERE id =2068 LIMIT 1 ;
+UPDATE schools SET latitude = '29.784167',longitude  = '-95.584785' WHERE id =2069 LIMIT 1 ;
+UPDATE schools SET latitude = '43.597949',longitude  = '-116.356049' WHERE id =2070 LIMIT 1 ;
+
+
+UPDATE schools SET latitude = '38.939657',longitude  = '-94.578413' WHERE id =2073 LIMIT 1 ;
+UPDATE schools SET latitude = '36.181349',longitude  = '-115.255457' WHERE id =2074 LIMIT 1 ;
+UPDATE schools SET latitude = '34.748553',longitude  = '-92.394526' WHERE id =2075 LIMIT 1 ;
+UPDATE schools SET latitude = '29.992359',longitude  = '-90.152815' WHERE id =2076 LIMIT 1 ;
+UPDATE schools SET latitude = '38.224469',longitude  = '-85.563877' WHERE id =2077 LIMIT 1 ;
+UPDATE schools SET latitude = '43.130058',longitude  = '-89.289736' WHERE id =2078 LIMIT 1 ;
+UPDATE schools SET latitude = '39.190551',longitude  = '-76.817284' WHERE id =2079 LIMIT 1 ;
+UPDATE schools SET latitude = '35.129814',longitude  = '-89.79527' WHERE id =2080 LIMIT 1 ;
+UPDATE schools SET latitude = '42.597677',longitude  = '-83.171267' WHERE id =2081 LIMIT 1 ;
+
+UPDATE schools SET latitude = '44.977039',longitude  = '-93.402931' WHERE id =2083 LIMIT 1 ;
+UPDATE schools SET latitude = '36.144953',longitude  = '-86.690479' WHERE id =2084 LIMIT 1 ;
+UPDATE schools SET latitude = '35.162905',longitude  = '-106.586855' WHERE id =2085 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.471219',longitude  = '-119.792094' WHERE id =2087 LIMIT 1 ;
+UPDATE schools SET latitude = '38.953102',longitude  = '-77.350382' WHERE id =2088 LIMIT 1 ;
+UPDATE schools SET latitude = '36.343629',longitude  = '-94.180537' WHERE id =2089 LIMIT 1 ;
+UPDATE schools SET latitude = '41.470999',longitude  = '-87.258716' WHERE id =2090 LIMIT 1 ;
+UPDATE schools SET latitude = '35.537827',longitude  = '-97.514469' WHERE id =2091 LIMIT 1 ;
+UPDATE schools SET latitude = '41.260521',longitude  = '-96.080048' WHERE id =2092 LIMIT 1 ;
+UPDATE schools SET latitude = '33.417487',longitude  = '-112.013119' WHERE id =2093 LIMIT 1 ;
+UPDATE schools SET latitude = '45.42489',longitude  = '-122.746806' WHERE id =2094 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.413024',longitude  = '-111.982059' WHERE id =2096 LIMIT 1 ;
+UPDATE schools SET latitude = '40.428922',longitude  = '-80.12455' WHERE id =2097 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.766632',longitude  = '-78.729165' WHERE id =2099 LIMIT 1 ;
+UPDATE schools SET latitude = '37.600587',longitude  = '-77.514566' WHERE id =2100 LIMIT 1 ;
+UPDATE schools SET latitude = '38.620028',longitude  = '-121.521759' WHERE id =2101 LIMIT 1 ;
+UPDATE schools SET latitude = '29.557859',longitude  = '-98.588335' WHERE id =2102 LIMIT 1 ;
+UPDATE schools SET latitude = '32.815845',longitude  = '-117.116618' WHERE id =2103 LIMIT 1 ;
+UPDATE schools SET latitude = '26.129088',longitude  = '-80.263298' WHERE id =2104 LIMIT 1 ;
+UPDATE schools SET latitude = '32.250735',longitude  = '-110.884044' WHERE id =2105 LIMIT 1 ;
+UPDATE schools SET latitude = '33.685499',longitude  = '-117.885499' WHERE id =2106 LIMIT 1 ;
+UPDATE schools SET latitude = '38.91414',longitude  = '-104.82206' WHERE id =2107 LIMIT 1 ;
+UPDATE schools SET latitude = '37.140315',longitude  = '-93.273924' WHERE id =2108 LIMIT 1 ;
+UPDATE schools SET latitude = '38.755854',longitude  = '-90.466839' WHERE id =2109 LIMIT 1 ;
+UPDATE schools SET latitude = '36.098135',longitude  = '-95.856212' WHERE id =2110 LIMIT 1 ;
+UPDATE schools SET latitude = '40.653273',longitude  = '-111.902656' WHERE id =2111 LIMIT 1 ;
+UPDATE schools SET latitude = '28.064996',longitude  = '-82.359512' WHERE id =2112 LIMIT 1 ;
+UPDATE schools SET latitude = '43.02012',longitude  = '-85.680124' WHERE id =2113 LIMIT 1 ;
+
+UPDATE schools SET latitude = '37.738354',longitude  = '-97.230895' WHERE id =2115 LIMIT 1 ;
+UPDATE schools SET latitude = '41.947587',longitude  = '-78.669665' WHERE id =2116 LIMIT 1 ;
+UPDATE schools SET latitude = '40.282259',longitude  = '-79.526658' WHERE id =2117 LIMIT 1 ;
+UPDATE schools SET latitude = '40.269558',longitude  = '-78.837952' WHERE id =2118 LIMIT 1 ;
+UPDATE schools SET latitude = '40.443969',longitude  = '-79.955491' WHERE id =2119 LIMIT 1 ;
+UPDATE schools SET latitude = '45.575075',longitude  = '-122.726216' WHERE id =2120 LIMIT 1 ;
+
+
+
+
+
+UPDATE schools SET latitude = '18.103754',longitude  = '-66.157011' WHERE id =2126 LIMIT 1 ;
+UPDATE schools SET latitude = '18.146572',longitude  = '-65.789782' WHERE id =2127 LIMIT 1 ;
+UPDATE schools SET latitude = '18.174407',longitude  = '-67.150578' WHERE id =2128 LIMIT 1 ;
+
+
+
+UPDATE schools SET latitude = '47.263672',longitude  = '-122.479751' WHERE id =2132 LIMIT 1 ;
+UPDATE schools SET latitude = '34.062778',longitude  = '-117.164618' WHERE id =2133 LIMIT 1 ;
+UPDATE schools SET latitude = '53.774607',longitude  = '-0.254703' WHERE id =2134 LIMIT 1 ;
+UPDATE schools SET latitude = '37.574207',longitude  = '-77.538069' WHERE id =2135 LIMIT 1 ;
+UPDATE schools SET latitude = '38.882672',longitude  = '-82.37761' WHERE id =2136 LIMIT 1 ;
+UPDATE schools SET latitude = '43.128077',longitude  = '-77.628131' WHERE id =2137 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.088534',longitude  = '-85.177384' WHERE id =2139 LIMIT 1 ;
+
+UPDATE schools SET latitude = '32.7706',longitude  = '-117.190581' WHERE id =2141 LIMIT 1 ;
+UPDATE schools SET latitude = '37.775251',longitude  = '-122.451022' WHERE id =2142 LIMIT 1 ;
+UPDATE schools SET latitude = '35.029565',longitude  = '-97.954116' WHERE id =2143 LIMIT 1 ;
+UPDATE schools SET latitude = '41.406867',longitude  = '-75.658791' WHERE id =2144 LIMIT 1 ;
+UPDATE schools SET latitude = '43.533071',longitude  = '-96.738709' WHERE id =2145 LIMIT 1 ;
+UPDATE schools SET latitude = '30.691193',longitude  = '-88.173852' WHERE id =2146 LIMIT 1 ;
+UPDATE schools SET latitude = '33.580166',longitude  = '-81.764207' WHERE id =2147 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.998363',longitude  = '-81.028027' WHERE id =2149 LIMIT 1 ;
+UPDATE schools SET latitude = '34.994484',longitude  = '-81.970785' WHERE id =2150 LIMIT 1 ;
+UPDATE schools SET latitude = '42.782502',longitude  = '-96.92741' WHERE id =2151 LIMIT 1 ;
+UPDATE schools SET latitude = '28.054553',longitude  = '-82.411629' WHERE id =2152 LIMIT 1 ;
+UPDATE schools SET latitude = '34.025168',longitude  = '-118.282734' WHERE id =2153 LIMIT 1 ;
+UPDATE schools SET latitude = '37.966152',longitude  = '-87.676672' WHERE id =2154 LIMIT 1 ;
+UPDATE schools SET latitude = '43.662341',longitude  = '-70.278012' WHERE id =2155 LIMIT 1 ;
+UPDATE schools SET latitude = '31.328049',longitude  = '-89.331435' WHERE id =2156 LIMIT 1 ;
+UPDATE schools SET latitude = '36.072714',longitude  = '-115.066783' WHERE id =2157 LIMIT 1 ;
+
+UPDATE schools SET latitude = '44.941625',longitude  = '-93.189473' WHERE id =2159 LIMIT 1 ;
+UPDATE schools SET latitude = '29.738767',longitude  = '-95.391173' WHERE id =2160 LIMIT 1 ;
+UPDATE schools SET latitude = '32.812606',longitude  = '-96.83841' WHERE id =2161 LIMIT 1 ;
+
+UPDATE schools SET latitude = '38.945132',longitude  = '-77.064024' WHERE id =2163 LIMIT 1 ;
+UPDATE schools SET latitude = '29.465751',longitude  = '-98.463674' WHERE id =2164 LIMIT 1 ;
+UPDATE schools SET latitude = '35.474992',longitude  = '-93.466308' WHERE id =2165 LIMIT 1 ;
+UPDATE schools SET latitude = '37.98062',longitude  = '-121.307268' WHERE id =2166 LIMIT 1 ;
+UPDATE schools SET latitude = '39.948385',longitude  = '-75.209048' WHERE id =2167 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.663101',longitude  = '-83.611991' WHERE id =2169 LIMIT 1 ;
+UPDATE schools SET latitude = '36.150805',longitude  = '-95.946122' WHERE id =2170 LIMIT 1 ;
+UPDATE schools SET latitude = '40.765329',longitude  = '-111.849561' WHERE id =2171 LIMIT 1 ;
+UPDATE schools SET latitude = '44.478374',longitude  = '-73.200562' WHERE id =2172 LIMIT 1 ;
+UPDATE schools SET latitude = '38.037045',longitude  = '-78.517947' WHERE id =2173 LIMIT 1 ;
+UPDATE schools SET latitude = '47.761781',longitude  = '-122.19212' WHERE id =2174 LIMIT 1 ;
+UPDATE schools SET latitude = '47.65619',longitude  = '-122.313224' WHERE id =2175 LIMIT 1 ;
+UPDATE schools SET latitude = '47.244397',longitude  = '-122.437337' WHERE id =2176 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.570178',longitude  = '-85.099368' WHERE id =2178 LIMIT 1 ;
+UPDATE schools SET latitude = '44.799159',longitude  = '-91.501324' WHERE id =2179 LIMIT 1 ;
+UPDATE schools SET latitude = '44.531832',longitude  = '-87.93133' WHERE id =2180 LIMIT 1 ;
+UPDATE schools SET latitude = '43.812815',longitude  = '-91.23053' WHERE id =2181 LIMIT 1 ;
+UPDATE schools SET latitude = '43.07423',longitude  = '-89.404637' WHERE id =2182 LIMIT 1 ;
+UPDATE schools SET latitude = '43.081652',longitude  = '-87.890319' WHERE id =2183 LIMIT 1 ;
+UPDATE schools SET latitude = '44.025008',longitude  = '-88.550174' WHERE id =2184 LIMIT 1 ;
+
+
+UPDATE schools SET latitude = '44.854181',longitude  = '-92.624001' WHERE id =2187 LIMIT 1 ;
+UPDATE schools SET latitude = '44.523566',longitude  = '-89.558902' WHERE id =2188 LIMIT 1 ;
+UPDATE schools SET latitude = '44.839901',longitude  = '-91.943036' WHERE id =2189 LIMIT 1 ;
+UPDATE schools SET latitude = '46.720371',longitude  = '-92.08799' WHERE id =2190 LIMIT 1 ;
+UPDATE schools SET latitude = '42.834923',longitude  = '-88.743354' WHERE id =2191 LIMIT 1 ;
+UPDATE schools SET latitude = '41.311499',longitude  = '-105.58566' WHERE id =2192 LIMIT 1 ;
+UPDATE schools SET latitude = '42.837868',longitude  = '-91.800786' WHERE id =2193 LIMIT 1 ;
+UPDATE schools SET latitude = '40.103981',longitude  = '-83.762139' WHERE id =2194 LIMIT 1 ;
+UPDATE schools SET latitude = '40.191171',longitude  = '-75.457761' WHERE id =2195 LIMIT 1 ;
+UPDATE schools SET latitude = '41.496537',longitude  = '-81.462964' WHERE id =2196 LIMIT 1 ;
+
+UPDATE schools SET latitude = '41.740782',longitude  = '-111.810304' WHERE id =2198 LIMIT 1 ;
+UPDATE schools SET latitude = '40.273648',longitude  = '-111.704482' WHERE id =2199 LIMIT 1 ;
+UPDATE schools SET latitude = '43.093511',longitude  = '-75.273095' WHERE id =2200 LIMIT 1 ;
+UPDATE schools SET latitude = '30.848327',longitude  = '-83.287351' WHERE id =2201 LIMIT 1 ;
+UPDATE schools SET latitude = '46.91935',longitude  = '-98.00303' WHERE id =2202 LIMIT 1 ;
+UPDATE schools SET latitude = '40.119441',longitude  = '-75.541622' WHERE id =2203 LIMIT 1 ;
+UPDATE schools SET latitude = '41.460198',longitude  = '-87.036632' WHERE id =2204 LIMIT 1 ;
+UPDATE schools SET latitude = '36.150429',longitude  = '-86.801229' WHERE id =2205 LIMIT 1 ;
+UPDATE schools SET latitude = '41.83752',longitude  = '-87.62895' WHERE id =2206 LIMIT 1 ;
+UPDATE schools SET latitude = '33.663886',longitude  = '-117.900717' WHERE id =2207 LIMIT 1 ;
+UPDATE schools SET latitude = '41.684807',longitude  = '-73.897692' WHERE id =2208 LIMIT 1 ;
+UPDATE schools SET latitude = '35.493333',longitude  = '-97.606174' WHERE id =2209 LIMIT 1 ;
+UPDATE schools SET latitude = '38.521569',longitude  = '-90.416861' WHERE id =2210 LIMIT 1 ;
+UPDATE schools SET latitude = '38.727615',longitude  = '-90.379882' WHERE id =2211 LIMIT 1 ;
+UPDATE schools SET latitude = '40.778488',longitude  = '-73.836388' WHERE id =2212 LIMIT 1 ;
+UPDATE schools SET latitude = '41.287539',longitude  = '-92.61736' WHERE id =2213 LIMIT 1 ;
+
+
+UPDATE schools SET latitude = '40.035943',longitude  = '-75.349171' WHERE id =2216 LIMIT 1 ;
+UPDATE schools SET latitude = '38.686626',longitude  = '-87.520889' WHERE id =2217 LIMIT 1 ;
+UPDATE schools SET latitude = '33.469805',longitude  = '-86.830561' WHERE id =2218 LIMIT 1 ;
+UPDATE schools SET latitude = '34.711426',longitude  = '-86.603178' WHERE id =2219 LIMIT 1 ;
+UPDATE schools SET latitude = '37.549273',longitude  = '-77.452426' WHERE id =2220 LIMIT 1 ;
+UPDATE schools SET latitude = '36.605527',longitude  = '-82.177246' WHERE id =2221 LIMIT 1 ;
+UPDATE schools SET latitude = '37.773096',longitude  = '-79.499291' WHERE id =2222 LIMIT 1 ;
+UPDATE schools SET latitude = '37.21368',longitude  = '-80.392389' WHERE id =2223 LIMIT 1 ;
+UPDATE schools SET latitude = '37.234722',longitude  = '-77.420009' WHERE id =2224 LIMIT 1 ;
+UPDATE schools SET latitude = '37.560445',longitude  = '-77.450381' WHERE id =2225 LIMIT 1 ;
+UPDATE schools SET latitude = '37.395547',longitude  = '-79.152289' WHERE id =2226 LIMIT 1 ;
+UPDATE schools SET latitude = '36.875791',longitude  = '-76.190766' WHERE id =2227 LIMIT 1 ;
+
+UPDATE schools SET latitude = '33.308376',longitude  = '-81.12783' WHERE id =2229 LIMIT 1 ;
+UPDATE schools SET latitude = '34.041006',longitude  = '-81.032377' WHERE id =2230 LIMIT 1 ;
+UPDATE schools SET latitude = '40.039439',longitude  = '-86.904586' WHERE id =2231 LIMIT 1 ;
+UPDATE schools SET latitude = '40.61234',longitude  = '-74.091958' WHERE id =2232 LIMIT 1 ;
+UPDATE schools SET latitude = '36.133776',longitude  = '-80.2794' WHERE id =2233 LIMIT 1 ;
+UPDATE schools SET latitude = '44.98031',longitude  = '-93.260276' WHERE id =2234 LIMIT 1 ;
+UPDATE schools SET latitude = '43.263512',longitude  = '-93.639595' WHERE id =2235 LIMIT 1 ;
+UPDATE schools SET latitude = '46.046962',longitude  = '-118.388499' WHERE id =2236 LIMIT 1 ;
+UPDATE schools SET latitude = '42.574191',longitude  = '-83.148208' WHERE id =2237 LIMIT 1 ;
+UPDATE schools SET latitude = '40.819804',longitude  = '-81.35353' WHERE id =2238 LIMIT 1 ;
+UPDATE schools SET latitude = '45.506849',longitude  = '-122.593704' WHERE id =2239 LIMIT 1 ;
+
+UPDATE schools SET latitude = '35.614393',longitude  = '-82.435879' WHERE id =2241 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.036911',longitude  = '-95.700419' WHERE id =2243 LIMIT 1 ;
+UPDATE schools SET latitude = '40.170604',longitude  = '-80.241009' WHERE id =2244 LIMIT 1 ;
+UPDATE schools SET latitude = '37.786756',longitude  = '-79.444221' WHERE id =2245 LIMIT 1 ;
+UPDATE schools SET latitude = '38.975825',longitude  = '-76.866292' WHERE id =2246 LIMIT 1 ;
+UPDATE schools SET latitude = '39.214807',longitude  = '-76.066462' WHERE id =2247 LIMIT 1 ;
+
+UPDATE schools SET latitude = '38.646306',longitude  = '-90.304259' WHERE id =2249 LIMIT 1 ;
+UPDATE schools SET latitude = '36.193742',longitude  = '-86.806851' WHERE id =2250 LIMIT 1 ;
+UPDATE schools SET latitude = '34.186676',longitude  = '-101.729449' WHERE id =2251 LIMIT 1 ;
+UPDATE schools SET latitude = '42.239509',longitude  = '-97.017854' WHERE id =2252 LIMIT 1 ;
+UPDATE schools SET latitude = '42.358315',longitude  = '-83.07174' WHERE id =2253 LIMIT 1 ;
+UPDATE schools SET latitude = '39.899088',longitude  = '-80.18772' WHERE id =2254 LIMIT 1 ;
+UPDATE schools SET latitude = '40.882684',longitude  = '-73.646351' WHERE id =2255 LIMIT 1 ;
+UPDATE schools SET latitude = '27.84148',longitude  = '-81.532739' WHERE id =2256 LIMIT 1 ;
+UPDATE schools SET latitude = '41.191681',longitude  = '-111.948809' WHERE id =2257 LIMIT 1 ;
+UPDATE schools SET latitude = '28.189982',longitude  = '-82.723441' WHERE id =2258 LIMIT 1 ;
+UPDATE schools SET latitude = '29.168474',longitude  = '-82.161654' WHERE id =2259 LIMIT 1 ;
+UPDATE schools SET latitude = '38.591524',longitude  = '-90.345516' WHERE id =2260 LIMIT 1 ;
+UPDATE schools SET latitude = '42.298922',longitude  = '-71.278365' WHERE id =2261 LIMIT 1 ;
+UPDATE schools SET latitude = '42.89822',longitude  = '-78.674519' WHERE id =2262 LIMIT 1 ;
+UPDATE schools SET latitude = '42.337247',longitude  = '-71.096577' WHERE id =2263 LIMIT 1 ;
+UPDATE schools SET latitude = '32.157302',longitude  = '-90.114122' WHERE id =2264 LIMIT 1 ;
+UPDATE schools SET latitude = '39.163234',longitude  = '-75.526373' WHERE id =2265 LIMIT 1 ;
+UPDATE schools SET latitude = '32.876533',longitude  = '-83.715095' WHERE id =2266 LIMIT 1 ;
+UPDATE schools SET latitude = '41.556422',longitude  = '-72.654852' WHERE id =2267 LIMIT 1 ;
+UPDATE schools SET latitude = '39.953793',longitude  = '-75.598066' WHERE id =2268 LIMIT 1 ;
+UPDATE schools SET latitude = '34.079045',longitude  = '-118.292448' WHERE id =2269 LIMIT 1 ;
+UPDATE schools SET latitude = '40.170015',longitude  = '-80.593923' WHERE id =2270 LIMIT 1 ;
+UPDATE schools SET latitude = '41.891775',longitude  = '-87.775013' WHERE id =2271 LIMIT 1 ;
+UPDATE schools SET latitude = '34.979822',longitude  = '-101.915838' WHERE id =2272 LIMIT 1 ;
+UPDATE schools SET latitude = '38.709529',longitude  = '-77.790762' WHERE id =2273 LIMIT 1 ;
+
+UPDATE schools SET latitude = '39.278533',longitude  = '-81.576981' WHERE id =2275 LIMIT 1 ;
+
+UPDATE schools SET latitude = '38.989569',longitude  = '-80.221544' WHERE id =2277 LIMIT 1 ;
+UPDATE schools SET latitude = '35.30981',longitude  = '-83.18401' WHERE id =2278 LIMIT 1 ;
+UPDATE schools SET latitude = '41.399424',longitude  = '-73.444212' WHERE id =2279 LIMIT 1 ;
+UPDATE schools SET latitude = '40.684709',longitude  = '-111.871391' WHERE id =2280 LIMIT 1 ;
+UPDATE schools SET latitude = '40.462586',longitude  = '-90.681737' WHERE id =2281 LIMIT 1 ;
+UPDATE schools SET latitude = '33.570225',longitude  = '-112.116818' WHERE id =2282 LIMIT 1 ;
+
+UPDATE schools SET latitude = '42.285064',longitude  = '-85.609359' WHERE id =2284 LIMIT 1 ;
+UPDATE schools SET latitude = '42.116679',longitude  = '-72.520322' WHERE id =2285 LIMIT 1 ;
+UPDATE schools SET latitude = '32.775112',longitude  = '-108.282098' WHERE id =2286 LIMIT 1 ;
+UPDATE schools SET latitude = '44.851122',longitude  = '-123.237329' WHERE id =2287 LIMIT 1 ;
+UPDATE schools SET latitude = '38.551332',longitude  = '-106.918178' WHERE id =2288 LIMIT 1 ;
+UPDATE schools SET latitude = '45.543174',longitude  = '-122.527011' WHERE id =2289 LIMIT 1 ;
+UPDATE schools SET latitude = '48.738697',longitude  = '-122.48541' WHERE id =2290 LIMIT 1 ;
+UPDATE schools SET latitude = '42.127721',longitude  = '-72.789628' WHERE id =2291 LIMIT 1 ;
+UPDATE schools SET latitude = '38.848645',longitude  = '-91.954165' WHERE id =2292 LIMIT 1 ;
+UPDATE schools SET latitude = '41.1199',longitude  = '-80.333088' WHERE id =2293 LIMIT 1 ;
+UPDATE schools SET latitude = '40.730463',longitude  = '-111.853833' WHERE id =2294 LIMIT 1 ;
+UPDATE schools SET latitude = '34.451358',longitude  = '-119.659591' WHERE id =2295 LIMIT 1 ;
+UPDATE schools SET latitude = '33.804963',longitude  = '-117.877696' WHERE id =2296 LIMIT 1 ;
+UPDATE schools SET latitude = '38.832389',longitude  = '-77.209259' WHERE id =2297 LIMIT 1 ;
+UPDATE schools SET latitude = '38.880007',longitude  = '-77.112434' WHERE id =2298 LIMIT 1 ;
+UPDATE schools SET latitude = '33.784487',longitude  = '-84.389199' WHERE id =2299 LIMIT 1 ;
+UPDATE schools SET latitude = '41.882228',longitude  = '-87.627816' WHERE id =2300 LIMIT 1 ;
+UPDATE schools SET latitude = '39.692081',longitude  = '-104.987481' WHERE id =2301 LIMIT 1 ;
+UPDATE schools SET latitude = '39.655907',longitude  = '-105.053206' WHERE id =2302 LIMIT 1 ;
+UPDATE schools SET latitude = '41.756218',longitude  = '-88.040989' WHERE id =2303 LIMIT 1 ;
+UPDATE schools SET latitude = '34.088857',longitude  = '-117.651496' WHERE id =2304 LIMIT 1 ;
+UPDATE schools SET latitude = '34.061804',longitude  = '-118.29292' WHERE id =2305 LIMIT 1 ;
+UPDATE schools SET latitude = '33.852432',longitude  = '-84.24911' WHERE id =2306 LIMIT 1 ;
+UPDATE schools SET latitude = '41.986631',longitude  = '-87.838636' WHERE id =2307 LIMIT 1 ;
+UPDATE schools SET latitude = '41.600273',longitude  = '-87.555814' WHERE id =2308 LIMIT 1 ;
+UPDATE schools SET latitude = '33.851817',longitude  = '-118.290482' WHERE id =2309 LIMIT 1 ;
+UPDATE schools SET latitude = '41.968064',longitude  = '-71.1863' WHERE id =2310 LIMIT 1 ;
+UPDATE schools SET latitude = '41.867281',longitude  = '-88.099312' WHERE id =2311 LIMIT 1 ;
+UPDATE schools SET latitude = '40.068427',longitude  = '-80.689973' WHERE id =2312 LIMIT 1 ;
+UPDATE schools SET latitude = '42.34181',longitude  = '-71.106865' WHERE id =2313 LIMIT 1 ;
+UPDATE schools SET latitude = '46.070558',longitude  = '-118.328509' WHERE id =2314 LIMIT 1 ;
+
+UPDATE schools SET latitude = '47.751094',longitude  = '-117.416068' WHERE id =2316 LIMIT 1 ;
+UPDATE schools SET latitude = '37.716594',longitude  = '-97.296706' WHERE id =2317 LIMIT 1 ;
+UPDATE schools SET latitude = '39.816529',longitude  = '-75.548919' WHERE id =2318 LIMIT 1 ;
+UPDATE schools SET latitude = '39.861507',longitude  = '-75.354289' WHERE id =2319 LIMIT 1 ;
+UPDATE schools SET latitude = '39.710966',longitude  = '-83.878095' WHERE id =2320 LIMIT 1 ;
+UPDATE schools SET latitude = '32.537938',longitude  = '-94.375485' WHERE id =2321 LIMIT 1 ;
+UPDATE schools SET latitude = '41.24451',longitude  = '-75.889898' WHERE id =2322 LIMIT 1 ;
+UPDATE schools SET latitude = '44.938036',longitude  = '-123.031189' WHERE id =2323 LIMIT 1 ;
+UPDATE schools SET latitude = '31.306195',longitude  = '-89.290316' WHERE id =2324 LIMIT 1 ;
+UPDATE schools SET latitude = '38.817151',longitude  = '-121.297448' WHERE id =2325 LIMIT 1 ;
+UPDATE schools SET latitude = '39.247787',longitude  = '-94.411905' WHERE id =2326 LIMIT 1 ;
+UPDATE schools SET latitude = '40.944098',longitude  = '-74.201882' WHERE id =2327 LIMIT 1 ;
+UPDATE schools SET latitude = '41.307755',longitude  = '-92.646931' WHERE id =2328 LIMIT 1 ;
+UPDATE schools SET latitude = '38.860526',longitude  = '-91.948946' WHERE id =2329 LIMIT 1 ;
+UPDATE schools SET latitude = '36.125099',longitude  = '-90.932266' WHERE id =2330 LIMIT 1 ;
+UPDATE schools SET latitude = '42.712237',longitude  = '-73.203418' WHERE id =2331 LIMIT 1 ;
+UPDATE schools SET latitude = '35.956772',longitude  = '-86.825607' WHERE id =2332 LIMIT 1 ;
+UPDATE schools SET latitude = '39.443536',longitude  = '-83.816109' WHERE id =2333 LIMIT 1 ;
+UPDATE schools SET latitude = '39.650169',longitude  = '-75.620304' WHERE id =2334 LIMIT 1 ;
+UPDATE schools SET latitude = '39.947802',longitude  = '-77.652757' WHERE id =2335 LIMIT 1 ;
+UPDATE schools SET latitude = '34.986901',longitude  = '-80.444394' WHERE id =2336 LIMIT 1 ;
+UPDATE schools SET latitude = '44.048271',longitude  = '-91.641747' WHERE id =2337 LIMIT 1 ;
+UPDATE schools SET latitude = '36.090401',longitude  = '-80.227696' WHERE id =2338 LIMIT 1 ;
+UPDATE schools SET latitude = '34.938587',longitude  = '-81.029396' WHERE id =2339 LIMIT 1 ;
+UPDATE schools SET latitude = '43.036024',longitude  = '-88.022033' WHERE id =2340 LIMIT 1 ;
+UPDATE schools SET latitude = '39.933048',longitude  = '-83.813694' WHERE id =2341 LIMIT 1 ;
+UPDATE schools SET latitude = '34.957191',longitude  = '-81.937321' WHERE id =2342 LIMIT 1 ;
+UPDATE schools SET latitude = '44.281557',longitude  = '-72.573356' WHERE id =2343 LIMIT 1 ;
+UPDATE schools SET latitude = '34.20673',longitude  = '-118.34161' WHERE id =2344 LIMIT 1 ;
+UPDATE schools SET latitude = '42.272659',longitude  = '-71.807856' WHERE id =2345 LIMIT 1 ;
+UPDATE schools SET latitude = '42.268622',longitude  = '-71.841144' WHERE id =2346 LIMIT 1 ;
+UPDATE schools SET latitude = '34.065161',longitude  = '-118.289938' WHERE id =2347 LIMIT 1 ;
+UPDATE schools SET latitude = '39.775722',longitude  = '-84.073884' WHERE id =2348 LIMIT 1 ;
+UPDATE schools SET latitude = '39.14754',longitude  = '-84.478913' WHERE id =2349 LIMIT 1 ;
+UPDATE schools SET latitude = '29.962386',longitude  = '-90.105007' WHERE id =2350 LIMIT 1 ;
+UPDATE schools SET latitude = '41.3083',longitude  = '-72.9287' WHERE id =2351 LIMIT 1 ;
+UPDATE schools SET latitude = '40.624006',longitude  = '-73.961169' WHERE id =2352 LIMIT 1 ;
+UPDATE schools SET latitude = '39.041615',longitude  = '-77.029324' WHERE id =2353 LIMIT 1 ;
+UPDATE schools SET latitude = '40.636996',longitude  = '-73.980279' WHERE id =2354 LIMIT 1 ;
+UPDATE schools SET latitude = '41.115396',longitude  = '-74.065969' WHERE id =2355 LIMIT 1 ;
+UPDATE schools SET latitude = '40.628875',longitude  = '-73.992521' WHERE id =2356 LIMIT 1 ;
+UPDATE schools SET latitude = '42.471744',longitude  = '-83.201545' WHERE id =2357 LIMIT 1 ;
+UPDATE schools SET latitude = '40.62521',longitude  = '-73.983414' WHERE id =2358 LIMIT 1 ;
+UPDATE schools SET latitude = '41.221647',longitude  = '-73.734294' WHERE id =2359 LIMIT 1 ;
+UPDATE schools SET latitude = '40.897885',longitude  = '-73.91135' WHERE id =2360 LIMIT 1 ;
+UPDATE schools SET latitude = '34.085269',longitude  = '-118.346593' WHERE id =2361 LIMIT 1 ;
+UPDATE schools SET latitude = '41.124416',longitude  = '-74.090714' WHERE id =2362 LIMIT 1 ;
+UPDATE schools SET latitude = '39.741648',longitude  = '-105.042801' WHERE id =2363 LIMIT 1 ;
+UPDATE schools SET latitude = '40.850535',longitude  = '-73.92923' WHERE id =2364 LIMIT 1 ;
+UPDATE schools SET latitude = '25.782455',longitude  = '-80.140958' WHERE id =2365 LIMIT 1 ;
+UPDATE schools SET latitude = '40.632565',longitude  = '-73.985029' WHERE id =2366 LIMIT 1 ;
+UPDATE schools SET latitude = '40.616327',longitude  = '-73.969271' WHERE id =2367 LIMIT 1 ;
+UPDATE schools SET latitude = '41.394873',longitude  = '-75.655918' WHERE id =2368 LIMIT 1 ;
+UPDATE schools SET latitude = '41.118931',longitude  = '-74.066099' WHERE id =2369 LIMIT 1 ;
+UPDATE schools SET latitude = '41.701005',longitude  = '-74.637944' WHERE id =2370 LIMIT 1 ;
+UPDATE schools SET latitude = '40.868716',longitude  = '-97.580385' WHERE id =2371 LIMIT 1 ;
+UPDATE schools SET latitude = '39.943467',longitude  = '-76.734853' WHERE id =2372 LIMIT 1 ;
+UPDATE schools SET latitude = '41.105926',longitude  = '-80.644822' WHERE id =2373 LIMIT 1 ;
+
+

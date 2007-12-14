@@ -10,20 +10,39 @@ import com.apress.progwt.client.domain.User;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.SimplePanel;
 
 public class MyApplications extends Composite implements MyPageTab {
 
-    private User thisUser;
+    // private User thisUser;
     private ServiceCache serviceCache;
+    private SimplePanel mainP;
 
-    public MyApplications(ServiceCache serviceCache, User thisUser) {
-        this.thisUser = thisUser;
+    public MyApplications(ServiceCache serviceCache) {
+
         this.serviceCache = serviceCache;
 
-        List<ProcessType> processTypes = thisUser
-                .getNonStatusProcessTypes();
+        mainP = new SimplePanel();
+        mainP.add(new Label("Loading"));
 
-        List<Application> schoolAndApps = thisUser.getSchoolRankings();
+        initWidget(mainP);
+
+    }
+
+    public void refresh() {
+        // TODO Auto-generated method stub
+
+    }
+
+    public String getHistoryName() {
+        return "MyApplications";
+    }
+
+    public void load(User user) {
+
+        List<ProcessType> processTypes = user.getNonStatusProcessTypes();
+
+        List<Application> schoolAndApps = user.getSchoolRankings();
 
         Grid mainGrid = new Grid(schoolAndApps.size() + 1, processTypes
                 .size() + 2);
@@ -34,8 +53,7 @@ public class MyApplications extends Composite implements MyPageTab {
         mainGrid.setWidget(0, col, new Label("Status"));
         col++;
 
-        for (ProcessType processType : thisUser
-                .getNonStatusProcessTypes()) {
+        for (ProcessType processType : user.getNonStatusProcessTypes()) {
             mainGrid.setWidget(0, col, new Label(processType.getName()));
             col++;
         }
@@ -44,8 +62,8 @@ public class MyApplications extends Composite implements MyPageTab {
         for (Application application : schoolAndApps) {
             col = 0;
 
-            mainGrid.setWidget(row, col, new Label(application
-                    .getSchool().getName()));
+            mainGrid.setWidget(row, col, new SchoolLink(application
+                    .getSchool()));
             col++;
 
             ApplicationStatusChooserWidget statusChooser = new ApplicationStatusChooserWidget(
@@ -53,7 +71,7 @@ public class MyApplications extends Composite implements MyPageTab {
             mainGrid.setWidget(row, col, statusChooser);
             col++;
 
-            for (ProcessType processType : thisUser
+            for (ProcessType processType : user
                     .getNonStatusProcessTypes()) {
 
                 ProcessValue value = application.getProcess().get(
@@ -72,17 +90,7 @@ public class MyApplications extends Composite implements MyPageTab {
 
         }
 
-        initWidget(mainGrid);
-
-    }
-
-    public void refresh() {
-        // TODO Auto-generated method stub
-
-    }
-
-    public String getHistoryName() {
-        return "MyApplications";
+        mainP.setWidget(mainGrid);
     }
 
 }

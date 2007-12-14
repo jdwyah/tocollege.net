@@ -21,22 +21,9 @@
   	
   	<div id="side1">
   	 
-				
 	
-	<@common.box "boxStyle", "calculator", "Calculator">
-		<script language="JavaScript">
-			var Vars = {
-				page: "CollegeBound"
-			};
-		</script>
-		<script language='javascript' src='<@gwt.gwtURL "com.apress.progwt.Interactive.nocache.js"/>'></script>
-
-		<iframe id='__gwt_historyFrame' style='width:0;height:0;border:0'></iframe>
-		<div id="slot1"></div>
-		<div id="loading" class="loading"><p>Loading...</p></div>
-		<div id="preload"></div>
-	
-		
+	<@common.box "boxStyle", "myList", "MyList">
+		<@gwt.widget "CollegeBound"/>			
 	</@common.box>	
 	
 	

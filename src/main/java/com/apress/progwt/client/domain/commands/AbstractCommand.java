@@ -11,6 +11,10 @@ public abstract class AbstractCommand implements Serializable,
 
     private transient List<Object> objects = new ArrayList<Object>();
 
+    public AbstractCommand() {
+
+    }
+
     public AbstractCommand(Object... arguments) {
         for (Object o : arguments) {
             objects.add(o);

@@ -49,7 +49,7 @@ public class LoginWindow extends PopupPanel {
      * @param manager
      */
     public LoginWindow(LoginListener listener) {
-        super();
+        super(false, true);
 
         this.listener = listener;
 

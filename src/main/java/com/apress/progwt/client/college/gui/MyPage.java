@@ -17,21 +17,26 @@ public class MyPage extends Composite implements TabListener {
 
     private TabPanel mainPanel;
 
-    public MyPage(ToCollegeApp collegeBoundApp, User thisUser) {
-        this.thisUser = thisUser;
+    private MyRankings myRankings;
+
+    private MyApplications myApplications;
+
+    private MyDecision myPriorities;
+
+    public MyPage(ToCollegeApp collegeBoundApp) {
 
         serviceCache = collegeBoundApp.getServiceCache();
 
         mainPanel = new TabPanel();
 
-        MyRankings rankings = new MyRankings(serviceCache, thisUser);
-        mainPanel.add(rankings, "My Rankings");
+        myRankings = new MyRankings(serviceCache);
+        mainPanel.add(myRankings, "My Rankings");
 
-        MyApplications myApplications = new MyApplications(serviceCache,
-                thisUser);
+        myApplications = new MyApplications(serviceCache);
+
         mainPanel.add(myApplications, "My Applications");
 
-        MyDecision myPriorities = new MyDecision(serviceCache, thisUser);
+        myPriorities = new MyDecision(serviceCache);
         mainPanel.add(myPriorities, "My Decision");
 
         mainPanel.addTabListener(this);
@@ -57,6 +62,14 @@ public class MyPage extends Composite implements TabListener {
         MyPageTab w = (MyPageTab) mainPanel.getWidget(tabIndex);
 
         History.newItem("" + w.getHistoryName());
+    }
+
+    public void load(User user) {
+        this.thisUser = user;
+        myRankings.load(user);
+        myApplications.load(user);
+        myPriorities.load(user);
+
     }
 
 }

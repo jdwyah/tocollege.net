@@ -9,6 +9,8 @@ import com.apress.progwt.client.domain.generated.AbstractApplication;
 public class Application extends AbstractApplication implements
         Serializable, Loadable, Orderable {
 
+    private transient ProcessType currentStatus;
+
     public Application() {
     }
 
@@ -82,25 +84,27 @@ public class Application extends AbstractApplication implements
      * 
      * @return
      */
-    public ProcessType getStatus() {
-        ProcessType rtn = null;
-        for (ProcessType processType : getUser().getStatusProcessTypes()) {
+    public ProcessType getCurrentStatus() {
+        if (null == currentStatus) {
+            for (ProcessType processType : getUser()
+                    .getStatusProcessTypes()) {
 
-            System.out.println("get status type " + processType);
-            ProcessValue value = getProcess().get(processType);
+                System.out.println("get status type " + processType);
+                ProcessValue value = getProcess().get(processType);
 
-            // TODO ditch .equals()
-            if (processType.getName().equals("Considering")
-                    || (value != null && value.getPctComplete() == 1.0)) {
+                // TODO ditch .equals()
+                if (processType.getName().equals("Considering")
+                        || (value != null && value.getPctComplete() == 1.0)) {
 
-                System.out.println("==consider");
-                if (rtn == null
-                        || rtn.getStatus_order() < processType
-                                .getStatus_order())
-                    System.out.println("set rtn");
-                rtn = processType;
+                    System.out.println("==consider");
+                    if (currentStatus == null
+                            || currentStatus.getStatus_order() < processType
+                                    .getStatus_order())
+                        System.out.println("set rtn");
+                    currentStatus = processType;
+                }
             }
         }
-        return rtn;
+        return currentStatus;
     }
 }

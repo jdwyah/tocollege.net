@@ -45,7 +45,10 @@
 		
 		<property name="housing" type="string" column="housing">
 		</property>		
-		
+		<property name="latitude" type="double" column="latitude">
+        </property>
+        <property name="longitude" type="double" column="longitude">
+        </property>
 	
 	</class>
 

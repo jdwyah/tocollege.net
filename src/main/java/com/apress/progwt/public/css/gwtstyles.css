@@ -8,7 +8,7 @@ div.loading {
 	position: absolute;
 	top: 45%;
 	left: 45%;
-	background-image: url("../img/blueFade.png");
+	/*background-image: url("../img/blueFade.png");*/
 	background-repeat: repeat-x;
 	background-position: 0px -20px;
 	background-color: #576B93;
@@ -81,7 +81,14 @@ a:visited {
 .TC-DecisionRanked-Even {
 	background-color: #D5EDE6;
 }
-
+.TC-DecisionRanked-Rank {
+	background-color: white;
+	font-size: 18pt;
+}
+.TC-DecisionRanked-Pct {
+	left: 40px;
+	font-size: 18pt;
+}
 .TC-Popup {
   background-color: white;
   border: 1px solid #87B3FF;
@@ -194,7 +201,7 @@ TABLE.longRange TD {
 .date_DisplayPanel {
     font-family: tahoma, sans-serif;
     font-size: 11px;
-    background-image: url("../img/blueFade.png");
+    /*background-image: url("../img/blueFade.png");*/
     background-repeat: repeat-x;
     background-position: 0px -20px;
     background-color: #CFE0F5;

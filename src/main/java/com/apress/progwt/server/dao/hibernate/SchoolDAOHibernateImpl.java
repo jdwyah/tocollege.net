@@ -34,9 +34,11 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
     }
 
     public List<School> getAllSchools() {
-        DetachedCriteria crit = DetachedCriteria.forClass(School.class);
-        List<School> list = getHibernateTemplate().findByCriteria(crit,
-                0, 10);
+        DetachedCriteria crit = DetachedCriteria.forClass(School.class)
+                .add(
+                        Expression.and(Expression.gt("id", 890l),
+                                Expression.eq("latitude", -1d)));
+        List<School> list = getHibernateTemplate().findByCriteria(crit);
         return list;
     }
 

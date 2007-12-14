@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.apress.progwt.client.domain.generated.AbstractSchool;
 
 public class School extends AbstractSchool implements Serializable,
-        Loadable {
+        Loadable, HasAddress {
 
     public School() {
 
@@ -17,8 +17,7 @@ public class School extends AbstractSchool implements Serializable,
     }
 
     public String getFullAddress() {
-        StringBuffer sb = new StringBuffer(getName());
-        sb.append(" ");
+        StringBuffer sb = new StringBuffer();
         sb.append(getAddress());
         sb.append(" ");
         sb.append(getCity());

@@ -374,7 +374,8 @@ public final class RPCWithHibernateSupport1529 {
     public static String encodeResponseForFailure(Method serviceMethod,
             Throwable cause) throws SerializationException {
         return encodeResponseForFailure(serviceMethod, cause,
-                getDefaultSerializationPolicy());
+                new ServerSerializationStreamWriter1529(
+                        getDefaultSerializationPolicy()));
     }
 
     /**
@@ -396,7 +397,7 @@ public final class RPCWithHibernateSupport1529 {
      *            <code>null</code>
      * @param cause
      *            the {@link Throwable} that was thrown
-     * @param serializationPolicy
+     * @param ServerSerializationStreamWriter1529
      *            determines the serialization policy to be used
      * @return a string that encodes the exception
      * 
@@ -410,15 +411,18 @@ public final class RPCWithHibernateSupport1529 {
      *             exception not declared in the serviceMethod's
      *             signature)
      */
-    public static String encodeResponseForFailure(Method serviceMethod,
-            Throwable cause, SerializationPolicy serializationPolicy)
+    public static String encodeResponseForFailure(
+            Method serviceMethod,
+            Throwable cause,
+            ServerSerializationStreamWriter1529 ServerSerializationStreamWriter1529)
             throws SerializationException {
         if (cause == null) {
             throw new NullPointerException("cause cannot be null");
         }
 
-        if (serializationPolicy == null) {
-            throw new NullPointerException("serializationPolicy");
+        if (ServerSerializationStreamWriter1529 == null) {
+            throw new NullPointerException(
+                    "serializationSerializationStreamWriter");
         }
 
         if (serviceMethod != null
@@ -431,7 +435,7 @@ public final class RPCWithHibernateSupport1529 {
         }
 
         return encodeResponse(cause.getClass(), cause, true,
-                serializationPolicy);
+                ServerSerializationStreamWriter1529);
     }
 
     /**
@@ -457,7 +461,8 @@ public final class RPCWithHibernateSupport1529 {
     public static String encodeResponseForSuccess(Method serviceMethod,
             Object object) throws SerializationException {
         return encodeResponseForSuccess(serviceMethod, object,
-                getDefaultSerializationPolicy());
+                new ServerSerializationStreamWriter1529(
+                        getDefaultSerializationPolicy()));
     }
 
     /**
@@ -478,7 +483,7 @@ public final class RPCWithHibernateSupport1529 {
      *            the method whose result we are encoding
      * @param object
      *            the instance that we wish to encode
-     * @param serializationPolicy
+     * @param ServerSerializationStreamWriter1529
      *            determines the serialization policy to be used
      * @return a string that encodes the object, if the object is
      *         compatible with the service method's declared return type
@@ -492,14 +497,16 @@ public final class RPCWithHibernateSupport1529 {
      * @throws SerializationException
      *             if the result cannot be serialized
      */
-    public static String encodeResponseForSuccess(Method serviceMethod,
-            Object object, SerializationPolicy serializationPolicy)
+    public static String encodeResponseForSuccess(
+            Method serviceMethod,
+            Object object,
+            ServerSerializationStreamWriter1529 ServerSerializationStreamWriter1529)
             throws SerializationException {
         if (serviceMethod == null) {
             throw new NullPointerException("serviceMethod cannot be null");
         }
 
-        if (serializationPolicy == null) {
+        if (ServerSerializationStreamWriter1529 == null) {
             throw new NullPointerException("serializationPolicy");
         }
 
@@ -526,7 +533,7 @@ public final class RPCWithHibernateSupport1529 {
         }
 
         return encodeResponse(methodReturnType, object, false,
-                serializationPolicy);
+                ServerSerializationStreamWriter1529);
     }
 
     /**
@@ -570,7 +577,8 @@ public final class RPCWithHibernateSupport1529 {
             Method serviceMethod, Object[] args)
             throws SerializationException {
         return invokeAndEncodeResponse(target, serviceMethod, args,
-                getDefaultSerializationPolicy());
+                new ServerSerializationStreamWriter1529(
+                        getDefaultSerializationPolicy()));
     }
 
     /**
@@ -598,7 +606,7 @@ public final class RPCWithHibernateSupport1529 {
      *            the method to invoke
      * @param args
      *            arguments used for the method invocation
-     * @param serializationPolicy
+     * @param ServerSerializationStreamWriter1529
      *            determines the serialization policy to be used
      * @return a string which encodes either the method's return or a
      *         checked exception thrown by the method
@@ -615,15 +623,17 @@ public final class RPCWithHibernateSupport1529 {
      *             if the serviceMethod throws a checked exception that is
      *             not declared in its signature
      */
-    public static String invokeAndEncodeResponse(Object target,
-            Method serviceMethod, Object[] args,
-            SerializationPolicy serializationPolicy)
+    public static String invokeAndEncodeResponse(
+            Object target,
+            Method serviceMethod,
+            Object[] args,
+            ServerSerializationStreamWriter1529 ServerSerializationStreamWriter1529)
             throws SerializationException {
         if (serviceMethod == null) {
             throw new NullPointerException("serviceMethod");
         }
 
-        if (serializationPolicy == null) {
+        if (ServerSerializationStreamWriter1529 == null) {
             throw new NullPointerException("serializationPolicy");
         }
 
@@ -632,7 +642,7 @@ public final class RPCWithHibernateSupport1529 {
             Object result = serviceMethod.invoke(target, args);
 
             responsePayload = encodeResponseForSuccess(serviceMethod,
-                    result, serializationPolicy);
+                    result, ServerSerializationStreamWriter1529);
         } catch (IllegalAccessException e) {
             SecurityException securityException = new SecurityException(
                     formatIllegalAccessErrorMessage(target, serviceMethod));
@@ -650,7 +660,7 @@ public final class RPCWithHibernateSupport1529 {
             Throwable cause = e.getCause();
 
             responsePayload = encodeResponseForFailure(serviceMethod,
-                    cause, serializationPolicy);
+                    cause, ServerSerializationStreamWriter1529);
         }
 
         return responsePayload;
@@ -671,21 +681,21 @@ public final class RPCWithHibernateSupport1529 {
      * @throws SerializationException
      *             if the object cannot be serialized
      */
-    private static String encodeResponse(Class<?> responseClass,
-            Object object, boolean wasThrown,
-            SerializationPolicy serializationPolicy)
+    private static String encodeResponse(
+            Class<?> responseClass,
+            Object object,
+            boolean wasThrown,
+            ServerSerializationStreamWriter1529 ServerSerializationStreamWriter1529)
             throws SerializationException {
 
-        ServerSerializationStreamWriter1529 stream = new ServerSerializationStreamWriter1529(
-                serializationPolicy);
-
-        stream.prepareToWrite();
+        ServerSerializationStreamWriter1529.prepareToWrite();
         if (responseClass != void.class) {
-            stream.serializeValue(object, responseClass);
+            ServerSerializationStreamWriter1529.serializeValue(object,
+                    responseClass);
         }
 
         String bufferStr = (wasThrown ? "//EX" : "//OK")
-                + stream.toString();
+                + ServerSerializationStreamWriter1529.toString();
         return bufferStr;
     }
 

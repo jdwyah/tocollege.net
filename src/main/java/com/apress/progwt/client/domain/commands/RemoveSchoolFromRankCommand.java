@@ -15,7 +15,7 @@ public class RemoveSchoolFromRankCommand extends AbstractCommand
     private long schoolID;
 
     public RemoveSchoolFromRankCommand() {
-        super();
+
     }
 
     public RemoveSchoolFromRankCommand(School school, User user) {
@@ -30,7 +30,8 @@ public class RemoveSchoolFromRankCommand extends AbstractCommand
         School school = commandService.get(School.class, schoolID);
         List<Application> rankings = currentUser.getSchoolRankings();
 
-        for (Iterator iterator = rankings.iterator(); iterator.hasNext();) {
+        for (Iterator<Application> iterator = rankings.iterator(); iterator
+                .hasNext();) {
             Application scAndApp = (Application) iterator.next();
             if (scAndApp.getSchool().equals(school)) {
                 iterator.remove();

@@ -20,6 +20,9 @@ import com.apress.progwt.client.domain.generated.AbstractUser;
  */
 public class User extends AbstractUser implements Serializable, Loadable {
 
+    private transient List<ProcessType> nonStatusProcessTypes;
+    private transient List<ProcessType> statusProcessTypes;
+
     public User() {
         setEnabled(true);
         setSupervisor(false);
@@ -90,11 +93,17 @@ public class User extends AbstractUser implements Serializable, Loadable {
     }
 
     public List<ProcessType> getNonStatusProcessTypes() {
-        return getProcessTypes(false);
+        if (null == nonStatusProcessTypes) {
+            nonStatusProcessTypes = getProcessTypes(false);
+        }
+        return nonStatusProcessTypes;
     }
 
     public List<ProcessType> getStatusProcessTypes() {
-        return getProcessTypes(true);
+        if (null == statusProcessTypes) {
+            statusProcessTypes = getProcessTypes(true);
+        }
+        return statusProcessTypes;
     }
 
     private List<ProcessType> getProcessTypes(boolean status) {

@@ -15,14 +15,12 @@ public class SchoolRanks extends Composite {
     private VerticalPanel rankPanel;
     private User thisUser;
 
-    public SchoolRanks(User thisUser) {
+    public SchoolRanks() {
         this.thisUser = thisUser;
         VerticalPanel mainPanel = new VerticalPanel();
         mainPanel.add(new Label("Rankings"));
 
         rankPanel = new VerticalPanel();
-
-        refresh();
 
         mainPanel.add(rankPanel);
 
@@ -30,6 +28,13 @@ public class SchoolRanks extends Composite {
     }
 
     public void refresh() {
+        if (thisUser != null) {
+            load(thisUser);
+        }
+    }
+
+    public void load(User user) {
+        thisUser = user;
         rankPanel.clear();
         int i = 1;
         for (ApplicationAndScore aas : thisUser.getPrioritizedRankings()) {
@@ -48,6 +53,8 @@ public class SchoolRanks extends Composite {
             }
 
             Label rankL = new Label(i + "");
+            rankL.addStyleName("TC-DecisionRanked-Rank");
+            pctL.addStyleName("TC-DecisionRanked-Pct");
 
             hP.add(rankL);
             hP.add(link);

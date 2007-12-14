@@ -38,10 +38,14 @@ import com.google.gwt.user.server.rpc.impl.SerializabilityUtil;
 public final class ServerSerializationStreamWriter1529 extends
         AbstractSerializationStreamWriter {
 
+    public void setValueWriter(Class<?> clazz, ValueWriter writer) {
+        CLASS_TO_VALUE_WRITER.put(clazz, writer);
+    }
+
     /**
      * Enumeration used to provided typed instance writers.
      */
-    private enum ValueWriter {
+    private enum ValueWritersss {
         BOOLEAN {
             @Override
             void write(ServerSerializationStreamWriter1529 stream,
@@ -95,7 +99,7 @@ public final class ServerSerializationStreamWriter1529 extends
             @Override
             void write(ServerSerializationStreamWriter1529 stream,
                     Object instance) throws SerializationException {
-                stream.writeObject(HibernateFilter.filter(instance));
+                stream.writeObject(instance);
             }
         },
         SHORT {
@@ -315,16 +319,66 @@ public final class ServerSerializationStreamWriter1529 extends
         CLASS_TO_VECTOR_WRITER.put(String[].class,
                 VectorWriter.STRING_VECTOR);
 
-        CLASS_TO_VALUE_WRITER.put(boolean.class, ValueWriter.BOOLEAN);
-        CLASS_TO_VALUE_WRITER.put(byte.class, ValueWriter.BYTE);
-        CLASS_TO_VALUE_WRITER.put(char.class, ValueWriter.CHAR);
-        CLASS_TO_VALUE_WRITER.put(double.class, ValueWriter.DOUBLE);
-        CLASS_TO_VALUE_WRITER.put(float.class, ValueWriter.FLOAT);
-        CLASS_TO_VALUE_WRITER.put(int.class, ValueWriter.INT);
-        CLASS_TO_VALUE_WRITER.put(long.class, ValueWriter.LONG);
-        CLASS_TO_VALUE_WRITER.put(Object.class, ValueWriter.OBJECT);
-        CLASS_TO_VALUE_WRITER.put(short.class, ValueWriter.SHORT);
-        CLASS_TO_VALUE_WRITER.put(String.class, ValueWriter.STRING);
+        CLASS_TO_VALUE_WRITER.put(boolean.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeBoolean(((Boolean) instance).booleanValue());
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(byte.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeByte(((Byte) instance).byteValue());
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(char.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeChar(((Character) instance).charValue());
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(double.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeDouble(((Double) instance).doubleValue());
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(float.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeFloat(((Float) instance).floatValue());
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(int.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeInt(((Integer) instance).intValue());
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(long.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeLong(((Long) instance).longValue());
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(Object.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeObject(instance);
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(short.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeShort(((Short) instance).shortValue());
+            }
+        });
+        CLASS_TO_VALUE_WRITER.put(String.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeString((String) instance);
+            }
+        });
     }
 
     /**
@@ -496,7 +550,7 @@ public final class ServerSerializationStreamWriter1529 extends
         } else {
             // Arrays of primitive or reference types need to go through
             // writeObject.
-            ValueWriter.OBJECT.write(this, value);
+            CLASS_TO_VALUE_WRITER.get(Object.class).write(this, value);
         }
     }
 

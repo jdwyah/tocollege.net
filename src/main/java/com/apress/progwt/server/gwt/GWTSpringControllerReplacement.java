@@ -65,14 +65,20 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
             RPCRequest rpcRequest = RPC.decodeRequest(payload, this
                     .getClass(), this);
 
-            // RPC.invokeAndEncodeResponse(this,
-            // rpcRequest.getMethod(), rpcRequest.getParameters(),
-            // rpcRequest.getSerializationPolicy());
+            ServerSerializationStreamWriter1529 writer = new ServerSerializationStreamWriter1529(
+                    rpcRequest.getSerializationPolicy());
+
+            writer.setValueWriter(Object.class, new ValueWriter() {
+                public void write(
+                        ServerSerializationStreamWriter1529 stream,
+                        Object instance) throws SerializationException {
+                    stream.writeObject(HibernateFilter.filter(instance));
+                }
+            });
 
             return RPCWithHibernateSupport1529.invokeAndEncodeResponse(
                     this, rpcRequest.getMethod(), rpcRequest
-                            .getParameters(), rpcRequest
-                            .getSerializationPolicy());
+                            .getParameters(), writer);
 
         } catch (IncompatibleRemoteServiceException ex) {
             getServletContext()
@@ -84,9 +90,17 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
     }
 
     /**
-     * We can use our funky laissez faire 1.4.10 (RC1) style serialization
+     * Normal GWT Serialization requires that we do a GWT compile to
+     * create the serialization whitelist. Unfortunately this means we
+     * can't just restart jetty and have this Controller Serialize, unless
+     * we do a gwt compile, which slows us down considerably. Solutions is
+     * to use our funky laissez faire 1.4.10 (RC1) style serialization
      * policy to serialize everything which means we don't need to
      * recompile all the gwt stuff just to restart jetty.
+     * 
+     * Use the 'serializeEverything' variable which is set differently on
+     * test and deployment machines to go to regular 1.5 serialization
+     * when deployed.
      */
     @Override
     protected SerializationPolicy doGetSerializationPolicy(

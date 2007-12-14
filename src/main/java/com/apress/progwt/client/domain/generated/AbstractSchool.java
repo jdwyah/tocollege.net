@@ -23,6 +23,8 @@ public abstract class AbstractSchool implements Serializable {
     private int ipedsID;
     private int opeID;
     private String housing;
+    private double latitude;
+    private double longitude;
 
     public AbstractSchool() {
     }
@@ -169,6 +171,22 @@ public abstract class AbstractSchool implements Serializable {
 
     public void setHousing(String housing) {
         this.housing = housing;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     @Override

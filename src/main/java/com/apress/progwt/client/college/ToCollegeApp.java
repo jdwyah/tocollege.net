@@ -1,5 +1,6 @@
 package com.apress.progwt.client.college;
 
+import com.apress.progwt.client.GWTApp;
 import com.apress.progwt.client.Interactive;
 import com.apress.progwt.client.college.gui.MyPage;
 import com.apress.progwt.client.domain.User;
@@ -16,8 +17,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ToCollegeApp {
-    public static final String MAIN_DIV = "slot1";
+public class ToCollegeApp extends GWTApp {
+
     private GWTSchoolServiceAsync schoolService;
     private GWTUserServiceAsync userService;
 
@@ -25,11 +26,12 @@ public class ToCollegeApp {
     private LoginService loginService;
 
     private void loadGUI(Widget widget) {
-        RootPanel.get("loading").setVisible(false);
-        RootPanel.get(MAIN_DIV).add(widget);
+        RootPanel.get(getPreLoadID()).setVisible(false);
+        RootPanel.get(getLoadID()).add(widget);
     }
 
-    public ToCollegeApp() {
+    public ToCollegeApp(int pageID) {
+        super(pageID);
         try {
 
             initConstants();
@@ -44,7 +46,8 @@ public class ToCollegeApp {
     }
 
     private void setMeUp() {
-
+        final MyPage myPage = new MyPage(this);
+        loadGUI(myPage);
         loginService.getUserOrDoLogin(new AsyncCallback<User>() {
 
             public void onFailure(Throwable caught) {
@@ -52,57 +55,24 @@ public class ToCollegeApp {
             }
 
             public void onSuccess(User result) {
-                loadGUI(new MyPage(ToCollegeApp.this, result));
+                myPage.load(result);
             }
         });
 
-        // schoolService.getAllSchools(new AsyncCallback<List<School>>() {
-        //
-        // public void onFailure(Throwable caught) {
-        // // TODO Auto-generated method stub
-        //
-        // }
+        // schoolService.getAllSchools(new StdAsyncCallback<List<School>>(
+        // "GetAllSchools") {
         //
         // public void onSuccess(List<School> result) {
+        // List<HasAddress> schoolAddrs = new ArrayList<HasAddress>();
+        // schoolAddrs.addAll(result);
         //
-        // GeoTimer geoCodeTimer = new GeoTimer(result);
-        // geoCodeTimer.scheduleRepeating(10000);
+        // BulkGeoCoder geoCodeTimer = new BulkGeoCoder(schoolAddrs,
+        // "school");
+        // geoCodeTimer.schedule(4000);
         // }
+        //
         // });
     }
-
-    // private class GeoTimer extends Timer {
-    //
-    // private List<School> schools;
-    // private Geocoder geocoder;
-    //
-    // public GeoTimer(List<School> schools) {
-    // this.schools = schools;
-    // geocoder = new Geocoder();
-    //
-    // }
-    //
-    // @Override
-    // public void run() {
-    // School school = schools.remove(0);
-    // if (school == null) {
-    // System.out.println("Finished");
-    // cancel();
-    // }
-    // final String full = school.getFullAddress();
-    // System.out.println("Fetch " + full);
-    // geocoder.getLatLng(full, new LatLngCallback() {
-    // public void onFailure() {
-    // System.out.println("Failure: " + full);
-    // }
-    //
-    // public void onSuccess(LatLng point) {
-    // System.out.println("succ : " + point);
-    // }
-    // });
-    // }
-    //
-    // }
 
     private void initConstants() {
         // ConstHolder.myConstants = (Consts) GWT.create(Consts.class);
@@ -155,8 +125,8 @@ public class ToCollegeApp {
         panel.add(new Label("Error"));
         panel.add(new Label(e.getMessage()));
 
-        RootPanel.get("loading").setVisible(false);
-        RootPanel.get("slot1").add(panel);
+        RootPanel.get(getPreLoadID()).setVisible(false);
+        RootPanel.get(getLoadID()).add(panel);
     }
 
     public LoginService getLoginService() {

@@ -26,7 +26,7 @@ public class ApplicationStatusChooserWidget extends Composite {
 
         this.serviceCache = serviceCache;
 
-        ProcessType currentStatus = application.getStatus();
+        ProcessType currentStatus = application.getCurrentStatus();
 
         lab = new Label(currentStatus.getName());
         lab.addClickListener(new ClickListener() {
@@ -46,6 +46,7 @@ public class ApplicationStatusChooserWidget extends Composite {
 
             chooseP.add(hp);
         }
+        chooseP.add(new Label("Click Status To Choose"));
         popupP = new PopupPanel(true);
         popupP.add(chooseP);
         popupP.addStyleName("TC-Popup");
@@ -62,17 +63,20 @@ public class ApplicationStatusChooserWidget extends Composite {
 
     }
 
-    private class PChooser extends Composite implements ChangeListener {
+    private class PChooser extends Composite implements ChangeListener,
+            ClickListener {
 
         private ProcessType statusType;
         private SimpleDatePicker datePicker;
+        private Label label;
 
         public PChooser(ProcessType statusType) {
             this.statusType = statusType;
 
             HorizontalPanel mainP = new HorizontalPanel();
 
-            mainP.add(new Label(statusType.getName()));
+            label = new Label(statusType.getName());
+            mainP.add(label);
             datePicker = new SimpleDatePicker();
             datePicker.setWeekendSelectable(true);
             datePicker.addChangeListener(this);
@@ -80,6 +84,8 @@ public class ApplicationStatusChooserWidget extends Composite {
             mainP.add(new Label("(Clear)"));
 
             mainP.addStyleName("TC-ProcessChooserDate");
+
+            label.addClickListener(this);
 
             initWidget(mainP);
         }
@@ -89,6 +95,10 @@ public class ApplicationStatusChooserWidget extends Composite {
 
             System.out.println(selected);
 
+        }
+
+        public void onClick(Widget sender) {
+            datePicker.setSelectedDate(new Date());
         }
     }
 }
