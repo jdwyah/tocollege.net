@@ -1,13 +1,14 @@
 package com.apress.progwt.client.exception;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+import java.io.Serializable;
 
-public class CouldntFixCGLIBException extends RuntimeException implements IsSerializable {
-	
-	public CouldntFixCGLIBException(){}
-	
-	public CouldntFixCGLIBException(String string) {
-		super(string);
-	}
+public class CouldntFixCGLIBException extends RuntimeException implements
+        Serializable {
+
+    public CouldntFixCGLIBException() {
+    }
+
+    public CouldntFixCGLIBException(String string) {
+        super(string);
+    }
 }
-

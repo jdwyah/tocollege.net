@@ -7,8 +7,11 @@ public abstract class AbstractSchool implements Serializable {
     private long id;
 
     private String name;
+
     private String address;
+
     private String city;
+
     private String state;
     private String country;
     private String zip;

@@ -169,7 +169,7 @@
           <property name="defaultTargetUrl" value="/site/index.html" />
           <property name="authenticationFailureUrl" value="/site/login.html?login_error=1" />
           <property name="authenticationManager" ref="authenticationManager"></property>
-          <property name="rememberMeServices" ref="rememberMeServices"></property>
+          <property name="rememberMeServices" ref="rememberMeServices"></property>          
      </bean>
      <bean id="openIDAuthProvider" class="org.acegisecurity.providers.openid.OpenIDAuthenticationProvider">
           <property name="ssoAuthoritiesPopulator" ref="userDAO" />

@@ -16,7 +16,7 @@
       <div class="message">      
         Your login attempt was not successful, try again.<BR><BR>
         Reason: ${login_error}<br>
-        Note: OpenID users must create a MyHippocampus account before they will be able to login. Use the signup link below.
+        Note: OpenID users just need to create a ToCollege.net account and then they will be able to login. Use the signup link below, you're seconds away!
       </div>
     </#if>
     

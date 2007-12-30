@@ -2,7 +2,6 @@ package com.apress.progwt.client.college.gui.timeline;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import com.apress.progwt.client.college.ServiceCache;
@@ -54,8 +53,8 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         private void openContextMenu() {
 
-            int x = getFocusBackdrop().getLastClickClientX();
-            int y = getFocusBackdrop().getLastClickClientY();
+            // int x = getFocusBackdrop().getLastClickClientX();
+            // int y = getFocusBackdrop().getLastClickClientY();
 
             // ContextMenu p = new TimelineContextMenu(manager,
             // ZoomableTimeline.this, x);
@@ -64,11 +63,11 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
         }
     }
 
-    private static List backGroundList = new ArrayList();
+    private static List<String> backGroundList = new ArrayList<String>();
 
     static final String IMG_POSTFIX = "timeline/";
 
-    private static List labelFormatters = new ArrayList();
+    private static List<DateTimeFormat> labelFormatters = new ArrayList<DateTimeFormat>();
 
     static final double MIN_HOUR = 60;
     static final double MIN_DAY = MIN_HOUR * 24;
@@ -93,7 +92,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
     private static final int X_SPREAD = 600;
 
     private static final int Y_SPREAD = 17;
-    private static List zoomList = new ArrayList();
+    private static List<Double> zoomList = new ArrayList<Double>();
 
     static {
         // zoomList.add(new Double(1));
@@ -154,7 +153,6 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
     private int height;
     private List<ProteanLabel> labelList = new ArrayList<ProteanLabel>();
-    private ProteanLabel ll;
 
     private Image magBig;
     private Image magSmall;
@@ -162,7 +160,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
     private TimelineRemembersPosition selectedRP;
     private CheckBox showCreated;
 
-    private GWTSortedMap<TimeLineObj<ProcessType>, Object> sorted = new GWTSortedMap();
+    private GWTSortedMap<TimeLineObj<ProcessType>, Object> sorted = new GWTSortedMap<TimeLineObj<ProcessType>, Object>();
 
     private Label whenlabel;
     private int width;
@@ -360,7 +358,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
     private String getZoomStr(double scale) {
         int index = zoomList.indexOf(new Double(scale));
-        return (String) backGroundList.get(index);
+        return backGroundList.get(index);
     }
 
     private void init() {
@@ -481,7 +479,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         int index = zoomList.indexOf(new Double(scale));
 
-        String img = (String) backGroundList.get(index);
+        String img = backGroundList.get(index);
 
         System.out.println("setBack " + scale + " " + index + " " + img);
 
@@ -576,8 +574,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         DateTimeFormat format = (DateTimeFormat) labelFormatters
                 .get(index);
-        for (Iterator iterator = labelList.iterator(); iterator.hasNext();) {
-            ProteanLabel label = (ProteanLabel) iterator.next();
+        for (ProteanLabel label : labelList) {
             label.setCenter(d2, index, format);
         }
     }

@@ -53,8 +53,15 @@
      </bean>
      <bean id="schoolService" class="com.apress.progwt.server.service.impl.SchoolServiceImpl">
           <property name="schoolDAO" ref="schoolDAO" />
+          <property name="searchService" ref="searchService"/>
           <property name="userService" ref="userService"/>
      </bean>
+     <bean id="searchService" class="com.apress.progwt.server.service.impl.SearchServiceImpl">
+        <property name="compass" ref="compass" />
+        <property name="compassGPS" ref="compassGps"/>
+        <property name="mirrorGPS" ref="hibernateGpsDevice" />        
+        <property name="userService" ref="userService" />
+    </bean>
      <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
           <property name="host" value="k2smtpout.secureserver.net" /><!-- http://help.godaddy.com/article.php?article_id=122&topic_id=120 -->
      </bean>

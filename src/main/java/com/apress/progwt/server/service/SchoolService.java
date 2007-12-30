@@ -5,6 +5,7 @@ import java.util.List;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.SiteCommand;
+import com.apress.progwt.client.domain.dto.SchoolThreads;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.domain.SchoolPopularity;
 
@@ -27,5 +28,7 @@ public interface SchoolService {
     List<ProcessType> matchProcessType(String queryString);
 
     List<School> getAllSchools();
+
+    SchoolThreads getThreads(long schoolID, int start, int max);
 
 }

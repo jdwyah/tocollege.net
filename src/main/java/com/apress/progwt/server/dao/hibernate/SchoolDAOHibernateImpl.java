@@ -10,22 +10,26 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.apress.progwt.client.domain.Bar;
 import com.apress.progwt.client.domain.Foo;
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.dto.SchoolThreads;
 import com.apress.progwt.server.dao.SchoolDAO;
 
 public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         SchoolDAO {
 
-    private static final int DEFAULT_AUTOCOMPLET_MAX = 7;
+    private int autoCompleteMax = 7;
+
     private static final Logger log = Logger
             .getLogger(SchoolDAOHibernateImpl.class);
 
@@ -81,7 +85,7 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
                 .addOrder(Order.asc("name"));
 
         List<School> list = getHibernateTemplate().findByCriteria(crit,
-                0, DEFAULT_AUTOCOMPLET_MAX);
+                0, autoCompleteMax);
 
         return list;
     }
@@ -95,7 +99,7 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
                         Order.asc("name"));
 
         List<ProcessType> list = getHibernateTemplate().findByCriteria(
-                crit, 0, DEFAULT_AUTOCOMPLET_MAX);
+                crit, 0, autoCompleteMax);
 
         return list;
 
@@ -130,4 +134,36 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
 
     }
 
+    /**
+     * Change the number of autocomplete matches that are returned.
+     * 
+     * @param autoCompleteMax
+     */
+    public void setAutoCompleteMax(int autoCompleteMax) {
+        this.autoCompleteMax = autoCompleteMax;
+    }
+
+    public int getAutoCompleteMax() {
+        return autoCompleteMax;
+    }
+
+    private int getRowCount(DetachedCriteria criteria) {
+        criteria.setProjection(Projections.rowCount());
+        return ((Integer) getHibernateTemplate().findByCriteria(criteria)
+                .get(0)).intValue();
+    }
+
+    public SchoolThreads getThreads(long schoolID, int start, int max) {
+        DetachedCriteria crit = DetachedCriteria
+                .forClass(ForumPost.class).add(
+                        Expression.eq("school.id", schoolID)).addOrder(
+                        Order.desc("date"));
+
+        List<ForumPost> posts = getHibernateTemplate().findByCriteria(
+                crit, start, max);
+
+        SchoolThreads rtn = new SchoolThreads(posts, getRowCount(crit));
+
+        return rtn;
+    }
 }

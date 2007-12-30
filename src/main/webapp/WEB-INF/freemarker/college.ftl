@@ -48,8 +48,13 @@
 			
 	<@common.box "boxStyle", "collegeMap", "Map">	
     	<#assign params = {"latitude":"${school.latitude}", "longitude":"${school.longitude}"}/>	
-		<@gwt.widget "CollegeMap", "1", params/>   
+		<@gwt.widget "CollegeMap", params/>   
 	</@common.box>
+	<@common.box "boxStyle", "collegeMap2", "Map2">  
+        <#assign params = {"latitude":"35.3", "longitude":"-91.3"}/>    
+        <@gwt.widget "CollegeMap", params/>   
+    </@common.box>
+    <@gwt.finalize/>
 		
 	<@common.box "boxStyle", "forums", "Forums">
 		

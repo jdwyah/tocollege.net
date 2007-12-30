@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="com.apress.progwt.client.domain">
+
+	<class name="ForumPost" table="forumposts" discriminator-value="abstractForumPost">
+		<meta attribute="generated-class">com.apress.progwt.server.domain.generated.AbstractForumPost</meta>
+		<meta attribute="scope-class">public abstract</meta>
+
+		<id name="id" type="long" column="id">
+			<generator class="native"></generator>
+		</id>
+          
+        <discriminator column="discriminator" type="string"></discriminator>
+		
+		<property name="postString" type="string" column="postString" />
+        <property name="postTitle" type="string" column="postTitle" />
+		
+		<property name="date" type="java.util.Date" />
+	
+		<many-to-one name="user" class="com.apress.progwt.client.domain.User" column="user_id" lazy="false"/>
+		<many-to-one name="school" class="com.apress.progwt.client.domain.School" column="school_id" lazy="false"/>
+        <many-to-one name="author" class="com.apress.progwt.client.domain.User" column="author_id" lazy="false"/>
+	    <many-to-one name="threadPost" class="com.apress.progwt.client.domain.ForumPost" column="thread_id" lazy="proxy"/>
+	
+        <subclass name="SchoolForumPost" discriminator-value="schoolForumPost">
+            <meta attribute="generated-class" inherit="false">com.aavu.client.domain.generated.AbstractJUNK</meta>
+        </subclass>
+        <subclass name="UserForumPost" discriminator-value="userForumPost">
+            <meta attribute="generated-class" inherit="false">com.aavu.client.domain.generated.AbstractJUNK</meta>
+        </subclass>
+     
+	</class>
+
+</hibernate-mapping>

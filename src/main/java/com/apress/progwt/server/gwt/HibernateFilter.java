@@ -11,7 +11,8 @@ import org.hibernate.collection.PersistentBag;
 import org.hibernate.collection.PersistentList;
 import org.hibernate.collection.PersistentMap;
 import org.hibernate.collection.PersistentSet;
-import org.hibernate.proxy.pojo.cglib.CGLIBLazyInitializer;
+import org.hibernate.proxy.HibernateProxy;
+import org.hibernate.proxy.LazyInitializer;
 
 public class HibernateFilter {
     private static final Logger log = Logger
@@ -62,10 +63,18 @@ public class HibernateFilter {
 
             if (Hibernate.isInitialized(instance)) {
 
-                CGLIBLazyInitializer cg = (CGLIBLazyInitializer) instance;
-                log.warn("On The Fly initialization: "
-                        + cg.getEntityName());
-                return cg.getImplementation();
+                try {
+                    HibernateProxy hp = (HibernateProxy) instance;
+                    LazyInitializer li = hp.getHibernateLazyInitializer();
+                    log.warn("On The Fly initialization: "
+                            + li.getEntityName());
+                    return li.getImplementation();
+
+                } catch (ClassCastException c) {
+                    log.error("error casting to HibernateProxy "
+                            + instance);
+                    return null;
+                }
 
                 // Hibernate.initialize(instance);
                 //

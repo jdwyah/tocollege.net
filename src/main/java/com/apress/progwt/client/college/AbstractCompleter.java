@@ -7,23 +7,23 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.KeyboardListenerAdapter;
 import com.google.gwt.user.client.ui.SuggestBox;
-import com.google.gwt.user.client.ui.SuggestOracle;
 import com.google.gwt.user.client.ui.SuggestionEvent;
 import com.google.gwt.user.client.ui.SuggestionHandler;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.SuggestOracle.Callback;
 import com.google.gwt.user.client.ui.SuggestOracle.Request;
 import com.google.gwt.user.client.ui.SuggestOracle.Response;
+import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 
-public class AbstractCompleter<T> extends Composite {
+public abstract class AbstractCompleter<T> extends Composite {
 
-    private SuggestOracle oracle;
+    private AbstractSuggestOracle oracle;
     private CompleteListener<T> completeListener;
     private SuggestBox suggestBox;
 
     private Timer keyboardEnterTimer;
 
-    public AbstractCompleter(SuggestOracle oracle,
+    public AbstractCompleter(AbstractSuggestOracle oracle,
             CompleteListener<T> completeListener) {
         super();
         this.oracle = oracle;
@@ -91,13 +91,14 @@ public class AbstractCompleter<T> extends Composite {
                     public void onSuggestionsReady(Request request,
                             Response response) {
 
-                        SuggestionExt rObj = (SuggestionExt) response
-                                .getSuggestions().iterator().next();
+                        Suggestion sugg = response.getSuggestions()
+                                .iterator().next();
 
                         System.out
                                 .println("AbstractCompleter.complete response "
-                                        + rObj);
-                        completeListener.completed((T) rObj.getValue());
+                                        + sugg);
+                        completeListener.completed((T) oracle
+                                .getValueFromSuggestion(sugg));
                         suggestBox.setText("");
                     }
                 });
@@ -130,4 +131,5 @@ public class AbstractCompleter<T> extends Composite {
         });
 
     }
+
 }

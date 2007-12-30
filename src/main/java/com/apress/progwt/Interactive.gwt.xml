@@ -20,5 +20,5 @@
     <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAA6k005Q8HxzHfW1quTBpGbBTptlCPWuogQGEd6ELvQALNyQc3NBQeHOaiGCjJh1MrBRzgV2lZid74JA"></script>
 	
      <!-- only compile 1 browser -->
-	<!-- <set-property name="user.agent" value="ie6"/> -->
+	<!-- <set-property name="user.agent" value="gecko,ie6"/> --> 
 </module>

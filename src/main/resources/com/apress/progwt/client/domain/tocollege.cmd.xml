@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE compass-core-meta-data PUBLIC 
+    "-//Compass/Compass Core Meta Data DTD 1.0//EN"
+    "http://www.opensymphony.com/compass/dtd/compass-core-meta-data.dtd">
+
+<compass-core-meta-data>
+	<meta-data-group id="tocollege" displayName="ToCollege.net Meta Data">
+
+		<description>ToCollege.net Meta Data</description>
+		<uri>http://tocollege.net/tocollege</uri>
+	
+		<meta-data id="text" displayName="Text">
+			<description>The search part of an object</description>
+			<uri>http://tocollege.net/tocollege/text</uri>
+			<name>text</name>
+		</meta-data>
+		
+        <meta-data id="schoolname" displayName="Schoolname">
+            <description>School Alias</description>
+            <uri>http://tocollege.net/tocollege/schoolname</uri>
+            <name>schoolname</name>
+        </meta-data>
+        
+        <meta-data id="schoolID" displayName="SchoolID">
+            <description>School ID</description>
+            <uri>http://tocollege.net/tocollege/schoolID</uri>
+            <name>schoolID</name>
+        </meta-data>
+    
+          
+		<meta-data id="username" displayName="Username">
+			<description>User Alias</description>
+			<uri>http://tocollege.net/tocollege/username</uri>
+			<name>username</name>
+		</meta-data>
+		
+		<meta-data id="userID" displayName="UserID">
+			<description>User ID</description>
+			<uri>http://tocollege.net/tocollege/userID</uri>
+			<name>userID</name>
+		</meta-data>
+		
+	</meta-data-group>
+
+
+</compass-core-meta-data>

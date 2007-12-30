@@ -15,8 +15,6 @@ public class CalculatorApp extends GWTApp {
         super(pageID);
         try {
 
-            initServices();
-
             setMeUp();
 
         } catch (Exception e) {
@@ -26,10 +24,6 @@ public class CalculatorApp extends GWTApp {
 
     private void setMeUp() {
         loadGUI(new Calculator());
-    }
-
-    private void initServices() {
-
     }
 
 }

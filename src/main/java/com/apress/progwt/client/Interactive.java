@@ -3,7 +3,8 @@ package com.apress.progwt.client;
 import com.apress.progwt.client.calculator.CalculatorApp;
 import com.apress.progwt.client.college.ToCollegeApp;
 import com.apress.progwt.client.exception.MyUncaughtExceptionHandler;
-import com.apress.progwt.client.map.CollegeMap;
+import com.apress.progwt.client.forum.Forum;
+import com.apress.progwt.client.map.CollegeMapApp;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -58,8 +59,8 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-                                               $wnd.urchinTracker(pageName);
-                                           }-*/;
+                                                                                $wnd.urchinTracker(pageName);
+                                                                            }-*/;
 
     /**
      * EntryPoint. Dispatch based on javascript dictionary that tells us
@@ -76,20 +77,26 @@ public class Interactive implements EntryPoint {
 
             Dictionary dictionary = Dictionary.getDictionary("Vars");
 
-            String page = dictionary.get("page");
-            String pageIDStr = dictionary.get("pageIDNum");
-            int pageID = Integer.parseInt(pageIDStr);
+            String widgetCountStr = dictionary.get("widgetCount");
+            int widgetCount = Integer.parseInt(widgetCountStr);
 
-            if (page.equals("Calculator")) {
-                CalculatorApp m = new CalculatorApp(pageID);
-            } else if (page.equals("CollegeBound")) {
-                Logger.log("Do CollegeBound");
-                ToCollegeApp c = new ToCollegeApp(pageID);
-            } else if (page.equals("CollegeMap")) {
-                Logger.log("Do CollegeMap");
-                CollegeMap c = new CollegeMap(pageID);
-            } else {
-                throw new Exception("Vars['page'] not set.");
+            for (int currentWidget = 1; currentWidget <= widgetCount; currentWidget++) {
+                String widget = dictionary.get("widget_" + currentWidget);
+                if (widget.equals("Calculator")) {
+                    CalculatorApp m = new CalculatorApp(currentWidget);
+                } else if (widget.equals("CollegeBound")) {
+                    Logger.log("Do CollegeBound");
+                    ToCollegeApp c = new ToCollegeApp(currentWidget);
+                } else if (widget.equals("CollegeMap")) {
+                    Logger.log("Do CollegeMap");
+                    CollegeMapApp c = new CollegeMapApp(currentWidget);
+                } else if (widget.equals("SchoolForum")) {
+                    Logger.log("Do School Forum");
+                    Forum c = new Forum(currentWidget);
+                } else {
+                    throw new Exception("Vars['widget_" + currentWidget
+                            + "] not set.");
+                }
             }
 
         } catch (Exception e) {
@@ -107,5 +114,4 @@ public class Interactive implements EntryPoint {
         }
 
     }
-
 }

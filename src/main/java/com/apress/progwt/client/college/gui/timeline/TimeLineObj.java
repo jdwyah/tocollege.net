@@ -1,10 +1,9 @@
 package com.apress.progwt.client.college.gui.timeline;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
-public class TimeLineObj<T> implements IsSerializable,
+public class TimeLineObj<T> implements Serializable,
         Comparable<TimeLineObj<T>> {
 
     private static final long DIV = 60000;

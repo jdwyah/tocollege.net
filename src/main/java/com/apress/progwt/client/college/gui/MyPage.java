@@ -3,6 +3,7 @@ package com.apress.progwt.client.college.gui;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.ToCollegeApp;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.map.MyCollegeMap;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SourcesTabEvents;
@@ -23,6 +24,8 @@ public class MyPage extends Composite implements TabListener {
 
     private MyDecision myPriorities;
 
+    private MyCollegeMap myCollegeMap;
+
     public MyPage(ToCollegeApp collegeBoundApp) {
 
         serviceCache = collegeBoundApp.getServiceCache();
@@ -38,6 +41,9 @@ public class MyPage extends Composite implements TabListener {
 
         myPriorities = new MyDecision(serviceCache);
         mainPanel.add(myPriorities, "My Decision");
+
+        myCollegeMap = new MyCollegeMap(serviceCache);
+        mainPanel.add(myCollegeMap, "College Map");
 
         mainPanel.addTabListener(this);
         initWidget(mainPanel);
@@ -69,7 +75,7 @@ public class MyPage extends Composite implements TabListener {
         myRankings.load(user);
         myApplications.load(user);
         myPriorities.load(user);
-
+        myCollegeMap.load(user);
     }
 
 }

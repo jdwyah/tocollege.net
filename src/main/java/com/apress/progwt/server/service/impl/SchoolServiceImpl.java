@@ -13,10 +13,12 @@ import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.CommandService;
 import com.apress.progwt.client.domain.commands.SiteCommand;
+import com.apress.progwt.client.domain.dto.SchoolThreads;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.domain.SchoolPopularity;
 import com.apress.progwt.server.service.SchoolService;
+import com.apress.progwt.server.service.SearchService;
 import com.apress.progwt.server.service.UserService;
 
 @Transactional
@@ -28,6 +30,7 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     private SchoolDAO schoolDAO;
 
     private UserService userService;
+    private SearchService searchService;
 
     public School getSchoolDetails(String schoolname) {
 
@@ -144,8 +147,12 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return schoolDAO.getAllSchools().subList(0, 10);
     }
 
+    /**
+     * Search for "match*" using searchService
+     */
     public List<School> getSchoolsMatching(String match) {
-        return schoolDAO.getSchoolsMatching(match);
+        return searchService.searchForSchool(match);
+        // return schoolDAO.getSchoolsMatching(match);
     }
 
     public List<ProcessType> matchProcessType(String queryString) {
@@ -160,6 +167,15 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     public <T> T get(Class<T> clazz, long id) {
         return (T) schoolDAO.get((Class<? extends Loadable>) clazz, id);
 
+    }
+
+    public SchoolThreads getThreads(long schoolID, int start, int max) {
+        return schoolDAO.getThreads(schoolID, start, max);
+    }
+
+    @Required
+    public void setSearchService(SearchService searchService) {
+        this.searchService = searchService;
     }
 
 }

@@ -30,6 +30,7 @@
                 <value>com/apress/progwt/client/domain/RatingType.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/Foo.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/Bar.hbm.xml</value>
+                <value>com/apress/progwt/client/domain/ForumPost.hbm.xml</value>                
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -81,7 +82,51 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	
+	<!--  COMPASS START -->
+  
+  
+    <bean id="compass" class="org.compass.spring.LocalCompassBean">
+        <property name="resourceLocations">
+            <list>
+<!--                 <value>classpath:com/apress/progwt/client/domain/tocollege.cmd.xml</value> --> 
+                <value>classpath:com/apress/progwt/client/domain/tocollege.cpm.xml</value>
+            </list>
+        </property>
+        <!-- <property name="classMappings">
+             <list>
+                  <value>com.apress.progwt.client.domain.School</value>                  
+                  <value>com.apress.progwt.client.domain.generated.AbstractSchool</value>                  
+             </list>
+        </property> -->
+
+        <property name="compassSettings">
+            <props>
+                <prop key="compass.engine.connection">${HOST.compass.repo}</prop>
+                <prop key="compass.transaction.factory">org.compass.spring.transaction.SpringSyncTransactionFactory</prop>
+                <prop key="compass.converter.html.type">com.apress.progwt.server.lucene.HTMLConverter</prop>
+                <prop key="compass.engine.analyzer.html.type">com.apress.progwt.server.lucene.HTMLAnalyzer</prop>
+                <prop key="compass.engine.analyzer.default.type">Snowball</prop>
+                <prop key="compass.engine.analyzer.default.name">English</prop> 
+            </props>
+        </property>       
+        <property name="transactionManager" ref="txManager"/>        
+    </bean>    
+    <bean id="hibernateGpsDevice" class="org.compass.gps.device.hibernate.HibernateGpsDevice">
+      <property name="name"><value>hibernateDevice</value></property>
+      <property name="sessionFactory"><ref local="sessionFactory" /></property>
+      <property name="nativeExtractor"><bean class="org.compass.spring.device.hibernate.SpringNativeHibernateExtractor" /></property>
+    </bean>
+     <bean id="compassGps" class="org.compass.gps.impl.SingleCompassGps" init-method="start" destroy-method="stop">
+       <property name="compass"><ref bean="compass" /></property>
+       <property name="gpsDevices">
+         <list>
+             <bean class="org.compass.spring.device.SpringSyncTransactionGpsDeviceWrapper">
+                 <property name="gpsDevice" ref="hibernateGpsDevice" />
+             </bean>
+         </list>
+       </property>
+     </bean>    
+    <!--  COMPASS END -->
 	
 
 </beans>

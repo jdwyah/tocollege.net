@@ -3,7 +3,7 @@ package com.apress.progwt.server.domain;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.apress.progwt.client.domain.Post;
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.service.SchoolService;
@@ -14,7 +14,7 @@ public class FrontPageData {
     private List<School> topSchools;
     private List<SchoolPopularity> popularSchools;
     private List<User> topUsers;
-    private List<Post> forumPosts;
+    private List<ForumPost> forumPosts;
 
     public FrontPageData(UserService userService,
             SchoolService schoolService) {
@@ -23,7 +23,7 @@ public class FrontPageData {
         setPopularSchools(schoolService.getPopularSchools());
 
         setTopUsers(userService.getTopUsers());
-        forumPosts = new LinkedList<Post>();
+        forumPosts = new LinkedList<ForumPost>();
     }
 
     public List<School> getTopSchools() {
@@ -50,11 +50,11 @@ public class FrontPageData {
         this.topUsers = topUsers;
     }
 
-    public List<Post> getForumPosts() {
+    public List<ForumPost> getForumPosts() {
         return forumPosts;
     }
 
-    public void setForumPosts(List<Post> forumPosts) {
+    public void setForumPosts(List<ForumPost> forumPosts) {
         this.forumPosts = forumPosts;
     }
 

@@ -2,6 +2,7 @@ package com.apress.progwt.client.college;
 
 import java.util.List;
 
+import com.apress.progwt.client.GWTApp;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
@@ -17,9 +18,9 @@ public class ServiceCache {
     private GWTUserServiceAsync userService;
     private GWTSchoolServiceAsync schoolService;
 
-    public ServiceCache(ToCollegeApp collegeBoundApp) {
-        this.schoolService = collegeBoundApp.getSchoolService();
-        this.userService = collegeBoundApp.getUserService();
+    public ServiceCache(GWTApp gwtApp) {
+        this.schoolService = gwtApp.getSchoolService();
+        this.userService = gwtApp.getUserService();
     }
 
     public void match(String query,

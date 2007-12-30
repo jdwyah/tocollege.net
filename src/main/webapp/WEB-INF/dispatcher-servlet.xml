@@ -44,8 +44,10 @@
           <property name="userService" ref="userService" />          
      </bean>
      
+     <!-- maps to login.html will be seen on failed logins -->
+	 <bean id="loginController" class="com.apress.progwt.server.web.controllers.LoginController"></bean>
      
-	<bean id="loginController" class="com.apress.progwt.server.web.controllers.LoginController"></bean>
+     
      <bean id="signupIfPossibleController" class="com.apress.progwt.server.web.controllers.SignupIfPossibleController">
           <property name="mailingListView" value="redirect:/site/mailinglist.html" />
           <property name="invitationService" ref="invitationService" />
@@ -64,6 +66,12 @@
           <property name="validator" ref="createUserValidator" />
           <property name="userService" ref="userService" />
           <property name="invitationService" ref="invitationService" />
+     </bean>
+
+     <bean id="openIDLoginStartController" class="com.apress.progwt.server.web.controllers.OpenIDLoginController">
+          <property name="consumer" ref="openIDConsumer" />
+          <property name="trustRoot" value="${HOST.openID.trustRoot}" />
+          <property name="identityField" value="openid_url" />
      </bean>
 
 
@@ -93,19 +101,15 @@
 				<prop key="/site/accessDenied.html">errorController</prop>
 				<prop key="/site/servletErrorView.html">errorController</prop>						
 
-							
+			    <prop key="/site/j_acegi_openid_start">openIDLoginStartController</prop>
+                    
 				<prop key="/site/clear.cache.gif">forwardClearCacheController</prop>
 				<prop key="/site/secure/clear.cache.gif">forwardClearCacheController</prop>
 
 				
 			</props>
 		</property>
-
 	</bean>
-
-	
-
-
 
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" abstract="false"

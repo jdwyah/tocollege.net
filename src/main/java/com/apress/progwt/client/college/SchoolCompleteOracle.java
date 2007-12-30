@@ -7,9 +7,9 @@ import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.rpc.EZCallback;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public class SchoolCompleteOracle extends AbstractSuggestOracle {
+public class SchoolCompleteOracle extends AbstractSuggestOracle<School> {
 
-    protected class SchoolSuggestion implements SuggestionExt {
+    protected class SchoolSuggestion implements Suggestion {
         private final School value;
         private String query;
 
@@ -27,7 +27,7 @@ public class SchoolCompleteOracle extends AbstractSuggestOracle {
             return value.getName();
         }
 
-        public Object getValue() {
+        public School getValue() {
             return value;
         }
     }
@@ -68,6 +68,11 @@ public class SchoolCompleteOracle extends AbstractSuggestOracle {
     @Override
     public boolean isDisplayStringHTML() {
         return true;
+    }
+
+    @Override
+    public School getValueFromSuggestion(Suggestion sugg) {
+        return ((SchoolSuggestion) sugg).getValue();
     }
 
 }

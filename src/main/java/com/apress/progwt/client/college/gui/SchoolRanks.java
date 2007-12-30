@@ -16,7 +16,6 @@ public class SchoolRanks extends Composite {
     private User thisUser;
 
     public SchoolRanks() {
-        this.thisUser = thisUser;
         VerticalPanel mainPanel = new VerticalPanel();
         mainPanel.add(new Label("Rankings"));
 

@@ -7,9 +7,10 @@ import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.rpc.EZCallback;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public class ProcessCompleteOracle extends AbstractSuggestOracle {
+public class ProcessCompleteOracle extends
+        AbstractSuggestOracle<ProcessType> {
 
-    protected class ProcessSuggestion implements SuggestionExt {
+    protected class ProcessSuggestion implements Suggestion {
         private final ProcessType value;
         private String query;
 
@@ -27,7 +28,7 @@ public class ProcessCompleteOracle extends AbstractSuggestOracle {
             return value.getName();
         }
 
-        public Object getValue() {
+        public ProcessType getValue() {
             return value;
         }
     }
@@ -70,6 +71,11 @@ public class ProcessCompleteOracle extends AbstractSuggestOracle {
     @Override
     public boolean isDisplayStringHTML() {
         return true;
+    }
+
+    @Override
+    public ProcessType getValueFromSuggestion(Suggestion sugg) {
+        return ((ProcessSuggestion) sugg).getValue();
     }
 
 }

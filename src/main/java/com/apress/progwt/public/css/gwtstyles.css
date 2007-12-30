@@ -36,16 +36,19 @@ a:visited {
 
 .CalcButton {
 	background-color: #DDDDDD;
-	color: white;	
+	color: white;
 	border: 4px solid #D8E3FD;
 	border-style: ridge;
 }
+
 .ControlButton {
 	width: 40px;
 }
+
 .NumberButton {
 	width: 10px;
 }
+
 .ResultBox {
 	text-align: right;
 }
@@ -54,71 +57,98 @@ a:visited {
 	left: 200px;
 	font-size: 12pt;
 }
+
 .TC-App-CheckBoxes {
 	position: absolute;
 	left: 200px;
 }
+
 .TC-App-CheckBox {
 	width: 50px;
 	background-color: #CDD6EA;
 }
 
-.TC-App-CheckBox Even{	
+.TC-App-CheckBox Even {
 	background-color: #D5EDE6;
 }
+
 .TC-CollegEntry {
 	border: 1px solid #87B3FF;
 	background-color: #EEEEEE;
 	padding: 4px;
 	min-width: 300px;
 }
+
 .TC-CollegeEntry-RankLabel {
 	font-size: 20pt;
 }
+
 .TC-DecisionRanked {
 	background-color: #CDD6EA;
 }
+
 .TC-DecisionRanked-Even {
 	background-color: #D5EDE6;
 }
+
 .TC-DecisionRanked-Rank {
 	background-color: white;
 	font-size: 18pt;
 }
+
 .TC-DecisionRanked-Pct {
 	left: 40px;
 	font-size: 18pt;
 }
+
 .TC-Popup {
-  background-color: white;
-  border: 1px solid #87B3FF;
-  padding: 4px;
+	background-color: white;
+	border: 1px solid #87B3FF;
+	padding: 4px;
 }
+
 .TC-Popup-Status {
+	
 }
-.Rating {		
+
+.Rating {
 	height: 25px;
 	line-height: 25px;
 	vertical-align: middle;
-	font-size: 7pt;		
+	font-size: 7pt;
 }
-.RatingChooser {	
-	cursor: pointer;
-}
+
 .Rating-Hover {
 	font-size: 15pt;
 }
+
 .Rating-Selected {
 	font-weight: bold;
 	font-size: 10pt;
 }
-.ProConPanel {
+
+.RatingChooser {
+    cursor: pointer;
 }
+
+.ProConPanel {
+	
+}
+
 .ProConPanel-Pro {
 	background-color: #99FF99;
 }
+
 .ProConPanel-Con {
 	background-color: #FF9999;
+}
+
+.gwt-DialogBox {
+	border: 1px solid #C3D9FF;
+}
+
+.gwt-DialogBox .Caption {
+	background-color: white;
 }
 
 .gwt-SuggestBoxPopup {
@@ -136,161 +166,166 @@ a:visited {
 	background-color: #C3D9FF;
 	padding: 1px;
 }
-.gwt-TabPanel .gwt-TabBar {	
+
+.gwt-TabPanel .gwt-TabBar {
 	border-bottom: 1px solid #8A8FB5;
 }
-.gwt-TabPanel .gwt-TabBar .gwt-TabBarFirst { 
-   
-} 
-.gwt-TabPanel .gwt-TabBar .gwt-TabBarSpacer { 
-   
-} 
-.gwt-TabPanel .gwt-TabBar .gwt-TabBarRest { 
-   
-} 
-.gwt-TabPanel .gwt-TabBar .gwt-TabBarItem { 
+
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarFirst {
+	
+}
+
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarSpacer {
+	
+}
+
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarRest {
+	
+}
+
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarItem {
 	padding: 4px;
-    cursor: pointer; 
-    border-bottom: 1px solid #5a6782; 
-    color: white; 
-    background-color: #879bc3; 
-} 
-.gwt-TabPanel .gwt-TabBar .gwt-TabBarItem-selected { 
-    cursor: pointer; 
-    border-top: 1px solid #5a6782; 
-    border-left: 1px solid #5a6782; 
-    border-right: 1px solid #5a6782; 
-    background-color: #cdd6ea; 
-} 
-.gwt-TabPanel .gwt-TabPanelBottom { 
-    border-left: 1px solid #5a6782; 
-    border-right: 1px solid #5a6782; 
-    border-bottom: 1px solid #5a6782; 
-    /*background-color: #cdd6ea;*/ 
-} 
+	cursor: pointer;
+	border-bottom: 1px solid #5a6782;
+	color: white;
+	background-color: #879bc3;
+}
 
+.gwt-TabPanel .gwt-TabBar .gwt-TabBarItem-selected {
+	cursor: pointer;
+	border-top: 1px solid #5a6782;
+	border-left: 1px solid #5a6782;
+	border-right: 1px solid #5a6782;
+	background-color: #cdd6ea;
+}
 
+.gwt-TabPanel .gwt-TabPanelBottom {
+	border-left: 1px solid #5a6782;
+	border-right: 1px solid #5a6782;
+	border-bottom: 1px solid #5a6782;
+	/*background-color: #cdd6ea;*/
+}
 
 TABLE.monthDates TD {
-    text-align: center;
+	text-align: center;
 }
 
 TABLE.longRange TD {
-    text-align: center;
-    border-top: 1px solid gray cursor :     pointer;
-    cursor: hand;
+	text-align: center;
+	border-top: 1px solid gray cursor :       pointer;
+	cursor: hand;
 }
 
 .longRange {
-    border-bottom: 1px solid gray;
-    border-right: 1px solid gray;
-    border-left: 1px solid gray;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+	border-left: 1px solid gray;
 }
 
 .txtbox {
-    font-family: tahoma, sans-serif;
-    font-size: 11px;
-    color: #104A7B;
-    background: #FFFFFF;
-    border-bottom: 1px solid #336699;
-    border-right: 1px solid #336699;
-    border-left: 1px solid #336699;
-    border-top: 1px solid #336699;
+	font-family: tahoma, sans-serif;
+	font-size: 11px;
+	color: #104A7B;
+	background: #FFFFFF;
+	border-bottom: 1px solid #336699;
+	border-right: 1px solid #336699;
+	border-left: 1px solid #336699;
+	border-top: 1px solid #336699;
 }
 
 .date_DisplayPanel {
-    font-family: tahoma, sans-serif;
-    font-size: 11px;
-    /*background-image: url("../img/blueFade.png");*/
-    background-repeat: repeat-x;
-    background-position: 0px -20px;
-    background-color: #CFE0F5;
-    /*background: #9393AF;*/
-    z-index: 9999;
+	font-family: tahoma, sans-serif;
+	font-size: 11px;
+	/*background-image: url("../img/blueFade.png");*/
+	background-repeat: repeat-x;
+	background-position: 0px -20px;
+	background-color: #CFE0F5;
+	/*background: #9393AF;*/
+	z-index: 9999;
 }
 
 .calendarPanel {
-    border-right: 1px solid gray;
-    border-left: 1px solid gray;
-    border-top: 1px solid gray;
+	border-right: 1px solid gray;
+	border-left: 1px solid gray;
+	border-top: 1px solid gray;
 }
 
 .date_popupPanel {
-    z-index: 9999;
+	z-index: 9999;
 }
 
 .todayPanel {
-    font-family: tahoma, sans-serif;
-    font-size: 11px;
-    /*float: right;*/
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    border-right: 1px solid gray;
-    border-left: 1px solid gray;
-    text-decoration: underline;
-    cursor: pointer;
-    cursor: hand;
-    text-align: center;
+	font-family: tahoma, sans-serif;
+	font-size: 11px;
+	/*float: right;*/
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	border-right: 1px solid gray;
+	border-left: 1px solid gray;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+	text-align: center;
 }
 
 .monthHeader {
-    font-family: tahoma, sans-serif;
-    font-size: 10px;
-    font-weight: BOLD;
-    text-align: center;
+	font-family: tahoma, sans-serif;
+	font-size: 10px;
+	font-weight: BOLD;
+	text-align: center;
 }
 
 .monthHeaderHoliday {
-    font-family: tahoma, sans-serif;
-    font-size: 10px;
-    font-weight: BOLD;
-    color: CCCCCC;
-    text-align: center;
+	font-family: tahoma, sans-serif;
+	font-size: 10px;
+	font-weight: BOLD;
+	color: CCCCCC;
+	text-align: center;
 }
 
 .holiday {
-    font-family: Arial, tahoma, sans-serif;
-    font-size: 10px;
-    color: grey;
-    text-align: center;
+	font-family: Arial, tahoma, sans-serif;
+	font-size: 10px;
+	color: grey;
+	text-align: center;
 }
 
 .holidaySelectable {
-    color: CCCCCC;
+	color: CCCCCC;
 }
 
 .calendarDate {
-    font-family: Arial, tahoma, sans-serif;
-    font-size: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    cursor: hand;
+	font-family: Arial, tahoma, sans-serif;
+	font-size: 10px;
+	text-decoration: none;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .selectedDate {
-    color: white;
-    /*background-color: #B2C4F2;*/
+	color: white;
+	/*background-color: #B2C4F2;*/
 }
 
 .monthYearTraversorBtn {
-    color: white;
-    font-family: tahoma, sans-serif;
-    font-size: 11px;
-    background: #104A7B;
-    font-weight: bold;
-    border-right: 0px solid gray;
-    border-left: 0px solid gray;
-    border-bottom: 0px solid gray;
-    border-top: 0px solid gray;
-    cursor: pointer;
-    cursor: hand;
+	color: white;
+	font-family: tahoma, sans-serif;
+	font-size: 11px;
+	background: #104A7B;
+	font-weight: bold;
+	border-right: 0px solid gray;
+	border-left: 0px solid gray;
+	border-bottom: 0px solid gray;
+	border-top: 0px solid gray;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .monthYearTraversor {
-    font-family: Arial, tahoma, sans-serif;
-    font-size: 11px;
-    background: #104A7B;
-    color: #FFFFFF;
-    font-weight: bold;
+	font-family: Arial, tahoma, sans-serif;
+	font-size: 11px;
+	background: #104A7B;
+	color: #FFFFFF;
+	font-weight: bold;
 }

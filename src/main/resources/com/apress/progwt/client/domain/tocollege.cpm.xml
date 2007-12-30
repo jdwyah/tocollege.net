@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE compass-core-mapping PUBLIC
+    "-//Compass/Compass Core Mapping DTD 1.0//EN"
+    "http://www.opensymphony.com/compass/dtd/compass-core-mapping.dtd">
+
+<compass-core-mapping package="com.apress.progwt.client.domain">
+
+	<!-- HTML issue -->
+	<!-- http://forums.opensymphony.com/thread.jspa?forumID=37&threadID=47295 -->
+	
+	<!-- securing results  -->
+	<!-- http://forums.opensymphony.com/thread.jspa?messageID=75608&#75608 -->
+	<!-- http://forums.opensymphony.com/thread.jspa?messageID=49742&#49742 -->
+	<class name="User" alias="User" extends="entity" root="false">
+		<property name="username">
+			<meta-data>username</meta-data>
+		</property>		
+	</class>
+
+	<contract alias="userSecured">
+		<component name="user" ref-alias="User" />
+	</contract>
+
+	<contract alias="entity">
+		<id name="id" />	
+	</contract>
+
+	<class name="School" alias="School" extends="entity">
+		<property name="name">
+			<meta-data>name</meta-data>
+		</property>
+    </class>
+    <class name="ForumPost" alias="ForumPost" extends="entity">
+        <property name="postString">
+            <meta-data>postString</meta-data>
+        </property>
+        <property name="postTitle">
+            <meta-data>postTitle</meta-data>
+        </property>
+        <component name="school" ref-alias="School" />        
+    </class>
+	
+
+</compass-core-mapping>

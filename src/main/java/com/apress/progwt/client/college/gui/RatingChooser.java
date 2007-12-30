@@ -37,7 +37,7 @@ public class RatingChooser extends Composite implements
             mainPanel.add(digit, i * X_SPACING, 0);
         }
         mainPanel.setPixelSize(X_SPACING * ELEMENTS + FUDGE, HEIGHT);
-        mainPanel.setStyleName("RatingChooser");
+        mainPanel.setStylePrimaryName("RatingChooser");
         initWidget(mainPanel);
     }
 
@@ -68,15 +68,15 @@ public class RatingChooser extends Composite implements
         public Digit(int value) {
             super(value + "");
             this.value = value;
-            setStyleName("Rating");
+            setStylePrimaryName("Rating");
             addMouseListener(this);
         }
 
         public void setSelected(boolean b) {
             if (b) {
-                addStyleName("Rating-Selected");
+                addStyleDependentName("Selected");
             } else {
-                removeStyleName("Rating-Selected");
+                removeStyleDependentName("Selected");
             }
         }
 
@@ -89,11 +89,11 @@ public class RatingChooser extends Composite implements
         }
 
         public void onMouseEnter(Widget sender) {
-            addStyleName("Rating-Hover");
+            addStyleDependentName("Hover");
         }
 
         public void onMouseLeave(Widget sender) {
-            removeStyleName("Rating-Hover");
+            removeStyleDependentName("Hover");
         }
 
         public void onMouseMove(Widget sender, int x, int y) {

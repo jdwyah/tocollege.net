@@ -23,7 +23,8 @@
   	 
 	
 	<@common.box "boxStyle", "myList", "MyList">
-		<@gwt.widget "CollegeBound"/>			
+		<@gwt.widget "CollegeBound"/>		
+		<@gwt.finalize/>	
 	</@common.box>	
 	
 	

@@ -104,7 +104,7 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
             }
         } else {
             log.debug("load user success " + users.get(0));
-            User u = (User) users.get(0);
+            User u = users.get(0);
             return new ServerSideUser(u);
         }
     }

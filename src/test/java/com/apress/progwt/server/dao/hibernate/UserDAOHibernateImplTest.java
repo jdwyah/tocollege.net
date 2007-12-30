@@ -127,7 +127,7 @@ public class UserDAOHibernateImplTest extends
         u.setUsername(A);
         u.setPassword(A);
 
-        List<User> list = userDAO.getAllUsers();
+        // List<User> list = userDAO.getAllUsers();
 
         userDAO.save(u);
 

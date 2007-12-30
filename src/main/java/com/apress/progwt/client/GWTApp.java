@@ -1,6 +1,15 @@
 package com.apress.progwt.client;
 
+import com.apress.progwt.client.college.LoginService;
+import com.apress.progwt.client.college.ServiceCache;
+import com.apress.progwt.client.service.remote.GWTSchoolService;
+import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
+import com.apress.progwt.client.service.remote.GWTUserService;
+import com.apress.progwt.client.service.remote.GWTUserServiceAsync;
 import com.apress.progwt.client.util.Logger;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.Dictionary;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -9,6 +18,12 @@ import com.google.gwt.user.client.ui.Widget;
 public class GWTApp {
 
     private int pageID;
+
+    private GWTSchoolServiceAsync schoolService;
+    private GWTUserServiceAsync userService;
+
+    private ServiceCache serviceCache;
+    private LoginService loginService;
 
     public GWTApp(int pageID) {
         this.pageID = pageID;
@@ -24,6 +39,11 @@ public class GWTApp {
 
     private static String getLoadID(int id) {
         return "gwt-slot-" + id;
+    }
+
+    protected String getParam(String string) {
+        Dictionary dictionary = Dictionary.getDictionary("Vars");
+        return dictionary.get(string + "_" + pageID);
     }
 
     private static String getPreLoadID(int id) {
@@ -50,7 +70,50 @@ public class GWTApp {
     }
 
     public static void show(int id, Widget panel) {
-        RootPanel.get(getPreLoadID(1)).setVisible(false);
-        RootPanel.get(getLoadID(1)).add(panel);
+        RootPanel.get(getPreLoadID(id)).setVisible(false);
+        RootPanel.get(getLoadID(id)).add(panel);
+    }
+
+    public LoginService getLoginService() {
+        return loginService;
+    }
+
+    /**
+     * call initServices if your GWTApp would like the asynchronous
+     * services to be setup
+     */
+    protected void initServices() {
+
+        schoolService = (GWTSchoolServiceAsync) GWT
+                .create(GWTSchoolService.class);
+        ServiceDefTarget endpoint = (ServiceDefTarget) schoolService;
+
+        String pre = Interactive.getRelativeURL("service/");
+
+        endpoint.setServiceEntryPoint(pre + "schoolService");
+
+        userService = (GWTUserServiceAsync) GWT
+                .create(GWTUserService.class);
+        ServiceDefTarget endpointUser = (ServiceDefTarget) userService;
+        endpointUser.setServiceEntryPoint(pre + "userService");
+
+        if (schoolService == null || userService == null) {
+            Logger.error("Service was null.");
+        }
+
+        serviceCache = new ServiceCache(this);
+        loginService = new LoginService(serviceCache);
+    }
+
+    public ServiceCache getServiceCache() {
+        return serviceCache;
+    }
+
+    public GWTSchoolServiceAsync getSchoolService() {
+        return schoolService;
+    }
+
+    public GWTUserServiceAsync getUserService() {
+        return userService;
     }
 }

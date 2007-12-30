@@ -3,7 +3,7 @@ package com.apress.progwt.client.college;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.SuggestOracle;
 
-public abstract class AbstractSuggestOracle extends SuggestOracle {
+public abstract class AbstractSuggestOracle<T> extends SuggestOracle {
 
     private static HTML convertMe = new HTML();
     private static final char WHITESPACE_CHAR = ' ';
@@ -34,9 +34,8 @@ public abstract class AbstractSuggestOracle extends SuggestOracle {
 
         index = candidate.toLowerCase().indexOf(query, index);
 
-        if (index == -1) {
-            accum.append(escapeText(candidate));
-        } else {
+        if (index != -1) {
+
             int endIndex = index + query.length();
             String part1 = escapeText(candidate.substring(cursor, index));
             String part2 = escapeText(candidate
@@ -52,4 +51,6 @@ public abstract class AbstractSuggestOracle extends SuggestOracle {
 
         return accum.toString();
     }
+
+    public abstract T getValueFromSuggestion(Suggestion sugg);
 }

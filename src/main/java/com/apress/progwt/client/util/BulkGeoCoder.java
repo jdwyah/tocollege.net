@@ -27,12 +27,26 @@ public class BulkGeoCoder extends Timer {
         if (school == null) {
             System.out.println("Finished");
             cancel();
+            return;
         }
         final String full = school.getFullAddress();
+        Geocoder geocoder = new Geocoder();
+        geocoder.getLatLng("1600 pennsylvania avenue, washington dc",
+                new LatLngCallback() {
+                    public void onFailure() {
+                    }
+
+                    public void onSuccess(LatLng point) {
+                    }
+                });
 
         geocoder.getLatLng(full, new LatLngCallback() {
             public void onFailure() {
-                System.out.println("Failure");
+                System.out
+                        .println("UPDATE "
+                                + tablename
+                                + " SET latitude = '-1',longitude  = '-1' WHERE id ="
+                                + school.getId() + " LIMIT 1 ;");
                 run();
             }
 

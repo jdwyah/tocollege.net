@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.SiteCommand;
+import com.apress.progwt.client.domain.dto.SchoolThreads;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.service.remote.GWTSchoolService;
@@ -43,6 +44,11 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
 
     public List<School> getAllSchools() throws SiteException {
         return schoolService.getAllSchools();
+    }
+
+    public SchoolThreads getThreads(long schoolID, int start, int max)
+            throws SiteException {
+        return schoolService.getThreads(schoolID, start, max);
     }
 
 }

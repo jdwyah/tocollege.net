@@ -105,6 +105,7 @@ public class Application extends AbstractApplication implements
                 }
             }
         }
+        System.out.println("rtn");
         return currentStatus;
     }
 }
