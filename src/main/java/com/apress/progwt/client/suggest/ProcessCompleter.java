@@ -1,6 +1,6 @@
-package com.apress.progwt.client.college;
+package com.apress.progwt.client.suggest;
 
-import com.apress.progwt.client.college.gui.CompleteListener;
+import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.ProcessType;
 
 public class ProcessCompleter extends AbstractCompleter<ProcessType> {

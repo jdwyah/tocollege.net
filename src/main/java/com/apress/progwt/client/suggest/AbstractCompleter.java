@@ -1,6 +1,6 @@
-package com.apress.progwt.client.college;
+package com.apress.progwt.client.suggest;
 
-import com.apress.progwt.client.college.gui.CompleteListener;
+import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.Timer;
@@ -10,20 +10,16 @@ import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.SuggestionEvent;
 import com.google.gwt.user.client.ui.SuggestionHandler;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.SuggestOracle.Callback;
-import com.google.gwt.user.client.ui.SuggestOracle.Request;
-import com.google.gwt.user.client.ui.SuggestOracle.Response;
-import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 
 public abstract class AbstractCompleter<T> extends Composite {
 
-    private AbstractSuggestOracle oracle;
+    private AbstractSuggestOracle<T> oracle;
     private CompleteListener<T> completeListener;
     private SuggestBox suggestBox;
 
     private Timer keyboardEnterTimer;
 
-    public AbstractCompleter(AbstractSuggestOracle oracle,
+    public AbstractCompleter(AbstractSuggestOracle<T> oracle,
             CompleteListener<T> completeListener) {
         super();
         this.oracle = oracle;
@@ -83,36 +79,12 @@ public abstract class AbstractCompleter<T> extends Composite {
      */
     private void complete(final String completeStr) {
 
-        System.out.println("AbstractCompleter:" + completeStr + " ");
+        Logger.debug("AbstractCompleter:" + completeStr + " ");
 
-        oracle.requestSuggestions(new Request(completeStr),
-                new Callback() {
+        oracle.fireCompleteListenerFromCompleteString(completeStr,
+                completeListener);
 
-                    public void onSuggestionsReady(Request request,
-                            Response response) {
-
-                        Suggestion sugg = response.getSuggestions()
-                                .iterator().next();
-
-                        System.out
-                                .println("AbstractCompleter.complete response "
-                                        + sugg);
-                        completeListener.completed((T) oracle
-                                .getValueFromSuggestion(sugg));
-                        suggestBox.setText("");
-                    }
-                });
-
-        // oracle.getSchoolsForString(completeStr,
-        // new EZCallback<List<School>>() {
-        //
-        // public void onSuccess(List<School> result) {
-        //
-        // completeListener.completed(result.get(0));
-        // suggestBox.setText("");
-        // }
-        // });
-
+        suggestBox.setText("");
     }
 
     public void setText(String string) {

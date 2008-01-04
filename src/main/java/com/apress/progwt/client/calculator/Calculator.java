@@ -228,6 +228,9 @@ public class Calculator extends Composite {
 
     private void setResult(double res) {
         inputBox.setText(nf.format(res));
+
+        GUIEffects.highlight(inputBox);
+
         if (res == 0) {
             setDoClearOnNextDigit(true);
         }

@@ -1,4 +1,4 @@
-package com.apress.progwt.client.college;
+package com.apress.progwt.client.suggest;
 
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.SuggestOracle;
@@ -6,7 +6,6 @@ import com.google.gwt.user.client.ui.SuggestOracle;
 public abstract class AbstractSuggestOracle<T> extends SuggestOracle {
 
     private static HTML convertMe = new HTML();
-    private static final char WHITESPACE_CHAR = ' ';
 
     private String escapeText(String escapeMe) {
         convertMe.setText(escapeMe);
@@ -52,5 +51,16 @@ public abstract class AbstractSuggestOracle<T> extends SuggestOracle {
         return accum.toString();
     }
 
-    public abstract T getValueFromSuggestion(Suggestion sugg);
+    /**
+     * Repsonsible for turning the final string into an object of type T.
+     * Some Oracles may choose to simply run anohter requestSuggestions()
+     * then take the first element returned. Others (like those that
+     * operate on a List<String> instead of List<T> may need to do a
+     * separate Async call to load the object.
+     * 
+     * @param completeStr
+     * @param listener
+     */
+    public abstract void fireCompleteListenerFromCompleteString(
+            String completeStr, CompleteListener<T> listener);
 }

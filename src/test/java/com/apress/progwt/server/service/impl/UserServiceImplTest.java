@@ -64,8 +64,7 @@ public class UserServiceImplTest extends
         userService.createUser("username", "pass", "email", false);
 
         User saved = userService.getUserWithNormalization("username");
-        School dart = schoolService.getSchoolsMatching(
-                "Dartmouth College").get(0);
+        School dart = schoolService.getSchoolDetails("Dartmouth College");
 
         saved.addRanked(new Application(dart));
         userDAO.save(saved);

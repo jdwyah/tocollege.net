@@ -12,7 +12,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 
 public interface GWTSchoolService extends RemoteService {
 
-    List<School> getSchoolsMatching(String match)
+    List<String> getSchoolsMatching(String match)
             throws BusinessException;
 
     SiteCommand executeAndSaveCommand(SiteCommand comm)
@@ -25,4 +25,6 @@ public interface GWTSchoolService extends RemoteService {
 
     SchoolThreads getThreads(long schoolID, int start, int max)
             throws SiteException;
+
+    School getSchoolDetails(String schoolName);
 }

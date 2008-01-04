@@ -17,7 +17,7 @@ public interface SchoolService {
 
     List<School> getTopSchools();
 
-    List<School> getSchoolsMatching(String match);
+    List<String> getSchoolsMatching(String match);
 
     SiteCommand executeAndSaveCommand(SiteCommand comm)
             throws SiteException;

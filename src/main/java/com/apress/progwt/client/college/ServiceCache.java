@@ -24,7 +24,7 @@ public class ServiceCache {
     }
 
     public void match(String query,
-            AsyncCallback<List<School>> asyncCallback) {
+            AsyncCallback<List<String>> asyncCallback) {
 
         schoolService.getSchoolsMatching(query, asyncCallback);
 
@@ -84,5 +84,10 @@ public class ServiceCache {
                     }
                 });
 
+    }
+
+    public void getSchoolDetails(String replacementString,
+            AsyncCallback<School> callback) {
+        schoolService.getSchoolDetails(replacementString, callback);
     }
 }

@@ -23,19 +23,8 @@
   	 
 	
 	<@common.box "boxStyle", "calculator", "Calculator">
-		<script language="JavaScript">
-			var Vars = {
-				page: "Calculator"
-			};
-		</script>
-		<script language='javascript' src='<@gwt.gwtURL "com.apress.progwt.Interactive.nocache.js"/>'></script>
-
-		<iframe id='__gwt_historyFrame' style='width:0;height:0;border:0'></iframe>
-		<div id="slot1"></div>
-		<div id="loading" class="loading"><p>Loading...</p></div>
-		<div id="preload"></div>
-	
-		
+	    <@gwt.widget "Calculator"/>      
+        <@gwt.finalize/>    				
 	</@common.box>	
 	
 	

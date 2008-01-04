@@ -280,7 +280,7 @@ TABLE.longRange TD {
 	font-family: tahoma, sans-serif;
 	font-size: 10px;
 	font-weight: BOLD;
-	color: CCCCCC;
+	color: #CCCCCC;
 	text-align: center;
 }
 
@@ -292,7 +292,7 @@ TABLE.longRange TD {
 }
 
 .holidaySelectable {
-	color: CCCCCC;
+	color: #CCCCCC;
 }
 
 .calendarDate {

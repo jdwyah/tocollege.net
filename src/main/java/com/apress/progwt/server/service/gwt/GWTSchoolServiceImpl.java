@@ -21,7 +21,7 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
 
     private SchoolService schoolService;
 
-    public List<School> getSchoolsMatching(String match)
+    public List<String> getSchoolsMatching(String match)
             throws BusinessException {
         return schoolService.getSchoolsMatching(match);
     }
@@ -49,6 +49,10 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
     public SchoolThreads getThreads(long schoolID, int start, int max)
             throws SiteException {
         return schoolService.getThreads(schoolID, start, max);
+    }
+
+    public School getSchoolDetails(String schoolName) {
+        return schoolService.getSchoolDetails(schoolName);
     }
 
 }

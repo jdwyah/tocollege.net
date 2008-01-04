@@ -10,7 +10,6 @@ import com.allen_sauer.gwt.dragdrop.client.IndexedDragEndEvent;
 import com.allen_sauer.gwt.dragdrop.client.PickupDragController;
 import com.allen_sauer.gwt.dragdrop.client.VetoDragException;
 import com.allen_sauer.gwt.dragdrop.client.drop.IndexedDropController;
-import com.apress.progwt.client.college.SchoolCompleter;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.School;
@@ -18,6 +17,8 @@ import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.rpc.EZCallback;
+import com.apress.progwt.client.suggest.CompleteListener;
+import com.apress.progwt.client.suggest.SchoolCompleter;
 import com.apress.progwt.client.util.Logger;
 import com.apress.progwt.client.util.Utilities;
 import com.google.gwt.user.client.ui.Button;
@@ -54,7 +55,12 @@ public class MyRankings extends Composite implements DragHandler,
         entryDragController.addDragHandler(this);
 
         HorizontalPanel completerP = new HorizontalPanel();
-        completer = new SchoolCompleter(serviceCache, this);
+        completer = new SchoolCompleter(serviceCache,
+                new CompleteListener<School>() {
+                    public void completed(School result) {
+                        // do something with School
+                    }
+                });
         completeB = new Button("Add School");
         completeB.addClickListener(new ClickListener() {
             public void onClick(Widget sender) {

@@ -1,4 +1,4 @@
-package com.apress.progwt.client.college.gui;
+package com.apress.progwt.client.suggest;
 
 
 public interface CompleteListener<T> {

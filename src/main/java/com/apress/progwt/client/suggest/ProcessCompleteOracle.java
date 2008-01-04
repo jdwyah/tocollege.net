@@ -1,8 +1,9 @@
-package com.apress.progwt.client.college;
+package com.apress.progwt.client.suggest;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.rpc.EZCallback;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -74,8 +75,15 @@ public class ProcessCompleteOracle extends
     }
 
     @Override
-    public ProcessType getValueFromSuggestion(Suggestion sugg) {
-        return ((ProcessSuggestion) sugg).getValue();
-    }
+    public void fireCompleteListenerFromCompleteString(String completeString,
+            final CompleteListener<ProcessType> listener) {
+        Request req = new Request(completeString);
+        requestSuggestions(req, new Callback() {
+            public void onSuggestionsReady(Request req, Response resp) {
+                Suggestion sugg = resp.getSuggestions().iterator().next();
+                listener.completed(((ProcessSuggestion) sugg).getValue());
+            }
+        });
 
+    }
 }

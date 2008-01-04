@@ -11,7 +11,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public interface GWTSchoolServiceAsync {
 
     void getSchoolsMatching(String match,
-            AsyncCallback<List<School>> callback);
+            AsyncCallback<List<String>> callback);
 
     void executeAndSaveCommand(SiteCommand comm,
             AsyncCallback<SiteCommand> callback);
@@ -22,6 +22,9 @@ public interface GWTSchoolServiceAsync {
     void getAllSchools(AsyncCallback<List<School>> asyncCallback);
 
     void getThreads(long schoolID, int start, int max,
-            AsyncCallback<SchoolThreads> stdAsyncCallback);
+            AsyncCallback<SchoolThreads> AsyncCallback);
+
+    void getSchoolDetails(String schoolName,
+            AsyncCallback<School> callback);
 
 }

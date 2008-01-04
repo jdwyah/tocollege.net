@@ -43,6 +43,7 @@ public class UserDAOHibernateImplTest extends
         User u = new User();
         u.setUsername(A);
         u.setPassword(A);
+        u.setNickname(A);
 
         List<User> list = userDAO.getAllUsers();
 
@@ -69,7 +70,7 @@ public class UserDAOHibernateImplTest extends
         User u = new User();
         u.setUsername(A);
         u.setPassword(B);
-
+        u.setNickname(A);
         List<User> list = userDAO.getAllUsers();
 
         userDAO.save(u);
@@ -115,7 +116,7 @@ public class UserDAOHibernateImplTest extends
         User u = new User();
         u.setUsername(A);
         u.setPassword(B);
-
+        u.setNickname(A);
         userDAO.save(u);
 
         assertEquals(pre + 1, userDAO.getUserCount());
@@ -126,7 +127,7 @@ public class UserDAOHibernateImplTest extends
         User u = new User();
         u.setUsername(A);
         u.setPassword(A);
-
+        u.setNickname(A);
         // List<User> list = userDAO.getAllUsers();
 
         userDAO.save(u);

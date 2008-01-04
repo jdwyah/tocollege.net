@@ -150,7 +150,7 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     /**
      * Search for "match*" using searchService
      */
-    public List<School> getSchoolsMatching(String match) {
+    public List<String> getSchoolsMatching(String match) {
         return searchService.searchForSchool(match);
         // return schoolDAO.getSchoolsMatching(match);
     }

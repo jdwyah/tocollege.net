@@ -55,8 +55,8 @@ public class SchoolServiceImplTest extends
     }
 
     public void testBigSave() {
-        School sc = schoolService.getSchoolsMatching("Dartmouth College")
-                .get(0);
+
+        School sc = schoolService.getSchoolDetails("Dartmouth College");
         assertNotNull(sc);
 
         User currentUser = getUser();
@@ -115,8 +115,7 @@ public class SchoolServiceImplTest extends
 
     public void testBigSaveAgain() {
         log.debug("\n\nSave Again\n\n");
-        School sc = schoolService.getSchoolsMatching("Dartmouth College")
-                .get(0);
+        School sc = schoolService.getSchoolDetails("Dartmouth College");
         assertNotNull(sc);
 
         User currentUser = getUser();
@@ -134,11 +133,13 @@ public class SchoolServiceImplTest extends
 
     public void testSaveSchoolRanking() throws SiteException {
         log.debug("\n\nSaveSchoolRankings\n\n");
-        School dart = schoolService.getSchoolsMatching("Dartmouth Col")
-                .get(0);
-        School harvard = schoolService.getSchoolsMatching("Harvard").get(
-                0);
-        School yale = schoolService.getSchoolsMatching("Yale").get(0);
+        School dart = schoolService.getSchoolDetails("Dartmouth College");
+        School harvard = schoolService
+                .getSchoolDetails("Harvard University");
+        School yale = schoolService.getSchoolDetails("Yale University");
+        assertNotNull(dart);
+        assertNotNull(harvard);
+        assertNotNull(yale);
 
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
@@ -195,11 +196,10 @@ public class SchoolServiceImplTest extends
 
     public void testSaveSchoolRankingWithDelete() throws SiteException {
 
-        School dart = schoolService.getSchoolsMatching("Dartmouth Col")
-                .get(0);
-        School harvard = schoolService.getSchoolsMatching("Harvard").get(
-                0);
-        School yale = schoolService.getSchoolsMatching("Yale").get(0);
+        School dart = schoolService.getSchoolDetails("Dartmouth College");
+        School harvard = schoolService
+                .getSchoolDetails("Harvard University");
+        School yale = schoolService.getSchoolDetails("Yale University");
 
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
@@ -241,11 +241,10 @@ public class SchoolServiceImplTest extends
 
     public void testSaveProcessTypes() throws SiteException {
         log.debug("\ntestSaveProcessTypes\n\n");
-        School dart = schoolService.getSchoolsMatching("Dartmouth Col")
-                .get(0);
-        School harvard = schoolService.getSchoolsMatching("Harvard").get(
-                0);
-        School yale = schoolService.getSchoolsMatching("Yale").get(0);
+        School dart = schoolService.getSchoolDetails("Dartmouth College");
+        School harvard = schoolService
+                .getSchoolDetails("Harvard University");
+        School yale = schoolService.getSchoolDetails("Yale University");
 
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
@@ -291,11 +290,10 @@ public class SchoolServiceImplTest extends
 
     public void testSaveRatingTypes() throws SiteException {
         log.debug("\n\nSaveratingTypes\n\n");
-        School dart = schoolService.getSchoolsMatching("Dartmouth Col")
-                .get(0);
-        School harvard = schoolService.getSchoolsMatching("Harvard").get(
-                0);
-        School yale = schoolService.getSchoolsMatching("Yale").get(0);
+        School dart = schoolService.getSchoolDetails("Dartmouth College");
+        School harvard = schoolService
+                .getSchoolDetails("Harvard University");
+        School yale = schoolService.getSchoolDetails("Yale University");
 
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,

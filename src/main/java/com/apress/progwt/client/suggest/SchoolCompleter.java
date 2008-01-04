@@ -1,6 +1,6 @@
-package com.apress.progwt.client.college;
+package com.apress.progwt.client.suggest;
 
-import com.apress.progwt.client.college.gui.CompleteListener;
+import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.School;
 
 public class SchoolCompleter extends AbstractCompleter<School> {

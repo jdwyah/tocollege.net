@@ -126,6 +126,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setUsername(username.toLowerCase());
+        user.setNickname(user.getUsername());
         user.setEmail(email);
         user.setSupervisor(superV);
         user.setEnabled(true);

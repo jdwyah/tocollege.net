@@ -28,7 +28,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.dto.SearchResult;
 import com.apress.progwt.server.service.SearchService;
@@ -80,9 +79,12 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
         // TODO find another way to call this, since it's a bit
         // inefficient
         // to do it everytime tomcat restarts
-
         compassGPS.index();
-        // mirrorGPS.setMirrorDataChanges(true);
+
+        // ensure that our gps is going to mirror all data changes from
+        // here on out.
+        // this will give us real time searchability of saved objects
+        mirrorGPS.setMirrorDataChanges(true);
     }
 
     public List<SearchResult> search(final String searchString) {
@@ -320,7 +322,7 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
         return returnList;
     }
 
-    public List<School> searchForSchool(final String searchString) {
+    public List<String> searchForSchool(final String searchString) {
         return searchForSchool(searchString, 0,
                 DEFAULT_MAX_SEARCH_RESULTS);
     }
@@ -335,10 +337,10 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
      * @param max_num_hits
      * @return
      */
-    public List<School> searchForSchool(final String searchStringP,
+    public List<String> searchForSchool(final String searchStringP,
             final int start, final int max_num_hits) {
 
-        List<School> rtn = new ArrayList<School>();
+        final List<String> rtn = new ArrayList<String>();
 
         if (searchStringP == null || searchStringP.equals("")) {
             return rtn;
@@ -353,36 +355,36 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
 
         final String searchString = sb.toString();
 
-        CompassHitsOperations hits = compassTemplate
-                .executeFind(new CompassCallback() {
-                    public Object doInCompass(CompassSession session)
-                            throws CompassException {
+        compassTemplate.execute(new CompassCallback() {
+            public Object doInCompass(CompassSession session)
+                    throws CompassException {
 
-                        CompassQueryBuilder queryBuilder = session
-                                .queryBuilder();
-                        CompassQueryStringBuilder qStrBuilder = queryBuilder
-                                .queryString(searchString);
-
-                        CompassQuery compassQuery = qStrBuilder.toQuery();
-
-                        CompassHits hits = compassQuery.hits();
-
-                        return hits.detach(start, max_num_hits);
+                CompassHits hits = session.queryBuilder().queryString(
+                        searchString).toQuery().hits();
+                log.debug("search string " + searchString + " hits "
+                        + hits.length());
+                for (int i = start; i < hits.length() && i < max_num_hits; i++) {
+                    String name = hits.resource(i).get("name");
+                    if (name != null) {
+                        rtn.add(name);
                     }
-                });
-        log.debug("search string " + searchString + " hits "
-                + hits.length());
-        for (int i = 0; i < hits.length(); i++) {
-
-            CompassHit defaultCompassHit = hits.hit(i);
-            Object obj = defaultCompassHit.getData();
-            log.debug("DATA: " + defaultCompassHit.getData());
-
-            if (obj instanceof School) {
-                School result = (School) obj;
-                rtn.add(result);
+                }
+                return true;
             }
-        }
+        });
+
+        // log.debug("search string " + searchString + " hits "
+        // + hits.length());
+        // for (int i = 0; i < hits.length(); i++) {
+        // CompassHit defaultCompassHit = hits.hit(i);
+        // Object obj = defaultCompassHit.getData();
+        // log.debug("DATA: " + defaultCompassHit.getData());
+        //
+        // if (obj instanceof School) {
+        // School result = (School) obj;
+        // rtn.add(result);
+        // }
+        // }
 
         return rtn;
     }
