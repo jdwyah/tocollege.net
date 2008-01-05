@@ -15,7 +15,7 @@
 <link rel="icon" href="http://www.tocollege.net/favicon.ico" type="image/vnd.microsoft.icon" />
 <link rel="shortcut icon" href="http://www.tocollege.net/favicon.ico" type="image/vnd.microsoft.icon" />
 
-  <link rel="stylesheet" type="text/css" href="<@spring.url "/css/style.css"/>"/>
+  <link rel="stylesheet" type="text/css" href="<@spring.url "/css/styles.css"/>"/>
 
   <title>${title}</title>
   ${head}
@@ -23,10 +23,11 @@
 
 <body onload="${page.properties["body.onload"]?default("")}">
 
-<div id="wrapper">
-
-	<div id="main">
+<div id="wrap">
+    
+	
             
+	    <a href="<@spring.url "/site/index.html"/>">
 	    <div id="header">
 	        		    
     		<#if "true" == page.properties["meta.sm.showAccount"]?default("true")>
@@ -49,29 +50,40 @@
 			 		<@common.loginForm/>
 		 		 </@common.box>
 		 	  </#if>
-    		</div>
+    		</div></a>
     		</#if>
     		
-    		
+            <!--    		
     		<div id="header_logoTitle" >
     			<a href="<@spring.url "/site/index.html"/>"><@common.pngImage src="/img/Logo_388_126.png" width="388" height="126"/></a>
-    		</div>
+    		</div>-->
     			
-    		<div class="clearRdiv"/>
+    		
 	    </div>
+        
+        <div  id="menu">
+            <ul>
+                <li id="current"><a href="<@spring.url "/site/index.html"/>">Home</a></li>
+                <li><a href="<@spring.url "/site/schools.html"/>">Schools</a></li>
+                <li><a href="<@spring.url "/site/users.html"/>">Users</a></li>
+                <li><a href="<@spring.url "/site/forums.html"/>">Forums</a></li>
+                <li><a href="<@spring.url "/site/book.html"/>">Book</a></li>
+                <li><a href="<@spring.url "/site/about.html"/>">About</a></li>      
+            </ul>
+        </div>      
 
+        <div id="content-wrap">     
+             ${body}    	
+    	</div><!--content-wrap-->
+    	
 
-    	<div id="content">
-             ${body}
-    	</div><!--content-->
-
-	</div><!--main-->
+	
 
     <div id="footer">
     	©2007 <a href="<@spring.url "/site/index.html"/>">Index</a> 
     	| <a href="<@spring.url "/site/contact.html"/>">Contact Us</a> 
     	| <a href="http://blogger.com/">Blog</a>
-    	| <a href="<@spring.url "/site/acknowledgments.html"/>">Acknowledgements</a> 
+    	| <a href="<@spring.url "/site/acknowledgements.html"/>">Acknowledgements</a> 
     	<br>
 	</div>
 	

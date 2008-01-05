@@ -1,0 +1,262 @@
+/********************************************
+   AUTHOR:  			Jeff Dwyer, originally Erwin Aligam and dotemplate.com 
+  *******************************************/
+
+* { margin: 0; padding: 0; outline: 0; }
+
+body {
+	background-color:#CECFD6;
+	margin: 15px 0;
+	padding:0;
+	text-align:center;
+	color:#333333;
+	font-family:Trebuchet MS ;
+    font-size:12px
+}
+
+#wrap {
+	width:820px;
+    background:#CECFD6 url(bg.jpg) repeat-y center top;
+    margin:0 auto;
+    text-align:left;
+}
+
+#content-wrap {
+	clear: both;
+	width: 760px;
+	margin: 5px auto;
+	padding: 0; 	
+}
+
+#header {
+	position: relative;
+    height:131px;
+	background: #caced1 url(header.jpg) no-repeat center top;
+	padding: 0;	
+	color: #fff;
+	width:820px;
+}
+
+
+#menu {
+	clear: both;	
+	margin: 0 auto; padding: 0;
+	background: #8CD729 url(menu.jpg) no-repeat;	
+	font: bold 16px/40px "trebuchet MS", Arial, Tahoma, Sans-serif;
+	height: 40px;
+	width: 820px;
+}
+
+#menu ul {
+	float: left;
+	list-style: none;
+	margin:0; padding: 0 0 0 40px;
+}
+
+#menu ul li {
+	display: inline;
+}
+
+#menu ul li a {
+	display: block;
+	float: left;
+	padding: 0 12px;
+	color: #FFFFFF;	
+	text-decoration: none;
+	background: url(sep.jpg) no-repeat 100% 100%;
+}
+#menu ul li a:hover {
+	color: #3b5e0b;	
+}
+#menu ul li#current a {	
+	color: #3b5e0b;
+}
+
+
+#main {
+	float: left;
+	width: 555px;
+	margin: 0; padding: 20px 0 0 0; 
+	display: inline;
+	background: url(box.jpg) no-repeat;
+}
+
+
+
+#main p, #main h1, #main h2, #main h3, #main ol, #main ul, #main table, #main form {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+
+#sidebar {
+	float: right;
+	width: 195px;
+	padding: 0; margin: 10px 0 0 0;	
+	color: #777;	
+}
+
+
+#sidebar p {
+	margin-left: 5px;
+}
+
+#sidebar ul.sidemenu {
+	list-style: none;
+	text-align: left;
+	margin: 7px 10px 8px 0; padding: 0;
+	text-decoration: none;	
+	border-top: 1px solid #A9D4EF;	
+}
+
+#sidebar ul.sidemenu li {
+	list-style: none;
+	padding: 4px 0 4px 5px;
+	margin: 0 2px;	
+	color: #777;	
+	border-bottom: 1px solid #D2E8F7; 
+}
+
+* html body #sidebar ul.sidemenu li {
+	height: 1%;
+}
+
+#sidebar ul.sidemenu li a {
+	text-decoration: none;	
+	color: #1773BC;				
+}
+
+#sidebar ul.sidemenu li a:hover {	
+	color: #333;
+}
+
+#sidebar ul.sidemenu ul { margin: 0 0 0 5px; padding: 0; }
+#sidebar ul.sidemenu ul li { border: none; }
+
+#footer {
+	color: #C6DDEE;
+	background: #CECFD6 url(footer.jpg) no-repeat center top;
+	clear: both;
+    width:820px;
+	height: 60px;
+	text-align: center;	
+	font-size: 90%;	
+}
+#footer p { 
+	padding: 10px 0;
+	margin: 0;
+}
+#footer a { 
+	color: #fff;
+	text-decoration: none; 
+}
+
+.post-footer {
+	background: #F4F8FD;
+	padding: 5px; margin: 20px 25px 0 25px;
+	border: 1px solid #E5F0FB; 
+	font-size: 95%;	
+}
+
+.post-footer .date {	padding-left: 0px; margin: 0 5px; }
+.post-footer .comments { padding-left: 0px; margin: 0 5px; }
+.post-footer .readmore { padding-left: 0px; margin: 0 5px; }
+
+.post-by { font-size: .95em;	margin-top: 0;	}
+
+.float-left  { float: left; }
+.float-right { float: right; }
+.align-left  { text-align: left; }
+.align-right { text-align: right; }
+
+
+.clear { clear: both; }
+
+
+h1, h2, h3, p {
+	margin: 10px 15px;
+	padding: 0;
+}
+
+h1 {
+	color:#2666c3 ;
+	font-size:22pt ;
+}
+
+h2 {
+	color:#2666c3 ;
+	font-size:20pt ;
+}
+
+h3 {
+	color:#2666c3 ;
+	font-size:14pt ;
+}
+
+a, a:visited {
+	text-decoration: none;
+	background: inherit;
+	color: #FB9233; 
+}
+
+a:hover {
+	text-decoration: underline;
+	background: inherit;
+	color: #93C600;
+}
+fieldset {
+    border: none;
+}
+
+#signupForm fieldset {
+    border: 1px solid black;
+}
+
+#signupForm legend {
+    
+}
+
+#openIDSignup {
+    width: 300px;
+}
+
+#loginForm input {
+    margin-left: 10px;
+}
+#header_account {
+    display: inline;
+    float: right;
+    width: 300px;
+}
+
+#header_account li {
+    display: inline;
+    list-style-type: none;
+}
+
+#header_account ul {
+    margin-left: 0;
+    padding-left: 0em;
+}
+
+#loginBox {
+    min-height: 80px;
+}
+
+#header_logo img {
+    margin-left: 25px;
+}
+
+#header_logoTitle.boxStyle {
+    margin: 5px 0px 0px 90px;
+    width: 560px;
+    height: 88px;
+}
+
+#header_logoTitle p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #B2BB2B;
+    text-indent: 25px;
+}
+

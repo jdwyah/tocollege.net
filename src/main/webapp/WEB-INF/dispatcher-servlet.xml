@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 	
-	xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
+    <!-- turn on support for @Controller Spring will search this package for classes annotated as Controllers -->
+    <context:component-scan base-package="com.apress.progwt.server.web.controllers" />
+    
+    <!-- Define DefaultAnnotationHandler specifically so we don't get railroaded by the other HandlerMappings -->
+    <context:annotation-config/>
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 
 	<!-- Turn on @Required -->
 	<!-- not precisely sure why this is neccessary, since we do it in appContext too.. -->
@@ -16,12 +28,6 @@
 	     <property name="schoolService" ref="schoolService" />
 	</bean>
 
-	<bean id="calculatorController" class="com.apress.progwt.server.web.controllers.CalculatorController">
-	     <property name="userService" ref="userService" />
-	</bean>
-     <bean id="termsController" class="com.apress.progwt.server.web.controllers.TermsController">
-          <property name="userService" ref="userService" />
-     </bean>
 	<bean id="errorController" class="com.apress.progwt.server.web.controllers.ErrorController">
 	     <property name="userService" ref="userService" />
 	</bean>

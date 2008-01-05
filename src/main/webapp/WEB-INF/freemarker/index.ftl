@@ -15,8 +15,8 @@
 	</div>
  </#if>			  	 	  
   	
-  	<div id="side1">
-  	
+  	<div id="main">
+  	  	
 	<@common.box "boxStyle", "topSchools", "Top Schools">
 				
 		<ol>
@@ -42,7 +42,7 @@
 	</div><!--end browseWidgets-->  
 
 	
-  	<div id="side2">  					
+  	<div id="sidebar">  					
 			
 	<#if !user?exists>
 	<@common.box "boxStyle", "signup", "Get Your Own!">

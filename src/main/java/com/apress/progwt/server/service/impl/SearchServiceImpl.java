@@ -79,7 +79,7 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
         // TODO find another way to call this, since it's a bit
         // inefficient
         // to do it everytime tomcat restarts
-        compassGPS.index();
+        // compassGPS.index();
 
         // ensure that our gps is going to mirror all data changes from
         // here on out.

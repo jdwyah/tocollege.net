@@ -1,21 +1,25 @@
 package com.apress.progwt.server.web.controllers;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.service.UserService;
 
-public class BasicController extends AbstractController {
+/**
+ * abstract controller suitable for extension when you'd like to include
+ * the currentUser and the ie7 flag.
+ * 
+ * @author Jeff Dwyer
+ * 
+ */
+public abstract class BasicController extends AbstractController {
     private static final Logger log = Logger
             .getLogger(BasicController.class);
 
@@ -46,35 +50,14 @@ public class BasicController extends AbstractController {
     }
 
     protected Map<String, Object> getDefaultModel(HttpServletRequest req) {
-        return getDefaultModel(req, userService);
-    }
-
-    public static Map<String, Object> getDefaultModel(
-            HttpServletRequest req, UserService userService) {
-        Map<String, Object> model = new HashMap<String, Object>();
-
-        User su = null;
-        try {
-            su = userService.getCurrentUser();
-            model.put("user", su);
-        } catch (UsernameNotFoundException e) {
-            // log.debug("No user logged in.");
-        }
-
-        // IE < 7 check. used in common.ftl PNGImage
-        String userAgent = req.getHeader("User-Agent");
-        if (userAgent.contains("MSIE") && !userAgent.contains("MSIE 7")) {
-            model.put("iePre7", true);
-        }
-
-        return model;
+        return ControllerUtil.getDefaultModel(req, userService);
     }
 
     public void setView(String view) {
         this.view = view;
     }
 
-    @Required
+    @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
