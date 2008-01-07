@@ -73,19 +73,21 @@ public class GUIEffects {
 
     private class OpacityTimer extends GUITimer {
 
-        private double cur;
+        private double diff;
 
-        private double delta;
+        private double start;
 
         public OpacityTimer(Widget widget, double from, double to,
                 int steps) {
             super(widget, steps);
-            this.delta = (to - from) / steps;
+            this.start = from;
+            this.diff = to - from;
 
-            cur = from;
         }
 
         protected void doStep(double pct) {
+
+            double cur = pct * diff + start;
 
             String ieStr = "alpha(opacity = " + (int) (cur * 100) + ")";
 
@@ -94,8 +96,6 @@ public class GUIEffects {
             DOM.setStyleAttribute(getElement(), "opacity", cur + "");
             DOM.setStyleAttribute(getElement(), "-khtml-opacity", cur
                     + "");
-
-            cur += delta;
         }
     }
 
@@ -120,8 +120,8 @@ public class GUIEffects {
      * the native code to the right.
      */
     public static native void close()/*-{
-                                                        $wnd.close();
-                                                    }-*/;
+                                                                                                                $wnd.close();
+                                                                                                            }-*/;
 
     public static void fade(Widget w, int duration) {
         opacity(w, 1.0, 0.0, duration);
@@ -148,13 +148,21 @@ public class GUIEffects {
     }
 
     /**
+     * highligh from FFFE7F to FFFFFF
      * 
      * @param toHighlight
      */
     public static void highlight(Widget toHighlight) {
-        String startColor = "FFFE7F";
-        String endColor = "FFFFFF";
-        highlight(toHighlight, startColor, endColor);
+        highlight(toHighlight, "FF", "FE", "7F", "FF", "FF", "FF");
+    }
+
+    private static void highlight(Widget toHighlight, String sR,
+            String sG, String sB, String eR, String eG, String eB) {
+
+        highlight(toHighlight, Integer.parseInt(sR, 16), Integer
+                .parseInt(sG, 16), Integer.parseInt(sB, 16), Integer
+                .parseInt(eR, 16), Integer.parseInt(eG, 16), Integer
+                .parseInt(eB, 16), HIGHLIGHT_DURATION);
     }
 
     /**
@@ -188,7 +196,8 @@ public class GUIEffects {
     }
 
     /**
-     * Highlight with rgb parameters split out.
+     * Highlight with rgb parameters split out. To get a smooth transition
+     * we must move each color element individually
      * 
      * @param toHighlight
      * @param startR

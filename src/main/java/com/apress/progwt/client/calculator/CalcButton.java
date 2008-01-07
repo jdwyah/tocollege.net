@@ -7,7 +7,7 @@ public abstract class CalcButton extends Button implements ClickListener {
 
     public CalcButton(String displayString) {
         super(displayString);
-        addStyleName("CalcButton");
+        addStyleDependentName("CalcButton");
         addClickListener(this);
     }
 

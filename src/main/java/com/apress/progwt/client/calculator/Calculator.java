@@ -4,6 +4,8 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 
 public class Calculator extends Composite {
@@ -20,6 +22,8 @@ public class Calculator extends Composite {
 
     private TextBox inputBox;
     private double lastNum = 0;
+
+    private TextArea ticker;
 
     public Calculator() {
 
@@ -184,7 +188,13 @@ public class Calculator extends Composite {
         inputBox.addStyleName("ResultBox");
         dockPanel.add(inputBox, DockPanel.NORTH);
 
-        initWidget(dockPanel);
+        ticker = new TextArea();
+        ticker.setSize("7em", "140px");
+
+        HorizontalPanel mainP = new HorizontalPanel();
+        mainP.add(dockPanel);
+        mainP.add(ticker);
+        initWidget(mainP);
 
         setResult(0);
 
@@ -229,6 +239,7 @@ public class Calculator extends Composite {
     private void setResult(double res) {
         inputBox.setText(nf.format(res));
 
+        ticker.setText(res + "\n" + ticker.getText());
         GUIEffects.highlight(inputBox);
 
         if (res == 0) {
