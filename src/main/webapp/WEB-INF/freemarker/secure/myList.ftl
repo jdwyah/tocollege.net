@@ -9,7 +9,7 @@
 
 
 
-<body>					
+<body id="mylist">					
         
  <#if message?exists>
 	<div style="z-index: 99; position: absolute; left: 200px;">

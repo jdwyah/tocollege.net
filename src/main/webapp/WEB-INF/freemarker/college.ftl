@@ -8,7 +8,7 @@
 
 
 
-<body>					
+<body id="schools">					
         
  <#if message?exists>
 	<div style="z-index: 99; position: absolute; left: 200px;">
@@ -18,7 +18,7 @@
 
 <h1>${school.name}</h1>
   	
-  	<div id="side1">
+  	<div id="main">
   	
   	
 	<@common.box "boxStyle", "topSchools", "Details">
@@ -32,15 +32,12 @@
 	</div>  
 
 	
-  	<div id="side2">  		
-			
-	<@common.box "boxStyle", "forums", "Users Interested in ${school.name}">
+  	<div id="sidebar">  		
 				
+		<h3>Users Interested in ${school.name}</h3>
 		<#list interestedIn as user>
 			<@common.userLink user/>
-		</#list>
-		
-	</@common.box>	
+		</#list>			
   		
   	</div>
   	
@@ -49,11 +46,7 @@
 	<@common.box "boxStyle", "collegeMap", "Map">	
     	<#assign params = {"latitude":"${school.latitude}", "longitude":"${school.longitude}"}/>	
 		<@gwt.widget "CollegeMap", params/>   
-	</@common.box>
-	<@common.box "boxStyle", "collegeMap2", "Map2">  
-        <#assign params = {"latitude":"35.3", "longitude":"-91.3"}/>    
-        <@gwt.widget "CollegeMap", params/>   
-    </@common.box>
+	</@common.box>	
     <@gwt.finalize/>
 		
 	<@common.box "boxStyle", "forums", "Forums">

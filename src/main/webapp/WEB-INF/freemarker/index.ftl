@@ -7,7 +7,7 @@
 
 
 
-<body>					
+<body id="index">					
         
  <#if message?exists>
 	<div style="z-index: 99; position: absolute; left: 200px;">
@@ -45,7 +45,7 @@
   	<div id="sidebar">  					
 			
 	<#if !user?exists>
-	<@common.box "boxStyle", "signup", "Get Your Own!">
+	<@common.box "boxStyle", "signup", "Need an account?">
 	Signup and <a href="<@spring.url "/site/signupifpossible.html"/>">Pick a username here!</a>
   	</@common.box>	
   	</#if>  	

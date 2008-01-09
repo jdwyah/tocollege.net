@@ -14,7 +14,7 @@ body {
     font-size:12px
 }
 
-#wrap {
+#wrapper {
 	width:820px;
     background:#CECFD6 url(bg.jpg) repeat-y center top;
     margin:0 auto;
@@ -30,11 +30,11 @@ body {
 
 #header {
 	position: relative;
+    background: #caced1 url(header.jpg) no-repeat center top;
     height:131px;
-	background: #caced1 url(header.jpg) no-repeat center top;
-	padding: 0;	
-	color: #fff;
-	width:820px;
+    padding: 0;
+    width:820px;	
+	color: #fff;	
 }
 
 
@@ -68,9 +68,23 @@ body {
 #menu ul li a:hover {
 	color: #3b5e0b;	
 }
+
 #menu ul li#current a {	
 	color: #3b5e0b;
 }
+      
+#index #menu ul li#menu-index a, 
+#mylist #menu ul li#menu-mylist a,
+#schools #menu ul li#menu-schools a,
+#users #menu ul li#menu-users a,
+#forums #menu ul li#menu-forums a,
+#book #menu ul li#menu-book a,
+#about #menu ul li#menu-about a,
+#signup #menu ul li#menu-signup a
+{
+    color: #3b5e0b;
+}
+
 
 
 #main {
@@ -223,10 +237,20 @@ fieldset {
 #loginForm input {
     margin-left: 10px;
 }
-#header_account {
+#header_account {	
     display: inline;
     float: right;
-    width: 300px;
+    width: 300px;    
+}
+.header_account-OpenID {
+	padding-top: 30px;
+}
+.header_account-UserAndPass {
+	   padding-top: 10px;
+}
+.header_account-UserAndPass p{
+	/*background-color: red;*/
+	margin: 5px;
 }
 
 #header_account li {

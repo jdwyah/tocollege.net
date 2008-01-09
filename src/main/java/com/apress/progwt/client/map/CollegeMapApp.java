@@ -10,6 +10,8 @@ import com.google.gwt.maps.client.overlay.Marker;
 
 public class CollegeMapApp extends GWTApp {
 
+    private static final int DEFAULT_ZOOM = 6;
+
     private MapWidget map;
 
     public CollegeMapApp(int pageID) {
@@ -26,7 +28,7 @@ public class CollegeMapApp extends GWTApp {
             if (latitude == -1 && longitude == -1) {
                 map = new MapWidget();
             } else {
-                map = new MapWidget(collegeCenter, 13);
+                map = new MapWidget(collegeCenter, DEFAULT_ZOOM);
             }
 
             map.setSize("500px", "300px");

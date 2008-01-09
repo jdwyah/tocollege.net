@@ -5,7 +5,7 @@
   <title><@spring.message "signup.title"/></title>
 </head>
 
-<body>
+<body id="signup">
    
       <div class="middle-column-box-white">
         <div class="middle-column-box-title-green">Sign-up now!</div>
