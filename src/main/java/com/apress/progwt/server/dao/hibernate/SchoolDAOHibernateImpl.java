@@ -22,7 +22,7 @@ import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.dto.SchoolThreads;
+import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.server.dao.SchoolDAO;
 
 public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
@@ -38,10 +38,10 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
     }
 
     public List<School> getAllSchools() {
-        DetachedCriteria crit = DetachedCriteria.forClass(School.class)
-                .add(
-                        Expression.and(Expression.gt("id", 890l),
-                                Expression.eq("latitude", -1d)));
+        DetachedCriteria crit = DetachedCriteria.forClass(School.class);
+        // .add(
+        // Expression.and(Expression.gt("id", 890l),
+        // Expression.eq("latitude", -1d)));
         List<School> list = getHibernateTemplate().findByCriteria(crit);
         return list;
     }
@@ -147,22 +147,65 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         return autoCompleteMax;
     }
 
+    /**
+     * get the total number of rows without actually returning all rows
+     * 
+     * @param criteria
+     * @return
+     */
     private int getRowCount(DetachedCriteria criteria) {
         criteria.setProjection(Projections.rowCount());
         return ((Integer) getHibernateTemplate().findByCriteria(criteria)
                 .get(0)).intValue();
     }
 
-    public SchoolThreads getThreads(long schoolID, int start, int max) {
+    /**
+     * 
+     * Posts that are threads will have their threadPost field == null.
+     * 
+     */
+    public PostsList getSchoolThreads(long schoolID, int start, int max) {
         DetachedCriteria crit = DetachedCriteria
                 .forClass(ForumPost.class).add(
-                        Expression.eq("school.id", schoolID)).addOrder(
-                        Order.desc("date"));
+                        Expression.and(Expression.eq("school.id",
+                                schoolID), Expression
+                                .isNull("threadPost"))).addOrder(
+                        Order.asc("date"));
 
         List<ForumPost> posts = getHibernateTemplate().findByCriteria(
                 crit, start, max);
 
-        SchoolThreads rtn = new SchoolThreads(posts, getRowCount(crit));
+        PostsList rtn = new PostsList(posts, getRowCount(crit));
+
+        return rtn;
+    }
+
+    public PostsList getUserThreads(long userID, int start, int max) {
+        DetachedCriteria crit = DetachedCriteria
+                .forClass(ForumPost.class).add(
+                        Expression.and(Expression.eq("user.id", userID),
+                                Expression.isNull("threadPost")))
+                .addOrder(Order.asc("date"));
+
+        List<ForumPost> posts = getHibernateTemplate().findByCriteria(
+                crit, start, max);
+
+        PostsList rtn = new PostsList(posts, getRowCount(crit));
+
+        return rtn;
+    }
+
+    public PostsList getThreadForPost(ForumPost post, int start, int max) {
+        DetachedCriteria crit = DetachedCriteria
+                .forClass(ForumPost.class).add(
+                        Expression.or(Expression.eq("threadPost.id", post
+                                .getId()), Expression.eq("id", post
+                                .getId()))).addOrder(Order.asc("date"));
+
+        List<ForumPost> posts = getHibernateTemplate().findByCriteria(
+                crit, start, max);
+
+        PostsList rtn = new PostsList(posts, getRowCount(crit));
 
         return rtn;
     }

@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.SiteCommand;
-import com.apress.progwt.client.domain.dto.SchoolThreads;
+import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.service.remote.GWTSchoolService;
@@ -46,9 +46,9 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
         return schoolService.getAllSchools();
     }
 
-    public SchoolThreads getThreads(long schoolID, int start, int max)
+    public PostsList getSchoolThreads(long schoolID, int start, int max)
             throws SiteException {
-        return schoolService.getThreads(schoolID, start, max);
+        return schoolService.getSchoolThreads(schoolID, start, max);
     }
 
     public School getSchoolDetails(String schoolName) {

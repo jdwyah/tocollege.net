@@ -5,17 +5,21 @@ import java.util.Iterator;
 
 import org.apache.log4j.Logger;
 
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.Foo;
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.Application;
+import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.RemoveSchoolFromRankCommand;
+import com.apress.progwt.client.domain.commands.SaveForumPostCommand;
 import com.apress.progwt.client.domain.commands.SaveProcessCommand;
 import com.apress.progwt.client.domain.commands.SaveRatingCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
+import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.dao.UserDAO;
@@ -27,6 +31,8 @@ public class SchoolServiceImplTest extends
 
     private static final Logger log = Logger
             .getLogger(SchoolServiceImplTest.class);
+    private static final String TITLE = "test title";
+    private static final String TEXT = "test textaroo<b>with bold</b>";
     private SchoolDAO schoolDAO;
     private UserDAO userDAO;
     private SchoolService schoolService;
@@ -328,6 +334,67 @@ public class SchoolServiceImplTest extends
 
         assertEquals(3, savedDart.getRating(ratingOne));
         assertEquals(5, savedDart.getRating(ratingTwo));
+
+    }
+
+    public void testForumPostSaving() throws SiteException {
+        log.debug("\n\nSave Again\n\n");
+        School sc = schoolService.getSchoolDetails("Dartmouth College");
+        assertNotNull(sc);
+
+        User currentUser = getUser();
+        assertNotNull(currentUser);
+
+        ForumPost fp = new SchoolForumPost(sc, currentUser, TITLE, TEXT,
+                null);
+
+        schoolService.executeAndSaveCommand(new SaveForumPostCommand(fp));
+
+        PostsList posts = schoolService.getSchoolThreads(sc.getId(), 0,
+                10);
+
+        assertEquals(1, posts.getTotalCount());
+        assertEquals(1, posts.getPosts().size());
+
+        ForumPost saved = posts.getPosts().get(0);
+        assertNotNull(saved);
+        assertEquals(SchoolForumPost.class, saved.getClass());
+        assertTrue(saved.getId() > 0);
+        assertEquals(TITLE, saved.getPostTitle());
+        assertEquals(TEXT, saved.getPostString());
+
+        assertEquals(null, saved.getThreadPost());
+        assertEquals(null, saved.getUser());
+        assertEquals(currentUser, saved.getAuthor());
+
+        // save a second post to the same thread
+        ForumPost fp2 = new SchoolForumPost(sc, currentUser, TITLE, TEXT,
+                saved);
+        schoolService
+                .executeAndSaveCommand(new SaveForumPostCommand(fp2));
+
+        // assert that there's still just 1 top level thread
+        posts = schoolService.getSchoolThreads(sc.getId(), 0, 10);
+        assertEquals(1, posts.getTotalCount());
+        assertEquals(1, posts.getPosts().size());
+
+        // get the posts in this thread
+        posts = schoolService.getThreadForPost(saved, 0, 10);
+        assertEquals(2, posts.getTotalCount());
+        assertEquals(2, posts.getPosts().size());
+
+        ForumPost saved1 = posts.getPosts().get(0);
+        assertEquals(saved, saved1);
+        ForumPost saved2 = posts.getPosts().get(1);
+        assertNotNull(saved2);
+        assertEquals(SchoolForumPost.class, saved2.getClass());
+        assertTrue(saved2.getId() > 0);
+        assertEquals(TITLE, saved2.getPostTitle());
+        assertEquals(TEXT, saved2.getPostString());
+
+        assertEquals(saved1, saved2.getThreadPost());
+        assertEquals(null, saved2.getUser());
+        assertEquals(currentUser, saved2.getAuthor());
 
     }
 

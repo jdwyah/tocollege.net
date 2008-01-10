@@ -6,6 +6,12 @@ import java.util.List;
 
 import com.apress.progwt.client.domain.Loadable;
 
+/**
+ * Store
+ * 
+ * @author Jeff Dwyer
+ * 
+ */
 public abstract class AbstractCommand implements Serializable,
         SiteCommand, CommandService {
 
@@ -24,8 +30,12 @@ public abstract class AbstractCommand implements Serializable,
     public <T> T get(Class<T> clazz, long id) {
         System.out.println("Load " + clazz + " " + id);
         for (Object o : objects) {
-            System.out.println("O: " + o + " " + o.getClass());
-            if (o.getClass() == clazz) {
+            if (o != null) {
+                System.out.println("O: " + o + " " + o.getClass());
+            } else {
+                System.out.println("O: null");
+            }
+            if (o != null && o.getClass() == clazz) {
 
                 Loadable l = (Loadable) o;
                 System.out.println("l: " + l + " " + l.getId());

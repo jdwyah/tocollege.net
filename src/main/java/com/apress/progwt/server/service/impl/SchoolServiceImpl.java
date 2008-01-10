@@ -7,13 +7,14 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.CommandService;
 import com.apress.progwt.client.domain.commands.SiteCommand;
-import com.apress.progwt.client.domain.dto.SchoolThreads;
+import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.domain.SchoolPopularity;
@@ -29,32 +30,8 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
 
     private SchoolDAO schoolDAO;
 
-    private UserService userService;
     private SearchService searchService;
-
-    public School getSchoolDetails(String schoolname) {
-
-        return schoolDAO.getSchoolFromName(schoolname);
-    }
-
-    @Required
-    public void setSchoolDAO(SchoolDAO schoolDAO) {
-        this.schoolDAO = schoolDAO;
-    }
-
-    @Required
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    public List<SchoolPopularity> getPopularSchools() {
-        List<SchoolPopularity> ranked = new LinkedList<SchoolPopularity>();
-        for (School school : getTopSchools()) {
-            ranked.add(new SchoolPopularity(school,
-                    Math.random() * 5 - 2.5));
-        }
-        return ranked;
-    }
+    private UserService userService;
 
     public SiteCommand executeAndSaveCommand(SiteCommand command)
             throws SiteException {
@@ -97,16 +74,35 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return command;
     }
 
-    /**
-     * TODO protect?
-     */
-    public void save(Loadable loadable) {
-        if (loadable instanceof User) {
-            User user = (User) loadable;
-            userService.save(user);
-        } else {
-            schoolDAO.save(loadable);
+    public <T> T get(Class<T> clazz, long id) {
+        return (T) schoolDAO.get((Class<? extends Loadable>) clazz, id);
+
+    }
+
+    public List<School> getAllSchools() {
+        return schoolDAO.getAllSchools();
+    }
+
+    public List<SchoolPopularity> getPopularSchools() {
+        List<SchoolPopularity> ranked = new LinkedList<SchoolPopularity>();
+        for (School school : getTopSchools()) {
+            ranked.add(new SchoolPopularity(school,
+                    Math.random() * 5 - 2.5));
         }
+        return ranked;
+    }
+
+    public School getSchoolDetails(String schoolname) {
+
+        return schoolDAO.getSchoolFromName(schoolname);
+    }
+
+    /**
+     * Search for "match*" using searchService
+     */
+    public List<String> getSchoolsMatching(String match) {
+        return searchService.searchForSchool(match);
+        // return schoolDAO.getSchoolsMatching(match);
     }
 
     // private void hydrateCommand(AbstractCommand command,
@@ -143,16 +139,16 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     //
     // }
 
-    public List<School> getTopSchools() {
-        return schoolDAO.getAllSchools().subList(0, 10);
+    public PostsList getSchoolThreads(long schoolID, int start, int max) {
+        return schoolDAO.getSchoolThreads(schoolID, start, max);
     }
 
-    /**
-     * Search for "match*" using searchService
-     */
-    public List<String> getSchoolsMatching(String match) {
-        return searchService.searchForSchool(match);
-        // return schoolDAO.getSchoolsMatching(match);
+    public PostsList getThreadForPost(ForumPost post, int start, int max) {
+        return schoolDAO.getThreadForPost(post, start, max);
+    }
+
+    public List<School> getTopSchools() {
+        return schoolDAO.getAllSchools().subList(0, 10);
     }
 
     public List<ProcessType> matchProcessType(String queryString) {
@@ -160,22 +156,31 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return schoolDAO.matchProcessType(queryString);
     }
 
-    public List<School> getAllSchools() {
-        return schoolDAO.getAllSchools();
+    /**
+     * TODO protect?
+     */
+    public void save(Loadable loadable) {
+        if (loadable instanceof User) {
+            User user = (User) loadable;
+            userService.save(user);
+        } else {
+            schoolDAO.save(loadable);
+        }
     }
 
-    public <T> T get(Class<T> clazz, long id) {
-        return (T) schoolDAO.get((Class<? extends Loadable>) clazz, id);
-
-    }
-
-    public SchoolThreads getThreads(long schoolID, int start, int max) {
-        return schoolDAO.getThreads(schoolID, start, max);
+    @Required
+    public void setSchoolDAO(SchoolDAO schoolDAO) {
+        this.schoolDAO = schoolDAO;
     }
 
     @Required
     public void setSearchService(SearchService searchService) {
         this.searchService = searchService;
+    }
+
+    @Required
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
 }

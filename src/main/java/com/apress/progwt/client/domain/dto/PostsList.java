@@ -5,16 +5,16 @@ import java.util.List;
 
 import com.apress.progwt.client.domain.ForumPost;
 
-public class SchoolThreads implements Serializable {
+public class PostsList implements Serializable {
 
     private List<ForumPost> posts;
 
     private int totalCount;
 
-    public SchoolThreads() {
+    public PostsList() {
     }
 
-    public SchoolThreads(List<ForumPost> posts, int totalCount) {
+    public PostsList(List<ForumPost> posts, int totalCount) {
         super();
         this.posts = posts;
         this.totalCount = totalCount;

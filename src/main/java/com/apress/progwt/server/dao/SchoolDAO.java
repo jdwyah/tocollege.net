@@ -3,11 +3,12 @@ package com.apress.progwt.server.dao;
 import java.util.List;
 
 import com.apress.progwt.client.domain.Foo;
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.dto.SchoolThreads;
+import com.apress.progwt.client.domain.dto.PostsList;
 
 public interface SchoolDAO {
 
@@ -31,6 +32,10 @@ public interface SchoolDAO {
 
     List<RatingType> getDefaultRatingTypes();
 
-    SchoolThreads getThreads(long schoolID, int start, int max);
+    PostsList getSchoolThreads(long schoolID, int start, int max);
+
+    PostsList getUserThreads(long userID, int start, int max);
+
+    PostsList getThreadForPost(ForumPost post, int start, int max);
 
 }

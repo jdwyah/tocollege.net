@@ -8,7 +8,7 @@ import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.domain.dto.SchoolThreads;
+import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.server.dao.UserDAO;
 
 public class SchoolDAOHibernateImplTest extends
@@ -80,7 +80,7 @@ public class SchoolDAOHibernateImplTest extends
         assertNotNull(sc);
 
         // assert that there are no posts for the school
-        SchoolThreads threads = schoolDAO.getThreads(sc.getId(), 0, 10);
+        PostsList threads = schoolDAO.getSchoolThreads(sc.getId(), 0, 10);
         assertNotNull(threads);
         assertEquals(0, threads.getTotalCount());
         assertEquals(0, threads.getPosts().size());
@@ -92,7 +92,7 @@ public class SchoolDAOHibernateImplTest extends
         ForumPost post = new SchoolForumPost(sc, u, A, A, null);
         post.setId(schoolDAO.save(post).getId());
 
-        threads = schoolDAO.getThreads(sc.getId(), 0, 10);
+        threads = schoolDAO.getSchoolThreads(sc.getId(), 0, 10);
         assertEquals(1, threads.getTotalCount());
         assertEquals(1, threads.getPosts().size());
 
@@ -104,9 +104,13 @@ public class SchoolDAOHibernateImplTest extends
         ForumPost post2 = new SchoolForumPost(sc, u, null, A, saved);
         post2.setId(schoolDAO.save(post2).getId());
 
-        threads = schoolDAO.getThreads(sc.getId(), 0, 10);
-        assertEquals(2, threads.getTotalCount());
-        assertEquals(2, threads.getPosts().size());
+        // should only be 1 top level thread still.
+        threads = schoolDAO.getSchoolThreads(sc.getId(), 0, 10);
+        assertEquals(1, threads.getTotalCount());
+        assertEquals(1, threads.getPosts().size());
 
+        PostsList post1Thread = schoolDAO.getThreadForPost(post, 0, 10);
+        assertEquals(2, post1Thread.getTotalCount());
+        assertEquals(2, post1Thread.getPosts().size());
     }
 }

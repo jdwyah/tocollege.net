@@ -4,11 +4,11 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
-public class ControlPanel extends Composite {
+public class ForumControlPanel extends Composite {
 
     private HorizontalPanel nav;
 
-    public ControlPanel(Forum schoolForum) {
+    public ForumControlPanel(ForumApp schoolForum) {
 
         HorizontalPanel mainP = new HorizontalPanel();
 

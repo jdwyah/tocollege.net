@@ -152,9 +152,7 @@
           </property>
      </bean>
 
-     <bean id="passwordEncoder" class="org.acegisecurity.providers.encoding.Md5PasswordEncoder" abstract="false"
-          lazy-init="default" autowire="default" dependency-check="default" scope="singleton" />
-
+     <bean id="passwordEncoder" class="org.acegisecurity.providers.encoding.Md5PasswordEncoder"/>
 
 
      <!-- This bean is optional; it isn't used by any other bean as it only listens and logs -->
