@@ -337,6 +337,15 @@ public class SchoolServiceImplTest extends
 
     }
 
+    public void testForumReplies() {
+        PostsList posts = schoolService.getSchoolThreads(500, 0, 10);
+
+        for (ForumPost fp : posts.getPosts()) {
+            System.out.println("fp: " + fp + " REPL "
+                    + fp.getReplies().size());
+        }
+    }
+
     public void testForumPostSaving() throws SiteException {
         log.debug("\n\nSave Again\n\n");
         School sc = schoolService.getSchoolDetails("Dartmouth College");
@@ -362,6 +371,7 @@ public class SchoolServiceImplTest extends
         assertTrue(saved.getId() > 0);
         assertEquals(TITLE, saved.getPostTitle());
         assertEquals(TEXT, saved.getPostString());
+        assertEquals(0, saved.getReplyCount());
 
         assertEquals(null, saved.getThreadPost());
         assertEquals(null, saved.getUser());
@@ -378,8 +388,13 @@ public class SchoolServiceImplTest extends
         assertEquals(1, posts.getTotalCount());
         assertEquals(1, posts.getPosts().size());
 
+        // relies on setting the inverse side of the association for
+        // testing
+        assertEquals(1, posts.getPosts().get(0).getReplyCount());
+        assertEquals(1, saved.getReplyCount());
+
         // get the posts in this thread
-        posts = schoolService.getThreadForPost(saved, 0, 10);
+        posts = schoolService.getPostsForThread(saved, 0, 10);
         assertEquals(2, posts.getTotalCount());
         assertEquals(2, posts.getPosts().size());
 

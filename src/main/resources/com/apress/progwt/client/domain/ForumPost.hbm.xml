@@ -23,8 +23,19 @@
 		<many-to-one name="school" class="com.apress.progwt.client.domain.School" column="school_id" lazy="false"/>
         <many-to-one name="author" class="com.apress.progwt.client.domain.User" column="author_id" lazy="false"/>
 	    <many-to-one name="threadPost" class="com.apress.progwt.client.domain.ForumPost" column="thread_id" lazy="proxy"/>
-	
-        <subclass name="SchoolForumPost" discriminator-value="schoolForumPost">
+
+	    <set name="replies" inverse="true" order-by="date">
+	         <key column="thread_id" />
+	         <one-to-many class="ForumPost" />
+	    </set>
+        
+        
+        <!-- 
+        possible performance booster?
+        <property name="replyCount" formula="(SELECT count(s.id) FROM `forumposts` f left JOIN 'forumposts' s on f.id = s.thread_id)"></property>
+        -->
+ 
+	    <subclass name="SchoolForumPost" discriminator-value="schoolForumPost">
             <meta attribute="generated-class" inherit="false">com.aavu.client.domain.generated.AbstractJUNK</meta>
         </subclass>
         <subclass name="UserForumPost" discriminator-value="userForumPost">

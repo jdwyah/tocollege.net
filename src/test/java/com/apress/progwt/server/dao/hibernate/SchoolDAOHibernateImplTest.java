@@ -109,7 +109,7 @@ public class SchoolDAOHibernateImplTest extends
         assertEquals(1, threads.getTotalCount());
         assertEquals(1, threads.getPosts().size());
 
-        PostsList post1Thread = schoolDAO.getThreadForPost(post, 0, 10);
+        PostsList post1Thread = schoolDAO.getPostsForThread(post, 0, 10);
         assertEquals(2, post1Thread.getTotalCount());
         assertEquals(2, post1Thread.getPosts().size());
     }

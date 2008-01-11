@@ -112,6 +112,30 @@ a:visited {
 	
 }
 
+.ForumPost {
+	border-top: 1px solid grey;	
+	padding: 10px;	
+}
+.ForumPost .gwt-Hyperlink {
+	
+}
+
+.ForumPost-Short {
+	border-top: 2px solid grey;    
+	padding: 10px;
+}
+.ForumPost .Link {
+	color:#2244BB;
+	font-size: 1.4em;
+}
+
+.AuthorSide {
+	background-color: #222222;
+}
+.PostSide {
+    width: 400px;
+}
+
 .Rating {
 	height: 25px;
 	line-height: 25px;

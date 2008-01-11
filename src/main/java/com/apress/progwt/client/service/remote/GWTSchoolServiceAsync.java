@@ -2,6 +2,7 @@ package com.apress.progwt.client.service.remote;
 
 import java.util.List;
 
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.SiteCommand;
@@ -19,12 +20,15 @@ public interface GWTSchoolServiceAsync {
     void matchProcessType(String queryString,
             AsyncCallback<List<ProcessType>> callback);
 
-    void getAllSchools(AsyncCallback<List<School>> asyncCallback);
+    void getAllSchools(AsyncCallback<List<School>> callback);
 
     void getSchoolThreads(long schoolID, int start, int max,
-            AsyncCallback<PostsList> AsyncCallback);
+            AsyncCallback<PostsList> callback);
 
     void getSchoolDetails(String schoolName,
             AsyncCallback<School> callback);
+
+    void getPostsForThread(ForumPost post, int start, int max,
+            AsyncCallback<PostsList> callback);
 
 }

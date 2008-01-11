@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.SiteCommand;
@@ -53,6 +54,10 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
 
     public School getSchoolDetails(String schoolName) {
         return schoolService.getSchoolDetails(schoolName);
+    }
+
+    public PostsList getPostsForThread(ForumPost post, int start, int max) {
+        return schoolService.getPostsForThread(post, start, max);
     }
 
 }

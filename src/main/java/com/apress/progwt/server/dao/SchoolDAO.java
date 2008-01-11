@@ -36,6 +36,6 @@ public interface SchoolDAO {
 
     PostsList getUserThreads(long userID, int start, int max);
 
-    PostsList getThreadForPost(ForumPost post, int start, int max);
+    PostsList getPostsForThread(ForumPost post, int start, int max);
 
 }

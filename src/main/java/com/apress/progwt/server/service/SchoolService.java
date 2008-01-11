@@ -32,6 +32,6 @@ public interface SchoolService {
 
     PostsList getSchoolThreads(long schoolID, int start, int max);
 
-    PostsList getThreadForPost(ForumPost post, int start, int max);
+    PostsList getPostsForThread(ForumPost post, int start, int max);
 
 }

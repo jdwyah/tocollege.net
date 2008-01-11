@@ -3,7 +3,7 @@ package com.apress.progwt.client;
 import com.apress.progwt.client.calculator.CalculatorApp;
 import com.apress.progwt.client.college.ToCollegeApp;
 import com.apress.progwt.client.exception.MyUncaughtExceptionHandler;
-import com.apress.progwt.client.forum.Forum;
+import com.apress.progwt.client.forum.ForumApp;
 import com.apress.progwt.client.map.CollegeMapApp;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.core.client.EntryPoint;
@@ -59,8 +59,8 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-                                                                                $wnd.urchinTracker(pageName);
-                                                                            }-*/;
+                                                                                      $wnd.urchinTracker(pageName);
+                                                                                  }-*/;
 
     /**
      * EntryPoint. Dispatch based on javascript dictionary that tells us
@@ -92,10 +92,10 @@ public class Interactive implements EntryPoint {
                     CollegeMapApp c = new CollegeMapApp(currentWidget);
                 } else if (widget.equals("SchoolForum")) {
                     Logger.log("Do School Forum");
-                    Forum c = new Forum(currentWidget);
+                    ForumApp c = new ForumApp(currentWidget);
                 } else {
                     throw new Exception("Vars['widget_" + currentWidget
-                            + "] not set.");
+                            + "] => " + widget + " null or no match.");
                 }
             }
 

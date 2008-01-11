@@ -10,23 +10,26 @@ import com.google.gwt.user.client.ui.Widget;
 public class CreatePostButton extends Button implements ClickListener {
 
     private ForumApp<? extends ForumPost> app;
-    private ForumPost thread;
+    private boolean isReply;
+
+    // private ForumPost thread;
 
     /**
      * 
      * @param app
-     * @param thread -
+     * @param buttonText
+     * @param topic -
      *            can be null for new thread creation
      */
     public CreatePostButton(ForumApp<? extends ForumPost> app,
-            ForumPost thread) {
+            boolean isReply, ForumTopic topic) {
         super("Create New Thread");
-        if (thread != null) {
+        if (isReply) {
             setText("Reply");
         }
         addClickListener(this);
         this.app = app;
-        this.thread = thread;
+        this.isReply = isReply;
     }
 
     public void onClick(Widget sender) {
@@ -40,7 +43,7 @@ public class CreatePostButton extends Button implements ClickListener {
     }
 
     protected void openCreatePost(User author) {
-        CreatePostDialog cpd = new CreatePostDialog(app, thread, author);
+        CreatePostDialog cpd = new CreatePostDialog(app, author, isReply);
         cpd.center();
     }
 

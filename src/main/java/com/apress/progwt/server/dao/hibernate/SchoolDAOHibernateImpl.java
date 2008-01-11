@@ -149,31 +149,46 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
 
     /**
      * get the total number of rows without actually returning all rows
+     * NOTE: important to set the start row here, otherwise when we start
+     * paging, this criteria will be affected and we won't get the first
+     * row.
      * 
      * @param criteria
      * @return
      */
     private int getRowCount(DetachedCriteria criteria) {
         criteria.setProjection(Projections.rowCount());
-        return ((Integer) getHibernateTemplate().findByCriteria(criteria)
-                .get(0)).intValue();
+        return ((Integer) getHibernateTemplate().findByCriteria(criteria,
+                0, 1).get(0)).intValue();
     }
 
     /**
      * 
      * Posts that are threads will have their threadPost field == null.
      * 
+     * Could try to optimize by getting close to: SELECT f.id,
+     * f.thread_id, count(s.id) FROM `forumposts` f left JOIN forumposts s
+     * on f.id = s.thread_id WHERE f.thread_id IS NULL group by f.id
+     * 
      */
     public PostsList getSchoolThreads(long schoolID, int start, int max) {
-        DetachedCriteria crit = DetachedCriteria
-                .forClass(ForumPost.class).add(
-                        Expression.and(Expression.eq("school.id",
-                                schoolID), Expression
-                                .isNull("threadPost"))).addOrder(
-                        Order.asc("date"));
+
+        System.out.println("start " + start + " max " + max);
+
+        DetachedCriteria crit = DetachedCriteria.forClass(
+                ForumPost.class, "fp").add(
+                Expression.and(Expression.eq("school.id", schoolID),
+                        Expression.isNull("threadPost"))).addOrder(
+                Order.asc("date"));
 
         List<ForumPost> posts = getHibernateTemplate().findByCriteria(
                 crit, start, max);
+
+        // set the reply count so we can have this information w/o loading
+        // the actual set.
+        for (ForumPost fp : posts) {
+            fp.setReplyCount(fp.getReplies().size());
+        }
 
         PostsList rtn = new PostsList(posts, getRowCount(crit));
 
@@ -195,7 +210,7 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         return rtn;
     }
 
-    public PostsList getThreadForPost(ForumPost post, int start, int max) {
+    public PostsList getPostsForThread(ForumPost post, int start, int max) {
         DetachedCriteria crit = DetachedCriteria
                 .forClass(ForumPost.class).add(
                         Expression.or(Expression.eq("threadPost.id", post

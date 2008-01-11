@@ -2,6 +2,7 @@ package com.apress.progwt.client.service.remote;
 
 import java.util.List;
 
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.SiteCommand;
@@ -25,6 +26,8 @@ public interface GWTSchoolService extends RemoteService {
 
     PostsList getSchoolThreads(long schoolID, int start, int max)
             throws SiteException;
+
+    PostsList getPostsForThread(ForumPost post, int start, int max);
 
     School getSchoolDetails(String schoolName);
 }

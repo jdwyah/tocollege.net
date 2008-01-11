@@ -2,6 +2,8 @@ package com.apress.progwt.client.domain.generated;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
@@ -26,6 +28,8 @@ public abstract class AbstractForumPost implements Serializable {
      * we are the top level post ourselves.
      */
     private ForumPost threadPost;
+
+    private Set<ForumPost> replies = new HashSet<ForumPost>();
 
     /**
      * If this is a UserForumPost, this should be not null and is the
@@ -95,6 +99,14 @@ public abstract class AbstractForumPost implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<ForumPost> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(Set<ForumPost> replies) {
+        this.replies = replies;
     }
 
     @Override

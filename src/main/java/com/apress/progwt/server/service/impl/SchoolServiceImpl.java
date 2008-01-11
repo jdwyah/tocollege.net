@@ -143,8 +143,8 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return schoolDAO.getSchoolThreads(schoolID, start, max);
     }
 
-    public PostsList getThreadForPost(ForumPost post, int start, int max) {
-        return schoolDAO.getThreadForPost(post, start, max);
+    public PostsList getPostsForThread(ForumPost post, int start, int max) {
+        return schoolDAO.getPostsForThread(post, start, max);
     }
 
     public List<School> getTopSchools() {

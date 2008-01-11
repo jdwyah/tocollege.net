@@ -9,4 +9,11 @@ public class SchoolForumPost extends ForumPost {
         super(sc, null, author, postTitle, postString, thread);
     }
 
+    public ForumPost getReplyInstance(User author, String title,
+            String text, ForumPost thread) {
+
+        return new SchoolForumPost(getSchool(), author, title, text,
+                thread);
+    }
+
 }

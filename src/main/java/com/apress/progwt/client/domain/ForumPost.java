@@ -4,9 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.apress.progwt.client.domain.generated.AbstractForumPost;
+import com.apress.progwt.client.forum.ForumTopic;
 
 public abstract class ForumPost extends AbstractForumPost implements
-        Serializable, Loadable {
+        Serializable, Loadable, ForumTopic {
+
+    /**
+     * not guaranteed to equal getReplies().size() since it's not lo
+     */
+    private int replyCount;
+
     public ForumPost() {
     }
 
@@ -39,6 +46,26 @@ public abstract class ForumPost extends AbstractForumPost implements
             throw new UnsupportedOperationException(
                     "First Threads Must Have Titles");
         }
+    }
+
+    public int getReplyCount() {
+        return replyCount;
+    }
+
+    public void setReplyCount(int replyCount) {
+        this.replyCount = replyCount;
+    }
+
+    public String getUniqueForumID() {
+        return "ForumPost" + ForumTopic.SEP + getId();
+    }
+
+    public boolean showForumPostText() {
+        return true;
+    }
+
+    public ForumPost getForumPost() {
+        return this;
     }
 
     @Override

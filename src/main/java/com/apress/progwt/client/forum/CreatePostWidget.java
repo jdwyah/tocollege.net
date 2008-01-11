@@ -16,23 +16,22 @@ public class CreatePostWidget extends Composite {
     private TextArea textBox = new TextArea();
 
     public CreatePostWidget(final ForumApp<? extends ForumPost> app,
-            final CreatePostDialog createPostDialog,
-            final ForumPost thread, final User author) {
+            boolean isReply, final CreatePostDialog createPostDialog,
+            final User author) {
         VerticalPanel mainP = new VerticalPanel();
         mainP.add(titleBox);
         mainP.add(textBox);
 
         Button cancelB = new Button("Cancel");
         Button submitB = new Button("Create Thread");
-        if (thread != null) {
-            submitB.setText("Submit Reply");
+        if (isReply) {
+            submitB.setText("Post Reply");
         }
 
         submitB.addClickListener(new ClickListener() {
 
             public void onClick(Widget sender) {
-                app.create(author, thread, titleBox.getText(), textBox
-                        .getText());
+                app.create(author, titleBox.getText(), textBox.getText());
                 createPostDialog.hide();
             }
 
