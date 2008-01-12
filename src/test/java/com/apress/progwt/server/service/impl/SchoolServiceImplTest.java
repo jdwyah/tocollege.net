@@ -348,7 +348,7 @@ public class SchoolServiceImplTest extends
 
     public void testForumPostSaving() throws SiteException {
         log.debug("\n\nSave Again\n\n");
-        School sc = schoolService.getSchoolDetails("Dartmouth College");
+        School sc = schoolService.getSchoolDetails("Adrian College");
         assertNotNull(sc);
 
         User currentUser = getUser();

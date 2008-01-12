@@ -11,39 +11,31 @@ import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ForumApp<T extends ForumPost> extends GWTApp implements
         HistoryListener {
 
     private ForumControlPanel controlPanel;
-    private int maxperpage = 3;
+    private ForumTopic currentTopic;
 
-    private School school;
     private ForumDisplay forumDisplay;
+    private int FORUM_POST_MAX = 5;
+    private int FORUM_THREAD_MAX = 10;
 
     private ForumTopic originalTopic;
-    private ForumTopic currentTopic;
+
+    // private School school;
 
     public ForumApp(int pageID) {
         super(pageID);
 
-        long schoolID = Long.parseLong(getParam("schoolID"));
-        String schoolName = getParam("schoolName");
-
-        school = new School();
-        school.setId(schoolID);
-        school.setName(schoolName);
-        originalTopic = school;
+        String uniqueForumID = getParam("uniqueForumID");
 
         initServices();
 
         VerticalPanel mainPanel = new VerticalPanel();
-        mainPanel.setStylePrimaryName("SchoolForum");
-
-        Label schoolNameL = new Label(schoolName);
-        mainPanel.add(schoolNameL);
+        mainPanel.setStylePrimaryName("Forum");
 
         forumDisplay = new ForumDisplay(this);
         mainPanel.add(forumDisplay);
@@ -52,7 +44,7 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
 
         String initToken = History.getToken();
         if (initToken.length() == 0) {
-            initToken = school.getUniqueForumID();
+            initToken = uniqueForumID;
             History.newItem(initToken);
         }
 
@@ -61,33 +53,6 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
         onHistoryChanged(initToken);
 
         History.addHistoryListener(this);
-    }
-
-    private void gotoSchool(final School school, final int start) {
-        getSchoolService().getSchoolThreads(school.getId(), start,
-                maxperpage,
-                new StdAsyncCallback<PostsList>("Get School Threads") {
-
-                    @Override
-                    public void onSuccess(PostsList result) {
-                        super.onSuccess(result);
-                        load(start, result, school, school);
-                    }
-                });
-    }
-
-    protected void load(int start, PostsList result, ForumTopic original,
-            ForumTopic current) {
-
-        currentTopic = current;
-        originalTopic = original;
-
-        forumDisplay.load(start, result, current, originalTopic);
-
-    }
-
-    protected void refresh() {
-        gotoSchool(school, 0);
     }
 
     /**
@@ -103,11 +68,12 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
 
         ForumPost sfp = null;
 
-        System.out.println("Create " + originalTopic + " cur "
+        System.out.println("Create! " + originalTopic + " cur "
                 + currentTopic);
 
-        // originalTopic should be a School or User
-        if (originalTopic == null) {
+        // originalTopic should be a School or User, currentTopic
+        // shouldn't be null unless load hasn't completed.
+        if (currentTopic != null) {
             sfp = originalTopic.getReplyInstance(author, title, text,
                     currentTopic.getForumPost());
         } else {
@@ -115,16 +81,33 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
                     null);
         }
 
+        System.out.println("Going to Save " + sfp);
+
         getSchoolService().executeAndSaveCommand(
                 new SaveForumPostCommand(sfp),
                 new StdAsyncCallback<SiteCommand>("SaveForumPost") {
                     @Override
                     public void onSuccess(SiteCommand result) {
                         super.onSuccess(result);
-                        refresh();
+                        onHistoryChanged(History.getToken());
                     }
                 });
 
+    }
+
+    private void gotoSchool(final School school, final int start) {
+        originalTopic = school;
+        getSchoolService().getSchoolThreads(school.getId(), start,
+                FORUM_THREAD_MAX,
+                new StdAsyncCallback<PostsList>("Get School Threads") {
+
+                    @Override
+                    public void onSuccess(PostsList result) {
+                        super.onSuccess(result);
+                        load(start, result, false, school,
+                                FORUM_THREAD_MAX);
+                    }
+                });
     }
 
     public void gotoThread(ForumPost post) {
@@ -133,19 +116,27 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
 
     public void gotoThread(final ForumPost thread, final int start) {
 
-        getSchoolService().getPostsForThread(thread, start, maxperpage,
+        getSchoolService().getPostsForThread(thread, start,
+                FORUM_THREAD_MAX,
                 new StdAsyncCallback<PostsList>("Get Posts For Thread") {
 
                     @Override
                     public void onSuccess(PostsList result) {
                         super.onSuccess(result);
-                        load(start, result, null, thread);
+                        load(start, result, true, thread,
+                                FORUM_THREAD_MAX);
                     }
                 });
     }
 
-    public int getMaxperpage() {
-        return maxperpage;
+    protected void load(int start, PostsList result, boolean isReply,
+            ForumTopic current, int maxPerPage) {
+
+        currentTopic = current;
+
+        forumDisplay.load(start, result, originalTopic, current, isReply,
+                maxPerPage);
+
     }
 
     /**
@@ -175,4 +166,5 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
             gotoThread(fp, start);
         }
     }
+
 }

@@ -68,10 +68,15 @@ public abstract class ForumPost extends AbstractForumPost implements
         return this;
     }
 
+    public String getForumDisplayName() {
+        return getPostTitle();
+    }
+
     @Override
     public String toString() {
         return "ForumPost " + getId() + " Title: " + getPostTitle()
-                + " sc " + getSchool() + " usr " + getUser();
+                + " sc " + getSchool() + " usr " + getUser()
+                + " thread: " + getThreadPost();
     }
 
 }

@@ -1,16 +1,17 @@
 package com.apress.progwt.client.forum;
 
 import com.apress.progwt.client.college.gui.UserLink;
+import com.apress.progwt.client.college.gui.ext.TableWithHeaders;
 import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
 
 public class ForumDisplay extends Composite {
 
@@ -27,32 +28,73 @@ public class ForumDisplay extends Composite {
         initWidget(allPosts);
     }
 
-    public void load(int start, PostsList result, ForumTopic topic,
-            ForumTopic originalTopic) {
+    public void load(int start, PostsList result, ForumTopic original,
+            ForumTopic topic, boolean isReply, int maxPerPage) {
 
         allPosts.clear();
 
-        for (ForumPost post : result.getPosts()) {
+        System.out.println("ORIGINAL " + original);
 
-            if (topic.showForumPostText()) {
+        if (original != null) {
+            Hyperlink originalL = new Hyperlink("Forum: "
+                    + original.getUniqueForumID(), original
+                    .getUniqueForumID());
+            allPosts.add(originalL);
+        }
+
+        if (topic.showForumPostText()) {
+            for (ForumPost post : result.getPosts()) {
                 allPosts.add(new PostDisplay(post));
-            } else {
-                allPosts.add(new ShortPostDisplay(post));
             }
+        } else {
+            TableWithHeaders table = new TableWithHeaders(result
+                    .getPosts().size(), "Thread", "Replies", "Date",
+                    "Author");
+            int row = 0;
+            for (ForumPost post : result.getPosts()) {
+                addShortDisplay(table, row, post);
+                row++;
+            }
+            allPosts.add(table);
         }
 
         if (result.getPosts().size() == 0) {
             allPosts.add(new Label("No Posts Yet"));
         }
 
-        boolean isReply = (originalTopic == null);
         CreatePostButton createB = new CreatePostButton(forumApp,
                 isReply, topic);
         allPosts.add(createB);
 
         ForumControlPanel fcb = new ForumControlPanel(topic, result,
-                start, forumApp.getMaxperpage());
+                start, maxPerPage);
         allPosts.add(fcb);
+
+    }
+
+    private void addShortDisplay(TableWithHeaders table, int row,
+            ForumPost post) {
+
+        Hyperlink postT = new Hyperlink(post.getPostTitle(), post
+                .getUniqueForumID());
+
+        Label replies = new Label("" + post.getReplyCount());
+
+        UserLink author = new UserLink(post.getAuthor());
+
+        Label date = new Label(df.format(post.getDate()));
+        date.setStylePrimaryName("date");
+
+        table.setWidget(row, 0, postT);
+        table.setWidget(row, 1, replies);
+        table.setWidget(row, 2, date);
+        table.setWidget(row, 3, author);
+        table.getColumnFormatter().setStyleName(0, "title");
+        table.getColumnFormatter().setStyleName(1, "replies");
+        table.getColumnFormatter().setStyleName(3, "author");
+        if (row % 2 == 1) {
+            table.getRowFormatter().setStyleName(row, "Odd");
+        }
 
     }
 
@@ -62,11 +104,12 @@ public class ForumDisplay extends Composite {
 
             HorizontalPanel mainP = new HorizontalPanel();
 
-            VerticalPanel authorSide = new VerticalPanel();
-            authorSide.addStyleDependentName("AuthorSide");
+            FlowPanel authorSide = new FlowPanel();
+            authorSide.setStylePrimaryName("AuthorSide");
             VerticalPanel postSide = new VerticalPanel();
-            postSide.addStyleDependentName("PostSide");
+            postSide.setStylePrimaryName("PostSide");
 
+            authorSide.add(new Label("Author: "));
             UserLink author = new UserLink(post.getAuthor());
             authorSide.add(author);
 
@@ -78,7 +121,7 @@ public class ForumDisplay extends Composite {
             postT.addStyleDependentName("title");
             postSide.add(postT);
 
-            Label postS = new Label(post.getPostString());
+            Label postS = new HTML(post.getPostString());
             postSide.add(postS);
 
             mainP.add(authorSide);
@@ -86,44 +129,6 @@ public class ForumDisplay extends Composite {
 
             initWidget(mainP);
             mainP.setStylePrimaryName("ForumPost");
-        }
-    }
-
-    private class ShortPostDisplay extends Composite implements
-            ClickListener {
-        private ForumPost post;
-
-        public ShortPostDisplay(ForumPost post) {
-            this.post = post;
-
-            HorizontalPanel mainP = new HorizontalPanel();
-
-            Hyperlink postT = new Hyperlink(post.getPostTitle(), post
-                    .getUniqueForumID());
-            mainP.add(postT);
-
-            Label replies = new Label("" + post.getReplyCount());
-            replies.addStyleDependentName("replies");
-            mainP.add(replies);
-
-            HorizontalPanel authorP = new HorizontalPanel();
-            UserLink author = new UserLink(post.getAuthor());
-
-            Label date = new Label(df.format(post.getDate()));
-            date.addStyleDependentName("Date");
-            authorP.add(date);
-            authorP.add(new Label(" by "));
-            authorP.add(author);
-
-            mainP.add(authorP);
-
-            initWidget(mainP);
-            mainP.setStylePrimaryName("ForumPost");
-            mainP.addStyleDependentName("Short");
-        }
-
-        public void onClick(Widget sender) {
-            forumApp.gotoThread(post);
         }
     }
 

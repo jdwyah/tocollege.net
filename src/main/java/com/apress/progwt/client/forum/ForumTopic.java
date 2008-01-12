@@ -4,6 +4,7 @@ import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.User;
 
 public interface ForumTopic {
+
     String getUniqueForumID();
 
     boolean showForumPostText();
@@ -14,5 +15,7 @@ public interface ForumTopic {
     ForumPost getForumPost();
 
     public static String SEP = "~";
+
+    String getForumDisplayName();
 
 }

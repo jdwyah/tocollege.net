@@ -5,6 +5,7 @@ import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FormHandler;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormSubmitCompleteEvent;
@@ -20,7 +21,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LoginWindow extends PopupPanel {
+public class LoginWindow extends DialogBox {
 
     private static final String SECURITY_URL = "j_acegi_security_check";
     private static final String SECURITY_URL_OPENID = "site/j_acegi_openid_start";
@@ -62,6 +63,7 @@ public class LoginWindow extends PopupPanel {
             hide();
             return;
         }
+        setText("Please Login");
 
         setupForm();
 
@@ -75,7 +77,7 @@ public class LoginWindow extends PopupPanel {
 
         setToOpenID(false);
 
-        add(form);
+        setWidget(form);
 
         setStyleName("TC-Popup");
 

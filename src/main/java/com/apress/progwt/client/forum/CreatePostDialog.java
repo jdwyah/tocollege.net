@@ -6,13 +6,15 @@ import com.google.gwt.user.client.ui.DialogBox;
 
 public class CreatePostDialog extends DialogBox {
     public CreatePostDialog(ForumApp<? extends ForumPost> app,
-            User author, boolean isReply) {
+            User author, boolean isReply, String selection) {
         super(false);
         if (isReply) {
             setText("Create Reply");
         } else {
             setText("Create Post");
         }
-        setWidget(new CreatePostWidget(app, isReply, this, author));
+        setWidget(new CreatePostWidget(app, isReply, this, author,
+                selection));
+        addStyleDependentName("CreatePostDialog");
     }
 }

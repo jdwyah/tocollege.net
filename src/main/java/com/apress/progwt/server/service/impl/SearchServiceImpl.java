@@ -353,6 +353,7 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
             sb.append("* ");
         }
 
+        final String[] aliases = { "School" };
         final String searchString = sb.toString();
 
         compassTemplate.execute(new CompassCallback() {
@@ -360,11 +361,14 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
                     throws CompassException {
 
                 CompassHits hits = session.queryBuilder().queryString(
-                        searchString).toQuery().hits();
+                        searchString).toQuery().setAliases(aliases)
+                        .hits();
                 log.debug("search string " + searchString + " hits "
                         + hits.length());
                 for (int i = start; i < hits.length() && i < max_num_hits; i++) {
                     String name = hits.resource(i).get("name");
+                    log.debug("search string " + searchString + " hit: "
+                            + name + " " + hits.resource(i));
                     if (name != null) {
                         rtn.add(name);
                     }

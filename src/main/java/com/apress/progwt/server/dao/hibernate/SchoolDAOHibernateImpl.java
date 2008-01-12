@@ -179,7 +179,7 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
                 ForumPost.class, "fp").add(
                 Expression.and(Expression.eq("school.id", schoolID),
                         Expression.isNull("threadPost"))).addOrder(
-                Order.asc("date"));
+                Order.desc("date"));
 
         List<ForumPost> posts = getHibernateTemplate().findByCriteria(
                 crit, start, max);
@@ -200,7 +200,7 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
                 .forClass(ForumPost.class).add(
                         Expression.and(Expression.eq("user.id", userID),
                                 Expression.isNull("threadPost")))
-                .addOrder(Order.asc("date"));
+                .addOrder(Order.desc("date"));
 
         List<ForumPost> posts = getHibernateTemplate().findByCriteria(
                 crit, start, max);

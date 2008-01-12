@@ -1,16 +1,8 @@
-body {
-	background-color: transparent;
-	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+body {	
+	color: black;	
 }
 
 div.loading {
-	position: absolute;
-	top: 45%;
-	left: 45%;
-	/*background-image: url("../img/blueFade.png");*/
-	background-repeat: repeat-x;
-	background-position: 0px -20px;
 	background-color: #576B93;
 	border: 4px solid #D8E3FD;
 	border-style: ridge;
@@ -111,7 +103,23 @@ a:visited {
 .TC-Popup-Status {
 	
 }
-
+.ForumPost {
+	
+}
+.ForumPosts .Odd {
+	background-color: #EEEEEE;
+}
+.ForumPosts .title {		
+	width: 250px;
+	min-width: 250px;	
+}
+.ForumPosts .replies {    
+    text-align: right      
+}
+.ForumPosts .date {    
+    font-size: .8em;
+    color: #dddddd;   
+}
 .ForumPost {
 	border-top: 1px solid grey;	
 	padding: 10px;	
@@ -130,10 +138,21 @@ a:visited {
 }
 
 .AuthorSide {
-	background-color: #222222;
+	background-color: #EEEEEE;
 }
 .PostSide {
     width: 400px;
+}
+
+.gwt-Label-title {
+	border-bottom: 2px solid grey;
+	font-size: 1.2em;
+}
+
+.ForumControl {
+	color: #2244BB;
+	font-weight: bold;
+	border: 4px;
 }
 
 .Rating {
@@ -169,11 +188,17 @@ a:visited {
 }
 
 .gwt-DialogBox {
-	border: 1px solid #C3D9FF;
+	border: 3px ridge #C3D9FF;
+	background-color: white;
+	
+	
 }
 
-.gwt-DialogBox .Caption {
-	background-color: white;
+.gwt-DialogBox .Caption {	
+	background-color: #e3e8f3;
+    padding: 4px 4px 4px 8px;
+    cursor: default;
+    border-bottom: 1px solid #bbbbbb;	
 }
 
 .gwt-SuggestBoxPopup {

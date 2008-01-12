@@ -14,7 +14,7 @@ public class School extends AbstractSchool implements Serializable,
 
     @Override
     public String toString() {
-        return "School: " + getName();
+        return "School:" + getId() + ":name:" + getName();
     }
 
     public String getFullAddress() {
@@ -40,13 +40,20 @@ public class School extends AbstractSchool implements Serializable,
         return false;
     }
 
+    /**
+     * called by forumPost create(), this will create new forumpost.
+     */
     public ForumPost getForumPost() {
-        throw new UnsupportedOperationException();
+        return null;
     }
 
     public ForumPost getReplyInstance(User author, String title,
             String text, ForumPost thread) {
-        return new SchoolForumPost(this, author, title, text, null);
+        return new SchoolForumPost(this, author, title, text, thread);
+    }
+
+    public String getForumDisplayName() {
+        return getName();
     }
 
 }

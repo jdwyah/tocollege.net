@@ -31,7 +31,7 @@ public class CollegeMapApp extends GWTApp {
                 map = new MapWidget(collegeCenter, DEFAULT_ZOOM);
             }
 
-            map.setSize("500px", "300px");
+            map.setSize("300px", "250px");
 
             map.addControl(new SmallMapControl());
             map.addControl(new MapTypeControl());

@@ -15,7 +15,7 @@ public class ForumControlPanel extends Composite {
         HorizontalPanel mainP = new HorizontalPanel();
 
         nav = new HorizontalPanel();
-
+        nav.setStylePrimaryName("ForumControl");
         mainP.add(nav);
 
         initWidget(mainP);
@@ -30,7 +30,7 @@ public class ForumControlPanel extends Composite {
         while (9 == 9) {
             int pageS = (i) * maxperpage;
 
-            if (pageS > totalCount) {
+            if (pageS >= totalCount) {
                 break;
             }
 

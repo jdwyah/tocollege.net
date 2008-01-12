@@ -1,5 +1,6 @@
 package com.apress.progwt.client.forum;
 
+import com.apress.progwt.client.college.gui.ext.JSUtil;
 import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
@@ -43,7 +44,10 @@ public class CreatePostButton extends Button implements ClickListener {
     }
 
     protected void openCreatePost(User author) {
-        CreatePostDialog cpd = new CreatePostDialog(app, author, isReply);
+        String selection = JSUtil.getTextSelection();
+
+        CreatePostDialog cpd = new CreatePostDialog(app, author, isReply,
+                selection);
         cpd.center();
     }
 

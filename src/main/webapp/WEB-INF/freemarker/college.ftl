@@ -20,7 +20,7 @@
   	
   	<div id="main">
   	
-  	
+  	<div>
 	<@common.box "boxStyle", "topSchools", "Details">
 	${school.address}<br>
 	${school.city}, ${school.state} ${school.zip}<br>	
@@ -29,32 +29,33 @@
 	Graduate Students: ${school.students - school.undergrads}<br>
 	Athletics: ${school.varsity?default("None")}
 	</@common.box>	
+	
+    <@common.box "boxStyle", "collegeMap", "Map">  
+        <#assign params = {"latitude":"${school.latitude}", "longitude":"${school.longitude}"}/>    
+        <@gwt.widget "CollegeMap", params/>   
+    </@common.box>
+    </div>  
+	
+	     
+    <@common.box "boxStyle", "forums", "Forums">        
+        <#assign params = {"uniqueForumID":"${school.uniqueForumID}"}/>    
+        <@gwt.widget "SchoolForum", params/>        
+    </@common.box>  
+	
+    
+   
 	</div>  
 
 	
   	<div id="sidebar">  		
 				
-		<h3>Users Interested in ${school.name}</h3>
+		<h4>Interested Users</h4>
 		<#list interestedIn as user>
 			<@common.userLink user/>
 		</#list>			
   		
   	</div>
   	
-  	<div id="bottom">  		
-			
-	<@common.box "boxStyle", "collegeMap", "Map">	
-    	<#assign params = {"latitude":"${school.latitude}", "longitude":"${school.longitude}"}/>	
-		<@gwt.widget "CollegeMap", params/>   
-	</@common.box>	
-    
-		
-	<@common.box "boxStyle", "forums", "Forums">		
-        <#assign params = {"schoolID":"${school.id}", "schoolName":"${school.name}"}/>    
-        <@gwt.widget "SchoolForum", params/>   		
-	</@common.box>	
-  		
-  	</div>
     
     <@gwt.finalize/>
     
