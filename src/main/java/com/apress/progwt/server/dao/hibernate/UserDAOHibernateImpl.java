@@ -47,7 +47,7 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
         log.debug("Inited");
 
         List<User> list = getHibernateTemplate().findByNamedParam(
-                "from User where username = :name", "name",
+                "from User where lower(username) = :name", "name",
                 username.toLowerCase());
         log.debug("list " + list);
         log.debug("list " + list.size());

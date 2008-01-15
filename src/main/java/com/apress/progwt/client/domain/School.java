@@ -36,7 +36,7 @@ public class School extends AbstractSchool implements Serializable,
         return "School" + ForumTopic.SEP + getId();
     }
 
-    public boolean showForumPostText() {
+    public boolean doThreadListView() {
         return false;
     }
 

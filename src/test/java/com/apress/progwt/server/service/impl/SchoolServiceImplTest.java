@@ -374,7 +374,7 @@ public class SchoolServiceImplTest extends
         assertEquals(0, saved.getReplyCount());
 
         assertEquals(null, saved.getThreadPost());
-        assertEquals(null, saved.getUser());
+
         assertEquals(currentUser, saved.getAuthor());
 
         // save a second post to the same thread
@@ -408,7 +408,6 @@ public class SchoolServiceImplTest extends
         assertEquals(TEXT, saved2.getPostString());
 
         assertEquals(saved1, saved2.getThreadPost());
-        assertEquals(null, saved2.getUser());
         assertEquals(currentUser, saved2.getAuthor());
 
     }

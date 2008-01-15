@@ -59,8 +59,8 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-                                                                                      $wnd.urchinTracker(pageName);
-                                                                                  }-*/;
+                                                                                            $wnd.urchinTracker(pageName);
+                                                                                        }-*/;
 
     /**
      * EntryPoint. Dispatch based on javascript dictionary that tells us
@@ -90,8 +90,8 @@ public class Interactive implements EntryPoint {
                 } else if (widget.equals("CollegeMap")) {
                     Logger.log("Do CollegeMap");
                     CollegeMapApp c = new CollegeMapApp(currentWidget);
-                } else if (widget.equals("SchoolForum")) {
-                    Logger.log("Do School Forum");
+                } else if (widget.equals("Forum")) {
+                    Logger.log("Do Forum");
                     ForumApp c = new ForumApp(currentWidget);
                 } else {
                     throw new Exception("Vars['widget_" + currentWidget

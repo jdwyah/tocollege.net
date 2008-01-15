@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.apress.progwt.client.domain.ForumPost;
-import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 
 public abstract class AbstractForumPost implements Serializable {
@@ -17,11 +16,6 @@ public abstract class AbstractForumPost implements Serializable {
     private String postString;
 
     private String postTitle;
-    /**
-     * If this is a SchoolForumPost, this should be not null and is the
-     * 'topic' of this post's thread. Otherwise null.
-     */
-    private School school;
 
     /**
      * The top level post, ie 'thread' that this post belongs to. Null if
@@ -30,12 +24,6 @@ public abstract class AbstractForumPost implements Serializable {
     private ForumPost threadPost;
 
     private Set<ForumPost> replies = new HashSet<ForumPost>();
-
-    /**
-     * If this is a UserForumPost, this should be not null and is the
-     * 'topic' of this post's thread. Otherwise null.
-     */
-    private User user;
 
     public User getAuthor() {
         return author;
@@ -57,16 +45,8 @@ public abstract class AbstractForumPost implements Serializable {
         return postTitle;
     }
 
-    public School getSchool() {
-        return school;
-    }
-
     public ForumPost getThreadPost() {
         return threadPost;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public void setAuthor(User author) {
@@ -89,16 +69,8 @@ public abstract class AbstractForumPost implements Serializable {
         this.postTitle = postTitle;
     }
 
-    public void setSchool(School school) {
-        this.school = school;
-    }
-
     public void setThreadPost(ForumPost threadPost) {
         this.threadPost = threadPost;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Set<ForumPost> getReplies() {
@@ -120,11 +92,10 @@ public abstract class AbstractForumPost implements Serializable {
                 + ((postString == null) ? 0 : postString.hashCode());
         result = prime * result
                 + ((postTitle == null) ? 0 : postTitle.hashCode());
-        result = prime * result
-                + ((school == null) ? 0 : school.hashCode());
+
         result = prime * result
                 + ((threadPost == null) ? 0 : threadPost.hashCode());
-        result = prime * result + ((user == null) ? 0 : user.hashCode());
+
         return result;
     }
 
@@ -157,21 +128,13 @@ public abstract class AbstractForumPost implements Serializable {
                 return false;
         } else if (!postTitle.equals(other.postTitle))
             return false;
-        if (school == null) {
-            if (other.school != null)
-                return false;
-        } else if (!school.equals(other.school))
-            return false;
+
         if (threadPost == null) {
             if (other.threadPost != null)
                 return false;
         } else if (!threadPost.equals(other.threadPost))
             return false;
-        if (user == null) {
-            if (other.user != null)
-                return false;
-        } else if (!user.equals(other.user))
-            return false;
+
         return true;
     }
 

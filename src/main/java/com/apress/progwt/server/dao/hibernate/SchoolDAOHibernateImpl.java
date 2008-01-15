@@ -22,6 +22,8 @@ import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.SchoolForumPost;
+import com.apress.progwt.client.domain.UserForumPost;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.server.dao.SchoolDAO;
 
@@ -170,21 +172,40 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
      * f.thread_id, count(s.id) FROM `forumposts` f left JOIN forumposts s
      * on f.id = s.thread_id WHERE f.thread_id IS NULL group by f.id
      * 
+     * @param topicName
+     * 
      */
-    public PostsList getSchoolThreads(long schoolID, int start, int max) {
+    public PostsList getThreads(Class<? extends ForumPost> forumClass,
+            String topicName, long topicID, int start, int max) {
 
         System.out.println("start " + start + " max " + max);
 
-        DetachedCriteria crit = DetachedCriteria.forClass(
-                ForumPost.class, "fp").add(
-                Expression.and(Expression.eq("school.id", schoolID),
+        DetachedCriteria crit = DetachedCriteria.forClass(forumClass,
+                "fp").add(
+                Expression.and(Expression.eq(topicName, topicID),
                         Expression.isNull("threadPost"))).addOrder(
                 Order.desc("date"));
+
+        // alternative
+        // String query = "select post, count(rp) from " + forumClass
+        // + " post left join post.replies as rp where post."
+        // + topicName
+        // + " = ? and post.threadPost is null group by post."
+        // + topicName + " order by post.date desc ";
+        // List<Object[]> res = finder(query, topicID);
+        // List<ForumPost> posts = new ArrayList<ForumPost>(res.size());
+        // for (Object[] objects : res) {
+        // ForumPost fp = (ForumPost) objects[0];
+        // long count = (Long) objects[1];
+        // fp.setReplyCount((int) count);
+        // posts.add(fp);
+        // }
 
         List<ForumPost> posts = getHibernateTemplate().findByCriteria(
                 crit, start, max);
 
-        // set the reply count so we can have this information w/o loading
+        // set the reply count so we can have this information w/o
+        // loading
         // the actual set.
         for (ForumPost fp : posts) {
             fp.setReplyCount(fp.getReplies().size());
@@ -195,19 +216,8 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         return rtn;
     }
 
-    public PostsList getUserThreads(long userID, int start, int max) {
-        DetachedCriteria crit = DetachedCriteria
-                .forClass(ForumPost.class).add(
-                        Expression.and(Expression.eq("user.id", userID),
-                                Expression.isNull("threadPost")))
-                .addOrder(Order.desc("date"));
-
-        List<ForumPost> posts = getHibernateTemplate().findByCriteria(
-                crit, start, max);
-
-        PostsList rtn = new PostsList(posts, getRowCount(crit));
-
-        return rtn;
+    private List finder(String hql, Object... args) {
+        return getHibernateTemplate().find(hql, args);
     }
 
     public PostsList getPostsForThread(ForumPost post, int start, int max) {
@@ -223,5 +233,15 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         PostsList rtn = new PostsList(posts, getRowCount(crit));
 
         return rtn;
+    }
+
+    public PostsList getSchoolThreads(long schoolID, int start, int max) {
+        return getThreads(SchoolForumPost.class, "school.id", schoolID,
+                start, max);
+    }
+
+    public PostsList getUserThreads(long userID, int start, int max) {
+        return getThreads(UserForumPost.class, "user.id", userID, start,
+                max);
     }
 }

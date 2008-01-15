@@ -38,10 +38,10 @@ public class SaveForumPostCommandTest extends TestCase {
         assertEquals(TITLE, saved.getPostTitle());
         assertEquals(TEXT, saved.getPostString());
 
-        assertEquals(sc, saved.getSchool());
+        assertEquals(sc, saved.getTopic());
         assertEquals(au, saved.getAuthor());
         assertEquals(null, saved.getThreadPost());
-        assertEquals(null, saved.getUser());
+
     }
 
 }

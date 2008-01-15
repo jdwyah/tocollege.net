@@ -1,7 +1,6 @@
 package com.apress.progwt.client.forum;
 
 import com.apress.progwt.client.college.gui.ext.JSUtil;
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -10,7 +9,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class CreatePostButton extends Button implements ClickListener {
 
-    private ForumApp<? extends ForumPost> app;
+    private ForumApp app;
     private boolean isReply;
 
     // private ForumPost thread;
@@ -22,8 +21,8 @@ public class CreatePostButton extends Button implements ClickListener {
      * @param topic -
      *            can be null for new thread creation
      */
-    public CreatePostButton(ForumApp<? extends ForumPost> app,
-            boolean isReply, ForumTopic topic) {
+    public CreatePostButton(ForumApp app, boolean isReply,
+            ForumTopic topic) {
         super("Create New Thread");
         if (isReply) {
             setText("Reply");

@@ -32,6 +32,9 @@ public interface SchoolDAO {
 
     List<RatingType> getDefaultRatingTypes();
 
+    PostsList getThreads(Class<? extends ForumPost> forumClass,
+            String topicName, long topicID, int start, int max);
+
     PostsList getSchoolThreads(long schoolID, int start, int max);
 
     PostsList getUserThreads(long userID, int start, int max);

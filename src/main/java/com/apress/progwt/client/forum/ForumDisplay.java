@@ -19,9 +19,9 @@ public class ForumDisplay extends Composite {
             .getFormat("MMM, d yyyy HH:mm");
 
     private VerticalPanel allPosts;
-    private ForumApp<? extends ForumPost> forumApp;
+    private ForumApp forumApp;
 
-    public ForumDisplay(ForumApp<? extends ForumPost> forumApp) {
+    public ForumDisplay(ForumApp forumApp) {
         this.forumApp = forumApp;
         allPosts = new VerticalPanel();
         allPosts.setStylePrimaryName("ForumPosts");
@@ -42,7 +42,7 @@ public class ForumDisplay extends Composite {
             allPosts.add(originalL);
         }
 
-        if (topic.showForumPostText()) {
+        if (topic.doThreadListView()) {
             for (ForumPost post : result.getPosts()) {
                 allPosts.add(new PostDisplay(post));
             }

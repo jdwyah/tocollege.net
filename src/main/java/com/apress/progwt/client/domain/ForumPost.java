@@ -10,7 +10,8 @@ public abstract class ForumPost extends AbstractForumPost implements
         Serializable, Loadable, ForumTopic {
 
     /**
-     * not guaranteed to equal getReplies().size() since it's not lo
+     * not guaranteed to equal getReplies().size() since it's not loaded
+     * from the DB. It's used as essentially a DTO field.
      */
     private int replyCount;
 
@@ -33,10 +34,9 @@ public abstract class ForumPost extends AbstractForumPost implements
      *            a thread. If not null, it is a response to this thread.
      *            All posts in a thread should have the same threadPost.
      */
-    public ForumPost(School school, User user, User author,
-            String postTitle, String postString, ForumPost threadPost) {
-        setSchool(school);
-        setUser(user);
+    public ForumPost(User author, String postTitle, String postString,
+            ForumPost threadPost) {
+
         setAuthor(author);
         setPostTitle(postTitle);
         setPostString(postString);
@@ -56,11 +56,7 @@ public abstract class ForumPost extends AbstractForumPost implements
         this.replyCount = replyCount;
     }
 
-    public String getUniqueForumID() {
-        return "ForumPost" + ForumTopic.SEP + getId();
-    }
-
-    public boolean showForumPostText() {
+    public boolean doThreadListView() {
         return true;
     }
 
@@ -72,11 +68,10 @@ public abstract class ForumPost extends AbstractForumPost implements
         return getPostTitle();
     }
 
-    @Override
-    public String toString() {
-        return "ForumPost " + getId() + " Title: " + getPostTitle()
-                + " sc " + getSchool() + " usr " + getUser()
-                + " thread: " + getThreadPost();
-    }
+    public abstract ForumTopic getTopic();
+
+    public abstract void setTopic(ForumTopic topic);
+
+    public abstract Class<? extends ForumTopic> getTopicClass();
 
 }

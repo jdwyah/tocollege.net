@@ -39,7 +39,7 @@
 	     
     <@common.box "boxStyle", "forums", "Forums">        
         <#assign params = {"uniqueForumID":"${school.uniqueForumID}"}/>    
-        <@gwt.widget "SchoolForum", params/>        
+        <@gwt.widget "Forum", params/>        
     </@common.box>  
 	
     

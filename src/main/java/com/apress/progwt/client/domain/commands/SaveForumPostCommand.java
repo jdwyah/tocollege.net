@@ -3,9 +3,9 @@ package com.apress.progwt.client.domain.commands;
 import java.io.Serializable;
 
 import com.apress.progwt.client.domain.ForumPost;
-import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.SiteException;
+import com.apress.progwt.client.forum.ForumTopic;
 
 /**
  * Because this will reference many objects that are stored in the DB, we
@@ -21,14 +21,14 @@ import com.apress.progwt.client.exception.SiteException;
  * @author Jeff Dwyer
  * 
  */
-public class SaveForumPostCommand extends AbstractCommand implements
-        Serializable {
+public class SaveForumPostCommand<T extends ForumPost> extends
+        AbstractCommand implements Serializable {
 
     private ForumPost forumPost;
 
     private long authorID;
 
-    private long schoolID = -1;
+    private long topicID = -1;
     private long userID = -1;
     private long threadID = -1;
 
@@ -38,18 +38,13 @@ public class SaveForumPostCommand extends AbstractCommand implements
     }
 
     public SaveForumPostCommand(ForumPost forumPost) {
-        super(forumPost, forumPost.getAuthor(), forumPost.getSchool(),
-                forumPost.getUser(), forumPost.getThreadPost());
-        this.forumPost = forumPost;
+        super(forumPost, forumPost.getAuthor(), forumPost.getTopic(),
+                forumPost.getThreadPost());
 
+        this.forumPost = forumPost;
+        this.topicID = forumPost.getTopic().getId();
         this.authorID = forumPost.getAuthor().getId();
 
-        if (forumPost.getSchool() != null) {
-            this.schoolID = forumPost.getSchool().getId();
-        }
-        if (forumPost.getUser() != null) {
-            this.userID = forumPost.getUser().getId();
-        }
         if (forumPost.getThreadPost() != null) {
             this.threadID = forumPost.getThreadPost().getId();
         }
@@ -66,8 +61,9 @@ public class SaveForumPostCommand extends AbstractCommand implements
         commandService.save(forumPost);
 
         User author = commandService.get(User.class, authorID);
-        User user = commandService.get(User.class, userID);
-        School school = commandService.get(School.class, schoolID);
+
+        ForumTopic loadedTopic = commandService.get(forumPost
+                .getTopicClass(), topicID);
         ForumPost threadP = commandService.get(ForumPost.class, threadID);
 
         System.out.println(toString());
@@ -80,8 +76,7 @@ public class SaveForumPostCommand extends AbstractCommand implements
         }
 
         toSave.setAuthor(author);
-        toSave.setUser(user);
-        toSave.setSchool(school);
+        toSave.setTopic(loadedTopic);
         toSave.setThreadPost(threadP);
 
         toSave.setDate(forumPost.getDate());
@@ -97,6 +92,11 @@ public class SaveForumPostCommand extends AbstractCommand implements
 
     }
 
+    /**
+     * used in testing accessor
+     * 
+     * @return
+     */
     public ForumPost getToSave() {
         return toSave;
     }

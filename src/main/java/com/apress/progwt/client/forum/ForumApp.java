@@ -13,19 +13,16 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class ForumApp<T extends ForumPost> extends GWTApp implements
-        HistoryListener {
+public class ForumApp extends GWTApp implements HistoryListener {
 
-    private ForumControlPanel controlPanel;
     private ForumTopic currentTopic;
 
     private ForumDisplay forumDisplay;
-    private int FORUM_POST_MAX = 5;
-    private int FORUM_THREAD_MAX = 10;
+
+    private static final int FORUM_POST_MAX = 5;
+    private static final int FORUM_THREAD_MAX = 10;
 
     private ForumTopic originalTopic;
-
-    // private School school;
 
     public ForumApp(int pageID) {
         super(pageID);
@@ -117,14 +114,13 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
     public void gotoThread(final ForumPost thread, final int start) {
 
         getSchoolService().getPostsForThread(thread, start,
-                FORUM_THREAD_MAX,
+                FORUM_POST_MAX,
                 new StdAsyncCallback<PostsList>("Get Posts For Thread") {
 
                     @Override
                     public void onSuccess(PostsList result) {
                         super.onSuccess(result);
-                        load(start, result, true, thread,
-                                FORUM_THREAD_MAX);
+                        load(start, result, true, thread, FORUM_POST_MAX);
                     }
                 });
     }
@@ -140,11 +136,11 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
     }
 
     /**
-     * #School:486:20
+     * #School~486~20
      * 
-     * #ForumPost:12:0
+     * #SchoolForumPost~12~0
      * 
-     * #ForumPost:12
+     * #SchoolForumPost~12
      */
     public void onHistoryChanged(String historyToken) {
 
@@ -160,7 +156,7 @@ public class ForumApp<T extends ForumPost> extends GWTApp implements
             School s = new School();
             s.setId(id);
             gotoSchool(s, start);
-        } else if (tok[0].equals("ForumPost")) {
+        } else if (tok[0].equals("SchoolForumPost")) {
             ForumPost fp = new SchoolForumPost();
             fp.setId(id);
             gotoThread(fp, start);

@@ -92,8 +92,13 @@ public class UserDAOHibernateImplTest extends
         //
         saved.setUsername(B);
         saved.setSupervisor(true);
+        assertEquals(B, saved.getUsername());
+        saved = userDAO.save(saved);
+        assertEquals(B, saved.getUsername());
 
-        userDAO.save(saved);
+        for (User uuu : userDAO.getAllUsers()) {
+            System.out.println("AAAAAA " + uuu);
+        }
         User editted = userDAO.getUserByUsername(B);
 
         assertNotNull(editted);

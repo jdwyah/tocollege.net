@@ -36,9 +36,13 @@
         </property>
         <property name="postTitle">
             <meta-data>postTitle</meta-data>
-        </property>
+        </property>        
+    </class>
+    <class name="SchoolForumPost" alias="SchoolForumPost" extends="ForumPost">        
         <component name="school" ref-alias="School" />        
     </class>
-	
+	<class name="UserForumPost" alias="UserForumPost" extends="ForumPost">        
+        <component name="user" ref-alias="User" />        
+    </class>
 
 </compass-core-mapping>

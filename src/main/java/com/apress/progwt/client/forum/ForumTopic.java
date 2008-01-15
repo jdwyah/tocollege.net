@@ -7,7 +7,7 @@ public interface ForumTopic {
 
     String getUniqueForumID();
 
-    boolean showForumPostText();
+    boolean doThreadListView();
 
     ForumPost getReplyInstance(User author, String title, String text,
             ForumPost thread);
@@ -17,5 +17,7 @@ public interface ForumTopic {
     public static String SEP = "~";
 
     String getForumDisplayName();
+
+    long getId();
 
 }

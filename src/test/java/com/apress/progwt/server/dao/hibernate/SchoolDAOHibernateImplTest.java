@@ -90,7 +90,7 @@ public class SchoolDAOHibernateImplTest extends
 
         // Create a first thread for this school
         ForumPost post = new SchoolForumPost(sc, u, A, A, null);
-        post.setId(schoolDAO.save(post).getId());
+        post = (ForumPost) schoolDAO.save(post);
 
         threads = schoolDAO.getSchoolThreads(sc.getId(), 0, 10);
         assertEquals(1, threads.getTotalCount());
@@ -98,11 +98,11 @@ public class SchoolDAOHibernateImplTest extends
 
         ForumPost saved = threads.getPosts().get(0);
         assertNotNull(saved.getDate());
-        assertEquals(sc, saved.getSchool());
+        assertEquals(sc, saved.getTopic());
 
         // save a second post in the same thread
         ForumPost post2 = new SchoolForumPost(sc, u, null, A, saved);
-        post2.setId(schoolDAO.save(post2).getId());
+        post2 = (ForumPost) schoolDAO.save(post2);
 
         // should only be 1 top level thread still.
         threads = schoolDAO.getSchoolThreads(sc.getId(), 0, 10);

@@ -1,8 +1,8 @@
 package com.apress.progwt.client.forum;
 
 import com.apress.progwt.client.college.gui.ext.RichTextToolbar;
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.ui.Button;
@@ -25,9 +25,9 @@ public class CreatePostWidget extends Composite {
 
     }
 
-    public CreatePostWidget(final ForumApp<? extends ForumPost> app,
-            boolean isReply, final CreatePostDialog createPostDialog,
-            final User author, String selection) {
+    public CreatePostWidget(final ForumApp app, boolean isReply,
+            final CreatePostDialog createPostDialog, final User author,
+            String selection) {
 
         VerticalPanel mainP = new VerticalPanel();
 
@@ -37,8 +37,6 @@ public class CreatePostWidget extends Composite {
 
         textArea.setSize("35em", "15em");
         RichTextToolbar toolbar = new RichTextToolbar(textArea);
-
-        setHTML(makeReplyFromString(selection));
 
         HorizontalPanel hp = new HorizontalPanel();
         hp.add(new Label("Title:"));
@@ -75,21 +73,33 @@ public class CreatePostWidget extends Composite {
         mainP.add(submitB);
 
         initWidget(mainP);
+
+        Logger.log("setHTML: " + selection);
+
+        // selection = "<img src='doesntexist.jpg'
+        // onerror='alert('xss')'>";
+        selection = "start<script>alert('xss');</script>end";
+        setHTML(makeReplyFromString(selection));
     }
 
     public String makeReplyFromString(String selection) {
+        return makeReplyFromString(selection, REPLY_LINE_LENGTH);
+    }
+
+    public String makeReplyFromString(String selection,
+            int replyLineLength) {
         int sIndex = 0;
         StringBuffer selectionSB = new StringBuffer();
         while (sIndex < selection.length()) {
 
-            int endIndex = sIndex + REPLY_LINE_LENGTH;
+            int endIndex = sIndex + replyLineLength;
             endIndex = endIndex >= selection.length() ? selection
                     .length() : endIndex;
 
             selectionSB.append("&gt;");
             selectionSB.append(selection.substring(sIndex, endIndex));
             selectionSB.append("<br>");
-            sIndex += REPLY_LINE_LENGTH;
+            sIndex += replyLineLength;
         }
         return selectionSB.toString();
     }
