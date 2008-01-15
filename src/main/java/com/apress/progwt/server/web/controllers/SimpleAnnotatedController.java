@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.apress.progwt.server.service.SchoolService;
 import com.apress.progwt.server.service.UserService;
 
 /**
@@ -29,7 +31,8 @@ public class SimpleAnnotatedController {
     private static final Logger log = Logger
             .getLogger(SimpleAnnotatedController.class);
 
-    protected UserService userService;
+    private UserService userService;
+    private SchoolService schoolService;
 
     @RequestMapping("/acknowledgements.html")
     public ModelMap acknowledgementsHandler(HttpServletRequest req) {
@@ -49,6 +52,21 @@ public class SimpleAnnotatedController {
                 userService));
     }
 
+    @RequestMapping("/forums.html")
+    public ModelMap forumsHandler(HttpServletRequest req,
+            @RequestParam(value = "uniqueForumID", required = false)
+            String uniqueForumID) {
+        ModelMap rtn = new ModelMap(ControllerUtil.getDefaultModel(req,
+                userService));
+        if (uniqueForumID != null) {
+            rtn.addAttribute("uniqueForumID", uniqueForumID);
+        } else {
+            rtn.addAttribute("forumPosts", schoolService
+                    .getRecentForumPosts(0, 15));
+        }
+        return rtn;
+    }
+
     /**
      * No bean definition in dispatcher-servlet.xml since we'll be found
      * with the scan for (AT)Controller because of <context:component-scan
@@ -59,6 +77,11 @@ public class SimpleAnnotatedController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setSchoolService(SchoolService schoolService) {
+        this.schoolService = schoolService;
     }
 
 }

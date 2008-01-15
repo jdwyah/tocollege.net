@@ -183,4 +183,8 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         this.userService = userService;
     }
 
+    public List<ForumPost> getRecentForumPosts(int start, int max) {
+        return schoolDAO.getRecentForumPosts(start, max);
+    }
+
 }

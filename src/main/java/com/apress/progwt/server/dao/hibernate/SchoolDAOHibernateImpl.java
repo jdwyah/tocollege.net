@@ -244,4 +244,15 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         return getThreads(UserForumPost.class, "user.id", userID, start,
                 max);
     }
+
+    public List<ForumPost> getRecentForumPosts(int start, int max) {
+        DetachedCriteria crit = DetachedCriteria.forClass(
+                ForumPost.class, "fp").add(
+                Expression.isNull("threadPost")).addOrder(
+                Order.desc("date"));
+
+        List<ForumPost> posts = getHibernateTemplate().findByCriteria(
+                crit, start, max);
+        return posts;
+    }
 }

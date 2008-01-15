@@ -29,8 +29,8 @@
 		
 	<@common.box "boxStyle", "forumBox", "Forums">
 				
-	No Forum Posts Yet
-		
+        <@common.showForumPosts frontPage.forumPosts/>				
+		       		
 	</@common.box>	
 	
 	<@common.box "boxStyle", "app", "Calculator">  	 	  
@@ -54,7 +54,12 @@
 				
 		<ol>		
 		<#list frontPage.popularSchools as schoolAndRank>
-			<li><@common.schoolLink schoolAndRank.school/> :  ${schoolAndRank.rank}</li>
+		    
+		    <#if schoolAndRank.rank gt 0>
+		    <li><@common.schoolLink schoolAndRank.school/> :  <font color="green">+${(schoolAndRank.rank * 10)?string(00)}</font></li>
+		    <#else>
+			<li><@common.schoolLink schoolAndRank.school/> :  <font color="red">${(schoolAndRank.rank * 10)?string(00)}</front></li>
+			</#if>
 		</#list>
 		</ol>		
 		

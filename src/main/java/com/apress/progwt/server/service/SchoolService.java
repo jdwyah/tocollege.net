@@ -34,4 +34,6 @@ public interface SchoolService {
 
     PostsList getPostsForThread(ForumPost post, int start, int max);
 
+    List<ForumPost> getRecentForumPosts(int start, int max);
+
 }

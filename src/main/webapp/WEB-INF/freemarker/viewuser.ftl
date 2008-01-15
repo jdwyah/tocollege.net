@@ -1,6 +1,7 @@
 <html>
 <#import "/spring.ftl" as spring/>
 <#import "common.ftl" as common/>
+<#import "commonGWT.ftl" as gwt/>
 <head>
   <title>${viewUser.nickname}</title>
 </head>
@@ -69,11 +70,16 @@
 		
 	<@common.box "boxStyle", "userWall", "My Wall">
 		
-	No posts on this wall yet.
+	     
+    <@common.box "boxStyle", "forums", "Forums">        
+        <#assign params = {"uniqueForumID":"${viewUser.uniqueForumID}"}/>    
+        <@gwt.widget "Forum", params/>        
+    </@common.box>  
 		
 	</@common.box>	
   		
   	</div>
-    
+        
+    <@gwt.finalize/>
 </body>
 </html>

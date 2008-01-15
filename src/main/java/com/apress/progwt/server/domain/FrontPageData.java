@@ -1,6 +1,5 @@
 package com.apress.progwt.server.domain;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import com.apress.progwt.client.domain.ForumPost;
@@ -23,7 +22,8 @@ public class FrontPageData {
         setPopularSchools(schoolService.getPopularSchools());
 
         setTopUsers(userService.getTopUsers());
-        forumPosts = new LinkedList<ForumPost>();
+        setForumPosts(schoolService.getRecentForumPosts(0, 10));
+
     }
 
     public List<School> getTopSchools() {

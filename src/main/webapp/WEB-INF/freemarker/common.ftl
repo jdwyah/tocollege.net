@@ -20,6 +20,27 @@
 <#macro userLink user>
 	<a href="<@spring.url "/site/user/${user.nickname}"/>">${user.nickname}</a>
 </#macro>
+<#macro forumLink forumPost>
+    <a href="<@spring.url "/site/forums.html?uniqueForumID=${forumPost.uniqueForumID}"/>">${forumPost.postTitle?default("--")}</a>
+</#macro>
+<#macro forumTopicLink forumPost>
+    <a href="<@spring.url "/site/forums.html?uniqueForumID=${forumPost.topic.uniqueForumID}"/>">${forumPost.topic.forumDisplayName?default("--")}</a>
+</#macro>
+
+<#macro showForumPosts forumPosts>
+    <table class="ForumPosts">
+        <tr><th>Thread</th><th>Topic</th><th>Replies</th><th>Author</th><th>Date</th></tr>
+        <#list forumPosts as forumPost>
+        <tr <#if forumPost_index % 2 == 1> class="Odd"</#if>>
+        <td><@forumLink forumPost/></td>
+        <td><@forumTopicLink forumPost/></td>
+        <td>${forumPost.replyCount}</td>
+        <td><@userLink forumPost.author/></td>
+        <td>${forumPost.date}</td>
+        </tr>
+        </#list>
+   </table>
+</#macro>
 
 <#macro loginForm>
 
