@@ -51,4 +51,8 @@ public abstract class AbstractCommand implements Serializable,
         // do nothing
     }
 
+    public void delete(Loadable loadable) {
+        loadable = null;
+    }
+
 }

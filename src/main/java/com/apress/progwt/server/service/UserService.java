@@ -35,7 +35,7 @@ public interface UserService {
     User getCurrentUser(boolean useUserCache)
             throws UsernameNotFoundException;
 
-    List<User> getTopUsers();
+    List<User> getTopUsers(int max);
 
     User getUserByNicknameFullFetch(String nickname);
 

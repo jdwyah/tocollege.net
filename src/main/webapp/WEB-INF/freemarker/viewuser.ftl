@@ -18,7 +18,32 @@
 
 <h1>${viewUser.nickname}</h1>
   	
-  	<div id="side1">
+  	<div id="main">
+  	
+  	<@common.box "boxStyle", "opinions", "School Opinions">
+  	 <table>
+  	 <tr><th>School</th><th>Pros</th><th>Cons</th><th>Thoughts</th></tr>
+  	 
+  	 <#list viewUser.schoolRankings as sap>
+  	  <tr>
+  	     <td>${sap.school.name}</td>
+  	     <td class="ProConPanel-Pro">
+  	     <#list sap.pros as pro>
+  	         ${pro}<p>
+  	     </#list>
+  	     </td>
+  	     <td class="ProConPanel-Con">
+  	     <#list sap.cons as con>
+             ${con}<p>
+         </#list>
+  	     </td>
+  	      <td>${sap.notes?default("")}</td>
+  	    </tr>
+  	 </#list>
+  	 
+  	 </table>
+  	</@common.box>   
+  	
   	
 	<@common.box "boxStyle", "list", "The List">
 	
@@ -52,10 +77,22 @@
 	</table>
 	
 	</@common.box>	
+	
+	
+	<div id="bottom">       
+         
+    <@common.box "boxStyle", "forums", "My Wall">        
+        <#assign params = {"uniqueForumID":"${viewUser.uniqueForumID}"}/>    
+        <@gwt.widget "Forum", params/>        
+    </@common.box>  
+        
+        
+    </div>
+	
 	</div>  
 
 	
-  	<div id="side2">  		
+  	<div id="sidebar">  		
 			
 	<@common.box "boxStyle", "userInfo", "About ${viewUser.nickname}">
 				
@@ -65,20 +102,7 @@
   		
   	</div>
   	
-  	<div id="bottom">  		
-			
-		
-	<@common.box "boxStyle", "userWall", "My Wall">
-		
-	     
-    <@common.box "boxStyle", "forums", "Forums">        
-        <#assign params = {"uniqueForumID":"${viewUser.uniqueForumID}"}/>    
-        <@gwt.widget "Forum", params/>        
-    </@common.box>  
-		
-	</@common.box>	
-  		
-  	</div>
+  
         
     <@gwt.finalize/>
 </body>

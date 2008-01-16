@@ -17,4 +17,8 @@ public class MockCommandService implements CommandService {
     public void save(Loadable o) {
         command.save(o);
     }
+
+    public void delete(Loadable loadable) {
+        command.delete(loadable);
+    }
 }

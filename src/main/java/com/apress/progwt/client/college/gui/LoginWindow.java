@@ -17,11 +17,14 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.PopupListener;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.SourcesTabEvents;
+import com.google.gwt.user.client.ui.TabListener;
+import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LoginWindow extends DialogBox {
+public class LoginWindow extends DialogBox implements TabListener {
 
     private static final String SECURITY_URL = "j_acegi_security_check";
     private static final String SECURITY_URL_OPENID = "site/j_acegi_openid_start";
@@ -29,9 +32,9 @@ public class LoginWindow extends DialogBox {
     private FormPanel form;
     private Label messageLabel;
     private LoginListener listener;
-    private Label toggleL;
+
     private boolean isOpenID;
-    private HorizontalPanel passPanel;
+
     private TextBox username;
     private TextBox openID;
 
@@ -86,15 +89,6 @@ public class LoginWindow extends DialogBox {
     private void setupForm() {
         form = new FormPanel();
 
-        KeyboardListener enterListener = new KeyboardListenerAdapter() {
-            public void onKeyPress(Widget sender, char keyCode,
-                    int modifiers) {
-                if (keyCode == KEY_ENTER) {
-                    form.submit();
-                }
-            }
-        };
-
         form.setAction(Interactive.getRelativeURL(SECURITY_URL));
 
         form.setMethod(FormPanel.METHOD_POST);
@@ -103,45 +97,13 @@ public class LoginWindow extends DialogBox {
 
         VerticalPanel panel = new VerticalPanel();
 
-        username = new TextBox();
-        username.setName("j_username");
-        username.setText(lastNameEntered);
+        TabPanel tabs = new TabPanel();
+        tabs.add(getOpenIDTab(), "OpenID");
+        tabs.add(getUPTab(), "Username/Password");
+        tabs.addTabListener(this);
+        tabs.selectTab(1);
 
-        openID = new TextBox();
-        openID.setName("openid_url");
-        openID.setText(lastNameEntered);
-
-        final PasswordTextBox password = new PasswordTextBox();
-        password.setName("j_password");
-        password.addKeyboardListener(enterListener);
-
-        username.setText("test");
-        password.setText("testaroo");
-
-        toggleL = new Label();
-        toggleL.addClickListener(new ClickListener() {
-            public void onClick(Widget sender) {
-                toggle();
-            }
-        });
-        toggleL.addStyleName("gwt-Hyperlink");
-
-        HorizontalPanel uP = new HorizontalPanel();
-
-        uP.add(new Label("Username"));
-        // uP.add(new Label(ConstHolder.myConstants.username()));
-        uP.add(username);
-        uP.add(openID);
-
-        passPanel = new HorizontalPanel();
-        passPanel.add(new Label("Password"));
-        // passPanel.add(new Label(ConstHolder.myConstants.password()));
-        passPanel.add(password);
-
-        panel.add(toggleL);
-
-        panel.add(uP);
-        panel.add(passPanel);
+        panel.add(tabs);
 
         panel.add(new Button("Login", new ClickListener() {
             public void onClick(Widget sender) {
@@ -195,26 +157,63 @@ public class LoginWindow extends DialogBox {
 
     }
 
-    private void toggle() {
-        setToOpenID(!isOpenID);
+    private Widget getUPTab() {
+        VerticalPanel uptab = new VerticalPanel();
+        username = new TextBox();
+        username.setName("j_username");
+        username.setText(lastNameEntered);
+
+        KeyboardListener enterListener = new KeyboardListenerAdapter() {
+            public void onKeyPress(Widget sender, char keyCode,
+                    int modifiers) {
+                if (keyCode == KEY_ENTER) {
+                    form.submit();
+                }
+            }
+        };
+
+        final PasswordTextBox password = new PasswordTextBox();
+        password.setName("j_password");
+        password.addKeyboardListener(enterListener);
+
+        username.setText("test");
+        password.setText("testaroo");
+
+        HorizontalPanel userP = new HorizontalPanel();
+
+        userP.add(new Label("Username"));
+        userP.add(username);
+
+        HorizontalPanel passPanel = new HorizontalPanel();
+        passPanel.add(new Label("Password"));
+        passPanel.add(password);
+
+        uptab.add(userP);
+        uptab.add(passPanel);
+
+        return uptab;
+    }
+
+    private Widget getOpenIDTab() {
+
+        openID = new TextBox();
+        openID.setName("openid_url");
+        openID.setText(lastNameEntered);
+
+        HorizontalPanel hP = new HorizontalPanel();
+
+        hP.add(new Label("Username"));
+        hP.add(openID);
+
+        return hP;
     }
 
     private void setToOpenID(boolean toOpenID) {
         if (toOpenID) {
-            openID.setVisible(true);
-            username.setVisible(false);
-            toggleL.setText("Username/Password");
-            // toggleL.setText(ConstHolder.myConstants.login_Standard());
             form.setAction(Interactive
                     .getRelativeURL(SECURITY_URL_OPENID));
-            passPanel.setVisible(false);
         } else {
-            username.setVisible(true);
-            openID.setVisible(false);
-            toggleL.setText("OpenID");
-            // toggleL.setText(ConstHolder.myConstants.login_OpenID());
             form.setAction(Interactive.getRelativeURL(SECURITY_URL));
-            passPanel.setVisible(true);
         }
 
         isOpenID = toOpenID;
@@ -239,6 +238,19 @@ public class LoginWindow extends DialogBox {
         };
         t.schedule(2000);
 
+    }
+
+    public boolean onBeforeTabSelected(SourcesTabEvents sender,
+            int tabIndex) {
+        return true;
+    }
+
+    public void onTabSelected(SourcesTabEvents sender, int tabIndex) {
+        if (tabIndex == 0) {
+            setToOpenID(true);
+        } else {
+            setToOpenID(false);
+        }
     }
 
 }

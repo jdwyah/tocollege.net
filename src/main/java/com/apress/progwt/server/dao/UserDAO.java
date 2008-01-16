@@ -12,6 +12,8 @@ public interface UserDAO {
 
     void delete(User user);
 
+    List<User> getAllUsers(int max);
+
     List<User> getAllUsers();
 
     User getForPaypalID(String paypalID);

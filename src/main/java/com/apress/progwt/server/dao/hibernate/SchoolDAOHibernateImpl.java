@@ -39,12 +39,13 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         return (Loadable) getHibernateTemplate().get(loadable, id);
     }
 
-    public List<School> getAllSchools() {
+    public List<School> getAllSchools(int start, int max) {
         DetachedCriteria crit = DetachedCriteria.forClass(School.class);
         // .add(
         // Expression.and(Expression.gt("id", 890l),
         // Expression.eq("latitude", -1d)));
-        List<School> list = getHibernateTemplate().findByCriteria(crit);
+        List<School> list = getHibernateTemplate().findByCriteria(crit,
+                start, max);
         return list;
     }
 
@@ -110,6 +111,11 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
     public Loadable save(Loadable loadable) {
         getHibernateTemplate().saveOrUpdate(loadable);
         return loadable;
+    }
+
+    public void delete(Loadable loadable) {
+        getHibernateTemplate().delete(loadable);
+        getHibernateTemplate().flush();
     }
 
     public Foo saveF() {

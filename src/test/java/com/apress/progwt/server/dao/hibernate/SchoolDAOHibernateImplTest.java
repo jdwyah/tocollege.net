@@ -29,7 +29,7 @@ public class SchoolDAOHibernateImplTest extends
     }
 
     public void testGetAllSchools() {
-        List<School> sc = schoolDAO.getAllSchools();
+        List<School> sc = schoolDAO.getAllSchools(0, 2500);
         assertEquals(2374, sc.size());
     }
 

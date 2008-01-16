@@ -33,7 +33,14 @@ a:visited {
 	border: 4px solid #D8E3FD;
 	border-style: ridge;
 }
-
+.loginToggle {
+	color: #000099;
+	font-size: .8em;
+	text-decoration: underline;
+}
+.editableLabel-label-hover {
+    background-color: #6492FF;
+}
 .ControlButton {
 	width: 40px;
 }

@@ -58,7 +58,7 @@
 		    <#if schoolAndRank.rank gt 0>
 		    <li><@common.schoolLink schoolAndRank.school/> :  <font color="green">+${(schoolAndRank.rank * 10)?string(00)}</font></li>
 		    <#else>
-			<li><@common.schoolLink schoolAndRank.school/> :  <font color="red">${(schoolAndRank.rank * 10)?string(00)}</front></li>
+			<li><@common.schoolLink schoolAndRank.school/> :  <font color="red">${(schoolAndRank.rank * 10)?string(00)}</font></li>
 			</#if>
 		</#list>
 		</ol>		

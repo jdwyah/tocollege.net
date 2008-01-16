@@ -16,7 +16,7 @@ public interface SchoolService {
 
     List<SchoolPopularity> getPopularSchools();
 
-    List<School> getTopSchools();
+    List<School> getTopSchools(int start, int max);
 
     List<String> getSchoolsMatching(String match);
 

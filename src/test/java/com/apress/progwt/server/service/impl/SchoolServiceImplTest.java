@@ -15,6 +15,7 @@ import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.RemoveSchoolFromRankCommand;
+import com.apress.progwt.client.domain.commands.SaveApplicationCommand;
 import com.apress.progwt.client.domain.commands.SaveForumPostCommand;
 import com.apress.progwt.client.domain.commands.SaveProcessCommand;
 import com.apress.progwt.client.domain.commands.SaveRatingCommand;
@@ -33,6 +34,10 @@ public class SchoolServiceImplTest extends
             .getLogger(SchoolServiceImplTest.class);
     private static final String TITLE = "test title";
     private static final String TEXT = "test textaroo<b>with bold</b>";
+    private static final String A = "a text string";
+    private static final String B = "text with sdafns2389793";
+    private static final String C = "more text";
+
     private SchoolDAO schoolDAO;
     private UserDAO userDAO;
     private SchoolService schoolService;
@@ -87,7 +92,7 @@ public class SchoolServiceImplTest extends
                 .getUsername());
         assertEquals(1, savedUser.getSchoolRankings().size());
 
-        assertEquals(12, savedUser.getProcessTypes().size());
+        assertEquals(9, savedUser.getProcessTypes().size());
 
         ProcessType savedPT = null;
         // iterate to the last one
@@ -230,6 +235,7 @@ public class SchoolServiceImplTest extends
         assertEquals(yale, savedUser.getSchoolRankings().get(2)
                 .getSchool());
 
+        log.debug("\n\nDo Remove\n");
         // remove middle to Dart/Yale
         RemoveSchoolFromRankCommand comm2 = new RemoveSchoolFromRankCommand(
                 harvard, getUser());
@@ -243,6 +249,10 @@ public class SchoolServiceImplTest extends
         assertEquals(yale, savedUser.getSchoolRankings().get(1)
                 .getSchool());
 
+        assertEquals(0, savedUser.getSchoolRankings().get(0)
+                .getSortOrder());
+        assertEquals(1, savedUser.getSchoolRankings().get(1)
+                .getSortOrder());
     }
 
     public void testSaveProcessTypes() throws SiteException {
@@ -334,6 +344,79 @@ public class SchoolServiceImplTest extends
 
         assertEquals(3, savedDart.getRating(ratingOne));
         assertEquals(5, savedDart.getRating(ratingTwo));
+
+    }
+
+    public void testSaveApplications() throws SiteException {
+        log.debug("\n\nSaveratingTypes\n\n");
+        School dart = schoolService.getSchoolDetails("Dartmouth College");
+        School harvard = schoolService
+                .getSchoolDetails("Harvard University");
+        School yale = schoolService.getSchoolDetails("Yale University");
+
+        // Save in order to Dart/Harvard/Yale
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
+                getUser(), 0);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        comm = new SaveSchoolRankCommand(yale, getUser(), 2);
+        schoolService.executeAndSaveCommand(comm, false);
+
+        User savedUser = getUser();
+        assertEquals(3, savedUser.getSchoolRankings().size());
+
+        Application harvardApplication = savedUser.getSchoolRankings()
+                .get(1);
+
+        assertEquals(harvard, harvardApplication.getSchool());
+        assertEquals(1, harvardApplication.getSortOrder());
+
+        // save pro/con and notes to the application
+        harvardApplication.setNotes(TEXT);
+        harvardApplication.getPros().add(A);
+        harvardApplication.getPros().add(B);
+        harvardApplication.getCons().add(C);
+
+        SaveApplicationCommand command = new SaveApplicationCommand(
+                harvardApplication);
+
+        schoolService.executeAndSaveCommand(command, false);
+
+        User savedUser2 = getUser();
+
+        Application savedHarvard = savedUser2.getSchoolRankings().get(1);
+
+        assertEquals(1, savedHarvard.getSortOrder());
+        assertEquals(harvard, savedHarvard.getSchool());
+
+        assertEquals(TEXT, savedHarvard.getNotes());
+        assertEquals(A, savedHarvard.getPros().get(0));
+        assertEquals(B, savedHarvard.getPros().get(1));
+        assertEquals(C, savedHarvard.getCons().get(0));
+
+        // edit the original application and save again
+        harvardApplication.getPros().clear();
+        harvardApplication.getCons().add(B);
+        harvardApplication.setNotes(C);
+
+        SaveApplicationCommand command2 = new SaveApplicationCommand(
+                harvardApplication);
+        schoolService.executeAndSaveCommand(command2, false);
+
+        User savedUser3 = getUser();
+
+        Application savedHarvard2 = savedUser3.getSchoolRankings().get(1);
+
+        assertEquals(1, savedHarvard2.getSortOrder());
+        assertEquals(harvard, savedHarvard2.getSchool());
+
+        assertEquals(C, savedHarvard2.getNotes());
+        assertEquals(0, savedHarvard2.getPros().size());
+        assertEquals(C, savedHarvard2.getCons().get(0));
+        assertEquals(B, savedHarvard2.getCons().get(1));
 
     }
 

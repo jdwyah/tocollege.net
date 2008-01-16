@@ -119,7 +119,6 @@ public class MyCollegeMap extends Composite implements MyPageTab {
                     map.addOverlay(marker);
                 }
             }
-            map.addOverlay(new Marker(middleAmerica));
         }
 
         dialogBox.show();

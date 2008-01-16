@@ -18,10 +18,10 @@ public class FrontPageData {
     public FrontPageData(UserService userService,
             SchoolService schoolService) {
 
-        setTopSchools(schoolService.getTopSchools());
+        setTopSchools(schoolService.getTopSchools(0, 10));
         setPopularSchools(schoolService.getPopularSchools());
 
-        setTopUsers(userService.getTopUsers());
+        setTopUsers(userService.getTopUsers(5));
         setForumPosts(schoolService.getRecentForumPosts(0, 10));
 
     }

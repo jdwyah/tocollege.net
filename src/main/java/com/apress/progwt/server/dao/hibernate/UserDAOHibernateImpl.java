@@ -35,7 +35,15 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
     }
 
     public List<User> getAllUsers() {
-        return getHibernateTemplate().find("from User");
+        return getAllUsers(1000);
+    }
+
+    public List<User> getAllUsers(int max) {
+        DetachedCriteria crit = DetachedCriteria.forClass(User.class);
+
+        List<User> posts = getHibernateTemplate().findByCriteria(crit, 0,
+                max);
+        return posts;
     }
 
     /**

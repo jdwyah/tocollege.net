@@ -12,9 +12,11 @@ import com.apress.progwt.client.domain.dto.PostsList;
 
 public interface SchoolDAO {
 
+    void delete(Loadable loadable);
+
     School getSchoolFromName(String name);
 
-    List<School> getAllSchools();
+    List<School> getAllSchools(int start, int max);
 
     List<School> getSchoolsMatching(String match);
 

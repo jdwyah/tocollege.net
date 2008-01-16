@@ -80,12 +80,12 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     }
 
     public List<School> getAllSchools() {
-        return schoolDAO.getAllSchools();
+        return schoolDAO.getAllSchools(0, 2500);
     }
 
     public List<SchoolPopularity> getPopularSchools() {
         List<SchoolPopularity> ranked = new LinkedList<SchoolPopularity>();
-        for (School school : getTopSchools()) {
+        for (School school : getTopSchools(0, 10)) {
             ranked.add(new SchoolPopularity(school,
                     Math.random() * 5 - 2.5));
         }
@@ -147,8 +147,8 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return schoolDAO.getPostsForThread(post, start, max);
     }
 
-    public List<School> getTopSchools() {
-        return schoolDAO.getAllSchools().subList(0, 10);
+    public List<School> getTopSchools(int start, int max) {
+        return schoolDAO.getAllSchools(start, max);
     }
 
     public List<ProcessType> matchProcessType(String queryString) {
@@ -185,6 +185,10 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
 
     public List<ForumPost> getRecentForumPosts(int start, int max) {
         return schoolDAO.getRecentForumPosts(start, max);
+    }
+
+    public void delete(Loadable loadable) {
+        schoolDAO.delete(loadable);
     }
 
 }

@@ -10,18 +10,26 @@ public class ProConPanel extends Composite {
     private ProConDispPanel pros;
     private ProConDispPanel cons;
 
-    public ProConPanel(User thisUser, Application application) {
+    public ProConPanel(User thisUser, Application application,
+            CollegeEntry collegeEntry) {
 
         HorizontalPanel mainPanel = new HorizontalPanel();
 
-        pros = new ProConDispPanel("Pro", application.getPros());
-        cons = new ProConDispPanel("Con", application.getCons());
+        pros = new ProConDispPanel("Pro", application.getPros(),
+                collegeEntry);
+        cons = new ProConDispPanel("Con", application.getCons(),
+                collegeEntry);
 
         mainPanel.add(pros);
         mainPanel.add(cons);
 
         initWidget(mainPanel);
 
+    }
+
+    public void bindFields(Application application) {
+        pros.bindFields(application.getPros());
+        cons.bindFields(application.getCons());
     }
 
 }

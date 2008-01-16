@@ -47,7 +47,7 @@
         </list>   -->
        
          
-        <bag name="schoolRankings" inverse="false" order-by="sort_order"> 
+        <bag name="schoolRankings" inverse="false" order-by="sort_order" cascade="none"> 
 		     <key column="user_id"  />                              
              <one-to-many class="Application" />		     
 		</bag> 

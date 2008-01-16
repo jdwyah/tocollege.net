@@ -11,16 +11,20 @@ import com.allen_sauer.gwt.dragdrop.client.PickupDragController;
 import com.allen_sauer.gwt.dragdrop.client.VetoDragException;
 import com.allen_sauer.gwt.dragdrop.client.drop.IndexedDropController;
 import com.apress.progwt.client.college.ServiceCache;
+import com.apress.progwt.client.college.gui.ext.YesNoDialog;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.commands.RemoveSchoolFromRankCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.rpc.EZCallback;
+import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.apress.progwt.client.suggest.CompleteListener;
 import com.apress.progwt.client.suggest.SchoolCompleter;
 import com.apress.progwt.client.util.Logger;
 import com.apress.progwt.client.util.Utilities;
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
@@ -29,7 +33,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class MyRankings extends Composite implements DragHandler,
-        MyPageTab, CompleteListener<School> {
+        MyPageTab {
 
     private User user;
     private VerticalPanel rankPanelPanel;
@@ -58,7 +62,7 @@ public class MyRankings extends Composite implements DragHandler,
         completer = new SchoolCompleter(serviceCache,
                 new CompleteListener<School>() {
                     public void completed(School result) {
-                        // do something with School
+                        addSchool(result);
                     }
                 });
         completeB = new Button("Add School");
@@ -118,11 +122,11 @@ public class MyRankings extends Composite implements DragHandler,
 
     }
 
-    public void completed(School school) {
+    public void addSchool(School school) {
         Application schoolAndApp = new Application(school);
 
         CollegeEntry entry = new CollegeEntry(user, schoolAndApp,
-                serviceCache);
+                serviceCache, this);
         int index = addEntry(entry);
         saveEntry(entry, index);
     }
@@ -174,10 +178,38 @@ public class MyRankings extends Composite implements DragHandler,
         System.out.println("FOUND " + schoolAndApps.size() + " Schools ");
 
         for (Application schoolAndApp : schoolAndApps) {
-            addEntry(new CollegeEntry(user, schoolAndApp, serviceCache));
+            addEntry(new CollegeEntry(user, schoolAndApp, serviceCache,
+                    this));
         }
         completeB.setEnabled(true);
         refreshRankings();
+    }
+
+    public void promptForDelete(final CollegeEntry collegeEntry) {
+        YesNoDialog ynDialog = new YesNoDialog("Remove school?",
+                "Really remove "
+                        + collegeEntry.getApplication().getSchool()
+                                .getName() + "?", new Command() {
+                    public void execute() {
+                        delete(collegeEntry);
+                    }
+                });
+        ynDialog.center();
+    }
+
+    private void delete(final CollegeEntry collegeEntry) {
+        RemoveSchoolFromRankCommand command = new RemoveSchoolFromRankCommand(
+                collegeEntry.getApplication().getSchool(), user);
+        serviceCache.executeCommand(command,
+                new StdAsyncCallback<SiteCommand>("Remove Application") {
+                    @Override
+                    public void onSuccess(SiteCommand result) {
+                        super.onSuccess(result);
+                        rankPanelPanel.remove(collegeEntry);
+                        rankedEntries.remove(collegeEntry);
+                        refreshRankings();
+                    }
+                });
     }
 
 }

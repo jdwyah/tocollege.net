@@ -13,7 +13,7 @@
         <property name="sortOrder" column="sort_order" type="int"/>
         <property name="notes" column="notes" type="string"/>  
 
-        <many-to-one name="user" column="user_id" class="User" insert="false" update="false" />        
+        <many-to-one name="user" column="user_id" class="User" insert="false" update="false" cascade="none"/>        
         <many-to-one name="school" column="school_id" class="School" cascade="none" lazy="false"></many-to-one>		        
 
         <map name="process" table="application_process_map" inverse="false" cascade="all-delete-orphan">
@@ -31,12 +31,12 @@
              <element type="int" column="rating" not-null="true"/>     
         </map>
         
-        <list name="pros" table="application_pros" inverse="false" cascade="save-update">
+        <list name="pros" table="application_pros" inverse="false" cascade="save-update" lazy="false">
              <key column="application_id" />
              <list-index column="sort_order"/>
              <element type="string" column="value" not-null="true"/>             
         </list>
-        <list name="cons" table="application_cons" inverse="false" cascade="save-update">
+        <list name="cons" table="application_cons" inverse="false" cascade="save-update" lazy="false">
              <key column="application_id" />
              <list-index column="sort_order"/>
              <element type="string" column="value" not-null="true"/>             

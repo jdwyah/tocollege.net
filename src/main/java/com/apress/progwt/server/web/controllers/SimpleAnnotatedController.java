@@ -52,6 +52,12 @@ public class SimpleAnnotatedController {
                 userService));
     }
 
+    @RequestMapping("/about.html")
+    public ModelMap aboutHandler(HttpServletRequest req) {
+        return new ModelMap(ControllerUtil.getDefaultModel(req,
+                userService));
+    }
+
     @RequestMapping("/forums.html")
     public ModelMap forumsHandler(HttpServletRequest req,
             @RequestParam(value = "uniqueForumID", required = false)
@@ -64,6 +70,28 @@ public class SimpleAnnotatedController {
             rtn.addAttribute("forumPosts", schoolService
                     .getRecentForumPosts(0, 15));
         }
+        return rtn;
+    }
+
+    @RequestMapping("/users.html")
+    public ModelMap usersHandler(HttpServletRequest req) {
+        ModelMap rtn = new ModelMap(ControllerUtil.getDefaultModel(req,
+                userService));
+
+        rtn.addAttribute("topUsers", userService.getTopUsers(20));
+
+        return rtn;
+    }
+
+    @RequestMapping("/schools.html")
+    public ModelMap schoolsHandler(HttpServletRequest req) {
+        ModelMap rtn = new ModelMap(ControllerUtil.getDefaultModel(req,
+                userService));
+
+        rtn
+                .addAttribute("topSchools", schoolService.getTopSchools(
+                        0, 20));
+
         return rtn;
     }
 

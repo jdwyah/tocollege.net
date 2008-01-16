@@ -6,5 +6,7 @@ public interface CommandService {
 
     <T> T get(Class<T> clazz, long id);
 
+    void delete(Loadable loadable);
+
     void save(Loadable o);
 }

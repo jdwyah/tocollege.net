@@ -1,5 +1,6 @@
 package com.apress.progwt.client.calculator;
 
+import com.apress.progwt.client.college.gui.ext.EditableLabelExtension;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
@@ -194,6 +195,8 @@ public class Calculator extends Composite {
         HorizontalPanel mainP = new HorizontalPanel();
         mainP.add(dockPanel);
         mainP.add(ticker);
+
+        mainP.add(new EditableLabelExtension("ed2", null));
         initWidget(mainP);
 
         setResult(0);

@@ -3,6 +3,7 @@ package com.apress.progwt.client.college.gui;
 import java.util.List;
 
 import com.apress.progwt.client.college.ServiceCache;
+import com.apress.progwt.client.college.gui.ext.VerticalLabel;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
@@ -57,13 +58,15 @@ public class MyApplications extends Composite implements MyPageTab {
         col++;
 
         for (ProcessType processType : user.getNonStatusProcessTypes()) {
-            mainGrid.setWidget(0, col, new Label(processType.getName()));
+            mainGrid.setWidget(0, col, new VerticalLabel(processType
+                    .getName()));
             col++;
         }
 
         row++;
 
-        DeferredCommand.addCommand(new AddApplicationRows(schoolAndApps, user, row));
+        DeferredCommand.addCommand(new AddApplicationRows(schoolAndApps,
+                user, row));
 
         mainP.setWidget(mainGrid);
     }
@@ -87,7 +90,8 @@ public class MyApplications extends Composite implements MyPageTab {
         private int currentIndex = 0;
         private User user;
 
-        public AddApplicationRows(List<Application> applications, User user, int row) {
+        public AddApplicationRows(List<Application> applications,
+                User user, int row) {
             this.applications = applications;
             this.user = user;
             this.row = row;
@@ -131,5 +135,10 @@ public class MyApplications extends Composite implements MyPageTab {
 
             return true;
         }
+    }
+
+    public void delete(Application application) {
+        // TODO Auto-generated method stub
+
     }
 }

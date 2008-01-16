@@ -192,13 +192,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> getAllUsers() {
-        List<User> users = userDAO.getAllUsers();
-        // if(log.isDebugEnabled()){
-        // for (User user : users) {
-        // log.info(user.getUsername()+" "+user.isSupervisor());
-        // }
-        // }
-        return users;
+        return userDAO.getAllUsers();
     }
 
     public User getCurrentUser() throws UsernameNotFoundException {
@@ -357,8 +351,14 @@ public class UserServiceImpl implements UserService {
         this.schoolDAO = schoolDAO;
     }
 
-    public List<User> getTopUsers() {
-        return getAllUsers();
+    public List<User> getTopUsers(int max) {
+        List<User> users = userDAO.getAllUsers(max);
+        // if(log.isDebugEnabled()){
+        // for (User user : users) {
+        // log.info(user.getUsername()+" "+user.isSupervisor());
+        // }
+        // }
+        return users;
     }
 
     public User save(User user) {
