@@ -50,6 +50,8 @@
 	<table>
 	<tr class="headerRow">
 	<th>School</th>
+	
+	<#--Hold all params for our VerticalLabel widget-->
 	<#assign allparams = {"total":"${viewUser.processTypes?size}"}/>
 	
 	<#list viewUser.processTypes as processType>
@@ -57,7 +59,8 @@
 	   <th id="${id}">
 	   
 	   <#assign params = {"text${processType_index}":"${processType.name}",
-                              "id${processType_index}":"${id}"}/>    
+                              "id${processType_index}":"${id}"}/>  
+       <#--Use concatenation to work around lack of mutable hash-->                                
        <#assign allparams = allparams + params />               					
 	</th>
 		</#list>

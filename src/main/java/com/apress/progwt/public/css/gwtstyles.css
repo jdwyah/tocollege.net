@@ -48,6 +48,39 @@ a:visited {
 .editableLabel-label-hover {
     background-color: #6492FF;
 }
+.StatusPanel {
+	position: absolute;
+	z-index: 1;
+    top: 0px;
+    left: 0%;
+    width: 200px;
+    height: 40px;
+    background-color: transparent;
+    margin: 0 auto; /* align for good browsers */
+    text-align: left; /* counter the body center */
+    border: 0px;
+}
+
+.StatusLabels {
+    width: 5px;
+    height: 20px;
+    filter: alpha(opacity = 40);
+    -moz-opacity: .40;
+    opacity: .40;
+    -khtml-opacity: .4;
+}
+
+.StatusLabels .Send {
+    background: yellow;
+}
+
+.StatusLabels .Fail {
+    background: red;
+}
+
+.StatusLabels .Success {
+    background-color: green;
+}
 .ControlButton {
 	width: 40px;
 }

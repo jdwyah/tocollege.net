@@ -2,6 +2,8 @@ package com.apress.progwt.client;
 
 import com.apress.progwt.client.college.LoginService;
 import com.apress.progwt.client.college.ServiceCache;
+import com.apress.progwt.client.college.gui.status.StatusPanel;
+import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.apress.progwt.client.service.remote.GWTSchoolService;
 import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
 import com.apress.progwt.client.service.remote.GWTUserService;
@@ -27,6 +29,19 @@ public class GWTApp {
 
     public GWTApp(int pageID) {
         this.pageID = pageID;
+
+        // setup the StatusPanel. There will be just one DIV for this, no
+        // matter how many apps we have in the same page.
+        try {
+            RootPanel status = RootPanel.get("gwt-status");
+            if (status.getWidgetCount() == 0) {
+                status.add(new StatusPanel());
+            }
+            StdAsyncCallback
+                    .setManager((StatusPanel) status.getWidget(0));
+        } catch (Exception e) {
+            Logger.error("Status Panel problem: ");
+        }
     }
 
     protected String getLoadID() {
