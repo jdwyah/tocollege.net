@@ -12,7 +12,7 @@
 <body>
 	
 	<div id="header_logo">	    	
-	  	<a href="<@spring.url "/site/index.html"/>"><@common.pngImage src="/img/sideSeaHorse120px.png" width="67" height="120"/>
+	  	<a href="<@spring.url "/site/index.html"/>">Index
 	  	</a>
     </div>
     		

@@ -21,15 +21,15 @@ import com.apress.progwt.client.forum.ForumTopic;
  * @author Jeff Dwyer
  * 
  */
-public class SaveForumPostCommand<T extends ForumPost> extends
-        AbstractCommand implements Serializable {
+public class SaveForumPostCommand extends AbstractCommand implements
+        Serializable {
 
     private ForumPost forumPost;
 
     private long authorID;
 
     private long topicID = -1;
-    private long userID = -1;
+
     private long threadID = -1;
 
     private ForumPost toSave;

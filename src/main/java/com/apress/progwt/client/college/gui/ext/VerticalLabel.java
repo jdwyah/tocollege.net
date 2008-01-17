@@ -3,9 +3,9 @@ package com.apress.progwt.client.college.gui.ext;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.ImageBundle;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class VerticalLabel extends Composite {
     public interface LetterImages extends ImageBundle {
@@ -276,13 +276,14 @@ public class VerticalLabel extends Composite {
         AbstractImagePrototype SPACE();
     }
 
-    private VerticalPanel mainPanel;
+    private FlowPanel mainPanel;
     private static final LetterImages images = (LetterImages) GWT
             .create(LetterImages.class);
 
     public VerticalLabel(String text) {
 
-        mainPanel = new VerticalPanel();
+        mainPanel = new FlowPanel();
+        mainPanel.setStylePrimaryName("vertical-label");
         setText(text);
 
         initWidget(mainPanel);
@@ -293,63 +294,115 @@ public class VerticalLabel extends Composite {
 
         for (int i = text.length() - 1; i >= 0; i--) {
             char c = text.charAt(i);
-            mainPanel.add(getImage(Character.toUpperCase(c)));
+            mainPanel.add(getImage(c));
         }
     }
 
     private Image getImage(char c) {
         switch (c) {
         case 'A':
-            return images.sA().createImage();
+            return images.A().createImage();
         case 'B':
-            return images.sB().createImage();
+            return images.B().createImage();
         case 'C':
-            return images.sC().createImage();
+            return images.C().createImage();
         case 'D':
-            return images.sD().createImage();
+            return images.D().createImage();
         case 'E':
-            return images.sE().createImage();
+            return images.E().createImage();
         case 'F':
-            return images.sF().createImage();
+            return images.F().createImage();
         case 'G':
-            return images.sG().createImage();
+            return images.G().createImage();
         case 'H':
-            return images.sH().createImage();
+            return images.H().createImage();
         case 'I':
-            return images.sI().createImage();
+            return images.I().createImage();
         case 'J':
-            return images.sJ().createImage();
+            return images.J().createImage();
         case 'K':
-            return images.sK().createImage();
+            return images.K().createImage();
         case 'L':
-            return images.sL().createImage();
+            return images.L().createImage();
         case 'M':
-            return images.sM().createImage();
+            return images.M().createImage();
         case 'N':
-            return images.sN().createImage();
+            return images.N().createImage();
         case 'O':
-            return images.sO().createImage();
+            return images.O().createImage();
         case 'P':
-            return images.sP().createImage();
+            return images.P().createImage();
         case 'Q':
-            return images.sQ().createImage();
+            return images.Q().createImage();
         case 'R':
-            return images.sR().createImage();
+            return images.R().createImage();
         case 'S':
-            return images.sS().createImage();
+            return images.S().createImage();
         case 'T':
-            return images.sT().createImage();
+            return images.T().createImage();
         case 'U':
-            return images.sU().createImage();
+            return images.U().createImage();
         case 'V':
-            return images.sV().createImage();
+            return images.V().createImage();
         case 'W':
-            return images.sW().createImage();
+            return images.W().createImage();
         case 'X':
-            return images.sX().createImage();
+            return images.X().createImage();
         case 'Y':
-            return images.sY().createImage();
+            return images.Y().createImage();
         case 'Z':
+            return images.Z().createImage();
+        case 'a':
+            return images.sA().createImage();
+        case 'b':
+            return images.sB().createImage();
+        case 'c':
+            return images.sC().createImage();
+        case 'd':
+            return images.sD().createImage();
+        case 'e':
+            return images.sE().createImage();
+        case 'f':
+            return images.sF().createImage();
+        case 'g':
+            return images.sG().createImage();
+        case 'h':
+            return images.sH().createImage();
+        case 'i':
+            return images.sI().createImage();
+        case 'j':
+            return images.sJ().createImage();
+        case 'k':
+            return images.sK().createImage();
+        case 'l':
+            return images.sL().createImage();
+        case 'm':
+            return images.sM().createImage();
+        case 'n':
+            return images.sN().createImage();
+        case 'o':
+            return images.sO().createImage();
+        case 'p':
+            return images.sP().createImage();
+        case 'q':
+            return images.sQ().createImage();
+        case 'r':
+            return images.sR().createImage();
+        case 's':
+            return images.sS().createImage();
+        case 't':
+            return images.sT().createImage();
+        case 'u':
+            return images.sU().createImage();
+        case 'v':
+            return images.sV().createImage();
+        case 'w':
+            return images.sW().createImage();
+        case 'x':
+            return images.sX().createImage();
+        case 'y':
+            return images.sY().createImage();
+        case 'z':
             return images.sZ().createImage();
         case ' ':
             return images.SPACE().createImage();

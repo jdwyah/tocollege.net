@@ -2,8 +2,8 @@ package com.apress.progwt.server.dao;
 
 import java.util.List;
 
-import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.domain.ServerSideUser;

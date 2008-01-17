@@ -89,6 +89,49 @@ public class UserServiceImplTest extends
                 .size());
     }
 
+    public void testNormalizeUrl() {
+        System.out.println("testNormalizeUrl");
+
+        assertEquals("http://foo.com/", UserServiceImpl
+                .normalizeUrl("foo.com"));
+
+        assertEquals("http://foo.com/", UserServiceImpl
+                .normalizeUrl("http://foo.com"));
+        assertEquals("https://foo.com/", UserServiceImpl
+                .normalizeUrl("https://foo.com"));
+        assertEquals("http://foo.com/bar", UserServiceImpl
+                .normalizeUrl("foo.com/bar"));
+        assertEquals("http://foo.com/bar", UserServiceImpl
+                .normalizeUrl("http://foo.com/bar"));
+
+        assertEquals("http://foo.com/", UserServiceImpl
+                .normalizeUrl("http://foo.com/"));
+        assertEquals("https://foo.com/", UserServiceImpl
+                .normalizeUrl("https://foo.com/"));
+        assertEquals("https://foo.com/bar", UserServiceImpl
+                .normalizeUrl("https://foo.com/bar"));
+
+        assertEquals("http://foo.com/%E8%8D%89", UserServiceImpl
+                .normalizeUrl("foo.com/\u8349"));
+        assertEquals("http://foo.com/%E8%8D%89", UserServiceImpl
+                .normalizeUrl("http://foo.com/\u8349"));
+        assertEquals("http://xn--vl1a.com/", UserServiceImpl
+                .normalizeUrl("\u8349.com"));
+        assertEquals("http://xn--vl1a.com/", UserServiceImpl
+                .normalizeUrl("http://\u8349.com"));
+        assertEquals("http://xn--vl1a.com/", UserServiceImpl
+                .normalizeUrl("\u8349.com/"));
+        assertEquals("http://xn--vl1a.com/", UserServiceImpl
+                .normalizeUrl("http://\u8349.com/"));
+        assertEquals("http://xn--vl1a.com/%E8%8D%89", UserServiceImpl
+                .normalizeUrl("\u8349.com/\u8349"));
+        assertEquals("http://xn--vl1a.com/%E8%8D%89", UserServiceImpl
+                .normalizeUrl("http://\u8349.com/\u8349"));
+        assertNull(UserServiceImpl.normalizeUrl(null));
+        assertNull(UserServiceImpl.normalizeUrl(""));
+        assertNull(UserServiceImpl.normalizeUrl("http://"));
+    }
+
     public void setSchoolService(SchoolService schoolService) {
         this.schoolService = schoolService;
     }

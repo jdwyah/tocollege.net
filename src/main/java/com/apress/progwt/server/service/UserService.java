@@ -3,7 +3,7 @@ package com.apress.progwt.server.service;
 import java.util.Date;
 import java.util.List;
 
-import org.acegisecurity.userdetails.UsernameNotFoundException;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.BusinessException;

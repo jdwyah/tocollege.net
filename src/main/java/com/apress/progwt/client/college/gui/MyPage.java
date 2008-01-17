@@ -1,16 +1,21 @@
 package com.apress.progwt.client.college.gui;
 
+import java.util.Iterator;
+
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.ToCollegeApp;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.map.MyCollegeMap;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SourcesTabEvents;
 import com.google.gwt.user.client.ui.TabListener;
 import com.google.gwt.user.client.ui.TabPanel;
+import com.google.gwt.user.client.ui.Widget;
 
-public class MyPage extends Composite implements TabListener {
+public class MyPage extends Composite implements TabListener,
+        HistoryListener {
 
     private ServiceCache serviceCache;
 
@@ -50,6 +55,8 @@ public class MyPage extends Composite implements TabListener {
 
         mainPanel.selectTab(0);
 
+        History.addHistoryListener(this);
+
     }
 
     /**
@@ -78,4 +85,16 @@ public class MyPage extends Composite implements TabListener {
         myCollegeMap.load(user);
     }
 
+    public void onHistoryChanged(String historyToken) {
+        int i = 0;
+        for (Iterator<Widget> iterator = mainPanel.iterator(); iterator
+                .hasNext();) {
+            MyPageTab tab = (MyPageTab) iterator.next();
+            if (tab.getHistoryName().equals(historyToken)) {
+                mainPanel.selectTab(i);
+            }
+            i++;
+        }
+
+    }
 }

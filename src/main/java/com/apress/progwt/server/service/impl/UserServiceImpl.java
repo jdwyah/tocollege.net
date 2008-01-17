@@ -3,16 +3,18 @@ package com.apress.progwt.server.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import org.acegisecurity.Authentication;
-import org.acegisecurity.context.SecurityContextHolder;
-import org.acegisecurity.providers.dao.SaltSource;
-import org.acegisecurity.providers.dao.UserCache;
-import org.acegisecurity.providers.encoding.PasswordEncoder;
-import org.acegisecurity.userdetails.UserDetails;
-import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
+import org.openid4java.discovery.DiscoveryException;
+import org.openid4java.discovery.UrlIdentifier;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.MessageSource;
+import org.springframework.security.Authentication;
+import org.springframework.security.context.SecurityContextHolder;
+import org.springframework.security.providers.dao.SaltSource;
+import org.springframework.security.providers.dao.UserCache;
+import org.springframework.security.providers.encoding.PasswordEncoder;
+import org.springframework.security.userdetails.UserDetails;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apress.progwt.client.domain.ProcessType;
@@ -262,10 +264,28 @@ public class UserServiceImpl implements UserService {
             throws UsernameNotFoundException {
 
         if (couldBeOpenID(username)) {
-            return userDAO.getUserByUsername(com.janrain.openid.Util
-                    .normalizeUrl(username));
+
+            return userDAO.getUserByUsername(normalizeUrl(username));
+
+            // return userDAO.getUserByUsername(com.janrain.openid.Util
+            // .normalizeUrl(username));
         } else {
             return userDAO.getUserByUsername(username);
+        }
+    }
+
+    public static String normalizeUrl(String username) {
+        try {
+            // http || https
+            if (username != null && username.startsWith("http")) {
+                return UrlIdentifier.normalize(username).toExternalForm();
+            } else {
+                return UrlIdentifier.normalize("http://" + username)
+                        .toExternalForm();
+            }
+        } catch (DiscoveryException e) {
+            log.error("Invalid OpenID " + username + " " + e);
+            throw new RuntimeException("Invalid openID: " + username);
         }
     }
 

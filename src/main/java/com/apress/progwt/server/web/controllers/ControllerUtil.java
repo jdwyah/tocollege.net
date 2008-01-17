@@ -5,7 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.acegisecurity.userdetails.UsernameNotFoundException;
+import org.springframework.security.userdetails.UsernameNotFoundException;
+import org.springframework.ui.ModelMap;
 
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.service.UserService;
@@ -46,5 +47,12 @@ public class ControllerUtil {
         }
 
         return model;
+    }
+
+    public static ModelMap getModelMap(HttpServletRequest req,
+            UserService userService) {
+        ModelMap rtn = new ModelMap();
+        rtn.addAllAttributes(getDefaultModel(req, userService));
+        return rtn;
     }
 }

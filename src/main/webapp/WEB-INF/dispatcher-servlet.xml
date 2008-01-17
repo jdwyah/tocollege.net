@@ -76,8 +76,9 @@
 
      <bean id="openIDLoginStartController" class="com.apress.progwt.server.web.controllers.OpenIDLoginController">
           <property name="consumer" ref="openIDConsumer" />
+          <property name="openIDFilter" ref="openIDResponseProcess"/>
           <property name="trustRoot" value="${HOST.openID.trustRoot}" />
-          <property name="identityField" value="openid_url" />
+          <property name="identityField" value="openid_url" />          
      </bean>
 
 
@@ -106,6 +107,7 @@
 
 				<prop key="/site/accessDenied.html">errorController</prop>
 				<prop key="/site/servletErrorView.html">errorController</prop>						
+
 
 			    <prop key="/site/j_acegi_openid_start">openIDLoginStartController</prop>
                     

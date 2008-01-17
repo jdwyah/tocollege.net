@@ -2,11 +2,6 @@ package com.apress.progwt.server.dao.hibernate;
 
 import java.util.List;
 
-import org.acegisecurity.AuthenticationException;
-import org.acegisecurity.providers.cas.CasAuthoritiesPopulator;
-import org.acegisecurity.userdetails.UserDetails;
-import org.acegisecurity.userdetails.UserDetailsService;
-import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
 import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
@@ -16,6 +11,11 @@ import org.hibernate.criterion.Expression;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.security.AuthenticationException;
+import org.springframework.security.providers.AuthoritiesPopulator;
+import org.springframework.security.userdetails.UserDetails;
+import org.springframework.security.userdetails.UserDetailsService;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
@@ -23,7 +23,7 @@ import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
 
 public class UserDAOHibernateImpl extends HibernateDaoSupport implements
-        UserDAO, UserDetailsService, CasAuthoritiesPopulator {
+        UserDAO, UserDetailsService, AuthoritiesPopulator {
 
     private static final Logger log = Logger
             .getLogger(UserDAOHibernateImpl.class);
@@ -136,14 +136,6 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
                         paypalID));
     }
 
-    public UserDetails getUserDetails(String username)
-            throws AuthenticationException {
-        log.debug("getting userdetails " + username);
-
-        return loadUserByUsername(username);
-
-    }
-
     /**
      * use iterate() to avoid returning rows. Hibernate ref "11.13. Tips &
      * Tricks"
@@ -204,5 +196,11 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
     public User getUserByUsernameFetchAll(String username) {
         return fetchAllUser(DetachedCriteria.forClass(User.class).add(
                 Expression.eq("username", username)));
+    }
+
+    public UserDetails getUserDetails(String casUserId)
+            throws AuthenticationException {
+
+        return loadUserByUsername(casUserId);
     }
 }

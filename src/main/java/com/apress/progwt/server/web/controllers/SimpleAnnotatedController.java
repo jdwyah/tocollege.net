@@ -36,34 +36,31 @@ public class SimpleAnnotatedController {
 
     @RequestMapping("/acknowledgements.html")
     public ModelMap acknowledgementsHandler(HttpServletRequest req) {
-        return new ModelMap(ControllerUtil.getDefaultModel(req,
-                userService));
+        return ControllerUtil.getModelMap(req, userService);
     }
 
     @RequestMapping("/calculator.html")
     public ModelMap calculatorHandler(HttpServletRequest req) {
-        return new ModelMap(ControllerUtil.getDefaultModel(req,
-                userService));
+        return ControllerUtil.getModelMap(req, userService);
     }
 
     @RequestMapping("/terms.html")
     public ModelMap termsHandler(HttpServletRequest req) {
-        return new ModelMap(ControllerUtil.getDefaultModel(req,
-                userService));
+        return ControllerUtil.getModelMap(req, userService);
     }
 
     @RequestMapping("/about.html")
     public ModelMap aboutHandler(HttpServletRequest req) {
-        return new ModelMap(ControllerUtil.getDefaultModel(req,
-                userService));
+        return ControllerUtil.getModelMap(req, userService);
+
     }
 
     @RequestMapping("/forums.html")
     public ModelMap forumsHandler(HttpServletRequest req,
             @RequestParam(value = "uniqueForumID", required = false)
             String uniqueForumID) {
-        ModelMap rtn = new ModelMap(ControllerUtil.getDefaultModel(req,
-                userService));
+        ModelMap rtn = ControllerUtil.getModelMap(req, userService);
+
         if (uniqueForumID != null) {
             rtn.addAttribute("uniqueForumID", uniqueForumID);
         } else {
@@ -75,8 +72,7 @@ public class SimpleAnnotatedController {
 
     @RequestMapping("/users.html")
     public ModelMap usersHandler(HttpServletRequest req) {
-        ModelMap rtn = new ModelMap(ControllerUtil.getDefaultModel(req,
-                userService));
+        ModelMap rtn = ControllerUtil.getModelMap(req, userService);
 
         rtn.addAttribute("topUsers", userService.getTopUsers(20));
 
@@ -85,8 +81,7 @@ public class SimpleAnnotatedController {
 
     @RequestMapping("/schools.html")
     public ModelMap schoolsHandler(HttpServletRequest req) {
-        ModelMap rtn = new ModelMap(ControllerUtil.getDefaultModel(req,
-                userService));
+        ModelMap rtn = ControllerUtil.getModelMap(req, userService);
 
         rtn
                 .addAttribute("topSchools", schoolService.getTopSchools(

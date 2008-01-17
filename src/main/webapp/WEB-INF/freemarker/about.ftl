@@ -26,8 +26,8 @@
 
 	
   	<div id="sidebar">  		
-		
-  		
+  	    <@common.pngImage src="/img/profile.png" width="150" height="164"/>
+  	    Jeff Dwyer
   	</div>
   	    
     

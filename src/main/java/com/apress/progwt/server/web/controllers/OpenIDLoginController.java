@@ -6,10 +6,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.acegisecurity.ui.openid.OpenIDConsumer;
-import org.acegisecurity.ui.openid.OpenIDConsumerException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.security.ui.openid.OpenIDConsumer;
+import org.springframework.security.ui.openid.OpenIDConsumerException;
+import org.springframework.security.ui.openid.OpenIDResponseProcessingFilter;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -18,6 +19,7 @@ public class OpenIDLoginController extends AbstractController {
             .getLogger(OpenIDLoginController.class);
 
     private OpenIDConsumer consumer;
+    private OpenIDResponseProcessingFilter openIDFilter;
 
     private static final String passwordField = "j_password";
     private String identityField = "openid_url";
@@ -25,7 +27,12 @@ public class OpenIDLoginController extends AbstractController {
     private String errorPage = "acegilogin";
 
     private String trustRoot;
-    private String returnTo = "j_acegi_openid_security_check";
+
+    @Required
+    public void setOpenIDFilter(
+            OpenIDResponseProcessingFilter openIDFilter) {
+        this.openIDFilter = openIDFilter;
+    }
 
     @Required
     public void setTrustRoot(String trustRoot) {
@@ -66,7 +73,8 @@ public class OpenIDLoginController extends AbstractController {
             // send the user the redirect url to proceed with OpenID
             // authentication
             try {
-                String returnToURL = trustRoot + returnTo;
+                String returnToURL = trustRoot
+                        + openIDFilter.getFilterProcessesUrl();
 
                 log.debug("ReturnToURL to: " + returnToURL);
 

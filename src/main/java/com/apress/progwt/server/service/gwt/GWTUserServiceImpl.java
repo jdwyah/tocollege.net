@@ -1,7 +1,7 @@
 package com.apress.progwt.server.service.gwt;
 
-import org.acegisecurity.userdetails.UsernameNotFoundException;
 import org.apache.log4j.Logger;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.BusinessException;

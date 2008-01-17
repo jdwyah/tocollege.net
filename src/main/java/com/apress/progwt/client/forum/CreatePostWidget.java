@@ -76,9 +76,7 @@ public class CreatePostWidget extends Composite {
 
         Logger.log("setHTML: " + selection);
 
-        // selection = "<img src='doesntexist.jpg'
-        // onerror='alert('xss')'>";
-        selection = "start<script>alert('xss');</script>end";
+        // selection = "start<script>alert('xss');</script>end";
         setHTML(makeReplyFromString(selection));
     }
 

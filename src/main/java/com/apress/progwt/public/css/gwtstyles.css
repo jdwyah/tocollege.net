@@ -21,7 +21,13 @@ code {
 a {
 	color: darkblue;
 }
-
+.vertical-label{
+	padding: 0px;
+	width: 13px;
+	border: 0px;
+	margin: 0px;
+	text-align: right;
+}
 a:visited {
 	color: darkblue;
 }
