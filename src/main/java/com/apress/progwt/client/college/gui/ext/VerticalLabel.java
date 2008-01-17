@@ -266,7 +266,7 @@ public class VerticalLabel extends Composite {
         AbstractImagePrototype sY();
 
         /**
-         * @gwt.resource Z.png
+         * @gwt.resource sZ.png
          */
         AbstractImagePrototype sZ();
 

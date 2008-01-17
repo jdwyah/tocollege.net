@@ -252,6 +252,11 @@ fieldset {
 	margin: 5px;
 }
 
+.headerRow {
+	left: 0px;
+	vertical-align: bottom;
+}
+
 #header_account li {
     display: inline;
     list-style-type: none;

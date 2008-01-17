@@ -48,15 +48,21 @@
 	<@common.box "boxStyle", "list", "The List">
 	
 	<table>
-	<tr>
-	<td>School</td>
+	<tr class="headerRow">
+	<th>School</th>
+	<#assign allparams = {"total":"${viewUser.processTypes?size}"}/>
+	
 	<#list viewUser.processTypes as processType>
-	<td>
-		${processType.name}				
-	</td>
+	   <#assign id="head_${processType_index}"/>
+	   <th id="${id}">
+	   
+	   <#assign params = {"text${processType_index}":"${processType.name}",
+                              "id${processType_index}":"${id}"}/>    
+       <#assign allparams = allparams + params />               					
+	</th>
 		</#list>
 	</tr>
-	
+	<@gwt.widget "VerticalLabel", allparams/>
 
 
 	
@@ -67,7 +73,7 @@
 	</td>
 		
 		<#list sap.process?keys as processType>
-		<td>		
+		<td>		 		
 		${sap.getTheProcess(processType).pctComplete}
 		</td>		
 		</#list>

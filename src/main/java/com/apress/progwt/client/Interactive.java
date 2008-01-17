@@ -59,8 +59,8 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-                                                                                            $wnd.urchinTracker(pageName);
-                                                                                        }-*/;
+                                                                                                     $wnd.urchinTracker(pageName);
+                                                                                                 }-*/;
 
     /**
      * EntryPoint. Dispatch based on javascript dictionary that tells us
@@ -82,17 +82,18 @@ public class Interactive implements EntryPoint {
 
             for (int currentWidget = 1; currentWidget <= widgetCount; currentWidget++) {
                 String widget = dictionary.get("widget_" + currentWidget);
+                Logger.log("Do " + widget);
                 if (widget.equals("Calculator")) {
                     CalculatorApp m = new CalculatorApp(currentWidget);
                 } else if (widget.equals("CollegeBound")) {
-                    Logger.log("Do CollegeBound");
                     ToCollegeApp c = new ToCollegeApp(currentWidget);
                 } else if (widget.equals("CollegeMap")) {
-                    Logger.log("Do CollegeMap");
                     CollegeMapApp c = new CollegeMapApp(currentWidget);
                 } else if (widget.equals("Forum")) {
-                    Logger.log("Do Forum");
                     ForumApp c = new ForumApp(currentWidget);
+                } else if (widget.equals("VerticalLabel")) {
+                    VerticalLabelApp c = new VerticalLabelApp(
+                            currentWidget);
                 } else {
                     throw new Exception("Vars['widget_" + currentWidget
                             + "] => " + widget + " null or no match.");

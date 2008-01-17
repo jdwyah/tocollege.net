@@ -26,6 +26,7 @@ a {
 	width: 13px;
 	border: 0px;
 	margin: 0px;
+	line-height: 100%;
 	text-align: right;
 }
 a:visited {
