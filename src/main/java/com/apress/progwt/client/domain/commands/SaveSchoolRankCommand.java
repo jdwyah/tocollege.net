@@ -29,11 +29,17 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
         this.userID = user.getId();
     }
 
+    public boolean haveYouSecuredYourselfAndFilteredUserInput() {
+        return true;
+    }
+
     public void execute(CommandService commandService) {
         System.out.println("Execute Command");
 
         System.out.println("\n----A----\n");
         User currentUser = commandService.get(User.class, userID);
+
+        assertUserIsAuthenticated(currentUser);
 
         List<Application> rankings = currentUser.getSchoolRankings();
 

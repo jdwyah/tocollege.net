@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.service.remote.GWTUserService;
 import com.apress.progwt.server.gwt.GWTSpringControllerReplacement;
@@ -16,25 +17,32 @@ public class GWTUserServiceImpl extends GWTSpringControllerReplacement
 
     private UserService userService;
 
-    public User getCurrentUser() throws BusinessException {
+    public UserAndToken getCurrentUser() throws BusinessException {
 
         try {
-            User user = userService.getCurrentUser();
-            if (user != null) {
-                log.info("GWT get current user... " + user.getUsername());
+
+            UserAndToken rtn = userService.getCurrentUserAndToken();
+
+            if (rtn != null) {
+                log.info("GWT get current user... "
+                        + rtn.getUser().getUsername());
                 // System.out.println("\n\n\n---------------");
                 // System.out.println("user school rankings: "
                 // + user.getSchoolRankings().size());
                 // System.out.println("user process types: "
                 // + user.getProcessTypes().size());
-                User fetched = userService
-                        .getUserByNicknameFullFetch(user.getNickname());
+                User fetched = userService.getUserByNicknameFullFetch(rtn
+                        .getUser().getNickname());
                 System.out.println("\n\n---------------");
                 System.out.println("fetched school rankings: "
                         + fetched.getSchoolRankings().size());
                 System.out.println("fetched process types: "
                         + fetched.getProcessTypes().size());
-                return fetched;
+
+                rtn.setUser(fetched);
+
+                return rtn;
+
             } else {
                 return null;
             }

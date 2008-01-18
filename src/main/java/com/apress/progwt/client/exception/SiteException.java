@@ -28,6 +28,16 @@ public class SiteException extends Exception implements Serializable {
     }
 
     @Override
+    public String getLocalizedMessage() {
+        return message;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    @Override
     public String toString() {
         return message;
     }

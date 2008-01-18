@@ -98,6 +98,15 @@ public class ForumDisplay extends Composite {
 
     }
 
+    /**
+     * Note the use of new HTML(). This exposes us to XSS attacks. We need
+     * to be very sure that the postString() is not going to bite us here.
+     * See the HTMLInputFilter usage in SaveForumPostCommand() for our
+     * attempt to stop these attacks.
+     * 
+     * @author Jeff Dwyer
+     * 
+     */
     private class PostDisplay extends Composite {
 
         public PostDisplay(ForumPost post) {

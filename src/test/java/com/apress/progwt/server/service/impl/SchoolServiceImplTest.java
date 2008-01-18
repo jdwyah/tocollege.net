@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 
 import org.apache.log4j.Logger;
+import org.springframework.test.AssertThrows;
 
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.Foo;
@@ -20,8 +21,10 @@ import com.apress.progwt.client.domain.commands.SaveForumPostCommand;
 import com.apress.progwt.client.domain.commands.SaveProcessCommand;
 import com.apress.progwt.client.domain.commands.SaveRatingCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
+import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.exception.SiteException;
+import com.apress.progwt.client.exception.SiteSecurityException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.service.SchoolService;
@@ -155,13 +158,13 @@ public class SchoolServiceImplTest extends
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
                 getUser(), 0);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(yale, getUser(), 2);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         User savedUser = getUser();
         assertEquals(3, savedUser.getSchoolRankings().size());
@@ -177,7 +180,7 @@ public class SchoolServiceImplTest extends
 
         // re-order to Dart,Yale,Harvard
         comm = new SaveSchoolRankCommand(harvard, getUser(), 2);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         savedUser = getUser();
         assertEquals(3, savedUser.getSchoolRankings().size());
@@ -191,7 +194,7 @@ public class SchoolServiceImplTest extends
 
         // re-order to Harvard,Dart,Yale
         comm = new SaveSchoolRankCommand(harvard, getUser(), 0);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         savedUser = getUser();
         assertEquals(3, savedUser.getSchoolRankings().size());
@@ -215,13 +218,13 @@ public class SchoolServiceImplTest extends
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
                 getUser(), 0);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(yale, getUser(), 2);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         User currentUser = userService.getCurrentUser();
         User savedUser = userDAO.getUserByUsername(currentUser
@@ -239,7 +242,7 @@ public class SchoolServiceImplTest extends
         // remove middle to Dart/Yale
         RemoveSchoolFromRankCommand comm2 = new RemoveSchoolFromRankCommand(
                 harvard, getUser());
-        schoolService.executeAndSaveCommand(comm2, false);
+        executeWithToken(comm2, false);
 
         savedUser = userDAO.getUserByUsername(currentUser.getUsername());
         assertEquals(2, savedUser.getSchoolRankings().size());
@@ -265,13 +268,13 @@ public class SchoolServiceImplTest extends
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
                 getUser(), 0);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(yale, getUser(), 2);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         User savedUser = getUser();
         assertEquals(3, savedUser.getSchoolRankings().size());
@@ -292,7 +295,7 @@ public class SchoolServiceImplTest extends
         // re-order to Harvard,Dart,Yale
         SaveProcessCommand processComm = new SaveProcessCommand(
                 dartApplication, considering, processValue);
-        schoolService.executeAndSaveCommand(processComm, false);
+        executeWithToken(processComm, false);
 
         User savedUser2 = getUser();
 
@@ -314,13 +317,13 @@ public class SchoolServiceImplTest extends
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
                 getUser(), 0);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(yale, getUser(), 2);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         User savedUser = getUser();
         assertEquals(3, savedUser.getSchoolRankings().size());
@@ -336,7 +339,7 @@ public class SchoolServiceImplTest extends
         SaveRatingCommand command = new SaveRatingCommand(ratingOne, 3,
                 dartApplication);
 
-        schoolService.executeAndSaveCommand(command, false);
+        executeWithToken(command, false);
 
         User savedUser2 = getUser();
 
@@ -357,13 +360,13 @@ public class SchoolServiceImplTest extends
         // Save in order to Dart/Harvard/Yale
         SaveSchoolRankCommand comm = new SaveSchoolRankCommand(dart,
                 getUser(), 0);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         comm = new SaveSchoolRankCommand(yale, getUser(), 2);
-        schoolService.executeAndSaveCommand(comm, false);
+        executeWithToken(comm, false);
 
         User savedUser = getUser();
         assertEquals(3, savedUser.getSchoolRankings().size());
@@ -383,7 +386,7 @@ public class SchoolServiceImplTest extends
         SaveApplicationCommand command = new SaveApplicationCommand(
                 harvardApplication);
 
-        schoolService.executeAndSaveCommand(command, false);
+        executeWithToken(command, false);
 
         User savedUser2 = getUser();
 
@@ -404,7 +407,7 @@ public class SchoolServiceImplTest extends
 
         SaveApplicationCommand command2 = new SaveApplicationCommand(
                 harvardApplication);
-        schoolService.executeAndSaveCommand(command2, false);
+        executeWithToken(command2, false);
 
         User savedUser3 = getUser();
 
@@ -429,6 +432,43 @@ public class SchoolServiceImplTest extends
         }
     }
 
+    /**
+     * run the test after setting the token correctly.
+     * 
+     * @param command
+     * @param useUserCache
+     * @throws SiteException
+     */
+    private void executeWithToken(SiteCommand command,
+            boolean useUserCache) throws SiteException {
+
+        command.setToken(userService.getToken(getUser()));
+        schoolService.executeAndSaveCommand(command, useUserCache);
+    }
+
+    public void testForumPostSavingWithoutToken() throws SiteException {
+        AssertThrows as = new AssertThrows(SiteSecurityException.class) {
+
+            @Override
+            public void test() throws Exception {
+                log.debug("\n\nSave Again\n\n");
+                School sc = schoolService
+                        .getSchoolDetails("Adrian College");
+                assertNotNull(sc);
+
+                User currentUser = getUser();
+                assertNotNull(currentUser);
+
+                ForumPost fp = new SchoolForumPost(sc, currentUser,
+                        TITLE, TEXT, null);
+
+                schoolService.executeAndSaveCommand(
+                        new SaveForumPostCommand(fp), false);
+            }
+        };
+
+    }
+
     public void testForumPostSaving() throws SiteException {
         log.debug("\n\nSave Again\n\n");
         School sc = schoolService.getSchoolDetails("Adrian College");
@@ -440,7 +480,7 @@ public class SchoolServiceImplTest extends
         ForumPost fp = new SchoolForumPost(sc, currentUser, TITLE, TEXT,
                 null);
 
-        schoolService.executeAndSaveCommand(new SaveForumPostCommand(fp));
+        executeWithToken(new SaveForumPostCommand(fp), false);
 
         PostsList posts = schoolService.getSchoolThreads(sc.getId(), 0,
                 10);
@@ -463,8 +503,7 @@ public class SchoolServiceImplTest extends
         // save a second post to the same thread
         ForumPost fp2 = new SchoolForumPost(sc, currentUser, TITLE, TEXT,
                 saved);
-        schoolService
-                .executeAndSaveCommand(new SaveForumPostCommand(fp2));
+        executeWithToken(new SaveForumPostCommand(fp2), false);
 
         // assert that there's still just 1 top level thread
         posts = schoolService.getSchoolThreads(sc.getId(), 0, 10);

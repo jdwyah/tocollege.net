@@ -10,6 +10,8 @@ public class SaveApplicationCommand extends AbstractCommand implements
     private long applicationID;
     private Application original;
 
+    private Application toSave;
+
     public SaveApplicationCommand() {
         super();
     }
@@ -20,23 +22,41 @@ public class SaveApplicationCommand extends AbstractCommand implements
         original = application;
     }
 
+    public boolean haveYouSecuredYourselfAndFilteredUserInput() {
+        return true;
+    }
+
     public void execute(CommandService commandService) {
 
-        Application loaded = commandService.get(Application.class,
-                applicationID);
+        toSave = commandService.get(Application.class, applicationID);
 
-        System.out.println(applicationID + " loaded: " + loaded
+        System.out.println(applicationID + " loaded: " + toSave
                 + " original: " + original);
 
-        loaded.setCons(original.getCons());
-        loaded.setPros(original.getPros());
-        loaded.setNotes(original.getNotes());
+        String xssFiltered = commandService.filterHTML(original
+                .getNotes());
 
-        System.out.println("notes " + loaded.getNotes() + " o: "
+        sanitizeStringList(commandService, original.getCons());
+        sanitizeStringList(commandService, original.getPros());
+
+        toSave.setCons(original.getCons());
+        toSave.setPros(original.getPros());
+        toSave.setNotes(xssFiltered);
+
+        System.out.println("notes " + toSave.getNotes() + " o: "
                 + original.getNotes());
 
-        commandService.save(loaded);
+        commandService.save(toSave);
 
+    }
+
+    /**
+     * For testing
+     * 
+     * @return
+     */
+    public Application getToSave() {
+        return toSave;
     }
 
     @Override

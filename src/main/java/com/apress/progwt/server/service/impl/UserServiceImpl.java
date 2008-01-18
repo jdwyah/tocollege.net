@@ -1,7 +1,11 @@
 package com.apress.progwt.server.service.impl;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.Element;
 
 import org.apache.log4j.Logger;
 import org.openid4java.discovery.DiscoveryException;
@@ -20,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
@@ -67,6 +72,9 @@ public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO;
     private SchoolDAO schoolDAO;
+
+    private Cache userTokenCache;
+    private String tokenSalt;
 
     /**
      * don't let it go negative
@@ -322,6 +330,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Required
+    public void setUserTokenCache(Cache userTokenCache) {
+        this.userTokenCache = userTokenCache;
+    }
+
+    @Required
     public void setStartingInvitations(int startingInvitations) {
         this.startingInvitations = startingInvitations;
     }
@@ -385,5 +398,25 @@ public class UserServiceImpl implements UserService {
         User rtn = userDAO.save(user);
         userCache.removeUserFromCache(rtn.getUsername());
         return rtn;
+    }
+
+    public UserAndToken getCurrentUserAndToken() {
+        User currentUser = getCurrentUser();
+
+        return new UserAndToken(currentUser, getToken(currentUser));
+    }
+
+    public String getToken(User user) {
+        Element e = userTokenCache.get(user);
+        if (e != null) {
+            return (String) e.getValue();
+        } else {
+            String token = "newtoken";
+            Element newElement = new Element(user, (Serializable) token);
+            userTokenCache.put(newElement);
+
+            return token;
+        }
+
     }
 }

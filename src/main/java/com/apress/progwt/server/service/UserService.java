@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.web.domain.CreateUserRequestCommand;
@@ -48,5 +49,9 @@ public interface UserService {
     void toggleSupervisor(Integer id) throws PermissionDeniedException;
 
     User save(User user);
+
+    UserAndToken getCurrentUserAndToken();
+
+    String getToken(User user);
 
 }

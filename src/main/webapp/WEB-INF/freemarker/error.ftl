@@ -3,7 +3,7 @@
 <#import "common.ftl" as common/>
 	<head>
 	<#--decorator won't be called on some errors-->
-  	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+  	<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
 	
 	<title>ERROR</title>		
 	</head>

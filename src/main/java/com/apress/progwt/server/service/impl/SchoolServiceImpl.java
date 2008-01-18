@@ -15,12 +15,15 @@ import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.CommandService;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
+import com.apress.progwt.client.exception.SiteSecurityException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.domain.SchoolPopularity;
 import com.apress.progwt.server.service.SchoolService;
 import com.apress.progwt.server.service.SearchService;
 import com.apress.progwt.server.service.UserService;
+import com.apress.progwt.server.util.HTMLInputFilter;
 
 @Transactional
 public class SchoolServiceImpl implements SchoolService, CommandService {
@@ -32,6 +35,7 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
 
     private SearchService searchService;
     private UserService userService;
+    private static final HTMLInputFilter htmlFilter = new HTMLInputFilter();
 
     public SiteCommand executeAndSaveCommand(SiteCommand command)
             throws SiteException {
@@ -45,14 +49,25 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     public SiteCommand executeAndSaveCommand(SiteCommand command,
             boolean useUserCache) throws SiteException {
 
-        User u = userService.getCurrentUser(useUserCache);
-        if (u != null) {
-            log.info(command
-                    + " "
-                    + userService.getCurrentUser(useUserCache)
-                            .getUsername());
-        } else {
+        User loggedIn = userService.getCurrentUser(useUserCache);
+
+        if (loggedIn == null) {
             log.warn(command + " attempted by anonymous ");
+        }
+
+        if (!command.haveYouSecuredYourselfAndFilteredUserInput()) {
+            throw new BusinessException("Command " + command
+                    + " hasn't secured.");
+        }
+        if (!userService.getToken(loggedIn).equals(command.getToken())) {
+            log.warn("Possible XSRF: " + command.getToken());
+            throw new SiteSecurityException("Invalid Session "
+                    + command.getToken());
+        } else {
+            log.info("Tokens equal: " + userService.getToken(loggedIn));
+        }
+        if (loggedIn != null) {
+            log.info(command + " " + loggedIn.getUsername());
         }
 
         log.info("Going to execute Command...");
@@ -189,6 +204,19 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
 
     public void delete(Loadable loadable) {
         schoolDAO.delete(loadable);
+    }
+
+    public void assertUserIsAuthenticated(User toCheck)
+            throws SecurityException {
+        User loggedIn = userService.getCurrentUser();
+        if (loggedIn == null || !loggedIn.equals(toCheck)) {
+            throw new SecurityException("Logged in: " + loggedIn
+                    + " Requested: " + toCheck);
+        }
+    }
+
+    public String filterHTML(String input) {
+        return htmlFilter.filter(input);
     }
 
 }

@@ -2,7 +2,7 @@ package com.apress.progwt.client.rpc;
 
 import com.apress.progwt.client.college.gui.status.StatusPanel;
 import com.apress.progwt.client.college.gui.status.StatusPanel.StatusCode;
-import com.apress.progwt.client.exception.AccessException;
+import com.apress.progwt.client.exception.SiteSecurityException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.Window;
@@ -60,7 +60,7 @@ public class StdAsyncCallback<T> implements AsyncCallback<T> {
                 Window.alert("Need Login " + caught);
             }
         }
-        if (caught instanceof AccessException) {
+        if (caught instanceof SiteSecurityException) {
             Window.alert("Access Exception " + caught);
         }
 

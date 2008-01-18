@@ -55,12 +55,18 @@ public class SaveForumPostCommand extends AbstractCommand implements
         return "SaveForumPostCommand ForumPost " + forumPost;
     }
 
+    public boolean haveYouSecuredYourselfAndFilteredUserInput() {
+        return true;
+    }
+
     public void execute(CommandService commandService)
             throws SiteException {
 
         commandService.save(forumPost);
 
         User author = commandService.get(User.class, authorID);
+
+        commandService.assertUserIsAuthenticated(author);
 
         ForumTopic loadedTopic = commandService.get(forumPost
                 .getTopicClass(), topicID);
@@ -73,6 +79,9 @@ public class SaveForumPostCommand extends AbstractCommand implements
         // if it's a new creation, just use the one we wanted to save
         if (toSave == null) {
             toSave = forumPost;
+        } else {
+            // Post edit. Assert that this post is actually ours to edit
+            commandService.assertUserIsAuthenticated(toSave.getAuthor());
         }
 
         toSave.setAuthor(author);
@@ -80,8 +89,10 @@ public class SaveForumPostCommand extends AbstractCommand implements
         toSave.setThreadPost(threadP);
 
         toSave.setDate(forumPost.getDate());
-        toSave.setPostString(forumPost.getPostString());
-        toSave.setPostTitle(forumPost.getPostTitle());
+        toSave.setPostString(commandService.filterHTML(forumPost
+                .getPostString()));
+        toSave.setPostTitle(commandService.filterHTML(forumPost
+                .getPostTitle()));
 
         // update the inverse side of the relationship
         if (threadP != null) {

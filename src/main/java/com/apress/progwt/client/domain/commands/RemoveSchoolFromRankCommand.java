@@ -26,12 +26,19 @@ public class RemoveSchoolFromRankCommand extends AbstractCommand
         this.userID = user.getId();
     }
 
+    public boolean haveYouSecuredYourselfAndFilteredUserInput() {
+        return true;
+    }
+
     public void execute(CommandService commandService)
             throws SiteException {
 
-        User currentUser = commandService.get(User.class, userID);
+        User loadedUser = commandService.get(User.class, userID);
         School school = commandService.get(School.class, schoolID);
-        List<Application> rankings = currentUser.getSchoolRankings();
+
+        commandService.assertUserIsAuthenticated(loadedUser);
+
+        List<Application> rankings = loadedUser.getSchoolRankings();
 
         Application toDelete = null;
         for (Iterator<Application> iterator = rankings.iterator(); iterator
@@ -53,7 +60,7 @@ public class RemoveSchoolFromRankCommand extends AbstractCommand
         // without this, we'll leave a gap in the sort order
         Utilities.reOrder(rankings);
 
-        commandService.save(currentUser);
+        commandService.save(loadedUser);
 
     }
 

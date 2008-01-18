@@ -50,7 +50,17 @@
           <property name="startingInvitations" value="${users.startInvitations}" />
           <property name="saltSource" ref="userSaltSource" />
           <property name="passwordEncoder" ref="passwordEncoder" />
+          <property name="userTokenCache" ref="userTokenCache"/>
      </bean>
+     
+      <bean id="userTokenCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+          <property name="cacheManager">
+               <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">                    
+                    <property name="configLocation" value="classpath:ehcache.xml"/>                                        
+               </bean>
+          </property>
+          <property name="cacheName" value = "com.apress.progwt.server.service.UserTokenCache"/>
+     </bean> 
      <bean id="schoolService" class="com.apress.progwt.server.service.impl.SchoolServiceImpl">
           <property name="schoolDAO" ref="schoolDAO" />
           <property name="searchService" ref="searchService"/>

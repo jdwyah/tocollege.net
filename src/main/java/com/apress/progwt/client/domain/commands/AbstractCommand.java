@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.apress.progwt.client.domain.Loadable;
+import com.apress.progwt.client.domain.User;
 
 /**
  * Store
@@ -17,11 +18,14 @@ public abstract class AbstractCommand implements Serializable,
 
     private transient List<Object> objects = new ArrayList<Object>();
 
+    private String token;
+
     public AbstractCommand() {
 
     }
 
     public AbstractCommand(Object... arguments) {
+
         for (Object o : arguments) {
             objects.add(o);
         }
@@ -55,4 +59,33 @@ public abstract class AbstractCommand implements Serializable,
         loadable = null;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    /**
+     * Invoked on client side. Empty implementation.
+     */
+    public void assertUserIsAuthenticated(User toCheck) {
+
+    }
+
+    /**
+     * Invoked on client side. Empty impl.
+     */
+    public String filterHTML(String input) {
+        return input;
+    }
+
+    protected void sanitizeStringList(CommandService commandService,
+            List<String> stringList) {
+        for (int i = 0; i < stringList.size(); i++) {
+            stringList.set(i, commandService
+                    .filterHTML(stringList.get(i)));
+        }
+    }
 }

@@ -8,6 +8,7 @@ import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
+import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
 import com.apress.progwt.client.service.remote.GWTUserServiceAsync;
@@ -22,6 +23,8 @@ public class ServiceCache {
         this.schoolService = gwtApp.getSchoolService();
         this.userService = gwtApp.getUserService();
     }
+
+    private String currentToken;
 
     public void match(String query,
             AsyncCallback<List<String>> asyncCallback) {
@@ -54,8 +57,19 @@ public class ServiceCache {
     //
     // }
 
-    public void getCurrentUser(AsyncCallback<User> callback) {
-        userService.getCurrentUser(callback);
+    public void getCurrentUser(final AsyncCallback<User> callback) {
+
+        userService.getCurrentUser(new AsyncCallback<UserAndToken>() {
+
+            public void onFailure(Throwable caught) {
+                callback.onFailure(caught);
+            }
+
+            public void onSuccess(UserAndToken result) {
+                currentToken = result.getToken();
+                callback.onSuccess(result.getUser());
+            }
+        });
     }
 
     public void matchProcessType(String queryString,
@@ -66,6 +80,8 @@ public class ServiceCache {
 
     public void executeCommand(final AbstractCommand command,
             final AsyncCallback<SiteCommand> callback) {
+
+        command.setToken(currentToken);
 
         schoolService.executeAndSaveCommand(command,
                 new AsyncCallback<SiteCommand>() {

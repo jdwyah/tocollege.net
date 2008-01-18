@@ -32,6 +32,10 @@ public class SaveRatingCommand extends AbstractCommand implements
                 + " RatingType " + ratingID + " Value " + selectedRating;
     }
 
+    public boolean haveYouSecuredYourselfAndFilteredUserInput() {
+        return true;
+    }
+
     public void execute(CommandService commandService)
             throws SiteException {
 
@@ -39,6 +43,8 @@ public class SaveRatingCommand extends AbstractCommand implements
                 Application.class, getApplicationID());
         RatingType ratingType = (RatingType) commandService.get(
                 RatingType.class, getRatingID());
+
+        assertUserIsAuthenticated(application.getUser());
 
         System.out.println(toString());
         System.out.println("application " + application + " rating "

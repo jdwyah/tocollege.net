@@ -26,6 +26,10 @@ public class SaveProcessCommand extends AbstractCommand implements
         this.processTypeID = type.getId();
     }
 
+    public boolean haveYouSecuredYourselfAndFilteredUserInput() {
+        return true;
+    }
+
     public void execute(CommandService commandService)
             throws SiteException {
 
@@ -34,6 +38,9 @@ public class SaveProcessCommand extends AbstractCommand implements
 
         ProcessType type = (ProcessType) commandService.get(
                 ProcessType.class, processTypeID);
+
+        assertUserIsAuthenticated(application.getUser());
+
         application.getProcess().put(type, value);
         commandService.save(application);
 
