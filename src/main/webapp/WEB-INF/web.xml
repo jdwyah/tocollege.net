@@ -113,7 +113,12 @@
           <param-value>
                /WEB-INF/applicationContext-hibernate.xml, /WEB-INF/applicationContext.xml,
                /WEB-INF/applicationContext-acegi-security.xml
-          </param-value>
+          </param-value>                   
+     </context-param>
+
+     <context-param>
+        <param-name>defaultHtmlEscape</param-name>
+        <param-value>true</param-value>
      </context-param>
 
      <error-page>

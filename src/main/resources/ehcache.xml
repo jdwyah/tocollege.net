@@ -29,19 +29,22 @@
                             has reached the maxInMemory limit.
 
         -->
-    <cache name="com.apress.progwt.server.service.UserService"
+    <cache name="com.apress.progwt.server.service.UserTokenCache"
         maxElementsInMemory="300"
         eternal="false"
-        timeToIdleSeconds="3000"
-        timeToLiveSeconds="3000"
+        timeToIdleSeconds="1800"
+        timeToLiveSeconds="7200"
         overflowToDisk="true"/>
         
  <!-- Note: this is necessary since we're overriding the regular ehcache.xml-->
- <defaultCache 
-    maxElementsInMemory="10" 
-    eternal="false"
-    timeToIdleSeconds="120" 
-    timeToLiveSeconds="120" 
-    overflowToDisk="true" />
-        
+  <defaultCache 
+  maxElementsInMemory="10000" 
+  eternal="false" 
+  timeToIdleSeconds="120" 
+  timeToLiveSeconds="120" 
+  overflowToDisk="true" 
+  maxElementsOnDisk="10000000" 
+  diskPersistent="false" 
+  diskExpiryThreadIntervalSeconds="120" 
+  memoryStoreEvictionPolicy="LRU" />         
 </ehcache>

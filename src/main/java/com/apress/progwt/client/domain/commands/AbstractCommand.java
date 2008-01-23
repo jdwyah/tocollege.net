@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.apress.progwt.client.college.gui.ext.JSUtil;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.User;
 
@@ -71,7 +72,7 @@ public abstract class AbstractCommand implements Serializable,
      * Invoked on client side. Empty implementation.
      */
     public void assertUserIsAuthenticated(User toCheck) {
-
+        // do nothing.
     }
 
     /**
@@ -81,11 +82,20 @@ public abstract class AbstractCommand implements Serializable,
         return input;
     }
 
-    protected void sanitizeStringList(CommandService commandService,
+    /**
+     * Invoked on client side. Empty impl.
+     */
+    public String escapeHtml(String string) {
+        return JSUtil.escape(string);
+    }
+
+    protected void escapeStringList(CommandService commandService,
             List<String> stringList) {
+
         for (int i = 0; i < stringList.size(); i++) {
+
             stringList.set(i, commandService
-                    .filterHTML(stringList.get(i)));
+                    .escapeHtml(stringList.get(i)));
         }
     }
 }

@@ -10,6 +10,7 @@ import com.allen_sauer.gwt.dragdrop.client.IndexedDragEndEvent;
 import com.allen_sauer.gwt.dragdrop.client.PickupDragController;
 import com.allen_sauer.gwt.dragdrop.client.VetoDragException;
 import com.allen_sauer.gwt.dragdrop.client.drop.IndexedDropController;
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.ext.YesNoDialog;
 import com.apress.progwt.client.domain.Application;
@@ -22,7 +23,6 @@ import com.apress.progwt.client.rpc.EZCallback;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.apress.progwt.client.suggest.CompleteListener;
 import com.apress.progwt.client.suggest.SchoolCompleter;
-import com.apress.progwt.client.util.Logger;
 import com.apress.progwt.client.util.Utilities;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.Button;
@@ -101,7 +101,6 @@ public class MyRankings extends Composite implements DragHandler,
 
         serviceCache.executeCommand(comm, new EZCallback<SiteCommand>() {
             public void onSuccess(SiteCommand success) {
-                Logger.debug("Success");
 
                 SaveSchoolRankCommand rtn = (SaveSchoolRankCommand) success;
                 entry.getApplication().setId(rtn.getSavedApplicationID());
@@ -143,7 +142,7 @@ public class MyRankings extends Composite implements DragHandler,
             saveEntry(entry, indexedEvent.getIndex());
 
         } catch (ClassCastException e) {
-            Logger.error("MyPage: " + e);
+            Log.error("MyPage: " + e);
         }
 
         System.out.println("event.getSource "

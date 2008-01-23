@@ -1,7 +1,7 @@
 package com.apress.progwt.client.college.gui;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.Interactive;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
@@ -125,11 +125,11 @@ public class LoginWindow extends DialogBox implements TabListener {
                         || -1 != event.getResults().indexOf(
                                 "Bad credentials")
                         || -1 != event.getResults().indexOf("404")) {
-                    Logger.log("Login Fail: " + event.getResults());
+                    Log.warn("Login Fail: " + event.getResults());
                     failure();
                 } else {
-                    Logger.log("DO SUCC");
-                    Logger.debug(event.getResults());
+                    Log.info("Login Success");
+                    Log.debug(event.getResults());
                     success();
                 }
 

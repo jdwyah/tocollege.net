@@ -1,6 +1,6 @@
 package com.apress.progwt.client.widget.datepicker;
 
-import com.apress.progwt.client.util.Logger;
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -78,8 +78,8 @@ public class HDatePicker extends SimpleDatePicker implements
                     .getClientHeight() - 400;
 
             calendarPopup.setPopupPosition(left, top);
-            Logger
-                    .log("SHOW RIGHT "
+            Log
+                    .debug("SHOW RIGHT "
                             + (this.getAbsoluteLeft() - WIDTH)
                             + " "
                             + (this.getAbsoluteTop()

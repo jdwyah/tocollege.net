@@ -3,6 +3,7 @@ package com.apress.progwt.server.service.impl;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,14 +29,31 @@ import com.apress.progwt.server.util.HTMLInputFilter;
 @Transactional
 public class SchoolServiceImpl implements SchoolService, CommandService {
 
+    private static final HTMLInputFilter htmlFilter = new HTMLInputFilter();
+
     private static final Logger log = Logger
             .getLogger(SchoolServiceImpl.class);
 
     private SchoolDAO schoolDAO;
-
     private SearchService searchService;
     private UserService userService;
-    private static final HTMLInputFilter htmlFilter = new HTMLInputFilter();
+
+    public void assertUserIsAuthenticated(User toCheck)
+            throws SecurityException {
+        User loggedIn = userService.getCurrentUser();
+        if (loggedIn == null || !loggedIn.equals(toCheck)) {
+            throw new SecurityException("Logged in: " + loggedIn
+                    + " Requested: " + toCheck);
+        }
+    }
+
+    public void delete(Loadable loadable) {
+        schoolDAO.delete(loadable);
+    }
+
+    public String escapeHtml(String string) {
+        return StringEscapeUtils.escapeHtml(string);
+    }
 
     public SiteCommand executeAndSaveCommand(SiteCommand command)
             throws SiteException {
@@ -60,7 +78,9 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
                     + " hasn't secured.");
         }
         if (!userService.getToken(loggedIn).equals(command.getToken())) {
-            log.warn("Possible XSRF: " + command.getToken());
+            log.warn("Possible XSRF: |" + command.getToken()
+                    + "| expected |" + userService.getToken(loggedIn)
+                    + "|");
             throw new SiteSecurityException("Invalid Session "
                     + command.getToken());
         } else {
@@ -89,35 +109,13 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return command;
     }
 
+    public String filterHTML(String input) {
+        return htmlFilter.filter(input);
+    }
+
     public <T> T get(Class<T> clazz, long id) {
         return (T) schoolDAO.get((Class<? extends Loadable>) clazz, id);
 
-    }
-
-    public List<School> getAllSchools() {
-        return schoolDAO.getAllSchools(0, 2500);
-    }
-
-    public List<SchoolPopularity> getPopularSchools() {
-        List<SchoolPopularity> ranked = new LinkedList<SchoolPopularity>();
-        for (School school : getTopSchools(0, 10)) {
-            ranked.add(new SchoolPopularity(school,
-                    Math.random() * 5 - 2.5));
-        }
-        return ranked;
-    }
-
-    public School getSchoolDetails(String schoolname) {
-
-        return schoolDAO.getSchoolFromName(schoolname);
-    }
-
-    /**
-     * Search for "match*" using searchService
-     */
-    public List<String> getSchoolsMatching(String match) {
-        return searchService.searchForSchool(match);
-        // return schoolDAO.getSchoolsMatching(match);
     }
 
     // private void hydrateCommand(AbstractCommand command,
@@ -154,12 +152,42 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     //
     // }
 
-    public PostsList getSchoolThreads(long schoolID, int start, int max) {
-        return schoolDAO.getSchoolThreads(schoolID, start, max);
+    public List<School> getAllSchools() {
+        return schoolDAO.getAllSchools(0, 2500);
+    }
+
+    public List<SchoolPopularity> getPopularSchools() {
+        List<SchoolPopularity> ranked = new LinkedList<SchoolPopularity>();
+        for (School school : getTopSchools(0, 10)) {
+            ranked.add(new SchoolPopularity(school,
+                    Math.random() * 5 - 2.5));
+        }
+        return ranked;
     }
 
     public PostsList getPostsForThread(ForumPost post, int start, int max) {
         return schoolDAO.getPostsForThread(post, start, max);
+    }
+
+    public List<ForumPost> getRecentForumPosts(int start, int max) {
+        return schoolDAO.getRecentForumPosts(start, max);
+    }
+
+    public School getSchoolDetails(String schoolname) {
+
+        return schoolDAO.getSchoolFromName(schoolname);
+    }
+
+    /**
+     * Search for "match*" using searchService
+     */
+    public List<String> getSchoolsMatching(String match) {
+        return searchService.searchForSchool(match);
+        // return schoolDAO.getSchoolsMatching(match);
+    }
+
+    public PostsList getSchoolThreads(long schoolID, int start, int max) {
+        return schoolDAO.getSchoolThreads(schoolID, start, max);
     }
 
     public List<School> getTopSchools(int start, int max) {
@@ -196,27 +224,6 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     @Required
     public void setUserService(UserService userService) {
         this.userService = userService;
-    }
-
-    public List<ForumPost> getRecentForumPosts(int start, int max) {
-        return schoolDAO.getRecentForumPosts(start, max);
-    }
-
-    public void delete(Loadable loadable) {
-        schoolDAO.delete(loadable);
-    }
-
-    public void assertUserIsAuthenticated(User toCheck)
-            throws SecurityException {
-        User loggedIn = userService.getCurrentUser();
-        if (loggedIn == null || !loggedIn.equals(toCheck)) {
-            throw new SecurityException("Logged in: " + loggedIn
-                    + " Requested: " + toCheck);
-        }
-    }
-
-    public String filterHTML(String input) {
-        return htmlFilter.filter(input);
     }
 
 }

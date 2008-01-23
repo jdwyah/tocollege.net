@@ -1,5 +1,6 @@
 package com.apress.progwt.client;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.LoginService;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.status.StatusPanel;
@@ -8,7 +9,6 @@ import com.apress.progwt.client.service.remote.GWTSchoolService;
 import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
 import com.apress.progwt.client.service.remote.GWTUserService;
 import com.apress.progwt.client.service.remote.GWTUserServiceAsync;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.Dictionary;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
@@ -40,7 +40,7 @@ public class GWTApp {
             StdAsyncCallback
                     .setManager((StatusPanel) status.getWidget(0));
         } catch (Exception e) {
-            Logger.error("Status Panel problem: ");
+            Log.error("Status Panel problem: ");
         }
     }
 
@@ -67,7 +67,7 @@ public class GWTApp {
 
     protected void loadError(Exception e) {
 
-        Logger.error("e: " + e);
+        Log.error("e: " + e);
 
         e.printStackTrace();
 
@@ -113,7 +113,7 @@ public class GWTApp {
         endpointUser.setServiceEntryPoint(pre + "userService");
 
         if (schoolService == null || userService == null) {
-            Logger.error("Service was null.");
+            Log.error("Service was null.");
         }
 
         serviceCache = new ServiceCache(this);

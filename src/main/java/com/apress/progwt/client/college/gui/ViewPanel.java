@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.gui.ext.ClientMouseImpl;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
@@ -131,10 +131,10 @@ public abstract class ViewPanel extends AbsolutePanel implements
         int dx = lastx - getAbsoluteLeft() - halfWidth;
         int dy = lasty - getAbsoluteTop() - halfHeight;
 
-        Logger.log("ViewPanel.centerOnMouse last x " + lastx
-                + " absLeft " + getAbsoluteLeft() + " curbackx "
-                + curbackX + " dx " + dx);
-        Logger.log("ViewPanel.centerOnMouse last y " + lasty + " absTop "
+        Log.debug("ViewPanel.centerOnMouse last x " + lastx + " absLeft "
+                + getAbsoluteLeft() + " curbackx " + curbackX + " dx "
+                + dx);
+        Log.debug("ViewPanel.centerOnMouse last y " + lasty + " absTop "
                 + getAbsoluteTop() + " curbacky " + curbackY + " dy "
                 + dy);
 
@@ -546,7 +546,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
 
         } catch (RuntimeException e) {
 
-            Logger.log("ERROR: ViewPanel. couldn't move: "
+            Log.error("ERROR: ViewPanel. couldn't move: "
                     + rp.getWidget());
 
             throw e;

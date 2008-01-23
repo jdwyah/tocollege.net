@@ -16,4 +16,6 @@ public interface CommandService {
             throws SiteSecurityException;
 
     String filterHTML(String input);
+
+    String escapeHtml(String string);
 }

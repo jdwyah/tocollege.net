@@ -8,6 +8,7 @@ import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.BusinessException;
+import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.service.SchoolService;
@@ -130,6 +131,21 @@ public class UserServiceImplTest extends
         assertNull(UserServiceImpl.normalizeUrl(null));
         assertNull(UserServiceImpl.normalizeUrl(""));
         assertNull(UserServiceImpl.normalizeUrl("http://"));
+    }
+
+    public void testToken() throws SiteException {
+        String nullT = userService.getToken(null);
+
+        User fetched2 = userService.getUserByNicknameFullFetch("test");
+        String userT = userService.getToken(fetched2);
+
+        assertNotNull(nullT);
+        assertNotNull(userT);
+        assertNotSame(nullT, userT);
+
+        System.out.println("t: " + nullT);
+        System.out.println("u: " + userT);
+
     }
 
     public void setSchoolService(SchoolService schoolService) {

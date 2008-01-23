@@ -1,6 +1,6 @@
 package com.apress.progwt.client.suggest;
 
-import com.apress.progwt.client.util.Logger;
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.Timer;
@@ -79,7 +79,7 @@ public abstract class AbstractCompleter<T> extends Composite {
      */
     private void complete(final String completeStr) {
 
-        Logger.debug("AbstractCompleter:" + completeStr + " ");
+        Log.debug("AbstractCompleter:" + completeStr + " ");
 
         oracle.fireCompleteListenerFromCompleteString(completeStr,
                 completeListener);

@@ -40,7 +40,7 @@ public class ControllerUtil {
         if (req != null) {
             // IE < 7 check. used in common.ftl PNGImage
             String userAgent = req.getHeader("User-Agent");
-            if (userAgent.contains("MSIE")
+            if (userAgent != null && userAgent.contains("MSIE")
                     && !userAgent.contains("MSIE 7")) {
                 model.put("iePre7", true);
             }

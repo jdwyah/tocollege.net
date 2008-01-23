@@ -1,9 +1,9 @@
 package com.apress.progwt.client.college;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.GWTApp;
 import com.apress.progwt.client.college.gui.MyPage;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -68,7 +68,7 @@ public class ToCollegeApp extends GWTApp {
 
     protected void error(Exception e) {
 
-        Logger.log("e: " + e);
+        Log.error("e: " + e);
 
         e.printStackTrace();
 

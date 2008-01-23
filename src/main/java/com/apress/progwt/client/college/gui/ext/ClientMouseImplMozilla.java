@@ -1,6 +1,6 @@
 package com.apress.progwt.client.college.gui.ext;
 
-import com.apress.progwt.client.util.Logger;
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.Event;
 
 /**
@@ -13,7 +13,7 @@ import com.google.gwt.user.client.Event;
 public class ClientMouseImplMozilla extends ClientMouseImpl {
 
     public int getClientX(Event evt) {
-        Logger.log("\n\nUSING MOZILLA");
+        Log.debug("\n\nUSING MOZILLA");
         return x;
     }
 

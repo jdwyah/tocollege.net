@@ -3,7 +3,7 @@
 <#import "common.ftl" as common/>
 <#import "commonGWT.ftl" as gwt/>
 <head>
-  <title>${viewUser.nickname}</title>
+  <title>${viewUser.nickname?html}</title>
 </head>
 
 
@@ -16,7 +16,7 @@
 	</div>
  </#if>			  	 	  
 
-<h1>${viewUser.nickname}</h1>
+<h1>${viewUser.nickname?html}</h1>
   	
   	<div id="main">
   	
@@ -26,15 +26,15 @@
   	 
   	 <#list viewUser.schoolRankings as sap>
   	  <tr>
-  	     <td>${sap.school.name}</td>
+  	     <td>${sap.school.name?html}</td>
   	     <td class="ProConPanel-Pro">
   	     <#list sap.pros as pro>
-  	         ${pro}<p>
+  	         ${pro?html}<p>
   	     </#list>
   	     </td>
   	     <td class="ProConPanel-Con">
   	     <#list sap.cons as con>
-             ${con}<p>
+             ${con?html}<p>
          </#list>
   	     </td>
   	      <td>${sap.notes?default("")}</td>

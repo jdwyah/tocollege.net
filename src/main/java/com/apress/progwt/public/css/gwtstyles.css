@@ -13,7 +13,13 @@ div.loading {
 	text-align: center;
 	padding: 10px;
 }
-
+.log-panel .log-scroll-panel {
+  width: 800px;
+  height: 150px;
+}
+.log-panel {
+    display: none;
+} 
 code {
 	font-size: small;
 }

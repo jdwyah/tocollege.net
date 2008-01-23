@@ -62,8 +62,6 @@ public class SaveForumPostCommand extends AbstractCommand implements
     public void execute(CommandService commandService)
             throws SiteException {
 
-        commandService.save(forumPost);
-
         User author = commandService.get(User.class, authorID);
 
         commandService.assertUserIsAuthenticated(author);

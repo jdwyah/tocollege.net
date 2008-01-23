@@ -7,6 +7,7 @@ import java.util.List;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.openid4java.discovery.DiscoveryException;
 import org.openid4java.discovery.UrlIdentifier;
@@ -59,22 +60,37 @@ public class UserServiceImpl implements UserService {
 
     public static final String SAMPLE_TAG_TITLE = "Sample Movies";
 
+    public static String normalizeUrl(String username) {
+        try {
+            // http || https
+            if (username != null && username.startsWith("http")) {
+                return UrlIdentifier.normalize(username).toExternalForm();
+            } else {
+                return UrlIdentifier.normalize("http://" + username)
+                        .toExternalForm();
+            }
+        } catch (DiscoveryException e) {
+            log.error("Invalid OpenID " + username + " " + e);
+            throw new RuntimeException("Invalid openID: " + username);
+        }
+    }
+
     private int maxUsers;
 
     private MessageSource messageSource;
-
     private PasswordEncoder passwordEncoder;
+
     private SaltSource saltSource;
 
-    private int startingInvitations;
-
-    private UserCache userCache;
-
-    private UserDAO userDAO;
     private SchoolDAO schoolDAO;
 
-    private Cache userTokenCache;
+    private int startingInvitations;
     private String tokenSalt;
+
+    private UserCache userCache;
+    private UserDAO userDAO;
+
+    private Cache userTokenCache;
 
     /**
      * don't let it go negative
@@ -165,18 +181,6 @@ public class UserServiceImpl implements UserService {
         return createdU;
     }
 
-    private User setup(User createdU) {
-
-        for (ProcessType processType : schoolDAO.getDefaultProcessTypes()) {
-            createdU.getProcessTypes().add(processType);
-        }
-        for (RatingType ratingType : schoolDAO.getDefaultRatingTypes()) {
-            createdU.getRatingTypes().add(ratingType);
-        }
-
-        return save(createdU);
-    }
-
     public void delete(Integer id) throws PermissionDeniedException {
         if (getCurrentUser().isSupervisor()) {
             User user = userDAO.getUserForId(id);
@@ -263,6 +267,54 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    public UserAndToken getCurrentUserAndToken() {
+        User currentUser = getCurrentUser();
+
+        return new UserAndToken(currentUser, getToken(currentUser));
+    }
+
+    /**
+     * Question, what should we return for user == null? We'll avoid
+     * putting it in the cache, and just return another random string.
+     * There's no way to get this value again and that's probably what we
+     * want.
+     */
+    public String getToken(User user) {
+
+        if (user == null) {
+            return RandomStringUtils.randomAscii(10);
+        }
+        Element e = userTokenCache.get(user);
+        if (e != null) {
+            String token = (String) e.getValue();
+            log.debug("Found existing token for: " + user + " token: "
+                    + token);
+            return token;
+        } else {
+
+            String token = RandomStringUtils.randomAscii(10);
+            log.debug("No existing token for: " + user + " new token: "
+                    + token);
+            Element newElement = new Element(user, (Serializable) token);
+            userTokenCache.put(newElement);
+            return token;
+        }
+    }
+
+    public List<User> getTopUsers(int max) {
+        List<User> users = userDAO.getAllUsers(max);
+        // if(log.isDebugEnabled()){
+        // for (User user : users) {
+        // log.info(user.getUsername()+" "+user.isSupervisor());
+        // }
+        // }
+        return users;
+    }
+
+    public User getUserByNicknameFullFetch(String nickname) {
+        return userDAO.getUserByNicknameFetchAll(nickname);
+    }
+
     /**
      * only openID users are allowed '.' || '=' and all openID usernames
      * must have a '.' || '=' so, if it's got a '.' || '='
@@ -282,31 +334,18 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public static String normalizeUrl(String username) {
-        try {
-            // http || https
-            if (username != null && username.startsWith("http")) {
-                return UrlIdentifier.normalize(username).toExternalForm();
-            } else {
-                return UrlIdentifier.normalize("http://" + username)
-                        .toExternalForm();
-            }
-        } catch (DiscoveryException e) {
-            log.error("Invalid OpenID " + username + " " + e);
-            throw new RuntimeException("Invalid openID: " + username);
-        }
-    }
-
-    public User getUserByNicknameFullFetch(String nickname) {
-        return userDAO.getUserByNicknameFetchAll(nickname);
-    }
-
     private String gm(String messageName) {
         return messageSource.getMessage(messageName, null, null);
     }
 
     public boolean nowAcceptingSignups() {
         return userDAO.getUserCount() < maxUsers;
+    }
+
+    public User save(User user) {
+        User rtn = userDAO.save(user);
+        userCache.removeUserFromCache(rtn.getUsername());
+        return rtn;
     }
 
     @Required
@@ -330,13 +369,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Required
-    public void setUserTokenCache(Cache userTokenCache) {
-        this.userTokenCache = userTokenCache;
+    public void setSchoolDAO(SchoolDAO schoolDAO) {
+        this.schoolDAO = schoolDAO;
     }
 
     @Required
     public void setStartingInvitations(int startingInvitations) {
         this.startingInvitations = startingInvitations;
+    }
+
+    private User setup(User createdU) {
+
+        for (ProcessType processType : schoolDAO.getDefaultProcessTypes()) {
+            createdU.getProcessTypes().add(processType);
+        }
+        for (RatingType ratingType : schoolDAO.getDefaultRatingTypes()) {
+            createdU.getRatingTypes().add(ratingType);
+        }
+
+        return save(createdU);
     }
 
     @Required
@@ -347,6 +398,11 @@ public class UserServiceImpl implements UserService {
     @Required
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
+    }
+
+    @Required
+    public void setUserTokenCache(Cache userTokenCache) {
+        this.userTokenCache = userTokenCache;
     }
 
     /**
@@ -377,46 +433,5 @@ public class UserServiceImpl implements UserService {
             throw new PermissionDeniedException(
                     "You don't have rights to do that.");
         }
-    }
-
-    @Required
-    public void setSchoolDAO(SchoolDAO schoolDAO) {
-        this.schoolDAO = schoolDAO;
-    }
-
-    public List<User> getTopUsers(int max) {
-        List<User> users = userDAO.getAllUsers(max);
-        // if(log.isDebugEnabled()){
-        // for (User user : users) {
-        // log.info(user.getUsername()+" "+user.isSupervisor());
-        // }
-        // }
-        return users;
-    }
-
-    public User save(User user) {
-        User rtn = userDAO.save(user);
-        userCache.removeUserFromCache(rtn.getUsername());
-        return rtn;
-    }
-
-    public UserAndToken getCurrentUserAndToken() {
-        User currentUser = getCurrentUser();
-
-        return new UserAndToken(currentUser, getToken(currentUser));
-    }
-
-    public String getToken(User user) {
-        Element e = userTokenCache.get(user);
-        if (e != null) {
-            return (String) e.getValue();
-        } else {
-            String token = "newtoken";
-            Element newElement = new Element(user, (Serializable) token);
-            userTokenCache.put(newElement);
-
-            return token;
-        }
-
     }
 }

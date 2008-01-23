@@ -10,12 +10,17 @@
     <inherits name="com.google.gwt.maps.GoogleMaps" />  
 
     <inherits name='com.allen_sauer.gwt.dragdrop.DragAndDrop'/>
+    <inherits name="com.allen_sauer.gwt.log.gwt-log" />
 
 	<!-- Specify the app entry point class.                   -->
 	<entry-point class='com.apress.progwt.client.SampleApp' />
     
 	<stylesheet src="css/gwtstyles.css" />
 
+
+    <extend-property name="log_level" values="DEBUG" />
+    <set-property    name="log_level" value="DEBUG" />
+    
      <!-- only compile 1 browser -->
 	<!-- <set-property name="user.agent" value="gecko,ie6"/> --> 
 </module>

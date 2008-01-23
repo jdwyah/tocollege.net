@@ -2,8 +2,8 @@ package com.apress.progwt.client.domain;
 
 import java.io.Serializable;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.forum.ForumTopic;
-import com.apress.progwt.client.util.Logger;
 
 public class SchoolForumPost extends ForumPost implements Serializable {
 
@@ -24,9 +24,11 @@ public class SchoolForumPost extends ForumPost implements Serializable {
 
     public ForumPost getReplyInstance(User author, String title,
             String text, ForumPost thread) {
-        Logger.error("Not intended to be called. Should not reply ot ");
-        return new SchoolForumPost(getSchool(), author, title, text,
-                thread);
+        Log.error("Not intended to be called. Should not reply to ");
+        throw new UnsupportedOperationException(
+                "Not intended to be called. Should not reply to ");
+        // return new SchoolForumPost(getSchool(), author, title, text,
+        // thread);
     }
 
     public School getSchool() {

@@ -1,10 +1,10 @@
 package com.apress.progwt.client.rpc;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.gui.status.StatusPanel;
 import com.apress.progwt.client.college.gui.status.StatusPanel.StatusCode;
-import com.apress.progwt.client.exception.SiteSecurityException;
 import com.apress.progwt.client.exception.SiteException;
-import com.apress.progwt.client.util.Logger;
+import com.apress.progwt.client.exception.SiteSecurityException;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -46,8 +46,7 @@ public class StdAsyncCallback<T> implements AsyncCallback<T> {
 
     public void onFailure(Throwable caught) {
 
-        Logger.log(call + " failed! " + caught + " "
-                + caught.getMessage());
+        Log.warn(call + " failed! " + caught + " " + caught.getMessage());
 
         // StackTraceElement[] str = caught.getStackTrace();
         // Logger.log("stack trace size " + str.length);

@@ -1,8 +1,8 @@
 package com.apress.progwt.client.forum;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.gui.ext.RichTextToolbar;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.ui.Button;
@@ -74,7 +74,7 @@ public class CreatePostWidget extends Composite {
 
         initWidget(mainP);
 
-        Logger.log("setHTML: " + selection);
+        Log.debug("setHTML: " + selection);
 
         // selection = "start<script>alert('xss');</script>end";
         setHTML(makeReplyFromString(selection));

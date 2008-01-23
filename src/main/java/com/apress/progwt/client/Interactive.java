@@ -1,14 +1,16 @@
 package com.apress.progwt.client;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.calculator.CalculatorApp;
 import com.apress.progwt.client.college.ToCollegeApp;
-import com.apress.progwt.client.exception.MyUncaughtExceptionHandler;
 import com.apress.progwt.client.forum.ForumApp;
 import com.apress.progwt.client.map.CollegeMapApp;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
 import com.google.gwt.i18n.client.Dictionary;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -28,7 +30,7 @@ public class Interactive implements EntryPoint {
 
         if (GWT.isScript()) {
 
-            Logger.log("ModuleBaseURL: " + GWT.getModuleBaseURL());
+            Log.info("ModuleBaseURL: " + GWT.getModuleBaseURL());
 
             String moduleBase = GWT.getModuleBaseURL();
 
@@ -39,7 +41,7 @@ public class Interactive implements EntryPoint {
             // Use to test compiled browser locally
             //
             if (moduleBase.indexOf("localhost") != -1) {
-                Logger.log("Testing. Using Localhost");
+                Log.info("Testing. Using Localhost");
                 realModuleBase = LOCAL_HOST;
             }
 
@@ -59,21 +61,41 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-                                                                                                     $wnd.urchinTracker(pageName);
-                                                                                                 }-*/;
+                                            $wnd.urchinTracker(pageName);
+                                        }-*/;
 
     /**
-     * EntryPoint. Dispatch based on javascript dictionary that tells us
-     * what we should load.
+     * Initial entry point. Make sure our exception handler is set before
+     * we begin.
+     */
+    public void onModuleLoad() {
+
+        // could use Log.setUncaughtExceptionHandler(), but we'd like the
+        // stacktrace too.
+        GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+            public void onUncaughtException(Throwable arg0) {
+                arg0.printStackTrace();
+                Log.error(arg0.getMessage());
+            }
+        });
+
+        DeferredCommand.addCommand(new Command() {
+            public void execute() {
+                onModuleLoad2();
+            }
+        });
+    }
+
+    /**
+     * Real EntryPoint. Dispatch based on javascript dictionary that tells
+     * us what we should load.
      * 
      * <script language="JavaScript"> var Vars = { page: "MyMindscape" };
      * </script>
      * 
      */
-    public void onModuleLoad() {
+    public void onModuleLoad2() {
         try {
-            GWT
-                    .setUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
 
             Dictionary dictionary = Dictionary.getDictionary("Vars");
 
@@ -82,7 +104,7 @@ public class Interactive implements EntryPoint {
 
             for (int currentWidget = 1; currentWidget <= widgetCount; currentWidget++) {
                 String widget = dictionary.get("widget_" + currentWidget);
-                Logger.log("Do " + widget);
+                Log.info("Do " + widget);
                 if (widget.equals("Calculator")) {
                     CalculatorApp m = new CalculatorApp(currentWidget);
                 } else if (widget.equals("CollegeBound")) {
@@ -101,7 +123,7 @@ public class Interactive implements EntryPoint {
             }
 
         } catch (Exception e) {
-            Logger.error("e: " + e);
+            Log.error("e: " + e);
 
             e.printStackTrace();
 

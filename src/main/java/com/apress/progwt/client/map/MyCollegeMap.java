@@ -1,12 +1,12 @@
 package com.apress.progwt.client.map;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.MyPageTab;
 import com.apress.progwt.client.college.gui.SchoolLink;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.maps.client.InfoWindow;
 import com.google.gwt.maps.client.InfoWindowContent;
 import com.google.gwt.maps.client.MapWidget;
@@ -101,7 +101,7 @@ public class MyCollegeMap extends Composite implements MyPageTab {
     }
 
     public void refresh() {
-        Logger.log("Refreshing MyCollegeMap " + getAbsoluteLeft() + " "
+        Log.debug("Refreshing MyCollegeMap " + getAbsoluteLeft() + " "
                 + getAbsoluteTop() + " " + showB.getAbsoluteLeft() + " ");
 
         dialogBox.setPopupPosition(100, 100);

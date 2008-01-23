@@ -1,6 +1,6 @@
 package com.apress.progwt.client.calculator;
 
-import com.apress.progwt.client.util.Logger;
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Timer;
@@ -120,8 +120,8 @@ public class GUIEffects {
      * the native code to the right.
      */
     public static native void close()/*-{
-                                                                                                                $wnd.close();
-                                                                                                            }-*/;
+                                                                                                                    $wnd.close();
+                                                                                                                }-*/;
 
     public static void fade(Widget w, int duration) {
         opacity(w, 1.0, 0.0, duration);
@@ -178,8 +178,8 @@ public class GUIEffects {
     public static void highlight(Widget toHighlight, String startColor,
             String endColor) {
 
-        Logger.debug("start color: " + startColor);
-        Logger.debug("end color: " + endColor);
+        Log.debug("start color: " + startColor);
+        Log.debug("end color: " + endColor);
 
         final int startR = Integer.parseInt(startColor.substring(0, 2),
                 16);

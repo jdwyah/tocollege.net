@@ -14,7 +14,7 @@
   </repositories>
 
   <build>
-		<plugins>       
+		<plugins>         
 			<plugin>
 				<groupId>org.xi8ix</groupId>
 				<artifactId>xi8ix-gwtc</artifactId>
@@ -36,7 +36,7 @@
 
 					<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 				</configuration>
-			</plugin>               
+			</plugin>                 
 			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -87,19 +87,19 @@
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>1.5.0.build1681</version>
+			<version>1.5.0.build1721</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-dev-windows</artifactId>
-			<version>1.5.0.build1681</version>
+			<version>1.5.0.build1721</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-servlet</artifactId>
-			<version>1.5.0.build1681</version>
+			<version>1.5.0.build1721</version>
 		</dependency>
            <dependency>
                <groupId>com.google</groupId>
@@ -110,6 +110,11 @@
                <groupId>com.google</groupId>
                <artifactId>gwt-dragdrop</artifactId>
                <version>1.2.5</version>
+          </dependency>         
+          <dependency>
+               <groupId>com.allen_sauer.gwt.log</groupId>
+               <artifactId>gwt-log</artifactId>
+               <version>1.4.4</version>
           </dependency>
           
 			<dependency>

@@ -23,7 +23,7 @@ public class GWTUserServiceImpl extends GWTSpringControllerReplacement
 
             UserAndToken rtn = userService.getCurrentUserAndToken();
 
-            if (rtn != null) {
+            if (rtn.getUser() != null) {
                 log.info("GWT get current user... "
                         + rtn.getUser().getUsername());
                 // System.out.println("\n\n\n---------------");
@@ -40,12 +40,8 @@ public class GWTUserServiceImpl extends GWTSpringControllerReplacement
                         + fetched.getProcessTypes().size());
 
                 rtn.setUser(fetched);
-
-                return rtn;
-
-            } else {
-                return null;
             }
+            return rtn;
 
         } catch (UsernameNotFoundException u) {
             throw new BusinessException(u.getMessage());

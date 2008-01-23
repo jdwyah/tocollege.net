@@ -3,8 +3,8 @@ package com.apress.progwt.client.college.gui.status;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.calculator.GUIEffects;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.user.client.ui.CellPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -60,7 +60,7 @@ public class StatusPanel extends SimplePanel {
 
     public void update(int id, String string, StatusCode statusCode) {
 
-        Logger.debug("UPDATE " + id + " " + string + " "
+        Log.debug("StatusPanel.UPDATE " + id + " " + string + " "
                 + statusCode.getCode());
 
         if (statusCode == StatusCode.SEND) {

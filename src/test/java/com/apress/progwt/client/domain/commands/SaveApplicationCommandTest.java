@@ -11,6 +11,7 @@ public class SaveApplicationCommandTest extends TestCase {
     private static final String TEXT = "test text";
     private static final String XSS_STRING = "<b>f</b>oo<IMG SRC=javascript:alert('XSS')>";
     private static final String XSS_FIXED = "<b>f</b>oo<img src=\"#alert(\" />";
+    private static final String XSS_ESCAPED = "&lt;b&gt;f&lt;/b&gt;oo&lt;IMG SRC=javascript:alert('XSS')&gt;";
 
     private static final String VALID_HTML = "sa<FONT style=\"BACKGROUND-COLOR: green\" color=yellow>dfs</FONT>df";
     private static final String VALID_HTML_C = "sa<font style=\"BACKGROUND-COLOR: green\" color=\"yellow\">dfs</font>df";
@@ -53,7 +54,7 @@ public class SaveApplicationCommandTest extends TestCase {
         command.execute(commandService);
 
         Application saved = command.getToSave();
-        assertEquals(XSS_FIXED, saved.getPros().get(0));
+        assertEquals(XSS_ESCAPED, saved.getPros().get(0));
         assertEquals(XSS_FIXED, saved.getNotes());
         assertEquals(0, saved.getCons().size());
 

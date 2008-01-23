@@ -1,7 +1,7 @@
 package com.apress.progwt.client.map;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.GWTApp;
-import com.apress.progwt.client.util.Logger;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.control.MapTypeControl;
 import com.google.gwt.maps.client.control.SmallMapControl;
@@ -18,7 +18,7 @@ public class CollegeMapApp extends GWTApp {
         super(pageID);
 
         try {
-            Logger.log("In CollegeBound");
+            Log.debug("In CollegeBound");
             double latitude = Double.parseDouble(getParam("latitude"));
 
             double longitude = Double.parseDouble(getParam("longitude"));
@@ -39,12 +39,12 @@ public class CollegeMapApp extends GWTApp {
             map.clearOverlays();
 
             map.addOverlay(new Marker(collegeCenter));
-            Logger.log("Show CollegeBound");
+            Log.debug("Show CollegeBound");
 
             show(map);
 
         } catch (Exception e) {
-            Logger.log("EX " + e);
+            Log.error("EX " + e);
             loadError(e);
         }
 
