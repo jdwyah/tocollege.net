@@ -1,5 +1,6 @@
 package com.apress.progwt.client.forum;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.GWTApp;
 import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
@@ -7,6 +8,7 @@ import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.SaveForumPostCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
+import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.History;
@@ -21,15 +23,16 @@ public class ForumApp extends GWTApp implements HistoryListener {
 
     private static final int FORUM_POST_MAX = 5;
     private static final int FORUM_THREAD_MAX = 10;
-
     private ForumTopic originalTopic;
 
     public ForumApp(int pageID) {
         super(pageID);
 
+        initServices();
+
         String uniqueForumID = getParam("uniqueForumID");
 
-        initServices();
+        ForumBootstrap bootstrapped = (ForumBootstrap) getBootstrapped();
 
         VerticalPanel mainPanel = new VerticalPanel();
         mainPanel.setStylePrimaryName("Forum");
@@ -45,9 +48,20 @@ public class ForumApp extends GWTApp implements HistoryListener {
             History.newItem(initToken);
         }
 
-        // onHistoryChanged() is not called when the application first
-        // runs. Call it now in order to reflect the initial state.
-        onHistoryChanged(initToken);
+        if (bootstrapped != null) {
+            Log.info("Running off Bootstrap");
+            School s = new School();
+            s.setId(486);
+
+            load(0, bootstrapped.getPostsList(), false, bootstrapped
+                    .getForumTopic(), FORUM_POST_MAX);
+
+        } else {
+            // onHistoryChanged() is not called when the application first
+            // runs. Call it now in order to reflect the initial state.
+            // this will affect a load
+            onHistoryChanged(initToken);
+        }
 
         History.addHistoryListener(this);
     }

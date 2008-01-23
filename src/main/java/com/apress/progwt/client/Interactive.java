@@ -61,8 +61,8 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-                                            $wnd.urchinTracker(pageName);
-                                        }-*/;
+                                                                 $wnd.urchinTracker(pageName);
+                                                             }-*/;
 
     /**
      * Initial entry point. Make sure our exception handler is set before

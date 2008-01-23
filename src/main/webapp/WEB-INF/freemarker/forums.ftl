@@ -24,6 +24,7 @@
         <@gwt.widget "Forum", params/>           
         <@gwt.finalize/>
     <#else>
+    <@gwt.widget widgetName="Forum" bootstrap=bootstrap extraParams={}/>    
         <@common.showForumPosts forumPosts/>
     </#if>
 	</div>  

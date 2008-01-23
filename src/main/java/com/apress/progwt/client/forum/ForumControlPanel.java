@@ -41,8 +41,7 @@ public class ForumControlPanel extends Composite {
                         maxperpage)));
             }
 
-            System.out.println(pageS + " pageS:tc " + totalCount);
-
+            // Log.debug(pageS + " pageS:tc " + totalCount);
             i++;
         }
 

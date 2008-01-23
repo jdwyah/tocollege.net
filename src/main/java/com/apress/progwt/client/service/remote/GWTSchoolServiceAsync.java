@@ -6,6 +6,7 @@ import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.SiteCommand;
+import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -31,4 +32,5 @@ public interface GWTSchoolServiceAsync {
     void getPostsForThread(ForumPost post, int start, int max,
             AsyncCallback<PostsList> callback);
 
+    void forumBootstrapDummy(AsyncCallback<ForumBootstrap> callback);
 }

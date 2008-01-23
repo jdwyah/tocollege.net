@@ -33,8 +33,14 @@ public class ToCollegeApp extends GWTApp {
     }
 
     private void setMeUp() {
+        long start = System.currentTimeMillis();
         final MyPage myPage = new MyPage(this);
         loadGUI(myPage);
+        long end = System.currentTimeMillis();
+        Log.debug("GUI: " + (end - start) / 1000.0);
+
+        final long start2 = System.currentTimeMillis();
+
         getLoginService().getUserOrDoLogin(new AsyncCallback<User>() {
 
             public void onFailure(Throwable caught) {
@@ -42,7 +48,13 @@ public class ToCollegeApp extends GWTApp {
             }
 
             public void onSuccess(User result) {
+                long end2 = System.currentTimeMillis();
+                Log.debug("async: " + (end2 - start2) / 1000.0);
+                long start3 = System.currentTimeMillis();
                 myPage.load(result);
+                long end3 = System.currentTimeMillis();
+                Log.debug("load: " + (end3 - start3) / 1000.0);
+
             }
         });
 

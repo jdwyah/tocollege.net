@@ -11,7 +11,10 @@ import com.apress.progwt.client.service.remote.GWTUserService;
 import com.apress.progwt.client.service.remote.GWTUserServiceAsync;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.Dictionary;
+import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.impl.ClientSerializationStreamReader;
+import com.google.gwt.user.client.rpc.impl.RemoteServiceProxy;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -91,6 +94,50 @@ public class GWTApp {
 
     public LoginService getLoginService() {
         return loginService;
+    }
+
+    /**
+     * get the Object that has been serialized under the JavaScript var
+     * name "serialized"
+     * 
+     * @return
+     */
+    protected Object getBootstrapped() {
+        return getBootstrapped("serialized");
+    }
+
+    /**
+     * 
+     * Remember, the RemoteServiceProxy that you use must have a method
+     * that returns the type that you wish to serialize. Otherwise, the
+     * deserializer will not be created.
+     * 
+     * Cast the service into a RemoteServiceProxy, grab the stream reader
+     * and deserialize.
+     * 
+     * @param name
+     * @return
+     */
+    private Object getBootstrapped(String name) {
+        String serialized = getParam(name);
+        if (serialized == null) {
+            Log.warn("No param " + name);
+            return null;
+        }
+
+        try {
+            ClientSerializationStreamReader c = getBootstrapService()
+                    .createStreamReader(serialized);
+            Object o = c.readObject();
+            return o;
+        } catch (SerializationException e) {
+            Log.error("Bootstrap " + name + " Problem ", e);
+            return null;
+        }
+    }
+
+    private RemoteServiceProxy getBootstrapService() {
+        return (RemoteServiceProxy) getSchoolService();
     }
 
     /**

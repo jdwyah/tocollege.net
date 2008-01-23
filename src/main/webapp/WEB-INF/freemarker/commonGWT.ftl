@@ -19,7 +19,7 @@
 </#macro>
 
 <#assign widgetID = 0>
-<#macro widget widgetName, extraParams={}>
+<#macro widget widgetName, extraParams={}, bootstrap="">
     <#assign widgetID = widgetID + 1>    
     <#if widgetID == 1>
         <script language="JavaScript">
@@ -32,7 +32,15 @@
             <#list extraParams?keys as key> 
                 Vars['${key}_${widgetID}'] = "${extraParams[key]}"
             </#list>
-    </script>                
+            <#if bootstrap?has_content>
+                Vars['serialized_${widgetID}'] = "${bootstrap.serialized?default("")?replace("\"","\\\"")}"
+            </#if>
+    </script>     
+    <#if bootstrap?has_content>
+        <noscript>
+        ${bootstrap.noscript}
+        </noscript>
+    </#if>           
         <div id="gwt-slot-${widgetID}"></div>
         <div id="gwt-loading-${widgetID}" class="loading"><p>Loading...</p></div>        
         <div id="preload"></div>    

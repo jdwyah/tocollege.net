@@ -25,6 +25,8 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.apress.progwt.client.domain.GWTSerializer;
+import com.apress.progwt.client.exception.InfrastructureException;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.SerializationException;
@@ -44,7 +46,8 @@ import com.google.gwt.user.server.rpc.SerializationPolicy;
  */
 
 public class GWTSpringControllerReplacement extends RemoteServiceServlet
-        implements ServletContextAware, Controller, RemoteService {
+        implements ServletContextAware, Controller, RemoteService,
+        GWTSerializer {
 
     private static final Logger log = Logger
             .getLogger(GWTSpringControllerReplacement.class);
@@ -64,17 +67,7 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
 
             RPCRequest rpcRequest = RPC.decodeRequest(payload, this
                     .getClass(), this);
-
-            ServerSerializationStreamWriter1529 writer = new ServerSerializationStreamWriter1529(
-                    rpcRequest.getSerializationPolicy());
-
-            writer.setValueWriter(Object.class, new ValueWriter() {
-                public void write(
-                        ServerSerializationStreamWriter1529 stream,
-                        Object instance) throws SerializationException {
-                    stream.writeObject(HibernateFilter.filter(instance));
-                }
-            });
+            ServerSerializationStreamWriter1529 writer = getWriter(rpcRequest);
 
             return RPCWithHibernateSupport1529.invokeAndEncodeResponse(
                     this, rpcRequest.getMethod(), rpcRequest
@@ -87,6 +80,56 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
                             ex);
             return RPC.encodeResponseForFailure(null, ex);
         }
+    }
+
+    private ServerSerializationStreamWriter1529 getWriter(
+            RPCRequest rpcRequest) {
+        return getWriter(rpcRequest.getSerializationPolicy());
+    }
+
+    /**
+     * would prefer to call doGetSerializationPolicy() so that we could
+     * use the new serializer policies, but not sure how to get the
+     * necessary parameters
+     * 
+     * @return
+     */
+    private ServerSerializationStreamWriter1529 getWriter() {
+        return getWriter(OneFourTenSerializationPolicy.getInstance());
+    }
+
+    private ServerSerializationStreamWriter1529 getWriter(
+            SerializationPolicy serializationPolicy) {
+
+        ServerSerializationStreamWriter1529 writer = new ServerSerializationStreamWriter1529(
+                serializationPolicy);
+
+        writer.setValueWriter(Object.class, new ValueWriter() {
+            public void write(ServerSerializationStreamWriter1529 stream,
+                    Object instance) throws SerializationException {
+                stream.writeObject(HibernateFilter.filter(instance));
+            }
+        });
+        return writer;
+    }
+
+    /**
+     * implement GWTSerializer. Used for GWT host pages that want to
+     * serialize objects to bootstrap GWT and prevent needing a startup
+     * async call.
+     */
+    public String serializeObject(Object object, Class<?> clazz)
+            throws InfrastructureException {
+
+        ServerSerializationStreamWriter1529 serializer = getWriter();
+
+        try {
+            serializer.serializeValue(object, clazz);
+        } catch (SerializationException e) {
+            throw new InfrastructureException(e);
+        }
+        String bufferStr = "//OK" + serializer.toString();
+        return bufferStr;
     }
 
     /**

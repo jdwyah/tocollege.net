@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apress.progwt.server.service.SchoolService;
 import com.apress.progwt.server.service.UserService;
@@ -53,21 +52,6 @@ public class SimpleAnnotatedController {
     public ModelMap aboutHandler(HttpServletRequest req) {
         return ControllerUtil.getModelMap(req, userService);
 
-    }
-
-    @RequestMapping("/forums.html")
-    public ModelMap forumsHandler(HttpServletRequest req,
-            @RequestParam(value = "uniqueForumID", required = false)
-            String uniqueForumID) {
-        ModelMap rtn = ControllerUtil.getModelMap(req, userService);
-
-        if (uniqueForumID != null) {
-            rtn.addAttribute("uniqueForumID", uniqueForumID);
-        } else {
-            rtn.addAttribute("forumPosts", schoolService
-                    .getRecentForumPosts(0, 15));
-        }
-        return rtn;
     }
 
     @RequestMapping("/users.html")
