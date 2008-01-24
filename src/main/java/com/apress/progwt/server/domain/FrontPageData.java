@@ -2,9 +2,10 @@ package com.apress.progwt.server.domain;
 
 import java.util.List;
 
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.RecentForumPostTopic;
 import com.apress.progwt.server.service.SchoolService;
 import com.apress.progwt.server.service.UserService;
 
@@ -13,7 +14,7 @@ public class FrontPageData {
     private List<School> topSchools;
     private List<SchoolPopularity> popularSchools;
     private List<User> topUsers;
-    private List<ForumPost> forumPosts;
+    private PostsList postList;
 
     public FrontPageData(UserService userService,
             SchoolService schoolService) {
@@ -22,7 +23,9 @@ public class FrontPageData {
         setPopularSchools(schoolService.getPopularSchools());
 
         setTopUsers(userService.getTopUsers(5));
-        setForumPosts(schoolService.getRecentForumPosts(0, 10));
+
+        setPostList(schoolService.getForum(new RecentForumPostTopic(), 0,
+                10));
 
     }
 
@@ -50,12 +53,12 @@ public class FrontPageData {
         this.topUsers = topUsers;
     }
 
-    public List<ForumPost> getForumPosts() {
-        return forumPosts;
+    public PostsList getPostList() {
+        return postList;
     }
 
-    public void setForumPosts(List<ForumPost> forumPosts) {
-        this.forumPosts = forumPosts;
+    public void setPostList(PostsList postList) {
+        this.postList = postList;
     }
 
 }

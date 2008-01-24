@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.service.remote.GWTSchoolService;
@@ -54,21 +54,17 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
         return schoolService.getAllSchools();
     }
 
-    public PostsList getSchoolThreads(long schoolID, int start, int max)
-            throws SiteException {
-        return schoolService.getSchoolThreads(schoolID, start, max);
-    }
-
     public School getSchoolDetails(String schoolName) {
         return schoolService.getSchoolDetails(schoolName);
     }
 
-    public PostsList getPostsForThread(ForumPost post, int start, int max) {
-        return schoolService.getPostsForThread(post, start, max);
-    }
-
     public ForumBootstrap forumBootstrapDummy() {
         return null;
+    }
+
+    public PostsList getForum(ForumTopic forumTopic, int start, int max)
+            throws SiteException {
+        return schoolService.getForum(forumTopic, start, max);
     }
 
 }

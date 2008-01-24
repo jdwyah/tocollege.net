@@ -2,10 +2,10 @@ package com.apress.progwt.client.domain.dto;
 
 import java.io.Serializable;
 
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.GWTSerializer;
+import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.apress.progwt.client.exception.InfrastructureException;
-import com.apress.progwt.client.forum.ForumTopic;
 
 public class ForumBootstrap extends GWTBootstrapDTO implements
         Serializable {
@@ -27,8 +27,7 @@ public class ForumBootstrap extends GWTBootstrapDTO implements
     public String getNoscript() {
         StringBuffer sb = new StringBuffer();
         for (ForumPost fp : postsList.getPosts()) {
-            sb.append(fp);
-            sb.append("<p>");
+            fp.appendNoscript(sb);
         }
         return sb.toString();
     }

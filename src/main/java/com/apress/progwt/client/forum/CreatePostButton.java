@@ -2,6 +2,7 @@ package com.apress.progwt.client.forum;
 
 import com.apress.progwt.client.college.gui.ext.JSUtil;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;

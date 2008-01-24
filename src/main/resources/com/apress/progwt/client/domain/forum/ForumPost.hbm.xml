@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 
-<hibernate-mapping package="com.apress.progwt.client.domain">
+<hibernate-mapping package="com.apress.progwt.client.domain.forum">
 
 	<class name="ForumPost" table="forumposts" discriminator-value="abstractForumPost">
 		<meta attribute="generated-class">com.apress.progwt.server.domain.generated.AbstractForumPost</meta>
@@ -22,7 +22,7 @@
 	
 	
         <many-to-one name="author" class="com.apress.progwt.client.domain.User" column="author_id" lazy="false"/>
-	    <many-to-one name="threadPost" class="com.apress.progwt.client.domain.ForumPost" column="thread_id" lazy="proxy"/>
+	    <many-to-one name="threadPost" class="com.apress.progwt.client.domain.forum.ForumPost" column="thread_id" lazy="proxy"/>
 
 	    <set name="replies" inverse="true" order-by="date">
 	         <key column="thread_id" />

@@ -2,14 +2,16 @@ package com.apress.progwt.client.forum;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.GWTApp;
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.SaveForumPostCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.forum.ForumTopic;
+import com.apress.progwt.client.domain.forum.SchoolForumPost;
+import com.apress.progwt.client.domain.forum.UserForumPost;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
@@ -106,19 +108,14 @@ public class ForumApp extends GWTApp implements HistoryListener {
 
     }
 
+    private void gotoUser(final User user, final int start) {
+        originalTopic = user;
+        gotoForum(user, start, false, FORUM_THREAD_MAX);
+    }
+
     private void gotoSchool(final School school, final int start) {
         originalTopic = school;
-        getSchoolService().getSchoolThreads(school.getId(), start,
-                FORUM_THREAD_MAX,
-                new StdAsyncCallback<PostsList>("Get School Threads") {
-
-                    @Override
-                    public void onSuccess(PostsList result) {
-                        super.onSuccess(result);
-                        load(start, result, false, school,
-                                FORUM_THREAD_MAX);
-                    }
-                });
+        gotoForum(school, start, false, FORUM_THREAD_MAX);
     }
 
     public void gotoThread(ForumPost post) {
@@ -126,15 +123,17 @@ public class ForumApp extends GWTApp implements HistoryListener {
     }
 
     public void gotoThread(final ForumPost thread, final int start) {
+        gotoForum(thread, start, true, FORUM_POST_MAX);
+    }
 
-        getSchoolService().getPostsForThread(thread, start,
-                FORUM_POST_MAX,
+    private void gotoForum(final ForumTopic forumTopic, final int start,
+            final boolean isReply, final int max) {
+        getSchoolService().getForum(forumTopic, start, max,
                 new StdAsyncCallback<PostsList>("Get Posts For Thread") {
-
                     @Override
                     public void onSuccess(PostsList result) {
                         super.onSuccess(result);
-                        load(start, result, true, thread, FORUM_POST_MAX);
+                        load(start, result, true, forumTopic, max);
                     }
                 });
     }
@@ -172,6 +171,14 @@ public class ForumApp extends GWTApp implements HistoryListener {
             gotoSchool(s, start);
         } else if (tok[0].equals("SchoolForumPost")) {
             ForumPost fp = new SchoolForumPost();
+            fp.setId(id);
+            gotoThread(fp, start);
+        } else if (tok[0].equals("User")) {
+            User u = new User();
+            u.setId(id);
+            gotoUser(u, start);
+        } else if (tok[0].equals("UserForumPost")) {
+            ForumPost fp = new UserForumPost();
             fp.setId(id);
             gotoThread(fp, start);
         }

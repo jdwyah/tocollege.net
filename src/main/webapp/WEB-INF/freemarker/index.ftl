@@ -29,7 +29,7 @@
 		
 	<@common.box "boxStyle", "forumBox", "Forums">
 				
-        <@common.showForumPosts frontPage.forumPosts/>				
+        <@common.showForumPosts frontPage.postList.posts/>				
 		       		
 	</@common.box>	
 	

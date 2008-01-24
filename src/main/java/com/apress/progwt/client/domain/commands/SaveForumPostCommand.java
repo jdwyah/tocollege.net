@@ -2,10 +2,10 @@ package com.apress.progwt.client.domain.commands;
 
 import java.io.Serializable;
 
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.apress.progwt.client.exception.SiteException;
-import com.apress.progwt.client.forum.ForumTopic;
 
 /**
  * Because this will reference many objects that are stored in the DB, we

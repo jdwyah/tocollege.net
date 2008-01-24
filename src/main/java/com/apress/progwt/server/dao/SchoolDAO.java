@@ -3,12 +3,12 @@ package com.apress.progwt.server.dao;
 import java.util.List;
 
 import com.apress.progwt.client.domain.Foo;
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.ForumPost;
 
 public interface SchoolDAO {
 
@@ -43,6 +43,6 @@ public interface SchoolDAO {
 
     PostsList getPostsForThread(ForumPost post, int start, int max);
 
-    List<ForumPost> getRecentForumPosts(int start, int max);
+    PostsList getRecentForumPosts(int start, int max);
 
 }

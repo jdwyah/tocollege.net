@@ -2,14 +2,20 @@ package com.apress.progwt.client.domain;
 
 import java.io.Serializable;
 
+import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.forum.ForumTopic;
+import com.apress.progwt.client.domain.forum.SchoolForumPost;
 import com.apress.progwt.client.domain.generated.AbstractSchool;
-import com.apress.progwt.client.forum.ForumTopic;
 
 public class School extends AbstractSchool implements Serializable,
         Loadable, HasAddress, ForumTopic {
 
     public School() {
 
+    }
+
+    public School(long id) {
+        setId(id);
     }
 
     @Override

@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
@@ -16,6 +15,9 @@ import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.CommandService;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.forum.ForumTopic;
+import com.apress.progwt.client.domain.forum.RecentForumPostTopic;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.exception.SiteSecurityException;
@@ -165,14 +167,6 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
         return ranked;
     }
 
-    public PostsList getPostsForThread(ForumPost post, int start, int max) {
-        return schoolDAO.getPostsForThread(post, start, max);
-    }
-
-    public List<ForumPost> getRecentForumPosts(int start, int max) {
-        return schoolDAO.getRecentForumPosts(start, max);
-    }
-
     public School getSchoolDetails(String schoolname) {
 
         return schoolDAO.getSchoolFromName(schoolname);
@@ -184,6 +178,24 @@ public class SchoolServiceImpl implements SchoolService, CommandService {
     public List<String> getSchoolsMatching(String match) {
         return searchService.searchForSchool(match);
         // return schoolDAO.getSchoolsMatching(match);
+    }
+
+    public PostsList getForum(ForumTopic forumTopic, int start, int max) {
+        if (forumTopic instanceof User) {
+            User user = (User) forumTopic;
+            return schoolDAO.getUserThreads(user.getId(), start, max);
+        } else if (forumTopic instanceof School) {
+            School school = (School) forumTopic;
+            return schoolDAO.getSchoolThreads(school.getId(), start, max);
+        } else if (forumTopic instanceof ForumPost) {
+            ForumPost post = (ForumPost) forumTopic;
+            return schoolDAO.getPostsForThread(post, start, max);
+        } else if (forumTopic instanceof RecentForumPostTopic) {
+            return schoolDAO.getRecentForumPosts(start, max);
+        } else {
+            throw new RuntimeException("Unknown forumTopic: "
+                    + forumTopic);
+        }
     }
 
     public PostsList getSchoolThreads(long schoolID, int start, int max) {

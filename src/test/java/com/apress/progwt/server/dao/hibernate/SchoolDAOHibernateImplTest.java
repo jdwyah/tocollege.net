@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.forum.SchoolForumPost;
 import com.apress.progwt.server.dao.UserDAO;
 
 public class SchoolDAOHibernateImplTest extends

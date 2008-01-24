@@ -17,14 +17,14 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.apress.progwt.client.domain.Bar;
 import com.apress.progwt.client.domain.Foo;
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.SchoolForumPost;
-import com.apress.progwt.client.domain.UserForumPost;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.forum.SchoolForumPost;
+import com.apress.progwt.client.domain.forum.UserForumPost;
 import com.apress.progwt.server.dao.SchoolDAO;
 
 public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
@@ -251,7 +251,7 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
                 max);
     }
 
-    public List<ForumPost> getRecentForumPosts(int start, int max) {
+    public PostsList getRecentForumPosts(int start, int max) {
         DetachedCriteria crit = DetachedCriteria.forClass(
                 ForumPost.class, "fp").add(
                 Expression.isNull("threadPost")).addOrder(
@@ -259,6 +259,9 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
 
         List<ForumPost> posts = getHibernateTemplate().findByCriteria(
                 crit, start, max);
-        return posts;
+
+        PostsList rtn = new PostsList(posts, getRowCount(crit));
+
+        return rtn;
     }
 }

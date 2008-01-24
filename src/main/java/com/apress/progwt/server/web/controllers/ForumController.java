@@ -1,7 +1,5 @@
 package com.apress.progwt.server.web.controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -13,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.GWTSerializer;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.RecentForumPostTopic;
 import com.apress.progwt.client.exception.InfrastructureException;
 import com.apress.progwt.server.service.SchoolService;
 import com.apress.progwt.server.service.UserService;
@@ -55,10 +53,9 @@ public class ForumController {
             rtn.addAttribute("uniqueForumID", uniqueForumID);
 
         } else {
-            List<ForumPost> posts = schoolService.getRecentForumPosts(0,
-                    15);
 
-            PostsList postList = new PostsList(posts, 100);
+            PostsList postList = schoolService.getForum(
+                    new RecentForumPostTopic(), 0, 15);
 
             School s = new School();
             s.setId(500);
@@ -67,7 +64,6 @@ public class ForumController {
 
             rtn.addAttribute("bootstrap", bootstrap);
 
-            rtn.addAttribute("forumPosts", posts);
         }
         return rtn;
     }

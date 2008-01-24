@@ -8,12 +8,10 @@ import org.springframework.test.AssertThrows;
 
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.Foo;
-import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.RemoveSchoolFromRankCommand;
 import com.apress.progwt.client.domain.commands.SaveApplicationCommand;
@@ -23,6 +21,8 @@ import com.apress.progwt.client.domain.commands.SaveRatingCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.forum.SchoolForumPost;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.exception.SiteSecurityException;
 import com.apress.progwt.server.dao.SchoolDAO;
@@ -423,8 +423,9 @@ public class SchoolServiceImplTest extends
 
     }
 
-    public void testForumReplies() {
-        PostsList posts = schoolService.getSchoolThreads(500, 0, 10);
+    public void testForumReplies() throws SiteException {
+        School s = new School(500);
+        PostsList posts = schoolService.getForum(s, 0, 10);
 
         for (ForumPost fp : posts.getPosts()) {
             System.out.println("fp: " + fp + " REPL "
@@ -482,8 +483,7 @@ public class SchoolServiceImplTest extends
 
         executeWithToken(new SaveForumPostCommand(fp), false);
 
-        PostsList posts = schoolService.getSchoolThreads(sc.getId(), 0,
-                10);
+        PostsList posts = schoolService.getForum(sc, 0, 10);
 
         assertEquals(1, posts.getTotalCount());
         assertEquals(1, posts.getPosts().size());
@@ -506,7 +506,7 @@ public class SchoolServiceImplTest extends
         executeWithToken(new SaveForumPostCommand(fp2), false);
 
         // assert that there's still just 1 top level thread
-        posts = schoolService.getSchoolThreads(sc.getId(), 0, 10);
+        posts = schoolService.getForum(sc, 0, 10);
         assertEquals(1, posts.getTotalCount());
         assertEquals(1, posts.getPosts().size());
 
@@ -516,7 +516,7 @@ public class SchoolServiceImplTest extends
         assertEquals(1, saved.getReplyCount());
 
         // get the posts in this thread
-        posts = schoolService.getPostsForThread(saved, 0, 10);
+        posts = schoolService.getForum(saved, 0, 10);
         assertEquals(2, posts.getTotalCount());
         assertEquals(2, posts.getPosts().size());
 

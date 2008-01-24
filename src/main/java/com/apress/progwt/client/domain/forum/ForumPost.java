@@ -1,10 +1,11 @@
-package com.apress.progwt.client.domain;
+package com.apress.progwt.client.domain.forum;
 
 import java.io.Serializable;
 import java.util.Date;
 
+import com.apress.progwt.client.domain.Loadable;
+import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.generated.AbstractForumPost;
-import com.apress.progwt.client.forum.ForumTopic;
 
 public abstract class ForumPost extends AbstractForumPost implements
         Serializable, Loadable, ForumTopic {
@@ -73,5 +74,20 @@ public abstract class ForumPost extends AbstractForumPost implements
     public abstract void setTopic(ForumTopic topic);
 
     public abstract Class<? extends ForumTopic> getTopicClass();
+
+    public void appendNoscript(StringBuffer addTo) {
+        addTo.append("Title: ");
+        addTo.append(getPostTitle());
+        addTo.append("<br>\n");
+        addTo.append("Post: ");
+        addTo.append(getPostString());
+        addTo.append("<br>\n");
+        addTo.append("Topic: ");
+        addTo.append(getTopic());
+        addTo.append("<br>\n");
+        addTo.append("Author: ");
+        addTo.append(getAuthor());
+        addTo.append("<p>\n");
+    }
 
 }
