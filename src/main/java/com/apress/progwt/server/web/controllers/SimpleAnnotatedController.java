@@ -1,5 +1,7 @@
 package com.apress.progwt.server.web.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -7,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.apress.progwt.client.domain.School;
 import com.apress.progwt.server.service.SchoolService;
 import com.apress.progwt.server.service.UserService;
 
@@ -63,13 +67,39 @@ public class SimpleAnnotatedController {
         return rtn;
     }
 
+    /**
+     * 
+     * @param req
+     * @param startLetter -
+     *            if unavailable, show 'topschools'
+     * @param start -
+     *            paging start
+     * @return
+     */
     @RequestMapping("/schools.html")
-    public ModelMap schoolsHandler(HttpServletRequest req) {
+    public ModelMap schoolsHandler(HttpServletRequest req,
+            @RequestParam(value = "startLetter", required = false)
+            String startLetter,
+            @RequestParam(value = "start", required = false)
+            Integer start) {
         ModelMap rtn = ControllerUtil.getModelMap(req, userService);
 
-        rtn
-                .addAttribute("topSchools", schoolService.getTopSchools(
-                        0, 20));
+        if (start == null) {
+            start = 0;
+        }
+
+        List<School> schools = null;
+        if (startLetter == null) {
+            startLetter = "";
+            schools = schoolService.getTopSchools(start, 20);
+        } else {
+            schools = schoolService.getSchoolsStarting(startLetter,
+                    start, 20);
+        }
+
+        rtn.addAttribute("start", start);
+        rtn.addAttribute("startLetter", startLetter);
+        rtn.addAttribute("schools", schools);
 
         return rtn;
     }

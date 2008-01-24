@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /site/search    # Don't index transient search pages. For complex robots.txt, see http://confluence.atlassian.com/display/DISC/Prevent+Search+Engine+Indexing+Using+Robots.txt
+Crawl-delay: 5            # per http://en.wikipedia.org/wiki/Robots.txt#Nonstandard_extensions, sets number of seconds to wait between requests to 5 seconds. may not work
+Request-rate: 1/5         # per http://en.wikipedia.org/wiki/Robots.txt#Extended_Standard,  maximum rate is one page every 5 seconds
+Visit-time: 0600-0845     # per http://en.wikipedia.org/wiki/Robots.txt#Extended_Standard, only visit between 6:00 AM and 8:45 AM UT (GMT)

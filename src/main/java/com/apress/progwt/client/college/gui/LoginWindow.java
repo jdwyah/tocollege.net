@@ -53,15 +53,15 @@ public class LoginWindow extends DialogBox implements TabListener {
      * @param manager
      */
     public LoginWindow(LoginListener listener) {
-        super(false, true);
+        super(false, false);
 
         this.listener = listener;
 
         if (semaphore == false) {
-            System.out.println("CREATING LoginWindow");
+            Log.debug("CREATING LoginWindow");
             semaphore = true;
         } else {
-            System.out.println("KILLING LoginWindow");
+            Log.debug("KILLING LoginWindow");
 
             hide();
             return;
@@ -136,7 +136,7 @@ public class LoginWindow extends DialogBox implements TabListener {
             }
 
             public void onSubmit(FormSubmitEvent event) {
-                System.out.println("submit to " + form.getAction());
+                Log.debug("submit to " + form.getAction());
 
                 // This event is fired just before the form is submitted.
                 // We can take

@@ -9,6 +9,9 @@
 		<resource path="src/main/webapp/WEB-INF/freemarker/user.ftl">
 			<value key="user" object-class="com.apress.progwt.client.domain.User"/>
 		</resource>
+		<resource path="src/main/webapp/WEB-INF/freemarker/search.ftl">
+			<value key="searchResults" object-class="com.apress.progwt.client.domain.dto.SearchResult"/>
+		</resource>
 	</context-values>
 	<macro-library>
 	</macro-library>

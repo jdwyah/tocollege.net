@@ -10,7 +10,6 @@ import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.domain.forum.ForumTopic;
-import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.service.remote.GWTSchoolService;
 import com.apress.progwt.server.gwt.GWTSpringControllerReplacement;
@@ -32,8 +31,8 @@ public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
     private SchoolService schoolService;
 
     public List<String> getSchoolsMatching(String match)
-            throws BusinessException {
-        return schoolService.getSchoolsMatching(match);
+            throws SiteException {
+        return schoolService.getSchoolStringsMatching(match);
     }
 
     public void setSchoolService(SchoolService schoolService) {

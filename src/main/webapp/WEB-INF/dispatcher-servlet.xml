@@ -35,13 +35,14 @@
          <property name="view" value="college"/>
 	     <property name="schoolService" ref="schoolService" />
 	     <property name="userService" ref="userService" />
-	     <property name="notFoundView" value="notFound" />
+	     <property name="notFoundView" value="redirect:/site/search.html" />
+         <property name="serializer" ref="GWTSchoolService" />
 	</bean>
 	<bean id="viewUserController" class="com.apress.progwt.server.web.controllers.ViewUserController">
          <property name="view" value="viewuser"/>
 	     <property name="schoolService" ref="schoolService" />
 	     <property name="userService" ref="userService" />
-	     <property name="notFoundView" value="notFound" />
+	     <property name="notFoundView" value="redirect:/site/search.html" />
 	</bean>
      
      <bean id="mylistController" class="com.apress.progwt.server.web.controllers.MyListController">

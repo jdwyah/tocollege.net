@@ -29,6 +29,8 @@ public abstract class AbstractSchool implements Serializable {
     private double latitude;
     private double longitude;
 
+    private int popularityCounter;
+
     public AbstractSchool() {
     }
 
@@ -186,6 +188,14 @@ public abstract class AbstractSchool implements Serializable {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public int getPopularityCounter() {
+        return popularityCounter;
+    }
+
+    public void setPopularityCounter(int popularityCounter) {
+        this.popularityCounter = popularityCounter;
     }
 
     public void setLongitude(double longitude) {

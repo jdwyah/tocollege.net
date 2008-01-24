@@ -2,8 +2,8 @@ package com.apress.progwt.client.forum;
 
 import com.apress.progwt.client.college.gui.UserLink;
 import com.apress.progwt.client.college.gui.ext.TableWithHeaders;
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.dto.PostsList;
-import com.apress.progwt.client.domain.forum.ForumPost;
 import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Composite;

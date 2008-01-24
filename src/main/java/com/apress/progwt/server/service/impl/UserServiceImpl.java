@@ -111,12 +111,15 @@ public class UserServiceImpl implements UserService {
     public User createUser(CreateUserRequestCommand comm)
             throws SiteException {
 
+        // duplicate username as nickname
         if (comm.isStandard()) {
             return createUser(comm.getUsername(), comm.getPassword(),
-                    comm.getEmail());
-        } else if (comm.isOpenID()) {
+                    comm.getEmail(), comm.getUsername());
+        }
+        // use nickname different than openid
+        else if (comm.isOpenID()) {
             return createUser(comm.getOpenIDusernameDoNormalization(),
-                    null, comm.getEmail());
+                    null, comm.getEmail(), comm.getOpenIDnickname());
         } else {
             throw new RuntimeException(
                     "Command Neither standard nor open");
@@ -124,9 +127,16 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    private User createUser(String username, String userpass, String email)
-            throws BusinessException {
-        return createUser(username, userpass, email, false);
+    private User createUser(String username, String userpass,
+            String email, String nickname) throws BusinessException {
+        return createUser(username, userpass, email, false, new Date(),
+                nickname);
+    }
+
+    public User createUser(String username, String userpass,
+            String email, boolean superV) throws BusinessException {
+        return createUser(username, userpass, email, superV, new Date(),
+                username);
     }
 
     /**
@@ -136,13 +146,8 @@ public class UserServiceImpl implements UserService {
      * @throws HippoBusinessException
      */
     public User createUser(String username, String userpass,
-            String email, boolean superV) throws BusinessException {
-        return createUser(username, userpass, email, superV, new Date());
-    }
-
-    public User createUser(String username, String userpass,
-            String email, boolean superV, Date dateCreated)
-            throws BusinessException {
+            String email, boolean superV, Date dateCreated,
+            String nickname) throws BusinessException {
 
         // hmm a bit odd having the logic catch in the
         //

@@ -2,6 +2,7 @@ package com.apress.progwt.client.college.gui;
 
 import java.util.Date;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.ProcessType;
@@ -93,7 +94,7 @@ public class ApplicationStatusChooserWidget extends Composite {
         public void onChange(Widget sender) {
             Date selected = datePicker.getSelectedDate();
 
-            System.out.println(selected);
+            Log.debug(selected.toString());
 
         }
 

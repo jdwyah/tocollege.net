@@ -2,16 +2,17 @@ package com.apress.progwt.client.forum;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.GWTApp;
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.UserForumPost;
 import com.apress.progwt.client.domain.commands.SaveForumPostCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
-import com.apress.progwt.client.domain.forum.ForumPost;
 import com.apress.progwt.client.domain.forum.ForumTopic;
-import com.apress.progwt.client.domain.forum.SchoolForumPost;
-import com.apress.progwt.client.domain.forum.UserForumPost;
+import com.apress.progwt.client.domain.forum.RecentForumPostTopic;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
@@ -45,7 +46,7 @@ public class ForumApp extends GWTApp implements HistoryListener {
         show(mainPanel);
 
         String initToken = History.getToken();
-        if (initToken.length() == 0) {
+        if (initToken.length() == 0 && uniqueForumID != null) {
             initToken = uniqueForumID;
             History.newItem(initToken);
         }
@@ -58,7 +59,10 @@ public class ForumApp extends GWTApp implements HistoryListener {
             load(0, bootstrapped.getPostsList(), false, bootstrapped
                     .getForumTopic(), FORUM_POST_MAX);
 
-        } else {
+            History.newItem(bootstrapped.getForumTopic()
+                    .getUniqueForumID());
+
+        } else if (initToken.length() > 0) {
             // onHistoryChanged() is not called when the application first
             // runs. Call it now in order to reflect the initial state.
             // this will affect a load
@@ -96,8 +100,7 @@ public class ForumApp extends GWTApp implements HistoryListener {
 
         System.out.println("Going to Save " + sfp);
 
-        getSchoolService().executeAndSaveCommand(
-                new SaveForumPostCommand(sfp),
+        getServiceCache().executeCommand(new SaveForumPostCommand(sfp),
                 new StdAsyncCallback<SiteCommand>("SaveForumPost") {
                     @Override
                     public void onSuccess(SiteCommand result) {
@@ -128,7 +131,8 @@ public class ForumApp extends GWTApp implements HistoryListener {
 
     private void gotoForum(final ForumTopic forumTopic, final int start,
             final boolean isReply, final int max) {
-        getSchoolService().getForum(forumTopic, start, max,
+
+        getServiceCache().getForum(forumTopic, start, max,
                 new StdAsyncCallback<PostsList>("Get Posts For Thread") {
                     @Override
                     public void onSuccess(PostsList result) {
@@ -157,30 +161,36 @@ public class ForumApp extends GWTApp implements HistoryListener {
      */
     public void onHistoryChanged(String historyToken) {
 
-        System.out.println("HISTORY CHANGE " + historyToken);
+        Log.debug("HISTORY CHANGE " + historyToken);
 
-        String[] tok = historyToken.split(ForumTopic.SEP);
-        int start = 0;
-        long id = Long.parseLong(tok[1]);
-        if (tok.length == 3) {
-            start = Integer.parseInt(tok[2]);
-        }
-        if (tok[0].equals("School")) {
-            School s = new School();
-            s.setId(id);
-            gotoSchool(s, start);
-        } else if (tok[0].equals("SchoolForumPost")) {
-            ForumPost fp = new SchoolForumPost();
-            fp.setId(id);
-            gotoThread(fp, start);
-        } else if (tok[0].equals("User")) {
-            User u = new User();
-            u.setId(id);
-            gotoUser(u, start);
-        } else if (tok[0].equals("UserForumPost")) {
-            ForumPost fp = new UserForumPost();
-            fp.setId(id);
-            gotoThread(fp, start);
+        try {
+            String[] tok = historyToken.split(ForumTopic.SEP);
+            int start = 0;
+            long id = Long.parseLong(tok[1]);
+            if (tok.length == 3) {
+                start = Integer.parseInt(tok[2]);
+            }
+            if (tok[0].equals("School")) {
+                School s = new School(id);
+                gotoSchool(s, start);
+            } else if (tok[0].equals("SchoolForumPost")) {
+                ForumPost fp = new SchoolForumPost();
+                fp.setId(id);
+                gotoThread(fp, start);
+            } else if (tok[0].equals("User")) {
+                User u = new User();
+                u.setId(id);
+                gotoUser(u, start);
+            } else if (tok[0].equals("UserForumPost")) {
+                ForumPost fp = new UserForumPost();
+                fp.setId(id);
+                gotoThread(fp, start);
+            } else if (tok[0].equals("RecentForumPost")) {
+                gotoForum(new RecentForumPostTopic(), start, false,
+                        FORUM_THREAD_MAX);
+            }
+        } catch (Exception e) {
+            Log.warn("Problem parsing token:" + historyToken);
         }
     }
 

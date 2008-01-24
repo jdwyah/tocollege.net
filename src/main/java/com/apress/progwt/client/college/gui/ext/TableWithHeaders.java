@@ -1,5 +1,6 @@
 package com.apress.progwt.client.college.gui.ext;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Grid;
@@ -25,7 +26,8 @@ public class TableWithHeaders extends Grid {
 
         super(rows, columns.length);
 
-        System.out.println("NEW GRID " + columns.length + " " + rows);
+        Log.debug("TableWithHeaders.NEW GRID " + columns.length + " "
+                + rows);
 
         // use DOM to create thead element....
         Element thead = DOM.createElement("thead");

@@ -1,5 +1,6 @@
 package com.apress.progwt.client.college.gui;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.RatingType;
@@ -50,7 +51,7 @@ public class CollegeRatingPanel extends Composite implements
 
     public void onChange(Widget sender) {
 
-        System.out.println("On Change");
+        Log.debug("CollegeRatingPanel On Change");
 
         if (sender instanceof RatingChooser) {
             RatingChooser chooser = (RatingChooser) sender;

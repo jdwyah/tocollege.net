@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.RemembersPosition;
 import com.apress.progwt.client.college.gui.ViewPanel;
@@ -112,11 +113,11 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         zoomList.add(new Double(1 / MIN_MILL));
         //		
-        // System.out.println("\n\n\nMin Day "+MIN_DAY+"
+        // Log.debug("\n\n\nMin Day "+MIN_DAY+"
         // "+zoomList.get(1));
-        // System.out.println("\n\n\nMin Year "+MIN_YEAR+"
+        // Log.debug("\n\n\nMin Year "+MIN_YEAR+"
         // "+zoomList.get(4));
-        // System.out.println("\n\n\nMin Decade "+MIN_DECADE+"
+        // Log.debug("\n\n\nMin Decade "+MIN_DECADE+"
         // "+zoomList.get(5));
     }
 
@@ -201,8 +202,8 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
     public void add(List<TimeLineObj<ProcessType>> timelines) {
 
-        System.out.println("!!!!!Zoom add " + timelines.size()
-                + " sorted size " + sorted.size());
+        Log.debug("!!!!!Zoom add " + timelines.size() + " sorted size "
+                + sorted.size());
 
         for (TimeLineObj<ProcessType> timeLineObj : timelines) {
             sorted.put(timeLineObj, null);
@@ -211,7 +212,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
         super.clear();
         initYSlots(false);
 
-        System.out.println("addObj " + sorted.size());
+        Log.debug("addObj " + sorted.size());
 
         for (TimeLineObj<ProcessType> tlo : sorted.keySet()) {
 
@@ -241,9 +242,9 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
             TimeLineObj<ProcessType> last = sorted.getKeyList().get(
                     sorted.size() - 1);
-            System.out.println("last " + last);
+            Log.debug("last " + last);
             if (last != null) {
-                // System.out.println("move to "+last.getLeft()+"
+                // Log.debug("move to "+last.getLeft()+"
                 // "+TimeLineObj.getDateForLeft(last.getLeft()));
                 centerOn(last.getLeft(), 0);
             }
@@ -323,17 +324,17 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
         for (; i < ySlots.length; i++) {
             int lastLeftForThisSlot = ySlots[i];
 
-            // System.out.println("gb "+i+" "+lastLeftForThisSlot+"
+            // Log.debug("gb "+i+" "+lastLeftForThisSlot+"
             // "+tlo.getLeft()+" mywid
             // "+mywidth);
             if (lastLeftForThisSlot < rp.getLeft()) {
 
                 ySlots[i] = (int) (rp.getLeft() + mywidth);
-                // System.out.println("Ether.choose "+i);
+                // Log.debug("Ether.choose "+i);
                 return i;
             }
         }
-        // System.out.println("Ether.fail!!!!!!!!");
+        // Log.debug("Ether.fail!!!!!!!!");
         return -1;
     }
 
@@ -381,7 +382,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
     private void initYSlots(boolean dirty) {
 
-        System.out.println("ZoomableTimeline.initYSlots(" + dirty + ")");
+        Log.debug("ZoomableTimeline.initYSlots(" + dirty + ")");
         ySlotsDirty = dirty;
 
         for (int i = 0; i < ySlots.length; i++) {
@@ -392,7 +393,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
     // @Override
     protected void moveOccurredCallback() {
 
-        // System.out.println("ZoomableTimeline.moveOccurredCallback
+        // Log.debug("ZoomableTimeline.moveOccurredCallback
         // settingYSlots !dirty");
 
         // 600, otherwise 1 pixel per SCALE length
@@ -410,7 +411,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
         // ProteanLabels come in here too
         if (o instanceof TimelineRemembersPosition) {
 
-            // System.out.println("ZoomableTimelin.objHasMoved " +
+            // Log.debug("ZoomableTimelin.objHasMoved " +
             // ySlotsDirty + " " + o.getLeft()
             // + " " + o.getTop() + " " + o);
 
@@ -425,7 +426,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
                 int slot = getBestSlotFor(tlw);
 
-                // System.out.println("best top "+slot+"
+                // Log.debug("best top "+slot+"
                 // "+tlw.getTlo().getTopic().getTopicTitle()+"
                 // "+(yStart + (slot * ySpread)));
 
@@ -481,7 +482,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         String img = backGroundList.get(index);
 
-        System.out.println("setBack " + scale + " " + index + " " + img);
+        Log.debug("setBack " + scale + " " + index + " " + img);
 
         DOM.setStyleAttribute(getElement(), "backgroundImage", "url("
                 + ConstHolder.getImgLoc(IMG_POSTFIX) + img + ".png)");
@@ -498,28 +499,28 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
         Date rtn = null;
 
         if (leftSide) {
-            // System.out.println("LEFT left " + left + " size " +
+            // Log.debug("LEFT left " + left + " size " +
             // sizeThisZoom);
             // left += dx;
 
-            // System.out.println("ZoomableTimeline start " +
+            // Log.debug("ZoomableTimeline start " +
             // tlo.getHasDate().getStartDate());
 
             rtn = tlo.setStartDateToX(getPositionXFromGUIX(clientX));
 
-            // System.out.println("ZoomableTimeline start " +
+            // Log.debug("ZoomableTimeline start " +
             // tlo.getHasDate().getStartDate());
 
         } else {
-            // System.out.println("RIGHT left " + left + " size " +
+            // Log.debug("RIGHT left " + left + " size " +
             // sizeThisZoom);
 
-            // System.out.println("ZoomableTimeline end " +
+            // Log.debug("ZoomableTimeline end " +
             // tlo.getHasDate().getEndDate());
 
             rtn = tlo.setEndDateToX(getPositionXFromGUIX(clientX));
 
-            // System.out.println("ZoomableTimeline end " +
+            // Log.debug("ZoomableTimeline end " +
             // tlo.getHasDate().getEndDate());
         }
 
@@ -568,7 +569,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
         whenlabel.setText(((DateTimeFormat) labelFormatters.get(3))
                 .format(d2));
 
-        // System.out.println("ZoomableTimeline.updateLabels curback
+        // Log.debug("ZoomableTimeline.updateLabels curback
         // "+-getCurbackX()+" "+" "+d2+"
         // ii "+ii+" "+backGroundList.get(index));
 
@@ -585,7 +586,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         int index = zoomList.indexOf(new Double(oldScale));
 
-        // System.out.println("ZoomableTL zoom: index " + index + " next "
+        // Log.debug("ZoomableTL zoom: index " + index + " next "
         // + (index + upDown));
         index += upDown;
 
@@ -599,10 +600,10 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         currentScale = ((Double) zoomList.get(index)).doubleValue();
 
-        // System.out.println("ZoomableTL cur " + currentScale + " old " +
+        // Log.debug("ZoomableTL cur " + currentScale + " old " +
         // oldScale + " "
         // + currentScale / oldScale);
-        // System.out.println("ZoomableTL cur " + getZoomStr(currentScale)
+        // Log.debug("ZoomableTL cur " + getZoomStr(currentScale)
         // + " old "
         // + getZoomStr(oldScale));
 

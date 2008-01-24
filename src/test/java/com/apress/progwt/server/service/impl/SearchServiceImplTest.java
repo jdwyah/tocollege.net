@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.apress.progwt.client.domain.dto.SearchResult;
+import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.service.SearchService;
 import com.apress.progwt.server.service.UserService;
 
@@ -16,7 +18,20 @@ public class SearchServiceImplTest extends
     private SearchService searchService;
     private UserService userService;
 
-    public void testSearchSchools() {
+    public void testSearch() throws SiteException {
+
+        SearchResult res = null;
+
+        String searchStr = "";
+
+        searchStr = "alabama";
+        res = searchService.search(searchStr);
+        assertTrue(res.getSchools().size() > 0);
+        assertTrue(res.getForumPosts().size() > 0);
+
+    }
+
+    public void testSearchSchools() throws SiteException {
 
         List<String> res = null;
 
@@ -63,6 +78,15 @@ public class SearchServiceImplTest extends
         for (String school : res) {
             System.out.println("found " + school);
         }
+
+        // test sort order by popularity
+        searchStr = "univ penn";
+        res = searchService.searchForSchool(searchStr);
+        System.out.println(searchStr + " Found: " + res.size());
+        for (String school : res) {
+            System.out.println("found " + school);
+        }
+        assertEquals("University of Pennsylvania", res.get(0));
 
     }
 

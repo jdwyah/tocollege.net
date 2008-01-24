@@ -131,9 +131,10 @@ public class MyRankings extends Composite implements DragHandler,
     }
 
     public void onDragEnd(DragEndEvent event) {
-        System.out.println("DragEndEvent on: " + event);
-        System.out.println("DragEndEvent on: "
-                + ((DragEndEvent) event).toString());
+        Log.debug("DragEndEvent on: " + event);
+        Log
+                .debug("DragEndEvent on: "
+                        + ((DragEndEvent) event).toString());
 
         try {
             IndexedDragEndEvent indexedEvent = (IndexedDragEndEvent) event;
@@ -145,8 +146,7 @@ public class MyRankings extends Composite implements DragHandler,
             Log.error("MyPage: " + e);
         }
 
-        System.out.println("event.getSource "
-                + event.getSource().getClass());
+        Log.debug("event.getSource " + event.getSource().getClass());
     }
 
     public void onDragStart(DragStartEvent event) {
@@ -174,7 +174,8 @@ public class MyRankings extends Composite implements DragHandler,
 
         List<Application> schoolAndApps = user.getSchoolRankings();
 
-        System.out.println("FOUND " + schoolAndApps.size() + " Schools ");
+        Log.debug("MyRankings.FOUND " + schoolAndApps.size()
+                + " Schools ");
 
         for (Application schoolAndApp : schoolAndApps) {
             addEntry(new CollegeEntry(user, schoolAndApp, serviceCache,

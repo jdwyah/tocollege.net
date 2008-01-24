@@ -3,6 +3,8 @@ package com.apress.progwt.client.college.gui.timeline;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.allen_sauer.gwt.log.client.Log;
+
 public class TimeLineObj<T> implements Serializable,
         Comparable<TimeLineObj<T>> {
 
@@ -17,7 +19,7 @@ public class TimeLineObj<T> implements Serializable,
         long div = (date.getTime() / DIV);
         int left = (int) div;
         if (div != left) {
-            System.out.println("TLO Fail" + (div == left) + "div " + div
+            Log.debug("TLO Fail" + (div == left) + "div " + div
                     + " left " + left);
         }
         return left;
@@ -75,8 +77,7 @@ public class TimeLineObj<T> implements Serializable,
         if (getEndDate() == null) {
             return 10;
         } else {
-            System.out.println("TLO.Width "
-                    + getLeftForDate(getEndDate()) + " "
+            Log.debug("TLO.Width " + getLeftForDate(getEndDate()) + " "
                     + getLeftForDate(getStartDate()) + " End "
                     + getEndDate() + " start " + getStartDate());
             return getLeftForDate(getEndDate())
@@ -91,7 +92,7 @@ public class TimeLineObj<T> implements Serializable,
      */
     public Date setEndDateToX(int positionX) {
 
-        // System.out.println("pos: " + positionX + " " +
+        // Log.debug("pos: " + positionX + " " +
         // getDateFromViewPanelX(positionX) );
 
         Date newD = getDateFromViewPanelX(positionX);
@@ -99,9 +100,9 @@ public class TimeLineObj<T> implements Serializable,
             date.setEndDate(newD);
         }
 
-        System.out.println("Eat endDateSet");
+        Log.debug("Eat endDateSet");
 
-        // System.out.println("TLO: End Date = " + getEndDate());
+        // Log.debug("TLO: End Date = " + getEndDate());
 
         return date.getEndDate();
 
@@ -109,7 +110,7 @@ public class TimeLineObj<T> implements Serializable,
 
     public Date setStartDateToX(int positionX) {
 
-        // System.out.println("pos: " + positionX + " " +
+        // Log.debug("pos: " + positionX + " " +
         // getDateFromViewPanelX(positionX) + " ");
 
         Date newD = getDateFromViewPanelX(positionX);
@@ -120,7 +121,7 @@ public class TimeLineObj<T> implements Serializable,
             date.setEndDate(newD);
         }
 
-        // System.out.println("TLO: Start Date = " + getStartDate());
+        // Log.debug("TLO: Start Date = " + getStartDate());
 
         return date.getStartDate();
     }

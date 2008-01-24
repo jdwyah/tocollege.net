@@ -3,6 +3,7 @@ package com.apress.progwt.client.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.domain.commands.Orderable;
 import com.apress.progwt.client.domain.generated.AbstractApplication;
 
@@ -89,23 +90,23 @@ public class Application extends AbstractApplication implements
             for (ProcessType processType : getUser()
                     .getStatusProcessTypes()) {
 
-                System.out.println("get status type " + processType);
+                Log.debug("get status type " + processType);
                 ProcessValue value = getProcess().get(processType);
 
                 // TODO ditch .equals()
                 if (processType.getName().equals("Considering")
                         || (value != null && value.getPctComplete() == 1.0)) {
 
-                    System.out.println("==consider");
+                    Log.debug("==consider");
                     if (currentStatus == null
                             || currentStatus.getStatus_order() < processType
                                     .getStatus_order())
-                        System.out.println("set rtn");
+                        Log.debug("set rtn");
                     currentStatus = processType;
                 }
             }
         }
-        System.out.println("rtn");
+        Log.debug("rtn");
         return currentStatus;
     }
 }

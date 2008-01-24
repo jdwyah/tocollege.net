@@ -8,20 +8,15 @@ import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.domain.forum.ForumTopic;
-import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.google.gwt.user.client.rpc.RemoteService;
 
 public interface GWTSchoolService extends RemoteService {
 
-    List<String> getSchoolsMatching(String match)
-            throws BusinessException;
-
     SiteCommand executeAndSaveCommand(SiteCommand comm)
             throws SiteException;
 
-    List<ProcessType> matchProcessType(String queryString)
-            throws SiteException;
+    ForumBootstrap forumBootstrapDummy();
 
     List<School> getAllSchools() throws SiteException;
 
@@ -30,5 +25,8 @@ public interface GWTSchoolService extends RemoteService {
 
     School getSchoolDetails(String schoolName);
 
-    ForumBootstrap forumBootstrapDummy();
+    List<String> getSchoolsMatching(String match) throws SiteException;
+
+    List<ProcessType> matchProcessType(String queryString)
+            throws SiteException;
 }

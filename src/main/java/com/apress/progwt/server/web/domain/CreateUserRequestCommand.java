@@ -8,6 +8,7 @@ public class CreateUserRequestCommand {
 
     private String username;
     private String openIDusername;
+    private String openIDnickname;
     private String password;
     private String password2;
     private String email;
@@ -35,6 +36,14 @@ public class CreateUserRequestCommand {
 
     public void setPassword2(String password2) {
         this.password2 = password2;
+    }
+
+    public String getOpenIDnickname() {
+        return openIDnickname;
+    }
+
+    public void setOpenIDnickname(String openIDnickname) {
+        this.openIDnickname = openIDnickname;
     }
 
     /**

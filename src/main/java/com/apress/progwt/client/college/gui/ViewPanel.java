@@ -83,7 +83,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
 
     protected void centerOn(int x, int y) {
 
-        // System.out.println("centering on "+x+" "+ y);
+        // Log.debug("centering on "+x+" "+ y);
 
         int width = getWidth();
         int height = getHeight();
@@ -94,8 +94,8 @@ public abstract class ViewPanel extends AbsolutePanel implements
         int left = (int) (x * currentScale * getXSpread()) - halfWidth;
         int top = (int) (y * currentScale) - halfHeight;
 
-        // SYSTEM.OUT.PRINTLN("P.X "+P.X+" HW "+HALFWIDTH+" "+LEFT);
-        // System.out.println("left "+left+" top "+top);
+        // Log.debug("P.X "+P.X+" HW "+HALFWIDTH+" "+LEFT);
+        // Log.debug("left "+left+" top "+top);
 
         // intuitively this is (left - curbackX) but things are reversed
         // int dx = left + curbackX;
@@ -146,7 +146,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
      * don't let a regular clear() happen or you'll lose the focusBackdrop
      */
     public void clear() {
-        // System.out.println("calling our clear()");
+        // Log.debug("calling our clear()");
         for (Iterator iter = objects.iterator(); iter.hasNext();) {
             Widget w = (Widget) iter.next();
             remove(w);
@@ -156,9 +156,9 @@ public abstract class ViewPanel extends AbsolutePanel implements
 
     private void endDrag() {
         if (dragging) {
-            // System.out.println("(old)back x "+backX+" cur(new)
+            // Log.debug("(old)back x "+backX+" cur(new)
             // "+curbackX);
-            // System.out.println("(old)back y "+backY+" cur(new)
+            // Log.debug("(old)back y "+backY+" cur(new)
             // "+curbackY);
             backX = curbackX;
             backY = curbackY;
@@ -218,7 +218,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
         int halfWidth = width / 2;
         int centerX = (int) ((-curbackX + halfWidth) / (scaleToUse * getXSpread()));
 
-        // System.out.println("get Center X "+scaleToUse+" "+(-curbackX +
+        // Log.debug("get Center X "+scaleToUse+" "+(-curbackX +
         // halfWidth)+" "+centerX);
         return centerX;
     }
@@ -286,7 +286,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
 
     public int getPositionX(int left) {
 
-        // System.out.println("getPositionX " + left + " " + currentScale
+        // Log.debug("getPositionX " + left + " " + currentScale
         // + " " + getXSpread() + " "
         // + curbackX);
         return (int) (left * currentScale * getXSpread()) + curbackX;
@@ -294,8 +294,8 @@ public abstract class ViewPanel extends AbsolutePanel implements
 
     public int getPositionXFromGUIX(int guix) {
 
-        System.out.println("getPositionXFromGuiX " + guix + " "
-                + currentScale + " " + getXSpread() + " " + curbackX);
+        Log.debug("getPositionXFromGuiX " + guix + " " + currentScale
+                + " " + getXSpread() + " " + curbackX);
         return (int) ((guix - curbackX) / currentScale / (double) getXSpread());
     }
 
@@ -364,7 +364,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
 
         RedrawParams rd = getParams(dy);
 
-        // System.out.println("ViewPanel.moveByDelta dx " + dx + " dy " +
+        // Log.debug("ViewPanel.moveByDelta dx " + dx + " dy " +
         // dy);
 
         for (Iterator iter = objects.iterator(); iter.hasNext();) {
@@ -375,7 +375,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
         }
 
         moveOccurredCallback();
-        // System.out.println("moved "+curbackX+" "+curbackY);
+        // Log.debug("moved "+curbackX+" "+curbackY);
 
     }
 
@@ -413,10 +413,10 @@ public abstract class ViewPanel extends AbsolutePanel implements
     }
 
     public void onMouseDown(Widget sender, int x, int y) {
-        // System.out.println("down "+(sender instanceof Island) +" x
+        // Log.debug("down "+(sender instanceof Island) +" x
         // "+x+" y "+y +" "+dragging);
 
-        // System.out.println("mouse downd " + GWT.getTypeName(sender) + "
+        // Log.debug("mouse downd " + GWT.getTypeName(sender) + "
         // x " + x + " y " + y + " "
         // + sender.getAbsoluteLeft() + " " + sender.getAbsoluteTop());
 
@@ -427,7 +427,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
         dragStartX = x + sender.getAbsoluteLeft();
         dragStartY = y + sender.getAbsoluteTop();
 
-        // System.out.println("down " + GWT.getTypeName(sender) + "dsx " +
+        // Log.debug("down " + GWT.getTypeName(sender) + "dsx " +
         // dragStartX + " dsy "
         // + dragStartY + " x " + x + " y " + y + " " +
         // sender.getAbsoluteLeft() + " "
@@ -451,7 +451,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
         int dx = dragStartX - x - sender.getAbsoluteLeft();
         int dy = dragStartY - y - sender.getAbsoluteTop();
 
-        // System.out.println("move "+(sender instanceof Island) +" x
+        // Log.debug("move "+(sender instanceof Island) +" x
         // "+x+" y "+y +" "+dragging);
         if (dragging) {
             moveByDelta(dx, dy);
@@ -460,13 +460,13 @@ public abstract class ViewPanel extends AbsolutePanel implements
     }
 
     public void onMouseUp(Widget sender, int x, int y) {
-        // System.out.println("up " + GWT.getTypeName(sender) + "dsx " +
+        // Log.debug("up " + GWT.getTypeName(sender) + "dsx " +
         // dragStartX + " dsy "
         // + dragStartY + " x " + x + " y " + y + " " +
         // sender.getAbsoluteLeft() + " "
         // + sender.getAbsoluteTop());
 
-        // System.out.println("up "+(sender instanceof Island) +" x "+x+"
+        // Log.debug("up "+(sender instanceof Island) +" x "+x+"
         // y "+y +" "+dragging);
         endDrag();
     }
@@ -486,22 +486,22 @@ public abstract class ViewPanel extends AbsolutePanel implements
     private void reCenter(int centerX, int centerY, double scale,
             int halfWidth, int halfHeight) {
 
-        // System.out.println("recenter\nback X "+backX+" backy "+backY);
-        // System.out.println("center X "+centerX+" cy "+centerY+" scale
+        // Log.debug("recenter\nback X "+backX+" backy "+backY);
+        // Log.debug("center X "+centerX+" cy "+centerY+" scale
         // "+scale);
 
-        // System.out.println("hw "+halfWidth+" hh "+halfHeight);
+        // Log.debug("hw "+halfWidth+" hh "+halfHeight);
         // backX = halfWidth - halfWidth/currentScale;
 
         int newCenterX = (int) (centerX * scale * getXSpread());
         int newCenterY = (int) (centerY * scale);
 
-        // System.out.println("new center X "+newCenterX+" "+newCenterY);
+        // Log.debug("new center X "+newCenterX+" "+newCenterY);
 
         backX = -(newCenterX - halfWidth);
         backY = -(newCenterY - halfHeight);
 
-        // System.out.println("Newback X "+backX+" NEWbacky "+backY);
+        // Log.debug("Newback X "+backX+" NEWbacky "+backY);
 
     }
 
@@ -509,7 +509,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
      * redraw all
      */
     public void redraw() {
-        System.out.println("ViewPanel.redraw()");
+        Log.debug("ViewPanel.redraw()");
         moveBy(0, 0);
     }
 
@@ -519,23 +519,23 @@ public abstract class ViewPanel extends AbsolutePanel implements
      * @param rp
      */
     public void redraw(RemembersPosition rp) {
-        System.out.println("ViewPanel.redraw(RP) ");
+        Log.debug("ViewPanel.redraw(RP) ");
         RedrawParams rd = getParams(0);
         redrawObj(rp, rd);
         moveOccurredCallback();
     }
 
     private void redrawObj(RemembersPosition rp, RedrawParams params) {
-        // System.out.println("found: "+GWT.getTypeName(rp));
+        // Log.debug("found: "+GWT.getTypeName(rp));
 
-        // System.out.println("Left "+isle.getLeft()+" Top
+        // Log.debug("Left "+isle.getLeft()+" Top
         // "+isle.getTop());
-        // System.out.println("cur "+curbackX+" cury "+curbackY);
+        // Log.debug("cur "+curbackX+" cury "+curbackY);
 
         // setWidgetPosition(rp.getWidget(),(int)((rp.getLeft()+curbackX)*currentScale),
         // (int)((rp.getTop()+curbackY)*currentScale));
 
-        // System.out.println("move "+rp.getLeft()+"
+        // Log.debug("move "+rp.getLeft()+"
         // "+(int)((rp.getLeft())*currentScale)+"
         // "+(int)((rp.getLeft())*currentScale*getXSpread())+" cs
         // "+currentScale);
@@ -560,7 +560,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
     }
 
     public boolean removeObj(Widget w) {
-        System.out.println("ViewPanel.remove " + GWT.getTypeName(w));
+        Log.debug("ViewPanel.remove " + GWT.getTypeName(w));
         super.remove(w);
         return objects.remove(w);
     }

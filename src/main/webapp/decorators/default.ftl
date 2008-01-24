@@ -74,6 +74,7 @@ http://www.dehora.net/journal/2007/08/tab_switching_with_sitemesh.html
                 <li id="menu-schools"><a href="<@spring.url "/site/schools.html"/>">Schools</a></li>
                 <li id="menu-users"><a href="<@spring.url "/site/users.html"/>">Users</a></li>
                 <li id="menu-forums"><a href="<@spring.url "/site/forums.html"/>">Forums</a></li>                
+                <li id="menu-search"><a href="<@spring.url "/site/search.html"/>">Search</a></li>
                 <li id="menu-about"><a href="<@spring.url "/site/about.html"/>">About</a></li> 
                 <#if !user?exists>                
                     <li id="menu-signup"><a href="<@spring.url "/site/signupifpossible.html"/>">Signup</a></li>

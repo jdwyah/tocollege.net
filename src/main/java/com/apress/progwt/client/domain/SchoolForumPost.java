@@ -1,10 +1,9 @@
-package com.apress.progwt.client.domain.forum;
+package com.apress.progwt.client.domain;
 
 import java.io.Serializable;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.forum.ForumTopic;
 
 public class SchoolForumPost extends ForumPost implements Serializable {
 

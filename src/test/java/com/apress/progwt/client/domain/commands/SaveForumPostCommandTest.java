@@ -2,10 +2,10 @@ package com.apress.progwt.client.domain.commands;
 
 import junit.framework.TestCase;
 
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.domain.forum.ForumPost;
-import com.apress.progwt.client.domain.forum.SchoolForumPost;
 import com.apress.progwt.client.exception.SiteException;
 
 public class SaveForumPostCommandTest extends TestCase {

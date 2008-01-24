@@ -25,7 +25,7 @@
         <@gwt.finalize/>
     <#else>
     <@gwt.widget widgetName="Forum" bootstrap=bootstrap extraParams={}/>        
-        <@common.showForumPosts bootstrap.posts/>
+        <@common.showForumPosts bootstrap.postsList.posts/>
     </#if>
 	</div>  
 
@@ -36,6 +36,7 @@
   	</div>
   	    
     
+    <@gwt.finalize/>
     
 </body>
 </html>

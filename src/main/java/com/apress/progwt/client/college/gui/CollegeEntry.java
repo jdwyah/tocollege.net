@@ -1,5 +1,6 @@
 package com.apress.progwt.client.college.gui;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.calculator.GUIEffects;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.Application;
@@ -124,11 +125,11 @@ public class CollegeEntry extends Composite implements Orderable {
         saveB.addClickListener(new ClickListener() {
             public void onClick(Widget sender) {
 
-                System.out.println("bf " + application.getNotes() + " "
-                        + application.getPros().size());
+                Log.debug("CollegeEntry.bf " + application.getNotes()
+                        + " " + application.getPros().size());
                 bindFields();
-                System.out.println("af " + application.getNotes() + " "
-                        + application.getPros().size());
+                Log.debug("CollegeEntry.af " + application.getNotes()
+                        + " " + application.getPros().size());
 
                 AbstractCommand command = new SaveApplicationCommand(
                         application);

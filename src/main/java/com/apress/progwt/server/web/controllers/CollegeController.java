@@ -1,7 +1,6 @@
 package com.apress.progwt.server.web.controllers;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +10,15 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.apress.progwt.client.domain.GWTSerializer;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.dto.ForumBootstrap;
+import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.server.service.SchoolService;
 
 public class CollegeController extends BasicController {
 
+    private GWTSerializer serializer;
     private SchoolService schoolService;
 
     private String notFoundView;
@@ -51,8 +53,15 @@ public class CollegeController extends BasicController {
             return new ModelAndView(getNotFoundView(), "message",
                     "Couldn't find school " + schoolName);
         }
+
+        PostsList forumPosts = schoolService.getForum(school, 0, 10);
+        ForumBootstrap forumBootstrap = new ForumBootstrap(serializer,
+                forumPosts, school);
+        model.put("forumBootstrap", forumBootstrap);
+
         model.put("school", school);
-        model.put("interestedIn", new LinkedList<User>());
+        model.put("interestedIn", schoolService
+                .getUsersInterestedIn(school));
 
         ModelAndView mav = getMav();
         mav.addAllObjects(model);
@@ -62,6 +71,11 @@ public class CollegeController extends BasicController {
     @Required
     public void setSchoolService(SchoolService schoolService) {
         this.schoolService = schoolService;
+    }
+
+    @Required
+    public void setSerializer(GWTSerializer serializer) {
+        this.serializer = serializer;
     }
 
     public String getNotFoundView() {

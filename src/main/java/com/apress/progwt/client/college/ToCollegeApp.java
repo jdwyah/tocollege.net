@@ -44,7 +44,7 @@ public class ToCollegeApp extends GWTApp {
         getLoginService().getUserOrDoLogin(new AsyncCallback<User>() {
 
             public void onFailure(Throwable caught) {
-                System.out.println("setmeupFailure " + caught);
+                Log.error("setmeupFailure " + caught);
             }
 
             public void onSuccess(User result) {

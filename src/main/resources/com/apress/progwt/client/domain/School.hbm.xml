@@ -49,6 +49,8 @@
         </property>
         <property name="longitude" type="double" column="longitude">
         </property>
+        <property name="popularityCounter" type="integer" column="popularityCounter">
+        </property>     
 	
 	</class>
 

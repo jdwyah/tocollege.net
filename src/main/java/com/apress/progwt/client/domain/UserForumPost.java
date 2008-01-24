@@ -1,8 +1,8 @@
-package com.apress.progwt.client.domain.forum;
+package com.apress.progwt.client.domain;
 
 import java.io.Serializable;
 
-import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.forum.ForumTopic;
 
 public class UserForumPost extends ForumPost implements Serializable {
 

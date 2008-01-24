@@ -78,6 +78,7 @@ body {
 #schools #menu ul li#menu-schools a,
 #users #menu ul li#menu-users a,
 #forums #menu ul li#menu-forums a,
+#search #menu ul li#menu-search a,
 #about #menu ul li#menu-about a,
 #signup #menu ul li#menu-signup a
 {
@@ -217,12 +218,23 @@ a:hover {
 	background: inherit;
 	color: #93C600;
 }
+.message {	
+	background-color: #92DC2F;
+	border-top: 2px ridge #2F37FF;
+	border-bottom: 2px ridge #2F37FF;	
+    font-weight: bold;
+    left: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
 fieldset {
-    border: none;
+     border: 1px solid black;
 }
 
 #signupForm fieldset {
-    border: 1px solid black;
+   
 }
 
 #signupForm legend {
@@ -232,7 +244,12 @@ fieldset {
 #openIDSignup {
     width: 300px;
 }
-
+input.openid-identifier {
+	background: url(http://openid.net/login-bg.gif) no-repeat;
+    background-color: #fff;
+    background-position: 0 50%;
+    padding-left: 18px;        
+}
 #loginForm input {
     margin-left: 10px;
 }
@@ -240,6 +257,9 @@ fieldset {
     display: inline;
     float: right;
     width: 300px;    
+}
+#header_account fieldset {
+	border: none;
 }
 .header_account-OpenID {
 	padding-top: 30px;
@@ -282,9 +302,32 @@ fieldset {
 }
 
 #header_logoTitle p {
-    font-size: 1.2em;
+    font-size: 1.2em;    
     font-weight: bold;
     color: #B2BB2B;
     text-indent: 25px;
 }
-
+.letterSelector {
+	vertical-align: middle;
+	font-size: 1.8em;
+	list-style-position: outside;
+	list-style-type: none;
+	list-style-image: none;	
+}
+.letterSelector li {
+	display: inline;
+	padding: 0px;
+    margin: 0px;
+    border: 0px;
+} 
+.letterSelector .selected {
+	font-size: 2.2em;
+}
+#searchForm label {
+	 padding: 5px;
+}
+#searchForm legend {
+	padding: 5px;
+	color:#2666c3;
+    font-size:20pt;
+}

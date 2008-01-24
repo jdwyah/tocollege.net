@@ -1,6 +1,7 @@
 package com.apress.progwt.server.dao.hibernate;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,16 +16,18 @@ import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.Bar;
 import com.apress.progwt.client.domain.Foo;
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.SchoolForumPost;
+import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.UserForumPost;
 import com.apress.progwt.client.domain.dto.PostsList;
-import com.apress.progwt.client.domain.forum.ForumPost;
-import com.apress.progwt.client.domain.forum.SchoolForumPost;
-import com.apress.progwt.client.domain.forum.UserForumPost;
 import com.apress.progwt.server.dao.SchoolDAO;
 
 public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
@@ -40,7 +43,9 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
     }
 
     public List<School> getAllSchools(int start, int max) {
-        DetachedCriteria crit = DetachedCriteria.forClass(School.class);
+        DetachedCriteria crit = DetachedCriteria.forClass(School.class)
+                .addOrder(Order.desc("popularityCounter"));
+
         // .add(
         // Expression.and(Expression.gt("id", 890l),
         // Expression.eq("latitude", -1d)));
@@ -82,13 +87,27 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
     }
 
     public List<School> getSchoolsMatching(String match) {
+        return getSchoolsMatching(match, 0, autoCompleteMax,
+                MatchMode.ANYWHERE);
+    }
+
+    /**
+     * use start matchmode
+     */
+    public List<School> getSchoolsMatching(String match, int start,
+            int max) {
+        return getSchoolsMatching(match, start, max, MatchMode.START);
+    }
+
+    public List<School> getSchoolsMatching(String match, int start,
+            int max, MatchMode matchMode) {
 
         DetachedCriteria crit = DetachedCriteria.forClass(School.class)
-                .add(Expression.ilike("name", match, MatchMode.ANYWHERE))
+                .add(Expression.ilike("name", match, matchMode))
                 .addOrder(Order.asc("name"));
 
         List<School> list = getHibernateTemplate().findByCriteria(crit,
-                0, autoCompleteMax);
+                start, max);
 
         return list;
     }
@@ -263,5 +282,43 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
         PostsList rtn = new PostsList(posts, getRowCount(crit));
 
         return rtn;
+    }
+
+    /**
+     * Batch Update in HQL
+     * http://www.hibernate.org/hib_docs/reference/en/html/batch.html#batch-direct
+     */
+    public void incrementSchoolPopularity(final School school) {
+        getHibernateTemplate().execute(new HibernateCallback() {
+            public Object doInHibernate(Session session)
+                    throws HibernateException, SQLException {
+
+                String hql = "update School set popularityCounter = popularityCounter + 1 where id = :id";
+                int updated = session.createQuery(hql).setLong("id",
+                        school.getId()).executeUpdate();
+
+                return updated;
+            }
+        });
+
+    }
+
+    public List<User> getUsersInterestedIn(School school) {
+        return getUsersInterestedIn(school, 10);
+    }
+
+    public List<User> getUsersInterestedIn(School school, int max) {
+        DetachedCriteria crit = DetachedCriteria.forClass(
+                Application.class, "app").add(
+                Expression.eq("school", school));
+
+        List<Application> applications = getHibernateTemplate()
+                .findByCriteria(crit, 0, max);
+
+        List<User> users = new ArrayList<User>(applications.size());
+        for (Application app : applications) {
+            users.add(app.getUser());
+        }
+        return users;
     }
 }

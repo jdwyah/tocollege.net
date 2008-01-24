@@ -1,10 +1,9 @@
-package com.apress.progwt.client.domain.forum;
+package com.apress.progwt.client.domain;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import com.apress.progwt.client.domain.Loadable;
-import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.apress.progwt.client.domain.generated.AbstractForumPost;
 
 public abstract class ForumPost extends AbstractForumPost implements

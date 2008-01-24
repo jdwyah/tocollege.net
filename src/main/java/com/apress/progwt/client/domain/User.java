@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.apress.progwt.client.domain.forum.ForumPost;
 import com.apress.progwt.client.domain.forum.ForumTopic;
-import com.apress.progwt.client.domain.forum.UserForumPost;
 import com.apress.progwt.client.domain.generated.AbstractUser;
 
 /**

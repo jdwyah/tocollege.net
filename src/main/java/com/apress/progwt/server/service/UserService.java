@@ -23,7 +23,8 @@ public interface UserService {
             throws BusinessException;
 
     User createUser(String user, String pass, String email,
-            boolean superV, Date dateCreated) throws BusinessException;
+            boolean superV, Date dateCreated, String nickname)
+            throws BusinessException;
 
     void delete(Integer id) throws PermissionDeniedException;
 

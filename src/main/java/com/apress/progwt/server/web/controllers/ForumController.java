@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apress.progwt.client.domain.GWTSerializer;
-import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.domain.forum.RecentForumPostTopic;
@@ -54,13 +53,11 @@ public class ForumController {
 
         } else {
 
-            PostsList postList = schoolService.getForum(
-                    new RecentForumPostTopic(), 0, 15);
+            RecentForumPostTopic rfpt = new RecentForumPostTopic();
+            PostsList postList = schoolService.getForum(rfpt, 0, 15);
 
-            School s = new School();
-            s.setId(500);
             ForumBootstrap bootstrap = new ForumBootstrap(gwtSerializer,
-                    postList, s);
+                    postList, rfpt);
 
             rtn.addAttribute("bootstrap", bootstrap);
 

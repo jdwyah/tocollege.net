@@ -3,7 +3,7 @@ package com.apress.progwt.client.domain.dto;
 import java.io.Serializable;
 import java.util.List;
 
-import com.apress.progwt.client.domain.forum.ForumPost;
+import com.apress.progwt.client.domain.ForumPost;
 
 public class PostsList implements Serializable {
 

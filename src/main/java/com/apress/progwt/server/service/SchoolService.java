@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.domain.forum.ForumTopic;
@@ -18,7 +19,10 @@ public interface SchoolService {
 
     List<School> getTopSchools(int start, int max);
 
-    List<String> getSchoolsMatching(String match);
+    List<String> getSchoolStringsMatching(String match)
+            throws SiteException;
+
+    List<School> getSchoolsStarting(String match, int start, int max);
 
     SiteCommand executeAndSaveCommand(SiteCommand comm)
             throws SiteException;
@@ -31,5 +35,7 @@ public interface SchoolService {
     List<School> getAllSchools();
 
     PostsList getForum(ForumTopic forumTopic, int start, int max);
+
+    List<User> getUsersInterestedIn(School school);
 
 }

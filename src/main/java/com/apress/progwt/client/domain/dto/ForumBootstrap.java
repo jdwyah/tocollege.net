@@ -2,8 +2,8 @@ package com.apress.progwt.client.domain.dto;
 
 import java.io.Serializable;
 
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.GWTSerializer;
-import com.apress.progwt.client.domain.forum.ForumPost;
 import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.apress.progwt.client.exception.InfrastructureException;
 

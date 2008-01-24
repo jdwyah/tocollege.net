@@ -33,7 +33,8 @@
                 Vars['${key}_${widgetID}'] = "${extraParams[key]}"
             </#list>
             <#if bootstrap?has_content>
-                Vars['serialized_${widgetID}'] = "${bootstrap.serialized?default("")?replace("\"","\\\"")}"
+                <#--Replace \ with \\ and " with \"-->
+                Vars['serialized_${widgetID}'] = "${bootstrap.serialized?default("")?replace("\\","\\\\")?replace("\"","\\\"")}"
             </#if>
     </script>     
     <#if bootstrap?has_content>

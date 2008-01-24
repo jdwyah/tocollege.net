@@ -11,26 +11,32 @@
 	<!-- securing results  -->
 	<!-- http://forums.opensymphony.com/thread.jspa?messageID=75608&#75608 -->
 	<!-- http://forums.opensymphony.com/thread.jspa?messageID=49742&#49742 -->
-	<class name="User" alias="User" extends="entity" root="false">
+	<class name="User" alias="user" extends="entity" root="false">
 		<property name="username">
 			<meta-data>username</meta-data>
-		</property>		
+		</property>
+        <property name="nickname">
+            <meta-data>nickname</meta-data>
+        </property>     		
 	</class>
 
 	<contract alias="userSecured">
-		<component name="user" ref-alias="User" />
+		<component name="user" ref-alias="user" />
 	</contract>
 
 	<contract alias="entity">
 		<id name="id" />	
 	</contract>
 
-	<class name="School" alias="School" extends="entity">
+	<class name="School" alias="school" extends="entity">
 		<property name="name">
 			<meta-data>name</meta-data>
 		</property>
+          <property name="popularityCounter" >
+            <meta-data>popularityCounter</meta-data>
+        </property>
     </class>
-    <class name="ForumPost" alias="ForumPost" extends="entity">
+    <class name="ForumPost" alias="forumpost" extends="entity">
         <property name="postString">
             <meta-data>postString</meta-data>
         </property>
@@ -38,11 +44,11 @@
             <meta-data>postTitle</meta-data>
         </property>        
     </class>
-    <class name="SchoolForumPost" alias="SchoolForumPost" extends="ForumPost">        
-        <component name="school" ref-alias="School" />        
+    <class name="SchoolForumPost" alias="schoolforumpost" extends="forumpost">        
+        <component name="school" ref-alias="school" />        
     </class>
-	<class name="UserForumPost" alias="UserForumPost" extends="ForumPost">        
-        <component name="user" ref-alias="User" />        
+	<class name="UserForumPost" alias="userforumpost" extends="forumpost">        
+        <component name="user" ref-alias="user" />        
     </class>
 
 </compass-core-mapping>

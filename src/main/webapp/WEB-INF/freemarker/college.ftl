@@ -30,6 +30,8 @@
 	Athletics: ${school.varsity?default("None")}
 	</@common.box>	
 	
+	
+	
     <@common.box "boxStyle", "collegeMap", "Map">  
         <#assign params = {"latitude":"${school.latitude}", "longitude":"${school.longitude}"}/>    
         <@gwt.widget "CollegeMap", params/>   
@@ -37,9 +39,8 @@
     </div>  
 	
 	     
-    <@common.box "boxStyle", "forums", "Forums">        
-        <#assign params = {"uniqueForumID":"${school.uniqueForumID}"}/>    
-        <@gwt.widget "Forum", params/>        
+    <@common.box "boxStyle", "forums", "Forums">                  
+        <@gwt.widget widgetName="Forum" bootstrap=forumBootstrap />         
     </@common.box>  
 	
     
@@ -49,10 +50,15 @@
 	
   	<div id="sidebar">  		
 				
-		<h4>Interested Users</h4>
+	  <#if interestedIn?size gt 0 >	    
+		<h4>Interested Users</h4>	
+		<ul>	
 		<#list interestedIn as user>
-			<@common.userLink user/>
-		</#list>			
+			<li><@common.userLink user/></li>
+		</#list>
+		</ul>
+      </#if>			
+		
   		
   	</div>
   	

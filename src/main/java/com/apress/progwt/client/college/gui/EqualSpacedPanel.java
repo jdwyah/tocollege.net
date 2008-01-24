@@ -1,5 +1,6 @@
 package com.apress.progwt.client.college.gui;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Label;
 
@@ -27,7 +28,8 @@ public class EqualSpacedPanel extends AbsolutePanel {
 
         Label label = new Label(s);
 
-        System.out.println("Add " + s + " " + curLeft + " " + curTop);
+        Log.debug("EqualSpacedPanel Add " + s + " " + curLeft + " "
+                + curTop);
         add(label, curLeft, curTop);
 
         curLeft += spacingPerEntry;

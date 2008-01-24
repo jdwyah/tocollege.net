@@ -2,16 +2,19 @@ package com.apress.progwt.server.service.impl;
 
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.test.AssertThrows;
 
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.Foo;
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.SchoolForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.RemoveSchoolFromRankCommand;
 import com.apress.progwt.client.domain.commands.SaveApplicationCommand;
@@ -21,8 +24,6 @@ import com.apress.progwt.client.domain.commands.SaveRatingCommand;
 import com.apress.progwt.client.domain.commands.SaveSchoolRankCommand;
 import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.domain.dto.PostsList;
-import com.apress.progwt.client.domain.forum.ForumPost;
-import com.apress.progwt.client.domain.forum.SchoolForumPost;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.exception.SiteSecurityException;
 import com.apress.progwt.server.dao.SchoolDAO;
@@ -531,6 +532,33 @@ public class SchoolServiceImplTest extends
 
         assertEquals(saved1, saved2.getThreadPost());
         assertEquals(currentUser, saved2.getAuthor());
+
+    }
+
+    public void testGetUsersInterestedIn() throws SiteException {
+        School jarv = schoolService
+                .getSchoolDetails("Jarvis Christian College");
+        School harvard = schoolService
+                .getSchoolDetails("Harvard University");
+        School yale = schoolService.getSchoolDetails("Yale University");
+
+        // Save in order to Jarv/Harvard/Yale
+        SaveSchoolRankCommand comm = new SaveSchoolRankCommand(jarv,
+                getUser(), 0);
+        executeWithToken(comm, false);
+
+        comm = new SaveSchoolRankCommand(harvard, getUser(), 1);
+        executeWithToken(comm, false);
+
+        comm = new SaveSchoolRankCommand(yale, getUser(), 2);
+        executeWithToken(comm, false);
+
+        User savedUser = getUser();
+        assertEquals(3, savedUser.getSchoolRankings().size());
+
+        List<User> users = schoolService.getUsersInterestedIn(jarv);
+        assertEquals(1, users.size());
+        assertEquals(getUser(), users.get(0));
 
     }
 

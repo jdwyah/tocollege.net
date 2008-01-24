@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.domain.forum.ForumPost;
 
 public abstract class AbstractForumPost implements Serializable {
 

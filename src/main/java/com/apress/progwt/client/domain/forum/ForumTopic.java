@@ -1,5 +1,6 @@
 package com.apress.progwt.client.domain.forum;
 
+import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.User;
 
 public interface ForumTopic {

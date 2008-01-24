@@ -15,10 +15,10 @@
 
 
 <#macro schoolLink school>
-	<a href="<@spring.url "/site/college/${school.name}"/>">${school.name}</a>
+	<a href="<@spring.url "/site/college/${school.name?url}"/>">${school.name}</a>
 </#macro>
 <#macro userLink user>
-	<a href="<@spring.url "/site/user/${user.nickname}"/>">${user.nickname}</a>
+	<a href="<@spring.url "/site/user/${user.nickname?url}"/>">${user.nickname}</a>
 </#macro>
 <#macro forumLink forumPost>
     <a href="<@spring.url "/site/forums.html?uniqueForumID=${forumPost.uniqueForumID}"/>">${forumPost.postTitle?default("--")}</a>

@@ -60,8 +60,14 @@ public class GWTApp {
     }
 
     protected String getParam(String string) {
-        Dictionary dictionary = Dictionary.getDictionary("Vars");
-        return dictionary.get(string + "_" + pageID);
+        try {
+            Dictionary dictionary = Dictionary.getDictionary("Vars");
+            return dictionary.get(string + "_" + pageID);
+        } catch (Exception e) {
+            Log.info("Couldn't find param: " + string);
+            return null;
+        }
+
     }
 
     private static String getPreLoadID(int id) {

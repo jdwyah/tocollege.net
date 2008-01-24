@@ -36,6 +36,10 @@ public class CreateUserRequestValidator implements Validator {
             errors.rejectValue("openIDusername",
                     "invalid.openIDusername.noinames");
         }
+        if (userService.exists(comm.getOpenIDnickname())) {
+            errors.rejectValue("openIDnickname",
+                    "invalid.openIDnickname.exists");
+        }
     }
 
     private void doStandardValidation(CreateUserRequestCommand comm,

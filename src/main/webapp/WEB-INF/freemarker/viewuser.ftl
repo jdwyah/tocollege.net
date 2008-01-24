@@ -26,7 +26,7 @@
   	 
   	 <#list viewUser.schoolRankings as sap>
   	  <tr>
-  	     <td>${sap.school.name?html}</td>
+  	     <td><@common.schoolLink sap.school/></td>
   	     <td class="ProConPanel-Pro">
   	     <#list sap.pros as pro>
   	         ${pro?html}<p>
@@ -72,7 +72,7 @@
 	<#list viewUser.schoolRankings as sap>
 	<tr>
 	<td>
-		${sap.school.name}<br>
+		<@common.schoolLink sap.school/><br>
 	</td>
 		
 		<#list sap.process?keys as processType>
