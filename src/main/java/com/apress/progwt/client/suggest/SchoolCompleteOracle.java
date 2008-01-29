@@ -11,59 +11,35 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class SchoolCompleteOracle extends AbstractSuggestOracle<School> {
 
-    protected class SchoolSuggestion implements Suggestion {
-        private String schoolName;
-        private String query;
-
-        public SchoolSuggestion(String schoolName, String query) {
-            this.schoolName = schoolName;
-            this.query = query;
-        }
-
-        public String getDisplayString() {
-            return highlight(schoolName, query);
-        }
-
-        public String getReplacementString() {
-            return schoolName;
-        }
-
+    public SchoolCompleteOracle(ServiceCache serviceCache) {
+        super(serviceCache);
     }
 
-    private ServiceCache serviceCache;
+    /**
+     * Create the suggstion objects from a list of strings and return to
+     * the callback.
+     * 
+     * @param request
+     * @param callback
+     * @param results
+     */
 
-    public SchoolCompleteOracle(ServiceCache topicCache) {
-        this.serviceCache = topicCache;
-    }
+    protected void createAndReturnSuggestions(Request request,
+            Callback callback, List<? extends Object> results) {
 
-    @Override
-    public void requestSuggestions(final Request request,
-            final Callback callback) {
-
-        getSchoolsForString(request.getQuery(),
-                new EZCallback<List<String>>() {
-
-                    public void onSuccess(List<String> results) {
-
-                        List<SchoolSuggestion> suggestions = new ArrayList<SchoolSuggestion>();
-
-                        System.out.println("SchoolCompleteOracle q: "
-                                + request.getQuery() + " res: "
-                                + results.size());
-                        for (String schoolName : results) {
-                            suggestions.add(new SchoolSuggestion(
-                                    schoolName, request.getQuery()));
-                        }
-                        callback.onSuggestionsReady(request,
-                                new Response(suggestions));
-                    }
-
-                });
+        List<SchoolSuggestion> suggestions = new ArrayList<SchoolSuggestion>(
+                results.size());
+        for (Object schoolNameObj : results) {
+            String schoolName = (String) schoolNameObj;
+            suggestions.add(new SchoolSuggestion(schoolName, request
+                    .getQuery()));
+        }
+        callback.onSuggestionsReady(request, new Response(suggestions));
     }
 
     private void getSchoolsForString(String queryString,
             AsyncCallback<List<String>> callback) {
-        serviceCache.match(queryString, callback);
+        getServiceCache().match(queryString, callback);
     }
 
     @Override
@@ -74,7 +50,7 @@ public class SchoolCompleteOracle extends AbstractSuggestOracle<School> {
     @Override
     public void fireCompleteListenerFromCompleteString(
             String completeString, final CompleteListener<School> listener) {
-        serviceCache.getSchoolDetails(completeString,
+        getServiceCache().getSchoolDetails(completeString,
                 new StdAsyncCallback<School>("Get School") {
                     @Override
                     public void onSuccess(School result) {
@@ -83,6 +59,19 @@ public class SchoolCompleteOracle extends AbstractSuggestOracle<School> {
                     }
                 });
 
+    }
+
+    @Override
+    public void requestSuggestions(final Request request,
+            final Callback callback) {
+        getSchoolsForString(request.getQuery(),
+                new EZCallback<List<String>>() {
+                    public void onSuccess(List<String> results) {
+                        createAndReturnSuggestions(request, callback,
+                                results);
+
+                    }
+                });
     }
 
 }

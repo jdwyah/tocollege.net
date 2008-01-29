@@ -53,8 +53,6 @@ public class ForumApp extends GWTApp implements HistoryListener {
 
         if (bootstrapped != null) {
             Log.info("Running off Bootstrap");
-            School s = new School();
-            s.setId(486);
 
             load(0, bootstrapped.getPostsList(), false, bootstrapped
                     .getForumTopic(), FORUM_POST_MAX);

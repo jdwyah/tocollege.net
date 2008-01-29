@@ -1,6 +1,5 @@
 package com.apress.progwt.client;
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.calculator.Calculator;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.Command;
@@ -15,7 +14,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class SampleApp implements EntryPoint {
 
     public void onModuleLoad() {
-        Log.setUncaughtExceptionHandler();
+        // Log.setUncaughtExceptionHandler();
 
         DeferredCommand.addCommand(new Command() {
             public void execute() {

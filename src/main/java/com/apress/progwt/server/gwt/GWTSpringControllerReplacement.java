@@ -1,6 +1,8 @@
 package com.apress.progwt.server.gwt;
 
-/*
+/**
+ * Updated by Jeff Dwyer to add HibernateFilter and allow explicit Serialization
+ * 
  * Copyright 2006 George Georgovassilis <g.georgovassilis[at]gmail.com>
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");

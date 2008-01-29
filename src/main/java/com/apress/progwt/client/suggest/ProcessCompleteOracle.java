@@ -11,62 +11,15 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public class ProcessCompleteOracle extends
         AbstractSuggestOracle<ProcessType> {
 
-    protected class ProcessSuggestion implements Suggestion {
-        private final ProcessType value;
-        private String query;
+    public ProcessCompleteOracle(ServiceCache serviceCache) {
+        super(serviceCache);
 
-        public ProcessSuggestion(ProcessType processType, String query) {
-            this.value = processType;
-            this.query = query;
-        }
-
-        public String getDisplayString() {
-            return highlight(value.getName(), query);
-        }
-
-        public String getReplacementString() {
-            System.out.println("get replacementString " + value);
-            return value.getName();
-        }
-
-        public ProcessType getValue() {
-            return value;
-        }
-    }
-
-    private ServiceCache serviceCache;
-
-    public ProcessCompleteOracle(ServiceCache topicCache) {
-        this.serviceCache = topicCache;
-    }
-
-    @Override
-    public void requestSuggestions(final Request request,
-            final Callback callback) {
-
-        getProcessesForString(request.getQuery(),
-                new EZCallback<List<ProcessType>>() {
-
-                    public void onSuccess(List<ProcessType> results) {
-
-                        List<ProcessSuggestion> suggestions = new ArrayList<ProcessSuggestion>();
-
-                        for (ProcessType process : results) {
-                            System.out.println("Found processType "
-                                    + process);
-                            suggestions.add(new ProcessSuggestion(
-                                    process, request.getQuery()));
-                        }
-                        callback.onSuggestionsReady(request,
-                                new Response(suggestions));
-                    }
-
-                });
     }
 
     public void getProcessesForString(String queryString,
             AsyncCallback<List<ProcessType>> callback) {
-        serviceCache.matchProcessType(queryString, callback);
+
+        getServiceCache().matchProcessType(queryString, callback);
     }
 
     @Override
@@ -75,7 +28,8 @@ public class ProcessCompleteOracle extends
     }
 
     @Override
-    public void fireCompleteListenerFromCompleteString(String completeString,
+    public void fireCompleteListenerFromCompleteString(
+            String completeString,
             final CompleteListener<ProcessType> listener) {
         Request req = new Request(completeString);
         requestSuggestions(req, new Callback() {
@@ -86,4 +40,31 @@ public class ProcessCompleteOracle extends
         });
 
     }
+
+    @Override
+    public void requestSuggestions(final Request request,
+            final Callback callback) {
+        getProcessesForString(request.getQuery(),
+                new EZCallback<List<ProcessType>>() {
+
+                    public void onSuccess(List<ProcessType> results) {
+                        createAndReturnSuggestions(request, callback,
+                                results);
+                    }
+                });
+    }
+
+    protected void createAndReturnSuggestions(Request request,
+            Callback callback, List<? extends Object> results) {
+        List<ProcessSuggestion> suggestions = new ArrayList<ProcessSuggestion>();
+
+        for (Object obj : results) {
+            ProcessType process = (ProcessType) obj;
+            System.out.println("Found processType " + process);
+            suggestions.add(new ProcessSuggestion(process, request
+                    .getQuery()));
+        }
+        callback.onSuggestionsReady(request, new Response(suggestions));
+    }
+
 }

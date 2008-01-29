@@ -132,15 +132,45 @@ public class GWTApp {
         }
 
         try {
-            ClientSerializationStreamReader c = getBootstrapService()
-                    .createStreamReader(serialized);
-            Object o = c.readObject();
-            return o;
-        } catch (SerializationException e) {
+            return deserialize(serialized);
+        } catch (Exception e) {
             Log.error("Bootstrap " + name + " Problem ", e);
             return null;
         }
     }
+
+    public Object deserialize(String serialized) {
+
+        ClientSerializationStreamReader c;
+        System.out.println("Try to deserialize: " + serialized);
+        try {
+            c = getBootstrapService().createStreamReader(serialized);
+
+            Object o = c.readObject();
+            return o;
+        } catch (SerializationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // this doesn't work. serialization strings are different depending on
+    // which way they go
+    // School s = new School();
+    // String ser = serialize(s);
+    // School e = (School) deserialize(ser);
+    //
+    // public String serialize(Object o) {
+    // try {
+    // ClientSerializationStreamWriter w = getBootstrapService()
+    // .createStreamWriter();
+    // w.writeObject(o);
+    // System.out.println("Serialized: " + o + "\nto\n"
+    // + w.toString());
+    // return w.toString();
+    // } catch (SerializationException e) {
+    // throw new RuntimeException(e);
+    // }
+    // }
 
     private RemoteServiceProxy getBootstrapService() {
         return (RemoteServiceProxy) getSchoolService();
@@ -171,6 +201,7 @@ public class GWTApp {
 
         serviceCache = new ServiceCache(this);
         loginService = new LoginService(serviceCache);
+
     }
 
     public ServiceCache getServiceCache() {

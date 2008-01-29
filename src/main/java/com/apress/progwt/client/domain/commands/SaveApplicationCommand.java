@@ -2,6 +2,7 @@ package com.apress.progwt.client.domain.commands;
 
 import java.io.Serializable;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.exception.SiteSecurityException;
 
@@ -34,8 +35,8 @@ public class SaveApplicationCommand extends AbstractCommand implements
 
         commandService.assertUserIsAuthenticated(toSave.getUser());
 
-        System.out.println(applicationID + " loaded: " + toSave
-                + " original: " + original);
+        Log.debug(applicationID + " loaded: " + toSave + " original: "
+                + original);
 
         String xssFiltered = commandService.filterHTML(original
                 .getNotes());

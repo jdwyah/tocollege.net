@@ -1,13 +1,24 @@
 package com.apress.progwt.client.suggest;
 
+import com.apress.progwt.client.college.ServiceCache;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.SuggestOracle;
 
 public abstract class AbstractSuggestOracle<T> extends SuggestOracle {
 
     private static HTML convertMe = new HTML();
+    private ServiceCache serviceCache;
 
-    private String escapeText(String escapeMe) {
+    public AbstractSuggestOracle(ServiceCache serviceCache) {
+        this.serviceCache = serviceCache;
+
+    }
+
+    public ServiceCache getServiceCache() {
+        return serviceCache;
+    }
+
+    public static String escapeText(String escapeMe) {
         convertMe.setText(escapeMe);
         String escaped = convertMe.getHTML();
         return escaped;
@@ -21,7 +32,7 @@ public abstract class AbstractSuggestOracle<T> extends SuggestOracle {
      * @param query
      * @return
      */
-    protected String highlight(String candidate, String query) {
+    public static String highlight(String candidate, String query) {
 
         int index = 0;
         int cursor = 0;
