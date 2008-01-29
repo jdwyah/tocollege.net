@@ -45,13 +45,11 @@
                APR (HTTP/AJP) Connector: /docs/apr.html
                Define a non-SSL HTTP/1.1 Connector on port 8080
           -->
-
           <Connector port="8081" protocol="HTTP/1.1" server="Apache" maxHttpHeaderSize="8192" maxThreads="150"
                minSpareThreads="25" maxSpareThreads="75" enableLookups="false" redirectPort="8443" acceptCount="100"
                connectionTimeout="20000" disableUploadTimeout="true" proxyName="www.myhippocampus.com" proxyPort="80"
                compression="on" compressionMinSize="2048" noCompressionUserAgents="gozilla, traviata"
                compressableMimeType="text/html,text/xml,text/css,text/plain" />
-
           <Connector port="8082" protocol="HTTP/1.1" server="Apache" maxHttpHeaderSize="8192" maxThreads="150"
                minSpareThreads="25" maxSpareThreads="75" enableLookups="false" redirectPort="8443" acceptCount="100"
                connectionTimeout="20000" disableUploadTimeout="true" proxyName="www.tocollege.net" proxyPort="80" compression="on"
@@ -59,47 +57,48 @@
                compressableMimeType="text/html,text/xml,text/css,text/plain" />
 
 
-          <Engine name="Catalina" defaultHost="localhost" debug="4">
+          <!-- <Connector port="80" protocol="HTTP/1.1" server="Apache" maxHttpHeaderSize="8192" maxThreads="150"
+               minSpareThreads="25" maxSpareThreads="75" enableLookups="false" redirectPort="8443" acceptCount="100"
+               connectionTimeout="20000" disableUploadTimeout="true" 
+               compression="on" compressionMinSize="2048" noCompressionUserAgents="gozilla, traviata"
+               compressableMimeType="text/html,text/xml,text/css,text/plain" /> -->
 
-               <Logger className="org.apache.catalina.logger.FileLogger" />
 
-               <!--For clustering, please take a look at documentation at:
-                    /docs/cluster-howto.html  (simple how to)
-                    /docs/config/cluster.html (reference documentation) -->
-               <!--
-                    <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
-               -->
+          <Engine name="Catalina" defaultHost="www.myhippocampus.com" >
 
-               <!-- The request dumper valve dumps useful debugging information about
-                    the request and response data received and sent by Tomcat.
-                    Documentation at: /docs/config/valve.html -->
-               <!--
-                    <Valve className="org.apache.catalina.valves.RequestDumperValve"/>
-               -->
 
-               <!-- This Realm uses the UserDatabase configured in the global JNDI
-                    resources under the key "UserDatabase".  Any edits
-                    that are performed against this UserDatabase are immediately
-                    available for use by the Realm.  -->
+              <Valve className="org.apache.catalina.valves.AccessLogValve"
+         prefix="catalinoengine." suffix=".txt"
+         pattern="%h %l %u %U %v %p %A %t %r %s %b"/>
+         
                <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase" />
 
                <!-- Define the default virtual host
                     Note: XML Schema validation will not work with Xerces 2.2.
                -->
-               <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true" xmlValidation="false"
+              <!--  <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true" xmlValidation="false"
                     xmlNamespaceAware="false">
-               </Host>
+                     <Valve className="org.apache.catalina.valves.AccessLogValve"
+         prefix="localhostLog" suffix=".txt"
+         pattern="common"/>
+               </Host> -->
 
-               <!-- 
-                    <Host name="www.myhippocampus.com" appBase="webapps/Hippo" unpackWARs="true" autoDeploy="true" xmlValidation="true"
-                    xmlNamespaceAware="false">
-                    <Alias>myhippocampus.com</Alias>                                        
-                    </Host>
-                    
-                    <Host name="www.tocollege.net" appBase="webapps/ProGWT-1.0-SNAPSHOT" unpackWARs="true" autoDeploy="true"
-                    xmlValidation="true" xmlNamespaceAware="false">
-                    <Alias>tocollege.net</Alias>    
-                    </Host> -->
+
+              <Host name="www.myhippocampus.com" appBase="webapps/myhippocampus.com" unpackWARs="true" autoDeploy="true" xmlValidation="false"
+                   xmlNamespaceAware="false">
+                   <Valve className="org.apache.catalina.valves.AccessLogValve" prefix="www.myhippocampus.com." suffix=".txt"
+                        pattern="common" />
+                   <Alias>myhippocampus.com</Alias>
+                   <Context path="" />
+              </Host>
+
+              <Host name="www.tocollege.net" appBase="webapps/tocollege.net" unpackWARs="true" autoDeploy="true" xmlValidation="false"
+                   xmlNamespaceAware="false">
+                   <Valve className="org.apache.catalina.valves.AccessLogValve" prefix="www.tocollege.net." suffix=".txt"
+                        pattern="common" />
+                   <Alias>tocollege.net</Alias>
+                   <Context path="" />
+              </Host>
           </Engine>
      </Service>
 </Server>

@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Interactive implements EntryPoint {
 
     public static final String LOCAL_HOST = "http://localhost:8080/";
-    public static final String REMOTE_HOST = "http://www.myhippocampus.com/ProGWT-1.0-SNAPSHOT/";
+    public static final String REMOTE_HOST = "http://www.tocollege.net/";
 
     /**
      * Switch between localhost for testing &
@@ -61,8 +61,8 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-                                                                 $wnd.urchinTracker(pageName);
-                                                             }-*/;
+                                                                    $wnd.urchinTracker(pageName);
+                                                                }-*/;
 
     /**
      * Initial entry point. Make sure our exception handler is set before

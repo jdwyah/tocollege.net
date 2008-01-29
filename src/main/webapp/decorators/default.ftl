@@ -15,7 +15,7 @@
 <link rel="icon" href="http://www.tocollege.net/favicon.ico" type="image/vnd.microsoft.icon" />
 <link rel="shortcut icon" href="http://www.tocollege.net/favicon.ico" type="image/vnd.microsoft.icon" />
 
-  <link rel="stylesheet" type="text/css" href="<@common.url "/css/styles.css"/>"/>
+  <link rel="stylesheet" type="text/css" href="<@spring.url "/css/styles.css"/>"/>
 
   <title>${title}</title>
   ${head}
@@ -39,13 +39,13 @@ http://www.dehora.net/journal/2007/08/tab_switching_with_sitemesh.html
     		  	<@common.box "boxStyleSm", "userBox", "Welcome ${user.username}">  	
     		  	<ul>
     		  	  <li><strong>
-    		  	  <a href="<@common.url "/site/secure/myList.html"/>">My List</a></strong>
+    		  	  <a href="<@spring.url "/site/secure/myList.html"/>">My List</a></strong>
     		  	  </li>    		  	  
     		  	  |<li>
-    		  	  <a href="<@common.url "/site/secure/userPage.html"/>">Settings</a>
+    		  	  <a href="<@spring.url "/site/secure/userPage.html"/>">Settings</a>
     		  	  </li>    		  	 
     		  	  |<li>
-    		  	  <a href="<@common.url "/site/j_acegi_logout"/>">Logout</a>
+    		  	  <a href="<@spring.url "/site/j_acegi_logout"/>">Logout</a>
     		  	  </li>
     		  	 </@common.box>
     		  <#else>
@@ -58,7 +58,7 @@ http://www.dehora.net/journal/2007/08/tab_switching_with_sitemesh.html
     		
             <!--    		
     		<div id="header_logoTitle" >
-    			<a href="<@common.url "/site/index.html"/>"><@common.pngImage src="/img/Logo_388_126.png" width="388" height="126"/></a>
+    			<a href="<@spring.url "/site/index.html"/>"><@common.pngImage src="/img/Logo_388_126.png" width="388" height="126"/></a>
     		</div>-->
     			    		
 	    </div>
@@ -67,17 +67,17 @@ http://www.dehora.net/journal/2007/08/tab_switching_with_sitemesh.html
         <div  id="menu">
             <ul>
                 <#--Styling Performed in CSS in conjunction with <body id>-->
-                <li id="menu-index"><a href="<@common.url "/site/index.html"/>">Home</a></li>
+                <li id="menu-index"><a href="<@spring.url "/site/index.html"/>">Home</a></li>
                 <#if user?exists>
-                    <li id="menu-mylist"><a href="<@common.url "/site/secure/myList.html"/>">My List</a></li>
+                    <li id="menu-mylist"><a href="<@spring.url "/site/secure/myList.html"/>">My List</a></li>
                 </#if>
-                <li id="menu-schools"><a href="<@common.url "/site/schools.html"/>">Schools</a></li>
-                <li id="menu-users"><a href="<@common.url "/site/users.html"/>">Users</a></li>
-                <li id="menu-forums"><a href="<@common.url "/site/forums.html"/>">Forums</a></li>                
-                <li id="menu-search"><a href="<@common.url "/site/search.html"/>">Search</a></li>
-                <li id="menu-about"><a href="<@common.url "/site/about.html"/>">About</a></li> 
+                <li id="menu-schools"><a href="<@spring.url "/site/schools.html"/>">Schools</a></li>
+                <li id="menu-users"><a href="<@spring.url "/site/users.html"/>">Users</a></li>
+                <li id="menu-forums"><a href="<@spring.url "/site/forums.html"/>">Forums</a></li>                
+                <li id="menu-search"><a href="<@spring.url "/site/search.html"/>">Search</a></li>
+                <li id="menu-about"><a href="<@spring.url "/site/about.html"/>">About</a></li> 
                 <#if !user?exists>                
-                    <li id="menu-signup"><a href="<@common.url "/site/signupifpossible.html"/>">Signup</a></li>
+                    <li id="menu-signup"><a href="<@spring.url "/site/signupifpossible.html"/>">Signup</a></li>
                 </#if>           
             </ul>
         </div>      
@@ -90,10 +90,10 @@ http://www.dehora.net/journal/2007/08/tab_switching_with_sitemesh.html
 	
 
     <div id="footer">
-    	©2007 <a href="<@common.url "/site/index.html"/>">Index</a> 
-    	| <a href="<@common.url "/site/contact.html"/>">Contact Us</a> 
+    	©2007 <a href="<@spring.url "/site/index.html"/>">Index</a> 
+    	| <a href="<@spring.url "/site/contact.html"/>">Contact Us</a> 
     	| <a href="http://blogger.com/">Blog</a>
-    	| <a href="<@common.url "/site/acknowledgements.html"/>">Acknowledgements</a> 
+    	| <a href="<@spring.url "/site/acknowledgements.html"/>">Acknowledgements</a> 
     	<br>
 	</div>
 	

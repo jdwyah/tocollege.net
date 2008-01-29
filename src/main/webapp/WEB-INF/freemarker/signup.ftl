@@ -10,7 +10,7 @@
       <div id="main">
         <h1>Sign-up now!</h1>
         
-    <form action="<@common.url "/site/createuser.html"/>" method="POST" id="signupForm">
+    <form action="<@spring.url "/site/createuser.html"/>" method="POST" id="signupForm">
       <table>
       
             
@@ -23,7 +23,7 @@
 			 		<label for="openIDnickname"><@spring.formInput "command.openIDnickname"/><@common.regError/>Nickname
                     </label>
 		 			<p>
-                    If you have an existing OpenID you can use that to access MyHippocampus.
+                    If you have an existing OpenID you can use that to access ToCollege.net.
                     <div style="padding-bottom:10px;border-bottom:1px solid #ccc;"><small><a href="https://myvidoop.com/help/what-is-openid" target="_blank">What is OpenID?</a></small></div>
     Don't have OpenID?<br>
     <div style="padding:5px 5px 7px 5px;background-color:#f2f2f2;border-bottom:1px solid #ccc;">
@@ -74,7 +74,7 @@
 		   </textarea>
 		 
 		  <br>
-		     <a href="<@common.url "/site/terms.html"/>">Printable Version</a>
+		     <a href="<@spring.url "/site/terms.html"/>">Printable Version</a>
 		  <p>
 		    By clicking on '<@spring.message "signup.createAccount"/>' below you are agreeing to the Terms of Service above.
 		 </td> 
@@ -91,7 +91,7 @@
     <#if !hideSecretKey?exists>
 	    <@spring.message "signup.message"/>
 	    <p>
-	    Add your name to the <a href="<@common.url "/site/mailinglist.html"/>"> mailing list.</a>
+	    Add your name to the <a href="<@spring.url "/site/mailinglist.html"/>"> mailing list.</a>
 	   </div>
 	 </#if>
 

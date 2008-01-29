@@ -12,7 +12,7 @@
 <body>
 	
 	<div id="header_logo">	    	
-	  	<a href="<@common.url "/site/index.html"/>">Index
+	  	<a href="<@spring.url "/site/index.html"/>">Index
 	  	</a>
     </div>
     		

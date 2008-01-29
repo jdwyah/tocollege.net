@@ -13,27 +13,17 @@
 	</div>
 </#macro>
 
-<#--
- * url
- * Normally we would use spring.url which:
- * Takes a relative URL and makes it absolute from the server root by
- * adding the context root for the web application.
- * However our VirtualHost setup is not ideal and makes us reference things incorrectly.
- * Filter all URL's through here in case this changes.
- -->
-<#macro url relativeUrl>${relativeUrl}</#macro>
-
 <#macro schoolLink school>
-	<a href="<@common.url "/site/college/${school.name?url}"/>">${school.name}</a>
+	<a href="<@spring.url "/site/college/${school.name?url}"/>">${school.name}</a>
 </#macro>
 <#macro userLink user>
-	<a href="<@common.url "/site/user/${user.nickname?url}"/>">${user.nickname}</a>
+	<a href="<@spring.url "/site/user/${user.nickname?url}"/>">${user.nickname}</a>
 </#macro>
 <#macro forumLink forumPost>
-    <a href="<@common.url "/site/forums.html?uniqueForumID=${forumPost.uniqueForumID}"/>">${forumPost.postTitle?default("--")}</a>
+    <a href="<@spring.url "/site/forums.html?uniqueForumID=${forumPost.uniqueForumID}"/>">${forumPost.postTitle?default("--")}</a>
 </#macro>
 <#macro forumTopicLink forumPost>
-    <a href="<@common.url "/site/forums.html?uniqueForumID=${forumPost.topic.uniqueForumID}"/>">${forumPost.topic.forumDisplayName?default("--")}</a>
+    <a href="<@spring.url "/site/forums.html?uniqueForumID=${forumPost.topic.uniqueForumID}"/>">${forumPost.topic.forumDisplayName?default("--")}</a>
 </#macro>
 
 <#macro showForumPosts forumPosts>
@@ -83,7 +73,7 @@
    
 </script>
 
-	 <form id="upForm" class="header_account-UserAndPass" action="/j_acegi_security_check" method="POST" style="display: none">
+	 <form id="upForm" class="header_account-UserAndPass" action="<@spring.url "/j_acegi_security_check"/>" method="POST" style="display: none">
 		<fieldset>			
 		 <p>
 			 <label for="j_username"><input type='text' name='j_username' id = 'j_username'><@spring.message "login.1.user"/>
@@ -98,7 +88,7 @@
 		 <input name="login" value="<@spring.message "login.1.button"/>" type="submit"> <a class="link" onclick="javascript:doOpenID();">Use OpenID</a>
 		</fieldset>
 	 </form>	
-	 <form id="openIDForm" class="header_account-OpenID" action="/site/j_acegi_openid_start" method="POST" style="display: block" onSubmit="javascript:formvalidation();return false;" >
+	 <form id="openIDForm" class="header_account-OpenID" action="<@spring.url "/site/j_acegi_openid_start"/>" method="POST" style="display: block" onSubmit="javascript:formvalidation();return false;" >
 		<fieldset>			
 		  <legend><@spring.message "login.1.header"/></legend><p>
 			 <label for="j_username2"><input type='text' name='openid_url' id = 'j_username2' class="openid-identifier">OpenID
@@ -112,17 +102,17 @@
 
 <#macro signupNow>
 	<h2 id="signupNow">
-	 	<a href="<@common.url "/site/signupifpossible.html"/>"><@spring.message "login.signup"/></a>
+	 	<a href="<@spring.url "/site/signupifpossible.html"/>"><@spring.message "login.signup"/></a>
 	</h2>
 </#macro>
 
 <#macro pngImage src width height>
 	<#if iePre7?exists>
 		<div>
-			<span style="display:inline-block;width:${width}px;height:${height}px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<@common.url "${src}"/>', sizingMethod='scale')"></span>
+			<span style="display:inline-block;width:${width}px;height:${height}px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<@spring.url "${src}"/>', sizingMethod='scale')"></span>
 		</div>
 	<#else>
-		<img src=<@common.url "${src}"/> width=${width} height=${height} border=0/>
+		<img src=<@spring.url "${src}"/> width=${width} height=${height} border=0/>
 	</#if>
 </#macro>
 
