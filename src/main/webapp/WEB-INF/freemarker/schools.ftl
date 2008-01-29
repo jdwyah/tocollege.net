@@ -22,7 +22,7 @@
         <ul class="letterSelector">
          <#list letters as letter>            
                 <li <#if letter=startLetter>class="selected"</#if>>
-                <a href="<@spring.url "/site/schools.html?startLetter=${letter}"/>">${letter}</a></li>
+                <a href="<@common.url "/site/schools.html?startLetter=${letter}"/>">${letter}</a></li>
         </#list>
         </ul>        
         <p>
@@ -32,11 +32,11 @@
          </#list>
         </ol>
 
-        <a href="<@spring.url "/site/schools.html?startLetter=${startLetter}&start=0"/>">First</a>
+        <a href="<@common.url "/site/schools.html?startLetter=${startLetter}&start=0"/>">First</a>
         <#if start gt 20>               
-        <a href="<@spring.url "/site/schools.html?startLetter=${startLetter}&start=${start - 20}"/>">Prev</a>
+        <a href="<@common.url "/site/schools.html?startLetter=${startLetter}&start=${start - 20}"/>">Prev</a>
         </#if>
-        <a href="<@spring.url "/site/schools.html?startLetter=${startLetter}&start=${start + 20}"/>">Next</a>
+        <a href="<@common.url "/site/schools.html?startLetter=${startLetter}&start=${start + 20}"/>">Next</a>
     
 	</div>  
     

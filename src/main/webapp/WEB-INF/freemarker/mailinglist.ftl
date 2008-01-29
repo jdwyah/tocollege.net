@@ -17,7 +17,7 @@
 	 </#if>
 	
 
-		<form action="<@spring.url "/site/interested.html"/>" method="POST">
+		<form action="<@common.url "/site/interested.html"/>" method="POST">
 			<fieldset>
 				<legend><@spring.message "login.2.header"/></legend>				
 								
@@ -29,7 +29,7 @@
 		<p>
 		<@spring.message "mailinglist.expl"/>
 		<p>
-		Have a secret key already? Then go <a href="<@spring.url "/site/signup.html"/>">Signup!</a>
+		Have a secret key already? Then go <a href="<@common.url "/site/signup.html"/>">Signup!</a>
 	</div>
 	
 </body>
