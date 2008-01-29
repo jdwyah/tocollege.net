@@ -74,7 +74,7 @@
    
 </script>
 
-	 <form id="upForm" class="header_account-UserAndPass" action="<@spring.url "/j_acegi_security_check"/>" method="POST" style="display: none">
+	 <form id="upForm" class="header_account-UserAndPass" action="/j_acegi_security_check" method="POST" style="display: none">
 		<fieldset>			
 		 <p>
 			 <label for="j_username"><input type='text' name='j_username' id = 'j_username'><@spring.message "login.1.user"/>
@@ -89,7 +89,7 @@
 		 <input name="login" value="<@spring.message "login.1.button"/>" type="submit"> <a class="link" onclick="javascript:doOpenID();">Use OpenID</a>
 		</fieldset>
 	 </form>	
-	 <form id="openIDForm" class="header_account-OpenID" action="<@spring.url "/site/j_acegi_openid_start"/>" method="POST" style="display: block" onSubmit="javascript:formvalidation();return false;" >
+	 <form id="openIDForm" class="header_account-OpenID" action="/site/j_acegi_openid_start" method="POST" style="display: block" onSubmit="javascript:formvalidation();return false;" >
 		<fieldset>			
 		  <legend><@spring.message "login.1.header"/></legend><p>
 			 <label for="j_username2"><input type='text' name='openid_url' id = 'j_username2' class="openid-identifier">OpenID
