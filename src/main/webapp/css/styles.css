@@ -63,7 +63,7 @@ body {
 	padding: 0 12px;
 	color: #FFFFFF;	
 	text-decoration: none;
-	background: url(sep.jpg) no-repeat 100% 100%;
+	/*background: url(sep.jpg) no-repeat 100% 100%;*/
 }
 #menu ul li a:hover {
 	color: #3b5e0b;	
@@ -92,7 +92,7 @@ body {
 	width: 555px;
 	margin: 0; padding: 20px 0 0 0; 
 	display: inline;
-	background: url(box.jpg) no-repeat;
+	/*background: url(box.jpg) no-repeat;*/
 }
 
 

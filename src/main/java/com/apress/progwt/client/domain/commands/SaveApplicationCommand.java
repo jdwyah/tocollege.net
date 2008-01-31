@@ -35,8 +35,8 @@ public class SaveApplicationCommand extends AbstractCommand implements
 
         commandService.assertUserIsAuthenticated(toSave.getUser());
 
-        Log.debug(applicationID + " loaded: " + toSave + " original: "
-                + original);
+        Log.debug("SaveApplicationCommand " + applicationID + " loaded: "
+                + toSave + " original: " + original);
 
         String xssFiltered = commandService.filterHTML(original
                 .getNotes());
@@ -48,7 +48,7 @@ public class SaveApplicationCommand extends AbstractCommand implements
         toSave.setPros(original.getPros());
         toSave.setNotes(xssFiltered);
 
-        System.out.println("notes " + toSave.getNotes() + " o: "
+        Log.debug("notes " + toSave.getNotes() + " o: "
                 + original.getNotes());
 
         commandService.save(toSave);

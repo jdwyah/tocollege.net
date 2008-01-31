@@ -13,14 +13,14 @@ import com.apress.progwt.client.json.JSONSerializable;
  */
 public interface ClientDB {
 
-    void createKeyedStringStore(String storeName);
+    void addToKeyedStringStore(String storeName, String key,
+            JSONSerializable type);
 
     void addToKeyedStringStore(String storeName, String key, String string);
 
+    void createKeyedStringStore(String storeName);
+
     <T> List<T> getFromKeyedStringStore(String storeName, String key,
             GearsRowMapper<T> processTypeMapper);
-
-    void addToKeyedStringStore(String storeName, String key,
-            JSONSerializable type);
 
 }

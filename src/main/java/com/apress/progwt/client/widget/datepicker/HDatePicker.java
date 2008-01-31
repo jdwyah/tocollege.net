@@ -49,7 +49,7 @@ public class HDatePicker extends SimpleDatePicker implements
 
     // @Override
     public void redrawCalendar() {
-        // System.out.println("H Date Picker redraw "+getSelectedDate());
+        // Log.debug("H Date Picker redraw "+getSelectedDate());
         this.calendarPanel.redrawCalendar();
         this.calendarTraversalPanel.drawTitle();
         longRangePicker.redraw(getCurrentDate());

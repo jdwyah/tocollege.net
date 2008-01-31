@@ -9,6 +9,9 @@
 		<link href="<@gwtURL "themes/alphacube-blue-off.css"/>" rel="stylesheet" type="text/css"></link>   	
     	<link href="<@gwtURL "themes/overlay.css"/>" rel="stylesheet" type="text/css"></link>-->
 </#macro>
+<#macro maps>
+<script language='javascript' src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAA6k005Q8HxzHfW1quTBpGbBQiJfR8suas9TieyuC6pP83yB5P8BTmXjViCxeONSb9-B_BVwz4Kfc5SA"></script>
+</#macro>
 <#macro mapScript>
 
 <style type="text/css">

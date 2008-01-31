@@ -83,8 +83,7 @@ public class ForumApp extends GWTApp implements HistoryListener {
 
         ForumPost sfp = null;
 
-        System.out.println("Create! " + originalTopic + " cur "
-                + currentTopic);
+        Log.debug("Create! " + originalTopic + " cur " + currentTopic);
 
         // originalTopic should be a School or User, currentTopic
         // shouldn't be null unless load hasn't completed.
@@ -96,7 +95,7 @@ public class ForumApp extends GWTApp implements HistoryListener {
                     null);
         }
 
-        System.out.println("Going to Save " + sfp);
+        Log.debug("Going to Save " + sfp);
 
         getServiceCache().executeCommand(new SaveForumPostCommand(sfp),
                 new StdAsyncCallback<SiteCommand>("SaveForumPost") {

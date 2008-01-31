@@ -2,6 +2,7 @@ package com.apress.progwt.client.domain.commands;
 
 import java.io.Serializable;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.exception.SiteException;
@@ -46,9 +47,9 @@ public class SaveRatingCommand extends AbstractCommand implements
 
         assertUserIsAuthenticated(application.getUser());
 
-        System.out.println(toString());
-        System.out.println("application " + application + " rating "
-                + ratingType);
+        Log.debug("SaveRatingCommand " + toString());
+        Log.debug("SaveRatingCommand application " + application
+                + " rating " + ratingType);
         if (application != null) {
             System.out
                     .println("app.ratings: " + application.getRatings());

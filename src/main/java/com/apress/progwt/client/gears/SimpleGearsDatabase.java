@@ -92,6 +92,7 @@ public class SimpleGearsDatabase extends Database implements ClientDB {
             for (int i = 0; rs.isValidRow(); ++i, rs.next()) {
                 rtn.add(mapper.mapRow(rs, i));
             }
+            rs.close();
             return rtn;
         } catch (DatabaseException e) {
             Log.error(sql + " : " + e.getMessage());
@@ -111,7 +112,6 @@ public class SimpleGearsDatabase extends Database implements ClientDB {
     }
 
     public void createKeyedStringStore(String tableName) {
-
         execute("drop table if exists " + tableName);
         execute("create table if not exists " + tableName
                 + " (key varchar(255), json text )");
@@ -120,7 +120,6 @@ public class SimpleGearsDatabase extends Database implements ClientDB {
     public void addToKeyedStringStore(String tableName, String key,
             String value) {
         execute("insert into " + tableName + " values (?, ?)", key, value);
-
     }
 
     public <T> List<T> getFromKeyedStringStore(String tableName,

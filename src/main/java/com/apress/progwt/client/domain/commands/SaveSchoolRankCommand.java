@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
@@ -34,16 +35,16 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
     }
 
     public void execute(CommandService commandService) {
-        System.out.println("Execute Command");
+        Log.debug("Execute Command");
 
-        System.out.println("\n----A----\n");
+        Log.debug("\n----A----\n");
         User currentUser = commandService.get(User.class, userID);
 
         assertUserIsAuthenticated(currentUser);
 
         List<Application> rankings = currentUser.getSchoolRankings();
 
-        System.out.println("\n----A2----\n");
+        Log.debug("\n----A2----\n");
 
         // Utilities.reOrder(rankings, currentUser, rank)
 
@@ -54,15 +55,15 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
         for (Iterator iterator = rankings.iterator(); iterator.hasNext();) {
             Application scAndApp = (Application) iterator.next();
 
-            System.out.println("\n----A3-LOOP----\n");
+            Log.debug("\n----A3-LOOP----\n");
             if (scAndApp.getSchool().equals(school)) {
                 sap = scAndApp;
             }
         }
-        System.out.println("\n----B----\n");
+        Log.debug("\n----B----\n");
 
         if (null == sap) {
-            System.out.println("\n----B-CREATE-NEW-SAP----\n");
+            Log.debug("\n----B-CREATE-NEW-SAP----\n");
             sap = new Application(school);
             commandService.save(sap);
             currentUser.addRanked(rank, sap);
@@ -72,13 +73,13 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
         // implementation didn't work
         Utilities.reOrder(rankings, sap, rank);
 
-        System.out.println("\n----C----\n");
+        Log.debug("\n----C----\n");
 
-        System.out.println("Command Executed");
-        System.out.println("User " + currentUser);
+        Log.debug("Command Executed");
+        Log.debug("User " + currentUser);
 
         for (Application ranked : currentUser.getSchoolRankings()) {
-            System.out.println("Command.Ranks To Save: Rank: " + ranked);
+            Log.debug("Command.Ranks To Save: Rank: " + ranked);
         }
         commandService.save(currentUser);
 

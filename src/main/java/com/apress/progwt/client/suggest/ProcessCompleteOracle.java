@@ -3,6 +3,7 @@ package com.apress.progwt.client.suggest;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.rpc.EZCallback;
@@ -60,7 +61,7 @@ public class ProcessCompleteOracle extends
 
         for (Object obj : results) {
             ProcessType process = (ProcessType) obj;
-            System.out.println("Found processType " + process);
+            Log.debug("Found processType " + process);
             suggestions.add(new ProcessSuggestion(process, request
                     .getQuery()));
         }

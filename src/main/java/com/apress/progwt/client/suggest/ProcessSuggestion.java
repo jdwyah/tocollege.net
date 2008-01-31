@@ -1,5 +1,6 @@
 package com.apress.progwt.client.suggest;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.domain.ProcessType;
 import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 
@@ -20,7 +21,7 @@ public class ProcessSuggestion implements Suggestion {
     }
 
     public String getReplacementString() {
-        System.out.println("get replacementString " + value);
+        Log.debug("get replacementString " + value);
         return value.getName();
     }
 

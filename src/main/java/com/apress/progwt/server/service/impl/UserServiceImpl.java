@@ -60,18 +60,30 @@ public class UserServiceImpl implements UserService {
 
     public static final String SAMPLE_TAG_TITLE = "Sample Movies";
 
-    public static String normalizeUrl(String username) {
+    public static String normalizeUrl(String username)
+            throws SiteException {
+        if (username == null) {
+            throw new RuntimeException("Invalid openID: " + username);
+        }
         try {
+            String rtn;
             // http || https
-            if (username != null && username.startsWith("http")) {
-                return UrlIdentifier.normalize(username).toExternalForm();
+            if (username.startsWith("http")) {
+                rtn = UrlIdentifier.normalize(username).toExternalForm();
             } else {
-                return UrlIdentifier.normalize("http://" + username)
+                rtn = UrlIdentifier.normalize("http://" + username)
                         .toExternalForm();
+            }
+            System.out.println("rtn |" + rtn + "|");
+            if (rtn.equals("http://")) {
+                throw new DiscoveryException("Invalid openID: "
+                        + username);
+            } else {
+                return rtn;
             }
         } catch (DiscoveryException e) {
             log.error("Invalid OpenID " + username + " " + e);
-            throw new RuntimeException("Invalid openID: " + username);
+            throw new SiteException("Invalid openID: " + username);
         }
     }
 
@@ -210,6 +222,15 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public boolean existsNickname(String nickname) {
+        try {
+            userDAO.getUserByNicknameFetchAll(nickname);
+            return true;
+        } catch (UsernameNotFoundException e) {
+            return false;
+        }
+    }
+
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
@@ -324,9 +345,11 @@ public class UserServiceImpl implements UserService {
      * only openID users are allowed '.' || '=' and all openID usernames
      * must have a '.' || '=' so, if it's got a '.' || '='
      * janrain.normalize() before the lookup
+     * 
+     * @throws DiscoveryException
      */
     public User getUserWithNormalization(String username)
-            throws UsernameNotFoundException {
+            throws UsernameNotFoundException, SiteException {
 
         if (couldBeOpenID(username)) {
 
@@ -439,4 +462,5 @@ public class UserServiceImpl implements UserService {
                     "You don't have rights to do that.");
         }
     }
+
 }

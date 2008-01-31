@@ -5,6 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.domain.MailingListEntry;
 import com.apress.progwt.server.service.InvitationService;
 import com.apress.progwt.server.service.UserService;
@@ -28,15 +29,21 @@ public class CreateUserRequestValidator implements Validator {
             errors.rejectValue("openIDusername",
                     "invalid.openIDusername.nodots");
         }
-        if (userService.exists(comm.getOpenIDusernameDoNormalization())) {
+        try {
+            if (userService.exists(comm
+                    .getOpenIDusernameDoNormalization())) {
+                errors.rejectValue("openIDusername",
+                        "invalid.opennIDusername.exists");
+            }
+        } catch (SiteException e) {
             errors.rejectValue("openIDusername",
-                    "invalid.username.exists");
+                    "invalid.opennIDusername");
         }
         if (comm.getOpenIDusername().contains("=")) {
             errors.rejectValue("openIDusername",
                     "invalid.openIDusername.noinames");
         }
-        if (userService.exists(comm.getOpenIDnickname())) {
+        if (userService.existsNickname(comm.getOpenIDnickname())) {
             errors.rejectValue("openIDnickname",
                     "invalid.openIDnickname.exists");
         }

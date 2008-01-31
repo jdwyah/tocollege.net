@@ -4,6 +4,7 @@
 <#import "commonGWT.ftl" as gwt/>
 <head>
   <title>${school.name}</title>
+  <@gwt.maps/>
 </head>
 
 

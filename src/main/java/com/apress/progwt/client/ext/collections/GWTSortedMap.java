@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.allen_sauer.gwt.log.client.Log;
+
 /**
  * Implement a SortedMap for GWT using existing collection classes.
  * 
@@ -102,7 +104,7 @@ public class GWTSortedMap<X extends Comparable<? super X>, V> implements
 
     public Set<X> keySet() {
         if (dirty) {
-            System.out.println("SORT ");
+            Log.debug("GWTSortedMap.SORT ");
             if (compare == null) {
                 Collections.sort(keys.getList());
             } else {

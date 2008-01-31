@@ -2,12 +2,16 @@ package com.apress.progwt.client.college.gui;
 
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.ext.VerticalLabel;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.User;
+import com.google.gwt.gears.core.client.GearsException;
+import com.google.gwt.gears.workerpool.client.MessageHandler;
+import com.google.gwt.gears.workerpool.client.WorkerPool;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.IncrementalCommand;
 import com.google.gwt.user.client.ui.Composite;
@@ -46,9 +50,9 @@ public class MyApplications extends Composite implements MyPageTab {
 
         List<ProcessType> processTypes = user.getNonStatusProcessTypes();
 
-        List<Application> schoolAndApps = user.getSchoolRankings();
+        List<Application> applications = user.getSchoolRankings();
 
-        mainGrid = new Grid(schoolAndApps.size() + 1,
+        mainGrid = new Grid(applications.size() + 1,
                 processTypes.size() + 2);
 
         int row = 0;
@@ -62,13 +66,38 @@ public class MyApplications extends Composite implements MyPageTab {
                     .getName()));
             col++;
         }
+        // doWorkerPoolDemo();
 
         row++;
 
-        DeferredCommand.addCommand(new AddApplicationRows(schoolAndApps,
+        DeferredCommand.addCommand(new AddApplicationRows(applications,
                 user, row));
 
         mainP.setWidget(mainGrid);
+    }
+
+    /**
+     * This is an empty bit of code that just shows what a WorkerPool
+     * might look like. This isn't a great fit for this class, becasue
+     * Worker's can't have any access to the DOM.
+     */
+    private void doWorkerPoolDemo() {
+        WorkerPool wp = null;
+        try {
+            wp = new WorkerPool(new MessageHandler() {
+
+                public void onMessageReceived(String message,
+                        int srcWorker) {
+                    Log.info("Message: " + message + " src:" + srcWorker);
+                }
+            });
+
+            wp.createWorkerFromString("");
+
+        } catch (GearsException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**

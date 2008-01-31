@@ -1,13 +1,16 @@
 package com.apress.progwt.server.service.impl;
 
 import org.apache.log4j.Logger;
+import org.openid4java.discovery.DiscoveryException;
+import org.openid4java.discovery.UrlIdentifier;
+import org.springframework.security.userdetails.UsernameNotFoundException;
+import org.springframework.test.AssertThrows;
 
+import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.School;
-import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
-import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.dao.UserDAO;
@@ -41,7 +44,8 @@ public class UserServiceImplTest extends
 
     }
 
-    public void testCreateUser() throws BusinessException {
+    public void testCreateUser() throws UsernameNotFoundException,
+            SiteException {
 
         userService.createUser("username", "pass", "email", false);
 
@@ -60,7 +64,8 @@ public class UserServiceImplTest extends
         }
     }
 
-    public void testFetch() throws BusinessException {
+    public void testFetch() throws UsernameNotFoundException,
+            SiteException {
 
         userService.createUser("username", "pass", "email", false);
 
@@ -90,7 +95,21 @@ public class UserServiceImplTest extends
                 .size());
     }
 
-    public void testNormalizeUrl() {
+    public void testOpenIDNormalize() throws DiscoveryException {
+
+        assertEquals("http://factoryjoe.com/", UrlIdentifier.normalize(
+                "http://factoryjoe.com").toExternalForm());
+        assertEquals("http://factoryjoe.com/", UrlIdentifier.normalize(
+                "http://factoryjoe.com/").toExternalForm());
+        assertEquals("http://www.factoryjoe.com/", UrlIdentifier
+                .normalize("http://www.factoryjoe.com").toExternalForm());
+
+        assertEquals("http://factoryjoe.com/", UrlIdentifier.normalize(
+                "factoryjoe.com").toExternalForm());
+    }
+
+    public void testNormalizeUrl() throws SiteException {
+
         System.out.println("testNormalizeUrl");
 
         assertEquals("http://foo.com/", UserServiceImpl
@@ -112,6 +131,28 @@ public class UserServiceImplTest extends
         assertEquals("https://foo.com/bar", UserServiceImpl
                 .normalizeUrl("https://foo.com/bar"));
 
+        AssertThrows at = new AssertThrows(SiteException.class) {
+            @Override
+            public void test() throws Exception {
+                assertNull(UserServiceImpl.normalizeUrl(""));
+            }
+        };
+        at = new AssertThrows(SiteException.class) {
+            @Override
+            public void test() throws Exception {
+                assertNull(UserServiceImpl.normalizeUrl("http://"));
+            }
+        };
+        at = new AssertThrows(SiteException.class) {
+            @Override
+            public void test() throws Exception {
+                assertNull(UserServiceImpl.normalizeUrl(null));
+            }
+        };
+
+    }
+
+    public void skip_testNormalizeURL() throws SiteException {
         assertEquals("http://foo.com/%E8%8D%89", UserServiceImpl
                 .normalizeUrl("foo.com/\u8349"));
         assertEquals("http://foo.com/%E8%8D%89", UserServiceImpl
@@ -128,9 +169,6 @@ public class UserServiceImplTest extends
                 .normalizeUrl("\u8349.com/\u8349"));
         assertEquals("http://xn--vl1a.com/%E8%8D%89", UserServiceImpl
                 .normalizeUrl("http://\u8349.com/\u8349"));
-        assertNull(UserServiceImpl.normalizeUrl(null));
-        assertNull(UserServiceImpl.normalizeUrl(""));
-        assertNull(UserServiceImpl.normalizeUrl("http://"));
     }
 
     public void testToken() throws SiteException {

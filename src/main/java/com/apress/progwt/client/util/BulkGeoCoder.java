@@ -2,6 +2,7 @@ package com.apress.progwt.client.util;
 
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.domain.HasAddress;
 import com.google.gwt.maps.client.geocode.Geocoder;
 import com.google.gwt.maps.client.geocode.LatLngCallback;
@@ -25,7 +26,7 @@ public class BulkGeoCoder extends Timer {
 
         final HasAddress school = schools.remove(0);
         if (school == null) {
-            System.out.println("Finished");
+            Log.debug("Finished");
             cancel();
             return;
         }
@@ -42,8 +43,8 @@ public class BulkGeoCoder extends Timer {
 
         geocoder.getLatLng(full, new LatLngCallback() {
             public void onFailure() {
-                System.out
-                        .println("UPDATE "
+                Log
+                        .debug("UPDATE "
                                 + tablename
                                 + " SET latitude = '-1',longitude  = '-1' WHERE id ="
                                 + school.getId() + " LIMIT 1 ;");
@@ -52,10 +53,10 @@ public class BulkGeoCoder extends Timer {
 
             public void onSuccess(LatLng point) {
 
-                System.out.println("UPDATE " + tablename
-                        + " SET latitude = '" + point.getLatitude()
-                        + "',longitude  = '" + point.getLongitude()
-                        + "' WHERE id =" + school.getId() + " LIMIT 1 ;");
+                Log.debug("UPDATE " + tablename + " SET latitude = '"
+                        + point.getLatitude() + "',longitude  = '"
+                        + point.getLongitude() + "' WHERE id ="
+                        + school.getId() + " LIMIT 1 ;");
                 run();
             }
         });

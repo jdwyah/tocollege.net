@@ -1,7 +1,9 @@
 package com.apress.progwt.server.web.domain;
 
+import org.openid4java.discovery.DiscoveryException;
 import org.springframework.util.StringUtils;
 
+import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.service.impl.UserServiceImpl;
 
 public class CreateUserRequestCommand {
@@ -59,8 +61,9 @@ public class CreateUserRequestCommand {
      * NOTE: this getter does OpenID normalization
      * 
      * @return
+     * @throws DiscoveryException
      */
-    public String getOpenIDusernameDoNormalization() {
+    public String getOpenIDusernameDoNormalization() throws SiteException {
         return UserServiceImpl.normalizeUrl(openIDusername);
     }
 

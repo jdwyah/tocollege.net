@@ -94,7 +94,7 @@ public class ProteanLabel extends LabelWrapper {
             break;
         }
 
-        // System.out.println(zoomIndex+" "+idx+"d2 "+d2+" "+newD+"
+        // Log.debug(zoomIndex+" "+idx+"d2 "+d2+" "+newD+"
         // "+TimeLineObj.getLeftForDate(newD));
 
         int llleft = TimeLineObj.getLeftForDate(newD);

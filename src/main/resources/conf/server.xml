@@ -84,6 +84,8 @@
                </Host> -->
 
 
+              <!-- This was a nightmare to figure out, but finally working. Initial tries were for the wars to just be in webapps/ then reference them with appBase="Hippo" but that doesn't work at all.s -->
+              <!-- Should have webbapps/myhippocampus.com/ROOT/WEB-INF/web.xml -->
               <Host name="www.myhippocampus.com" appBase="webapps/myhippocampus.com" unpackWARs="true" autoDeploy="true" xmlValidation="false"
                    xmlNamespaceAware="false">
                    <Valve className="org.apache.catalina.valves.AccessLogValve" prefix="www.myhippocampus.com." suffix=".txt"

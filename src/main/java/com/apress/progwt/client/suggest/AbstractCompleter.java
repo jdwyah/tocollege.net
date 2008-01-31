@@ -29,7 +29,7 @@ public abstract class AbstractCompleter<T> extends Composite {
         suggestBox.addEventHandler(new SuggestionHandler() {
 
             public void onSuggestionSelected(SuggestionEvent event) {
-                System.out.println("On Suggestion Selected! "
+                Log.debug("On Suggestion Selected! "
                         + event.getSelectedSuggestion()
                                 .getReplacementString());
 

@@ -2,6 +2,7 @@ package com.apress.progwt.client.domain.commands;
 
 import java.io.Serializable;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.forum.ForumTopic;
@@ -70,7 +71,7 @@ public class SaveForumPostCommand extends AbstractCommand implements
                 .getTopicClass(), topicID);
         ForumPost threadP = commandService.get(ForumPost.class, threadID);
 
-        System.out.println(toString());
+        Log.debug("SaveForumPostCommand" + toString());
 
         toSave = commandService.get(ForumPost.class, forumPost.getId());
 

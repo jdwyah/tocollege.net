@@ -16,8 +16,8 @@
 	  	</a>
     </div>
     		
-	 <div class="middle-column-box-white">
-        <div class="middle-column-box-title-green">Error Occurred</div>
+	   <div id="main">
+        <h1>Error Occurred</h1>
 	
 	
 	 <#if message?exists>

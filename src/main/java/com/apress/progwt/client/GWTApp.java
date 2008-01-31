@@ -10,7 +10,11 @@ import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
 import com.apress.progwt.client.service.remote.GWTUserService;
 import com.apress.progwt.client.service.remote.GWTUserServiceAsync;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.gears.core.client.GearsException;
+import com.google.gwt.gears.localserver.client.LocalServer;
+import com.google.gwt.gears.localserver.client.ManagedResourceStore;
 import com.google.gwt.i18n.client.Dictionary;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.rpc.impl.ClientSerializationStreamReader;
@@ -21,6 +25,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class GWTApp {
+
+    private static final String MANIFEST_URL = "site/manifest.json";
 
     private int pageID;
 
@@ -45,6 +51,63 @@ public class GWTApp {
         } catch (Exception e) {
             Log.error("Status Panel problem: ");
         }
+
+        // create the Local Server after enough of a delay so that we try
+        // to appear as lightweight as possible.
+        new Timer() {
+            @Override
+            public void run() {
+                try {
+                    doLocalServer();
+                } catch (GearsException e) {
+                    Log.warn("LocalServer exception: " + e);
+                }
+            }
+        }.schedule(10000);
+
+    }
+
+    private void doLocalServer() throws GearsException {
+        LocalServer localServer = new LocalServer();
+
+        final ManagedResourceStore managedResourceStore = localServer
+                .createManagedResourceStore("ToCollege.net");
+        try {
+            managedResourceStore.setManifestURL(Interactive
+                    .getRelativeURL(MANIFEST_URL));
+        } catch (Exception e) {
+            // expected in hosted mode. catches JS exception from setting
+            // 8080 when running on 8888
+            throw new GearsException(e.getMessage());
+        }
+
+        new Timer() {
+            public void run() {
+                switch (managedResourceStore.getUpdateStatus()) {
+                case ManagedResourceStore.UPDATE_OK:
+                    Log.info("UPDATE_OK "
+                            + managedResourceStore.getCurrentVersion());
+                    cancel();
+                    break;
+                case ManagedResourceStore.UPDATE_CHECKING:
+                    Log.debug("Checking "
+                            + managedResourceStore.getCurrentVersion());
+                    break;
+                case ManagedResourceStore.UPDATE_DOWNLOADING:
+                    Log.debug("Downloading "
+                            + managedResourceStore.getCurrentVersion());
+                    break;
+                case ManagedResourceStore.UPDATE_FAILED:
+                    Log.warn("Fail "
+                            + managedResourceStore.getCurrentVersion());
+                    Log.warn(managedResourceStore.getLastErrorMessage());
+                    cancel();
+                    break;
+                }
+
+            }
+        }.scheduleRepeating(2000);
+        managedResourceStore.checkForUpdate();
     }
 
     protected String getLoadID() {
@@ -142,7 +205,7 @@ public class GWTApp {
     public Object deserialize(String serialized) {
 
         ClientSerializationStreamReader c;
-        System.out.println("Try to deserialize: " + serialized);
+        Log.debug("Try to deserialize: " + serialized);
         try {
             c = getBootstrapService().createStreamReader(serialized);
 
@@ -164,7 +227,7 @@ public class GWTApp {
     // ClientSerializationStreamWriter w = getBootstrapService()
     // .createStreamWriter();
     // w.writeObject(o);
-    // System.out.println("Serialized: " + o + "\nto\n"
+    // Log.debug("Serialized: " + o + "\nto\n"
     // + w.toString());
     // return w.toString();
     // } catch (SerializationException e) {

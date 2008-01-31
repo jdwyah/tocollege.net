@@ -23,6 +23,7 @@ public class Interactive implements EntryPoint {
     public static final String REMOTE_HOST = "http://www.tocollege.net/";
 
     /**
+     * 
      * Switch between localhost for testing &
      */
     public static String getRelativeURL(String url) {
@@ -61,8 +62,8 @@ public class Interactive implements EntryPoint {
     }
 
     private native static void tickleUrchin(String pageName) /*-{
-                                                                    $wnd.urchinTracker(pageName);
-                                                                }-*/;
+                                                                       $wnd.urchinTracker(pageName);
+                                                                   }-*/;
 
     /**
      * Initial entry point. Make sure our exception handler is set before

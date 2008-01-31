@@ -39,7 +39,7 @@ public class SchoolCompleteOracle extends AbstractSuggestOracle<School> {
 
     private void getSchoolsForString(String queryString,
             AsyncCallback<List<String>> callback) {
-        getServiceCache().match(queryString, callback);
+        getServiceCache().matchSchool(queryString, callback);
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.gui.ext.JSUtil;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.User;
@@ -33,17 +34,17 @@ public abstract class AbstractCommand implements Serializable,
     }
 
     public <T> T get(Class<T> clazz, long id) {
-        System.out.println("Load " + clazz + " " + id);
+        Log.debug("Load " + clazz + " " + id);
         for (Object o : objects) {
             if (o != null) {
-                System.out.println("O: " + o + " " + o.getClass());
+                Log.debug("O: " + o + " " + o.getClass());
             } else {
-                System.out.println("O: null");
+                Log.debug("O: null");
             }
             if (o != null && o.getClass() == clazz) {
 
                 Loadable l = (Loadable) o;
-                System.out.println("l: " + l + " " + l.getId());
+                Log.debug("l: " + l + " " + l.getId());
                 if (l.getId() == id) {
                     return (T) o;
                 }

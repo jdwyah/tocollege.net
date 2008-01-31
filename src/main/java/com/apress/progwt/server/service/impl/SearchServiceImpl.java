@@ -75,7 +75,7 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
         // TODO find another way to call this, since it's a bit
         // inefficient. Should be a administrator tool or something.
         // to do it everytime tomcat restarts
-        compassGPS.index();
+        // compassGPS.index();
 
         // ensure that our gps is going to mirror all data changes from
         // here on out.
@@ -247,9 +247,9 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
                     for (int i = start; i < hits.length()
                             && i < max_num_hits; i++) {
                         String name = hits.resource(i).get("name");
-                        log.debug("search string " + searchString
-                                + " hit: " + name + " "
-                                + hits.resource(i));
+                        // log.debug("search string " + searchString
+                        // + " hit: " + name + " "
+                        // + hits.resource(i));
                         if (name != null) {
                             rtn.add(name);
                         }

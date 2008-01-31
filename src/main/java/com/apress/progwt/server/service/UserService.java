@@ -41,7 +41,8 @@ public interface UserService {
 
     User getUserByNicknameFullFetch(String nickname);
 
-    User getUserWithNormalization(String username);
+    User getUserWithNormalization(String username)
+            throws UsernameNotFoundException, SiteException;
 
     boolean nowAcceptingSignups();
 
@@ -54,5 +55,7 @@ public interface UserService {
     UserAndToken getCurrentUserAndToken();
 
     String getToken(User user);
+
+    boolean existsNickname(String nickname);
 
 }

@@ -14,8 +14,8 @@ import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.gears.ClientDB;
-import com.apress.progwt.client.gears.GearsRowMapper;
 import com.apress.progwt.client.gears.EmptyClientDB;
+import com.apress.progwt.client.gears.GearsRowMapper;
 import com.apress.progwt.client.gears.SimpleGearsDatabase;
 import com.apress.progwt.client.gears.StringMapper;
 import com.apress.progwt.client.json.JSONSerializer;
@@ -34,10 +34,24 @@ public class ServiceCache {
     private static final String MATCH = "schoolmatch";
     private static final String PROCESSTYPE = "processTypeMatch";
 
-    private GWTUserServiceAsync userService;
+    private String currentToken;
+    private ClientDB db;
+
+    private GearsRowMapper<String> stringMapper = new StringMapper();
+
+    private GearsRowMapper<ProcessType> processTypeMapper = new GearsRowMapper<ProcessType>() {
+
+        public ProcessType mapRow(ResultSet rs, int rowNum)
+                throws DatabaseException {
+
+            return JSONSerializer.deserialize(JSONParser.parse(rs
+                    .getFieldAsString(0)), ProcessType.class);
+        }
+    };
+
     private GWTSchoolServiceAsync schoolService;
 
-    private ClientDB db;
+    private GWTUserServiceAsync userService;
 
     public ServiceCache(GWTApp gwtApp) {
 
@@ -47,6 +61,7 @@ public class ServiceCache {
         Log.info("Gears is installed: " + Gears.isInstalled());
         if (Gears.isInstalled()) {
             try {
+
                 db = new SimpleGearsDatabase("tocollege.net");
                 db.createKeyedStringStore(MATCH);
                 db.createKeyedStringStore(PROCESSTYPE);
@@ -62,46 +77,44 @@ public class ServiceCache {
             Log.info("Creating Empty Client DB");
             db = new EmptyClientDB();
         }
-
     }
 
-    private String currentToken;
+    /**
+     * if we haven't got the token yet, go get one
+     * 
+     * @param command
+     * @param callback
+     */
+    public void executeCommand(final AbstractCommand command,
+            final AsyncCallback<SiteCommand> callback) {
 
-    private StringMapper stringMapper = new StringMapper();
-    private GearsRowMapper<ProcessType> processTypeMapper = new GearsRowMapper<ProcessType>() {
+        if (currentToken == null) {
+            Log.info("Token was null, fetching.");
+            getCurrentUser(new StdAsyncCallback<User>("Fetch Token") {
+                public void onSuccess(User result) {
+                    super.onSuccess(result);
+                    Log.info("Retrying");
+                    executeCommand(command, callback);
+                }
+            });
 
-        public ProcessType mapRow(ResultSet rs, int rowNum)
-                throws DatabaseException {
-
-            return JSONSerializer.deserialize(JSONParser.parse(rs
-                    .getFieldAsString(0)), ProcessType.class);
-        }
-    };
-
-    public void match(final String query,
-            final AsyncCallback<List<String>> origCallback) {
-
-        List<String> stored = db.getFromKeyedStringStore(MATCH, query,
-                stringMapper);
-        if (stored != null && !stored.isEmpty()) {
-            Log.info("school HIT " + query);
-            origCallback.onSuccess(stored);
-            return;
         } else {
-            Log.info("school MISS " + query);
-            schoolService.getSchoolsMatching(query,
-                    new AsyncCallback<List<String>>() {
+            Log.info("Using token:" + currentToken);
+            command.setToken(currentToken);
+            schoolService.executeAndSaveCommand(command,
+                    new AsyncCallback<SiteCommand>() {
 
                         public void onFailure(Throwable caught) {
-                            origCallback.onFailure(caught);
+                            callback.onFailure(caught);
                         }
 
-                        public void onSuccess(List<String> result) {
-                            origCallback.onSuccess(result);
-                            for (String string : result) {
-                                db.addToKeyedStringStore(MATCH, query,
-                                        string);
+                        public void onSuccess(SiteCommand result) {
+                            try {
+                                command.execute(command);
+                            } catch (SiteException e) {
+                                callback.onFailure(e);
                             }
+                            callback.onSuccess(result);
                         }
                     });
         }
@@ -120,6 +133,16 @@ public class ServiceCache {
                 callback.onSuccess(result.getUser());
             }
         });
+    }
+
+    public void getForum(ForumTopic forumTopic, int start, int max,
+            AsyncCallback<PostsList> asyncCallback) {
+        schoolService.getForum(forumTopic, start, max, asyncCallback);
+    }
+
+    public void getSchoolDetails(String replacementString,
+            AsyncCallback<School> callback) {
+        schoolService.getSchoolDetails(replacementString, callback);
     }
 
     public void matchProcessType(final String query,
@@ -151,55 +174,33 @@ public class ServiceCache {
 
     }
 
-    /**
-     * if we haven't got the token yet, go get one
-     * 
-     * @param command
-     * @param callback
-     */
-    public void executeCommand(final AbstractCommand command,
-            final AsyncCallback<SiteCommand> callback) {
+    public void matchSchool(final String query,
+            final AsyncCallback<List<String>> origCallback) {
 
-        if (currentToken == null) {
-            Log.info("Token was null, fetching.");
-            getCurrentUser(new StdAsyncCallback<User>("Fetch Token") {
-                public void onSuccess(User result) {
-                    super.onSuccess(result);
-                    Log.info("Retrying");
-                    executeCommand(command, callback);
-                }
-            });
-
+        List<String> stored = db.getFromKeyedStringStore(MATCH, query,
+                stringMapper);
+        if (stored != null && !stored.isEmpty()) {
+            Log.info("school HIT " + query);
+            origCallback.onSuccess(stored);
+            return;
         } else {
-            Log.info("Using token:" + currentToken);
-            command.setToken(currentToken);
-            schoolService.executeAndSaveCommand(command,
-                    new AsyncCallback<SiteCommand>() {
-
-                        public void onSuccess(SiteCommand result) {
-                            try {
-                                command.execute(command);
-                            } catch (SiteException e) {
-                                callback.onFailure(e);
-                            }
-                            callback.onSuccess(result);
-                        }
+            Log.info("school MISS " + query);
+            schoolService.getSchoolsMatching(query,
+                    new AsyncCallback<List<String>>() {
 
                         public void onFailure(Throwable caught) {
-                            callback.onFailure(caught);
+                            origCallback.onFailure(caught);
+                        }
+
+                        public void onSuccess(List<String> result) {
+                            origCallback.onSuccess(result);
+                            for (String string : result) {
+                                db.addToKeyedStringStore(MATCH, query,
+                                        string);
+                            }
                         }
                     });
         }
-    }
-
-    public void getSchoolDetails(String replacementString,
-            AsyncCallback<School> callback) {
-        schoolService.getSchoolDetails(replacementString, callback);
-    }
-
-    public void getForum(ForumTopic forumTopic, int start, int max,
-            AsyncCallback<PostsList> asyncCallback) {
-        schoolService.getForum(forumTopic, start, max, asyncCallback);
     }
 
 }

@@ -2,10 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:util="http://www.springframework.org/schema/util"
     xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-2.5.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
@@ -22,6 +25,9 @@
 	<bean id="propertyConfigurer2" class="com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:config.properties" />
 	</bean>
+     <!-- creates a java.util.Properties instance with values loaded from the supplied location -->
+    <util:properties id="configProperties" location="classpath:config.properties"/>
+     
 
 	<bean id="indexController" class="com.apress.progwt.server.web.controllers.IndexController">	     
 	     <property name="userService" ref="userService" />

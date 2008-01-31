@@ -1,5 +1,6 @@
 package com.apress.progwt.client.forum;
 
+import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.gui.UserLink;
 import com.apress.progwt.client.college.gui.ext.TableWithHeaders;
 import com.apress.progwt.client.domain.ForumPost;
@@ -34,7 +35,7 @@ public class ForumDisplay extends Composite {
 
         allPosts.clear();
 
-        System.out.println("ORIGINAL " + original);
+        Log.debug("ORIGINAL " + original);
 
         if (original != null) {
             Hyperlink originalL = new Hyperlink("Forum: "
