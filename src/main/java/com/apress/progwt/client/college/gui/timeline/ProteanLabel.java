@@ -2,8 +2,19 @@ package com.apress.progwt.client.college.gui.timeline;
 
 import java.util.Date;
 
-import com.google.gwt.i18n.client.DateTimeFormat;
-
+/**
+ * ProteanLabels are the marker labels that give us perspective. Depending
+ * on the zoom level, we'll show different numbers of them and use
+ * different dateformatters, since when we're at the millenial level, we
+ * only want a label every century (1900,2000,2100) but when we're at the
+ * month level, we want one every month (Jan,Feb,Mar)
+ * 
+ * See the recenter() code which is carefull not to run into the
+ * compounding effects of leap years.
+ * 
+ * @author Jeff Dwyer
+ * 
+ */
 public class ProteanLabel extends LabelWrapper {
 
     private int idx;
@@ -33,73 +44,85 @@ public class ProteanLabel extends LabelWrapper {
      * @param zoomIndex
      * @param format
      */
-    public void setCenter(final Date d2, final int zoomIndex,
-            final DateTimeFormat format) {
+    public void setCenter(final Date d2, ZoomLevel zoomLevel) {
 
         Date newD = new Date(d2.getTime());
 
-        switch (zoomIndex) {
-        case 9:
-            newD.setYear((newD.getYear() - (newD.getYear() % 100)) + idx
-                    * 100);
-            newD.setMonth(0);
-            newD.setDate(1);
-            break;
-        case 8:
-            newD.setYear((newD.getYear() - (newD.getYear() % 10)) + idx
-                    * 10);
-            newD.setMonth(0);
-            newD.setDate(1);
-            break;
-        case 7:
-            newD.setYear(newD.getYear() + idx);
-            newD.setMonth(0);
-            newD.setDate(1);
-            break;
-        case 6: // 3 years
-            newD.setYear(newD.getYear() + idx);
-            newD.setMonth(0);
-            newD.setDate(1);
-            break;
-        case 5:// month
-            newD.setYear(newD.getYear() + idx);
-            newD.setMonth(0);
-            newD.setDate(1);
-            break;
-        case 4:// 3 month
-            newD.setMonth(newD.getMonth() + idx);
-            newD.setDate(1);
-            break;
-        case 3:// week
-            newD.setDate(1 + 7 * idx);
-            newD.setHours(0);
-            newD.setMinutes(0);
-            break;
-        case 2:
-            newD.setDate(newD.getDate() + idx);
-            newD.setHours(0);
-            newD.setMinutes(0);
-            break;
-        case 1:
-            newD.setHours(newD.getHours() + idx);
-            newD.setMinutes(0);
-            newD.setSeconds(0);
-            break;
-        case 0:
-            newD.setDate(newD.getDate() + idx);// only show 1
-            newD.setMinutes(newD.getMinutes() + idx);
-            newD.setSeconds(0);
-            break;
-        default:
-            break;
-        }
+        newD = reCenter(newD, zoomLevel);
 
         // Log.debug(zoomIndex+" "+idx+"d2 "+d2+" "+newD+"
         // "+TimeLineObj.getLeftForDate(newD));
 
         int llleft = TimeLineObj.getLeftForDate(newD);
         setLeft(llleft);
-        setText(format.format(newD));
+        setText(zoomLevel.getDfFormat().format(newD));
 
+    }
+
+    /**
+     * We have a spread of ProteanLabels
+     * 
+     * @param newD
+     * @param idx
+     * @return
+     */
+    public Date reCenter(Date newD, ZoomLevel zoomLevel) {
+
+        if (zoomLevel == ZoomLevel.Centuries3) {
+            newD.setYear((newD.getYear() - (newD.getYear() % 100)) + idx
+                    * 100);
+            newD.setMonth(0);
+            newD.setDate(1);
+        } else if (zoomLevel == ZoomLevel.Century) {
+            newD.setYear((newD.getYear() - (newD.getYear() % 10)) + idx
+                    * 10);
+            newD.setMonth(0);
+            newD.setDate(1);
+        } else if (zoomLevel == ZoomLevel.Decade) {
+            newD.setYear(newD.getYear() + idx);
+            newD.setMonth(0);
+            newD.setDate(1);
+        }
+
+        else if (zoomLevel == ZoomLevel.Years3) {
+            newD.setYear(newD.getYear() + idx);
+            newD.setMonth(0);
+            newD.setDate(1);
+        }
+
+        else if (zoomLevel == ZoomLevel.Year) {
+            newD.setYear(newD.getYear() + idx);
+            newD.setMonth(0);
+            newD.setDate(1);
+        }
+
+        else if (zoomLevel == ZoomLevel.Months3) {
+            newD.setMonth(newD.getMonth() + idx);
+            newD.setDate(1);
+        }
+
+        else if (zoomLevel == ZoomLevel.Month) {
+            newD.setDate(1 + 7 * idx);
+            newD.setHours(0);
+            newD.setMinutes(0);
+        }
+
+        else if (zoomLevel == ZoomLevel.Week) {
+            newD.setDate(newD.getDate() + idx);
+            newD.setHours(0);
+            newD.setMinutes(0);
+        }
+
+        else if (zoomLevel == ZoomLevel.Day) {
+            newD.setHours(newD.getHours() + idx);
+            newD.setMinutes(0);
+            newD.setSeconds(0);
+        } else if (zoomLevel == ZoomLevel.Hour) {
+            newD.setDate(newD.getDate() + idx);// only show 1
+            newD.setMinutes(newD.getMinutes() + idx);
+            newD.setSeconds(0);
+        }
+
+        return newD;
     }
 }

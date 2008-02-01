@@ -4,50 +4,58 @@ import com.google.gwt.libideas.resources.client.DataResource;
 import com.google.gwt.libideas.resources.client.ImmutableResourceBundle;
 import com.google.gwt.libideas.resources.client.TextResource;
 
+/**
+ * 
+ * Resources live in /src/main/resources/com/apress/progwt/client/consts/
+ * 
+ * @author Jeff Dwyer
+ * 
+ */
 public interface Resources extends ImmutableResourceBundle {
+
     /**
      * @gwt.resource gwtstyles.css
      */
     public TextResource gwtstyles();
 
     /**
-     * @gwt.resource century3.png
+     * @gwt.resource data\hour.png
      */
-    public DataResource century3();
+    public DataResource tl_hour();
 
     /**
-     * @gwt.resource day.png
+     * @gwt.resource data\day.png
      */
-    public DataResource day();
+    public DataResource tl_day();
 
     /**
-     * @gwt.resource decade.png
+     * @gwt.resource data\week.png
      */
-    public DataResource decade();
+    public DataResource tl_week();
 
     /**
-     * @gwt.resource hour.png
+     * @gwt.resource data\way3.png
      */
-    public DataResource hour();
+    public DataResource tl_3way();
 
     /**
-     * @gwt.resource month.png
+     * @gwt.resource data\month.png
      */
-    public DataResource month();
+    public DataResource tl_month();
 
     /**
-     * @gwt.resource way3.png
+     * @gwt.resource data\year.png
      */
-    public DataResource way3();
+    public DataResource tl_year();
 
     /**
-     * @gwt.resource week.png
+     * @gwt.resource data\decade.png
      */
-    public DataResource week();
+    public DataResource tl_decade();
 
     /**
-     * @gwt.resource year.png
+     * @gwt.resource data\century3.png
      */
-    public DataResource year();
+    public DataResource tl_3century();
 
 }

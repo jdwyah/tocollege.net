@@ -84,65 +84,6 @@ public class Interactive implements EntryPoint {
         StyleInjector.injectStylesheet(ConstHolder.resources.gwtstyles()
                 .getText(), ConstHolder.resources);
 
-        // Log.info("prepare");
-
-        //
-        // Log.info("make style...");
-        // // Element style = DOM.createElement("script");
-        // Log.info("done. css:");
-        // Log.info(ConstHolder.resources.gwtstyles().getText());
-        // String css = ConstHolder.resources.gwtstyles().getText();
-        //
-        // // Window.alert(css);
-        //
-        // String[] split = css.split("\\s*[{}]\\s*");
-        // for (int i = 0; i < split.length; i++) {
-        // System.out.println("---------" + split[i]);
-        // }
-        //
-        // Element style = RootPanel.get("styleInjection").getElement();
-        //
-        // DOM.setElementProperty(style, "language", "text/css");
-        // String names = setScriptRules(style, css);
-        //
-        // Log.info(names);
-        //
-        // // DOM.setInnerText(style, "<script>" + css + "</script>");
-        // DOM.appendChild(JSUtil.getDocumentHead(), style);
-
-        // try {
-        // String css = ConstHolder.resources.gwtstyles().getText();
-        // Log.info("css: " + css);
-        //
-        // Element style = DOM.createElement("script");
-        // Log.info("A");
-        //
-        // DOM.setElementProperty(style, "language", "text/css");
-        // Log.info("B");
-        // // DOM.setInnerHTML(style, css);
-        //
-        // // DOM.setInnerText(style, "<script language=\"text/css\">"
-        // // + css + "</script>");
-        //
-        // String averted = "<script language=\"text/css\">" + css
-        // + "</script>";
-        //
-        // Log.info("C");
-        //
-        // Element head = getDocumentHead();
-        // DOM.appendChild(head, head);
-        // DOM.setInnerHTML(head, DOM.getInnerHTML(head) + averted);
-        //
-        // // mysetInnerText(style, css);
-        // Log.info("PASS");
-        // // DOM.appendChild(getDocumentHead(), style);
-        // // DOM.appendChild(RootPanel.getBodyElement(), style);
-        //
-        // Log.info("FULL PASS");
-        // } catch (Exception e) {
-        // Log.error("e " + e);
-        // }
-
         DeferredCommand.addCommand(new Command() {
             public void execute() {
                 onModuleLoad2();

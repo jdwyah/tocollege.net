@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.test.AssertThrows;
 
 import com.apress.progwt.client.domain.Application;
-import com.apress.progwt.client.domain.Foo;
 import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
@@ -56,16 +55,6 @@ public class SchoolServiceImplTest extends
     private void clean() {
 
         // TODO Auto-generated method stub
-
-    }
-
-    public void testFoo() {
-
-        Foo saved = (Foo) schoolDAO.saveF();
-
-        Foo loaded = (Foo) schoolDAO.get(Foo.class, saved.getId());
-
-        assertEquals(1, loaded.getBarList().size());
 
     }
 

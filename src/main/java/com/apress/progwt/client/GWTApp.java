@@ -61,7 +61,7 @@ public class GWTApp {
             public void run() {
                 try {
                     doLocalServer();
-                } catch (GearsException e) {
+                } catch (Exception e) {
                     Log.warn("LocalServer exception: " + e);
                 }
             }

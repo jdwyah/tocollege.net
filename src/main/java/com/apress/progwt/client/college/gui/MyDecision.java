@@ -70,6 +70,7 @@ public class MyDecision extends Composite implements MyPageTab {
 
                 row++;
             }
+
             mainP.setWidget(mainGrid);
         }
 

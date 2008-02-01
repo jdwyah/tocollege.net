@@ -61,8 +61,6 @@ public abstract class ViewPanel extends AbsolutePanel implements
     public ViewPanel() {
         super();
 
-        setStyleName("H-ViewPanel");
-
         clientMouseImpl = (ClientMouseImpl) GWT
                 .create(ClientMouseImpl.class);
 
@@ -509,7 +507,7 @@ public abstract class ViewPanel extends AbsolutePanel implements
      * redraw all
      */
     public void redraw() {
-        Log.debug("ViewPanel.redraw()");
+        // Log.debug("ViewPanel.redraw()");
         moveBy(0, 0);
     }
 

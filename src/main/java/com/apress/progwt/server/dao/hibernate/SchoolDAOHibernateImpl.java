@@ -17,8 +17,6 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.apress.progwt.client.domain.Application;
-import com.apress.progwt.client.domain.Bar;
-import com.apress.progwt.client.domain.Foo;
 import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
@@ -135,30 +133,6 @@ public class SchoolDAOHibernateImpl extends HibernateDaoSupport implements
     public void delete(Loadable loadable) {
         getHibernateTemplate().delete(loadable);
         getHibernateTemplate().flush();
-    }
-
-    public Foo saveF() {
-        return (Foo) getHibernateTemplate().execute(
-                new HibernateCallback() {
-
-                    public Object doInHibernate(Session session)
-                            throws HibernateException, SQLException {
-
-                        Foo f = new Foo("myfoo");
-
-                        session.save(f);
-
-                        Bar b = new Bar("A");
-
-                        b.setFoo(f);
-                        f.getBarList().add(b);
-
-                        session.save(f);
-
-                        return f;
-                    }
-                });
-
     }
 
     /**

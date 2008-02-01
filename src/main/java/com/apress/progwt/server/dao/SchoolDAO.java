@@ -2,7 +2,6 @@ package com.apress.progwt.server.dao;
 
 import java.util.List;
 
-import com.apress.progwt.client.domain.Foo;
 import com.apress.progwt.client.domain.ForumPost;
 import com.apress.progwt.client.domain.Loadable;
 import com.apress.progwt.client.domain.ProcessType;
@@ -26,8 +25,6 @@ public interface SchoolDAO {
     Loadable get(Class<? extends Loadable> loadable, Long id);
 
     Loadable save(Loadable loadable);
-
-    Foo saveF();
 
     List<ProcessType> matchProcessType(String queryString);
 

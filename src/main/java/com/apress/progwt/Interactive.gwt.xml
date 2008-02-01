@@ -23,6 +23,14 @@
 	<entry-point class='com.apress.progwt.client.Interactive' />
 
 
+    <replace-with class="com.apress.progwt.client.college.gui.ext.ClientMouseImplMozilla">
+        <when-type-is class="com.apress.progwt.client.college.gui.ext.ClientMouseImpl" />
+        <any>
+            <when-property-is name="user.agent" value="gecko1_8" />
+            <when-property-is name="user.agent" value="gecko" />
+        </any>
+    </replace-with>
+
     <!-- No stylesheet here bc we do it with StyleInjection-->
     
     <!--no Google Maps here because that means it need to be included on EVERY GWT page-->

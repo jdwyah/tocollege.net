@@ -12,7 +12,6 @@ import com.apress.progwt.client.college.gui.ext.DblClickListener;
 import com.apress.progwt.client.consts.ConstHolder;
 import com.apress.progwt.client.ext.collections.GWTSortedMap;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Image;
@@ -63,25 +62,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         }
     }
 
-    private static List<String> backGroundList = new ArrayList<String>();
-
     static final String IMG_POSTFIX = "timeline/";
-
-    private static List<DateTimeFormat> labelFormatters = new ArrayList<DateTimeFormat>();
-
-    static final double MIN_HOUR = 60;
-    static final double MIN_DAY = MIN_HOUR * 24;
-    static final double MIN_YEAR = MIN_DAY * 365.25;
-    static final double MIN_CENTURY = MIN_YEAR * 100;
-    static final double MIN_3CENTURY = MIN_CENTURY * 3;
-    static final double MIN_3MONTH = MIN_DAY * 91.31;
-    static final double MIN_3YEAR = MIN_YEAR * 3;
-
-    static final double MIN_DECADE = MIN_YEAR * 10;
-
-    static final double MIN_MILL = MIN_YEAR * 1000;
-    static final double MIN_MONTH = MIN_DAY * 30.43;
-    static final double MIN_WEEK = MIN_DAY * 7;
 
     private static final int NUM_LABELS = 5;
     private static final int WINDOW_GUTTER = 7;
@@ -92,64 +73,6 @@ public class ZoomableTimeline<T> extends ViewPanel implements
     private static final int X_SPREAD = 600;
 
     private static final int Y_SPREAD = 17;
-    private static List<Double> zoomList = new ArrayList<Double>();
-
-    static {
-        // zoomList.add(new Double(1));
-        zoomList.add(new Double(1 / MIN_HOUR));
-        zoomList.add(new Double(1 / MIN_DAY));
-        zoomList.add(new Double(1 / MIN_WEEK));
-
-        zoomList.add(new Double(1 / MIN_MONTH));
-        zoomList.add(new Double(1 / MIN_3MONTH));
-
-        zoomList.add(new Double(1 / MIN_YEAR));
-        zoomList.add(new Double(1 / MIN_3YEAR));
-        zoomList.add(new Double(1 / MIN_DECADE));
-        zoomList.add(new Double(1 / MIN_CENTURY));
-
-        zoomList.add(new Double(1 / MIN_3CENTURY));
-
-        zoomList.add(new Double(1 / MIN_MILL));
-        //		
-        // Log.debug("\n\n\nMin Day "+MIN_DAY+"
-        // "+zoomList.get(1));
-        // Log.debug("\n\n\nMin Year "+MIN_YEAR+"
-        // "+zoomList.get(4));
-        // Log.debug("\n\n\nMin Decade "+MIN_DECADE+"
-        // "+zoomList.get(5));
-    }
-
-    static {
-
-        // need new image
-        backGroundList.add("hour");
-
-        backGroundList.add("hour");
-        backGroundList.add("day");
-        backGroundList.add("week");
-        backGroundList.add("3way");
-        backGroundList.add("month");
-        backGroundList.add("3way");
-        backGroundList.add("year");
-        backGroundList.add("decade");// 1970 30 yr offset
-        backGroundList.add("3century");// 1970 20 yr offset
-
-    }
-
-    static {
-        labelFormatters.add(DateTimeFormat.getFormat("HH:mm"));
-        labelFormatters.add(DateTimeFormat.getFormat("HH"));
-        labelFormatters.add(DateTimeFormat.getFormat("MMM d"));
-        labelFormatters.add(DateTimeFormat.getFormat("MMM, d yyyy"));// week
-        labelFormatters.add(DateTimeFormat.getFormat("MMMM yyyy"));
-        labelFormatters.add(DateTimeFormat.getFormat("yyyy"));
-        labelFormatters.add(DateTimeFormat.getFormat("yyyy"));
-        labelFormatters.add(DateTimeFormat.getFormat("yyyy"));
-        labelFormatters.add(DateTimeFormat.getFormat("yyyy"));
-        labelFormatters.add(DateTimeFormat.getFormat("yyyy"));
-        labelFormatters.add(DateTimeFormat.getFormat("yyyy"));
-    }
 
     private int height;
     private List<ProteanLabel> labelList = new ArrayList<ProteanLabel>();
@@ -174,6 +97,10 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     private ServiceCache serviceCache;
 
+    private ZoomLevel currentZoom;
+
+    private ZoomLevel oldZoom;
+
     public ZoomableTimeline(ServiceCache serviceCache, int width,
             int height) {
         super();
@@ -182,12 +109,15 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         this.width = width;
         init();
 
+        setStylePrimaryName("ZoomableTL");
+
         setPixelSize(width, height);
         setDoYTranslate(false);
 
         setDoZoom(true);
 
-        currentScale = ((Double) zoomList.get(5)).doubleValue();
+        currentZoom = ZoomLevel.Year;
+        currentScale = currentZoom.getScale();
 
         createDecorations();
         drawHUD();
@@ -356,10 +286,10 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         return X_SPREAD;
     }
 
-    private String getZoomStr(double scale) {
-        int index = zoomList.indexOf(new Double(scale));
-        return backGroundList.get(index);
-    }
+    // private String getZoomStr(double scale) {
+    // int index = zoomList.indexOf(new Double(scale));
+    // return backGroundList.get(index);
+    // }
 
     private void init() {
         yStart = 25;
@@ -474,17 +404,33 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     }
 
-    // @Override
+    protected void setBackground(ZoomLevel zoomLevel) {
+
+        if (oldZoom != null) {
+            removeStyleDependentName(oldZoom.getCssClass());
+        }
+        addStyleDependentName(currentZoom.getCssClass());
+
+        Log.debug("SetBackground: " + currentZoom.getCssClass() + "::"
+                + getStyleName());
+    }
+
+    @Override
     protected void setBackground(double scale) {
 
-        int index = zoomList.indexOf(new Double(scale));
-
-        String img = backGroundList.get(index);
-
-        Log.debug("setBack " + scale + " " + index + " " + img);
-
-        DOM.setStyleAttribute(getElement(), "backgroundImage", "url("
-                + ConstHolder.getImgLoc(IMG_POSTFIX) + img + ".png)");
+        ZoomLevel newZoom = ZoomLevel.getZoomForScale(scale);
+        setBackground(newZoom);
+        //
+        // int index = zoomList.indexOf(new Double(scale));
+        //
+        // String img = backGroundList.get(index);
+        //
+        // Log.debug("setBack " + scale + " " + index + " " + img);
+        //
+        // addStyleDependentName(img);
+        //
+        // DOM.setStyleAttribute(getElement(), "backgroundImage", "url("
+        // + ConstHolder.getImgLoc(IMG_POSTFIX) + img + ".png)");
     }
 
     public Date setDateFromDrag(TimeLineObj tlo,
@@ -560,51 +506,59 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     private void updateLabels() {
 
-        int index = zoomList.indexOf(new Double(currentScale));
+        // int index = zoomList.indexOf(new Double(currentScale));
 
         int ii = getCenterX();
         Date d2 = TimeLineObj.getDateFromViewPanelX(ii);
 
-        whenlabel.setText(((DateTimeFormat) labelFormatters.get(3))
-                .format(d2));
+        whenlabel.setText(ZoomLevel.Month.getDfFormat().format(d2));
 
         // Log.debug("ZoomableTimeline.updateLabels curback
         // "+-getCurbackX()+" "+" "+d2+"
         // ii "+ii+" "+backGroundList.get(index));
 
-        DateTimeFormat format = (DateTimeFormat) labelFormatters
-                .get(index);
+        DateTimeFormat format = currentZoom.getDfFormat();
         for (ProteanLabel label : labelList) {
-            label.setCenter(d2, index, format);
+            label.setCenter(d2, currentZoom);
         }
     }
 
     public void zoom(int upDown) {
 
         double oldScale = currentScale;
+        oldZoom = currentZoom;
 
-        int index = zoomList.indexOf(new Double(oldScale));
+        // int index = zoomList.indexOf(new Double(oldScale));
+        //
+        // // Log.debug("ZoomableTL zoom: index " + index + " next "
+        // // + (index + upDown));
+        // index += upDown;
+        //
+        // index = index < 0 ? 0 : index;
+        //
+        // // TODO !!!!!!!
+        // // NOTE the 2 this makes us unable to go up to Millenium, which
+        // is
+        // // only there to give us a higherScale
+        // index = index >= zoomList.size() - 1 ? zoomList.size() - 2
+        // : index;
 
-        // Log.debug("ZoomableTL zoom: index " + index + " next "
-        // + (index + upDown));
-        index += upDown;
+        Log.debug("previous zoom: " + currentZoom + " css: "
+                + currentZoom.getCssClass());
 
-        index = index < 0 ? 0 : index;
+        ZoomLevel newZoom = null;
+        if (upDown > 0) {
+            newZoom = ZoomLevel.zoomOutOneFrom(currentZoom);
+        } else {
+            newZoom = ZoomLevel.zoomInOneFrom(currentZoom);
+        }
+        if (newZoom != null) {
+            currentZoom = newZoom;
+        }
+        currentScale = currentZoom.getScale();
 
-        // TODO !!!!!!!
-        // NOTE the 2 this makes us unable to go up to Millenium, which is
-        // only there to give us a higherScale
-        index = index >= zoomList.size() - 1 ? zoomList.size() - 2
-                : index;
-
-        currentScale = ((Double) zoomList.get(index)).doubleValue();
-
-        // Log.debug("ZoomableTL cur " + currentScale + " old " +
-        // oldScale + " "
-        // + currentScale / oldScale);
-        // Log.debug("ZoomableTL cur " + getZoomStr(currentScale)
-        // + " old "
-        // + getZoomStr(oldScale));
+        Log.debug("new zoom: " + currentZoom + " css: "
+                + currentZoom.getCssClass());
 
         initYSlots();
 
