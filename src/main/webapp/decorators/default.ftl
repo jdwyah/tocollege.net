@@ -10,7 +10,8 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <meta name="description" content="Applying to college? Track your applications & connect with like minded individuals!" />
   <meta name="keywords" content="College,Application,Social,Web 2.0,GWT" />
-  <meta name="author" content="Jeff Dwyer/" />
+  <meta name="author" content="Jeff Dwyer/" />  
+  <meta name="verify-v1" content="F6Lj9etrCbKU6HeNZuhWB57qxSeqZOKCPHEMOOUdr6A=" >
   
 <link rel="icon" href="http://www.tocollege.net/favicon.ico" type="image/vnd.microsoft.icon" />
 <link rel="shortcut icon" href="http://www.tocollege.net/favicon.ico" type="image/vnd.microsoft.icon" />

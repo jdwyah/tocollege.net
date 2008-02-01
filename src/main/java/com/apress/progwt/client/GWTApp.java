@@ -4,6 +4,8 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.LoginService;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.status.StatusPanel;
+import com.apress.progwt.client.consts.ConstHolder;
+import com.apress.progwt.client.consts.images.Images;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.apress.progwt.client.service.remote.GWTSchoolService;
 import com.apress.progwt.client.service.remote.GWTSchoolServiceAsync;
@@ -135,6 +137,10 @@ public class GWTApp {
 
     private static String getPreLoadID(int id) {
         return "gwt-loading-" + id;
+    }
+
+    protected void initConstants() {
+        ConstHolder.images = (Images) GWT.create(Images.class);
     }
 
     protected void loadError(Exception e) {

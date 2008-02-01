@@ -3,13 +3,12 @@ package com.apress.progwt.client.college.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.allen_sauer.gwt.dragdrop.client.DragEndEvent;
-import com.allen_sauer.gwt.dragdrop.client.DragHandler;
-import com.allen_sauer.gwt.dragdrop.client.DragStartEvent;
-import com.allen_sauer.gwt.dragdrop.client.IndexedDragEndEvent;
-import com.allen_sauer.gwt.dragdrop.client.PickupDragController;
-import com.allen_sauer.gwt.dragdrop.client.VetoDragException;
-import com.allen_sauer.gwt.dragdrop.client.drop.IndexedDropController;
+import com.allen_sauer.gwt.dnd.client.DragEndEvent;
+import com.allen_sauer.gwt.dnd.client.DragHandler;
+import com.allen_sauer.gwt.dnd.client.DragStartEvent;
+import com.allen_sauer.gwt.dnd.client.PickupDragController;
+import com.allen_sauer.gwt.dnd.client.VetoDragException;
+import com.allen_sauer.gwt.dnd.client.drop.IndexedDropController;
 import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.ext.YesNoDialog;
@@ -29,6 +28,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -50,7 +50,8 @@ public class MyRankings extends Composite implements DragHandler,
         VerticalPanel mainPanel = new VerticalPanel();
         rankPanelPanel = new VerticalPanel();
 
-        entryDragController = new PickupDragController(null, false);
+        entryDragController = new PickupDragController(RootPanel.get(),
+                false);
 
         IndexedDropController rankDropController = new IndexedDropController(
                 rankPanelPanel);
@@ -137,10 +138,12 @@ public class MyRankings extends Composite implements DragHandler,
                         + ((DragEndEvent) event).toString());
 
         try {
-            IndexedDragEndEvent indexedEvent = (IndexedDragEndEvent) event;
+
             CollegeEntry entry = (CollegeEntry) event.getSource();
 
-            saveEntry(entry, indexedEvent.getIndex());
+            int index = rankPanelPanel.getWidgetIndex(entry);
+            Log.debug("new index " + index);
+            saveEntry(entry, index);
 
         } catch (ClassCastException e) {
             Log.error("MyPage: " + e);

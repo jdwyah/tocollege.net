@@ -22,7 +22,13 @@ import com.apress.progwt.client.domain.generated.AbstractUser;
 public class User extends AbstractUser implements Serializable, Loadable,
         ForumTopic {
 
+    /**
+     * getter speed optimization
+     */
     private transient List<ProcessType> nonStatusProcessTypes;
+    /**
+     * getter speed optimization
+     */
     private transient List<ProcessType> statusProcessTypes;
 
     public User() {
@@ -94,6 +100,11 @@ public class User extends AbstractUser implements Serializable, Loadable,
         return rtn;
     }
 
+    /**
+     * Cache this list to speed things up
+     * 
+     * @return
+     */
     public List<ProcessType> getNonStatusProcessTypes() {
         if (null == nonStatusProcessTypes) {
             nonStatusProcessTypes = getProcessTypes(false);
@@ -101,6 +112,11 @@ public class User extends AbstractUser implements Serializable, Loadable,
         return nonStatusProcessTypes;
     }
 
+    /**
+     * Cache this list to speed things up
+     * 
+     * @return
+     */
     public List<ProcessType> getStatusProcessTypes() {
         if (null == statusProcessTypes) {
             statusProcessTypes = getProcessTypes(true);

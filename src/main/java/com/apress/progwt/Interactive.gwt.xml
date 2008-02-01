@@ -8,15 +8,23 @@
     
     <inherits name='com.google.gwt.gears.Gears'/>    
     <inherits name="com.google.gwt.maps.GoogleMaps" />  
+    
+    <!-- gwt-incubator ImmutableResourceBundle & StyleInjector -->
+    <!-- <inherits name="com.google.gwt.libideas.ImmutableResourceBundle" /> -->
+    <inherits name="com.google.gwt.libideas.StyleInjector" />
 
-    <inherits name='com.allen_sauer.gwt.dragdrop.DragAndDrop'/>
+    <!-- 'com.allen_sauer.gwt.dnd.gwt-dnd --> 
+    <inherits name='com.allen_sauer.gwt.dnd.gwt-dnd'/>   
+    
+    <!-- com.allen_sauer.gwt.log.gwt-log --> 
     <inherits name="com.allen_sauer.gwt.log.gwt-log" />
 
 	<!-- Specify the app entry point class.                   -->
 	<entry-point class='com.apress.progwt.client.Interactive' />
 
 
-	<stylesheet src="css/gwtstyles.css" />
+    <!-- No stylesheet here bc we do it with StyleInjection-->
+    
     <!--no Google Maps here because that means it need to be included on EVERY GWT page-->
     
     <extend-property name="log_level" values="DEBUG" />

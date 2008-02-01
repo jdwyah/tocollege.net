@@ -1,5 +1,7 @@
 package com.apress.progwt.client.college.gui.timeline;
 
+import com.apress.progwt.client.consts.ConstHolder;
+import com.google.gwt.user.client.ui.Image;
 
 public class TimeLineObjFactory {
 
@@ -16,7 +18,7 @@ public class TimeLineObjFactory {
      * @return
      */
     public static TimelineRemembersPosition getWidget(
-            ZoomableTimeline zoomableTimeline, TimeLineObj tlo) {
+            ZoomableTimeline<?> zoomableTimeline, TimeLineObj<?> tlo) {
 
         // if (tlo.getHasDate() instanceof HippoDate) {
         // TLORangeWidget tlow = new TLORangeWidget(zoomableTimeline,
@@ -47,6 +49,8 @@ public class TimeLineObjFactory {
         // tlow.addMouseWheelListener(zoomableTimeline);
         // return tlow;
         // }
-        return new TLOWrapper(zoomableTimeline, tlo, null);
+
+        Image image = ConstHolder.images.bullet_blue().createImage();
+        return new TLOWrapper(zoomableTimeline, tlo, image);
     }
 }

@@ -25,7 +25,7 @@ public class MyPage extends Composite implements TabListener,
 
     private MyRankings myRankings;
 
-    private MyApplications myApplications;
+    private MyApplicationTimeline myApplications;
 
     private MyDecision myPriorities;
 
@@ -40,7 +40,7 @@ public class MyPage extends Composite implements TabListener,
         myRankings = new MyRankings(serviceCache);
         mainPanel.add(myRankings, "My Rankings");
 
-        myApplications = new MyApplications(serviceCache);
+        myApplications = new MyApplicationTimeline(serviceCache);
 
         mainPanel.add(myApplications, "My Applications");
 

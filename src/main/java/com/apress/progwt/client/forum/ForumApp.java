@@ -32,6 +32,7 @@ public class ForumApp extends GWTApp implements HistoryListener {
         super(pageID);
 
         initServices();
+        initConstants();
 
         String uniqueForumID = getParam("uniqueForumID");
 

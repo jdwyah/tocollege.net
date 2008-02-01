@@ -18,7 +18,7 @@ public class TLOWrapper<T> extends FocusPanelExt implements
 
     private Image image;
 
-    public TLOWrapper(ZoomableTimeline timeline,
+    public TLOWrapper(ZoomableTimeline<T> timeline,
             final TimeLineObj<T> tlo, Image image) {
         this.tlo = tlo;
         this.top = 0;
@@ -26,8 +26,12 @@ public class TLOWrapper<T> extends FocusPanelExt implements
 
         HorizontalPanel panel = new HorizontalPanel();
 
-        label = new Label(tlo.getObject().toString(), false);
+        label = new Label(tlo.getHasDate().getTitle(), false);
 
+        TLORangeEdge edge = new TLORangeEdge(timeline, tlo, this, true,
+                image);
+
+        panel.add(edge);
         panel.add(label);
 
         addClickListener(timeline);

@@ -73,11 +73,6 @@ public class ToCollegeApp extends GWTApp {
         // });
     }
 
-    private void initConstants() {
-        // ConstHolder.myConstants = (Consts) GWT.create(Consts.class);
-        // ConstHolder.images = (Images) GWT.create(Images.class);
-    }
-
     protected void error(Exception e) {
 
         Log.error("e: " + e);

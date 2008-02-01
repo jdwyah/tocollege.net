@@ -10,7 +10,6 @@ import com.apress.progwt.client.college.gui.RemembersPosition;
 import com.apress.progwt.client.college.gui.ViewPanel;
 import com.apress.progwt.client.college.gui.ext.DblClickListener;
 import com.apress.progwt.client.consts.ConstHolder;
-import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.ext.collections.GWTSortedMap;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.DOM;
@@ -27,8 +26,8 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Jeff Dwyer
  * 
  */
-public class ZoomableTimeline extends ViewPanel implements ClickListener,
-        DblClickListener {
+public class ZoomableTimeline<T> extends ViewPanel implements
+        ClickListener, DblClickListener {
 
     /**
      * just wrap the two backdrop click listeners together fopr simplicity
@@ -161,7 +160,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
     private TimelineRemembersPosition selectedRP;
     private CheckBox showCreated;
 
-    private GWTSortedMap<TimeLineObj<ProcessType>, Object> sorted = new GWTSortedMap<TimeLineObj<ProcessType>, Object>();
+    private GWTSortedMap<TimeLineObj<T>, Object> sorted = new GWTSortedMap<TimeLineObj<T>, Object>();
 
     private Label whenlabel;
     private int width;
@@ -200,12 +199,12 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
     }
 
-    public void add(List<TimeLineObj<ProcessType>> timelines) {
+    public void add(List<TimeLineObj<T>> timelines) {
 
         Log.debug("!!!!!Zoom add " + timelines.size() + " sorted size "
                 + sorted.size());
 
-        for (TimeLineObj<ProcessType> timeLineObj : timelines) {
+        for (TimeLineObj<T> timeLineObj : timelines) {
             sorted.put(timeLineObj, null);
         }
 
@@ -214,7 +213,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         Log.debug("addObj " + sorted.size());
 
-        for (TimeLineObj<ProcessType> tlo : sorted.keySet()) {
+        for (TimeLineObj<T> tlo : sorted.keySet()) {
 
             // int top = (int) (Math.random()*(double)height);
 
@@ -240,7 +239,7 @@ public class ZoomableTimeline extends ViewPanel implements ClickListener,
 
         if (!sorted.isEmpty()) {
 
-            TimeLineObj<ProcessType> last = sorted.getKeyList().get(
+            TimeLineObj<T> last = sorted.getKeyList().get(
                     sorted.size() - 1);
             Log.debug("last " + last);
             if (last != null) {

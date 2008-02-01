@@ -1,11 +1,13 @@
 package com.apress.progwt.client.consts;
 
 import com.apress.progwt.client.Interactive;
+import com.apress.progwt.client.consts.images.Images;
 import com.google.gwt.core.client.GWT;
 
 public class ConstHolder {
 
     public static Images images;
+    public static Resources resources;
 
     public static String getImgLoc(String img_postfix) {
         if (GWT.isScript()) {
