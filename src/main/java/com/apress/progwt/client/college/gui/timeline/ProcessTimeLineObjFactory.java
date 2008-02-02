@@ -1,9 +1,14 @@
 package com.apress.progwt.client.college.gui.timeline;
 
 import com.apress.progwt.client.consts.ConstHolder;
+import com.apress.progwt.client.gui.timeline.TLOWrapper;
+import com.apress.progwt.client.gui.timeline.TimeLineObj;
+import com.apress.progwt.client.gui.timeline.TimeLineObjFactory;
+import com.apress.progwt.client.gui.timeline.TimelineRemembersPosition;
+import com.apress.progwt.client.gui.timeline.ZoomableTimeline;
 import com.google.gwt.user.client.ui.Image;
 
-public class TimeLineObjFactory {
+public class ProcessTimeLineObjFactory implements TimeLineObjFactory {
 
     /**
      * mea culpa. putting all the instanceof stuff in one place. Is there
@@ -17,7 +22,7 @@ public class TimeLineObjFactory {
      * @param tlo
      * @return
      */
-    public static TimelineRemembersPosition getWidget(
+    public TimelineRemembersPosition getWidget(
             ZoomableTimeline<?> zoomableTimeline, TimeLineObj<?> tlo) {
 
         // if (tlo.getHasDate() instanceof HippoDate) {

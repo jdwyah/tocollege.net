@@ -451,6 +451,23 @@ TABLE.longRange TD {
 	font-weight: bold;
 }
 
+
+.ContextMenu {
+    z-index: 9999;    
+    background-color: #CFE0F5;
+    filter: alpha(opacity =                 88);
+    -moz-opacity: .88;
+    opacity: .88;
+    -khtml-opacity: .88;
+    color: white;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+}
+.ApplicationSelector-selected {
+	font-weight: bolder;
+}
 .ZoomableTL-tl_hour {
 	background-image: url('%tl_hour%');
 }

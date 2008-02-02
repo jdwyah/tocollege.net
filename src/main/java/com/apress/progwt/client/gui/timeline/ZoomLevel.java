@@ -1,4 +1,4 @@
-package com.apress.progwt.client.college.gui.timeline;
+package com.apress.progwt.client.gui.timeline;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 

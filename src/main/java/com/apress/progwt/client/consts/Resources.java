@@ -8,6 +8,19 @@ import com.google.gwt.libideas.resources.client.TextResource;
  * 
  * Resources live in /src/main/resources/com/apress/progwt/client/consts/
  * 
+ * In general we'll use the Images ImageBundle class for images. These
+ * images need to be inserted directly into CSS files though, sinec we're
+ * using them as background-images.
+ * 
+ * Our onModuleLoad() code will need to call:
+ * 
+ * ConstHolder.resources = (Resources) GWT.create(Resources.class);
+ * StyleInjector.injectStylesheet(ConstHolder.resources.gwtstyles()
+ * .getText(), ConstHolder.resources);
+ * 
+ * StyleInjector will read the css file and replace occurrences of the
+ * method names in this class with their resource equivalent.
+ * 
  * @author Jeff Dwyer
  * 
  */

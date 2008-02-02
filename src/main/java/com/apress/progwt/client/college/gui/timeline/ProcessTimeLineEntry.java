@@ -5,6 +5,7 @@ import java.util.Date;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.domain.ProcessValue;
+import com.apress.progwt.client.gui.timeline.HasDate;
 
 /**
  * Wrap a process type and value together.

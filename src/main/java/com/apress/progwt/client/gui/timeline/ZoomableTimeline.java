@@ -1,11 +1,10 @@
-package com.apress.progwt.client.college.gui.timeline;
+package com.apress.progwt.client.gui.timeline;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.RemembersPosition;
 import com.apress.progwt.client.college.gui.ViewPanel;
 import com.apress.progwt.client.college.gui.ext.DblClickListener;
@@ -19,6 +18,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
+ * A generic timeline. It is able to be reused for many different sorts of
+ * parameterized TimeLineObj types.
+ * 
  * NOTE: make sure you understand the moveOccurred() and objectHasMoved()
  * callbacks
  * 
@@ -29,43 +31,43 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         ClickListener, DblClickListener {
 
     /**
-     * just wrap the two backdrop click listeners together fopr simplicity
+     * Wrap the two backdrop click listeners together and send events to
+     * registered BackdropListener.
      * 
      * @author Jeff Dwyer
      * 
      */
-    private class BackdropClickListener implements ClickListener,
+    private class BackdropClickConverter implements ClickListener,
             DblClickListener {
 
         public void onClick(Widget sender) {
 
             if (getFocusBackdrop().getLastClickEventCtrl()) {
-                openContextMenu();
+                fireUserEvent();
             } else {
                 setSelected(null, false);
             }
         }
 
         public void onDblClick(Widget sender) {
-            openContextMenu();
+
+            fireUserEvent();
         }
 
-        private void openContextMenu() {
+        private void fireUserEvent() {
 
-            // int x = getFocusBackdrop().getLastClickClientX();
-            // int y = getFocusBackdrop().getLastClickClientY();
-
-            // ContextMenu p = new TimelineContextMenu(manager,
-            // ZoomableTimeline.this, x);
-            // p.show(x, y);
-
+            if (backdropListener != null) {
+                int x = getFocusBackdrop().getLastClickClientX();
+                int y = getFocusBackdrop().getLastClickClientY();
+                backdropListener.onBackdropUserEvent(x, y);
+            }
         }
     }
 
-    static final String IMG_POSTFIX = "timeline/";
-
+    private BackdropListener backdropListener;
     private static final int NUM_LABELS = 5;
     private static final int WINDOW_GUTTER = 7;
+
     /**
      * This needs to correspond to the width of the background images.
      * It's basically an extra zoom
@@ -73,6 +75,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
     private static final int X_SPREAD = 600;
 
     private static final int Y_SPREAD = 17;
+    private ZoomLevel currentZoom;
 
     private int height;
     private List<ProteanLabel> labelList = new ArrayList<ProteanLabel>();
@@ -80,33 +83,34 @@ public class ZoomableTimeline<T> extends ViewPanel implements
     private Image magBig;
     private Image magSmall;
 
+    private ZoomLevel oldZoom;
+
     private TimelineRemembersPosition selectedRP;
+
     private CheckBox showCreated;
-
     private GWTSortedMap<TimeLineObj<T>, Object> sorted = new GWTSortedMap<TimeLineObj<T>, Object>();
-
+    private TimeLineObjFactory timeLineObjFactory;
     private Label whenlabel;
+
     private int width;
 
     private int yEnd;
+
     private int[] ySlots;
+
     private boolean ySlotsDirty = false;
+
     private int ySpread;
 
     private int yStart;
 
-    private ServiceCache serviceCache;
-
-    private ZoomLevel currentZoom;
-
-    private ZoomLevel oldZoom;
-
-    public ZoomableTimeline(ServiceCache serviceCache, int width,
-            int height) {
+    public ZoomableTimeline(int width, int height,
+            TimeLineObjFactory timeLineObjFactory) {
         super();
-        this.serviceCache = serviceCache;
+
         this.height = height;
         this.width = width;
+        this.timeLineObjFactory = timeLineObjFactory;
         init();
 
         setStylePrimaryName("ZoomableTL");
@@ -123,18 +127,27 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         drawHUD();
         setBackground(currentScale);
 
-        BackdropClickListener bdClickListener = new BackdropClickListener();
+        BackdropClickConverter bdClickListener = new BackdropClickConverter();
         getFocusBackdrop().addDblClickListener(bdClickListener);
         getFocusBackdrop().addClickListener(bdClickListener);
 
     }
 
-    public void add(List<TimeLineObj<T>> timelines) {
+    public void setBackdropListener(BackdropListener backdropListener) {
+        this.backdropListener = backdropListener;
+    }
 
-        Log.debug("!!!!!Zoom add " + timelines.size() + " sorted size "
+    /**
+     * Append more TLOs to the current display.
+     * 
+     * @param timeObjects
+     */
+    public void add(List<TimeLineObj<T>> timeObjects) {
+
+        Log.debug("!!!!!Zoom add " + timeObjects.size() + " sorted size "
                 + sorted.size());
 
-        for (TimeLineObj<T> timeLineObj : timelines) {
+        for (TimeLineObj<T> timeLineObj : timeObjects) {
             sorted.put(timeLineObj, null);
         }
 
@@ -147,7 +160,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
             // int top = (int) (Math.random()*(double)height);
 
-            TimelineRemembersPosition rp = TimeLineObjFactory.getWidget(
+            TimelineRemembersPosition rp = timeLineObjFactory.getWidget(
                     this, tlo);
 
             int slot = getBestSlotFor(rp);
@@ -167,6 +180,18 @@ public class ZoomableTimeline<T> extends ViewPanel implements
             addObject(ll);
         }
 
+        setCenterOfView();
+
+        updateLabels();
+        redraw();
+    }
+
+    /**
+     * Try to center the display. Look at our TLO's and pick the last one,
+     * then center on that. If none exist, just center on today.
+     */
+    private void setCenterOfView() {
+
         if (!sorted.isEmpty()) {
 
             TimeLineObj<T> last = sorted.getKeyList().get(
@@ -176,14 +201,15 @@ public class ZoomableTimeline<T> extends ViewPanel implements
                 // Log.debug("move to "+last.getLeft()+"
                 // "+TimeLineObj.getDateForLeft(last.getLeft()));
                 centerOn(last.getLeft(), 0);
+                return;
             }
         }
 
-        updateLabels();
-        redraw();
+        // if no objects, center on today
+        centerOn(TimeLineObj.getLeftForDate(new Date()), 0);
     }
 
-    // @Override
+    @Override
     public void clear() {
         super.clear();
         sorted.clear();
@@ -267,7 +293,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         return -1;
     }
 
-    // @Override
+    @Override
     protected int getHeight() {
         return height;
     }
@@ -276,20 +302,15 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         return this;
     }
 
-    // @Override
+    @Override
     protected int getWidth() {
         return width;
     }
 
-    // @Override
+    @Override
     protected int getXSpread() {
         return X_SPREAD;
     }
-
-    // private String getZoomStr(double scale) {
-    // int index = zoomList.indexOf(new Double(scale));
-    // return backGroundList.get(index);
-    // }
 
     private void init() {
         yStart = 25;
@@ -299,6 +320,11 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         ySlots = new int[(yEnd - yStart) / ySpread];
         initYSlots();
     }
+
+    // private String getZoomStr(double scale) {
+    // int index = zoomList.indexOf(new Double(scale));
+    // return backGroundList.get(index);
+    // }
 
     /**
      * force a re-jiggering of the yslots on the next redraw()
@@ -319,7 +345,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         }
     }
 
-    // @Override
+    @Override
     protected void moveOccurredCallback() {
 
         // Log.debug("ZoomableTimeline.moveOccurredCallback
@@ -383,7 +409,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     }
 
-    // @Override
+    @Override
     protected void postZoomCallback(double currentScale) {
         updateLabels();
 
@@ -404,6 +430,18 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     }
 
+    @Override
+    protected void setBackground(double scale) {
+        ZoomLevel newZoom = ZoomLevel.getZoomForScale(scale);
+        setBackground(newZoom);
+    }
+
+    /**
+     * Use the StyleInjection css classes to get the inline css data
+     * images set as our background.
+     * 
+     * @param zoomLevel
+     */
     protected void setBackground(ZoomLevel zoomLevel) {
 
         if (oldZoom != null) {
@@ -413,24 +451,6 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
         Log.debug("SetBackground: " + currentZoom.getCssClass() + "::"
                 + getStyleName());
-    }
-
-    @Override
-    protected void setBackground(double scale) {
-
-        ZoomLevel newZoom = ZoomLevel.getZoomForScale(scale);
-        setBackground(newZoom);
-        //
-        // int index = zoomList.indexOf(new Double(scale));
-        //
-        // String img = backGroundList.get(index);
-        //
-        // Log.debug("setBack " + scale + " " + index + " " + img);
-        //
-        // addStyleDependentName(img);
-        //
-        // DOM.setStyleAttribute(getElement(), "backgroundImage", "url("
-        // + ConstHolder.getImgLoc(IMG_POSTFIX) + img + ".png)");
     }
 
     public Date setDateFromDrag(TimeLineObj tlo,
@@ -495,7 +515,12 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     }
 
-    // @Override
+    public void showOnly(List<TimeLineObj<T>> timeObjects) {
+        clear();
+        add(timeObjects);
+    }
+
+    @Override
     protected void unselect() {
         // editWidget.setVisible(false);
         if (selectedRP != null) {
@@ -566,14 +591,24 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     }
 
-    // @Override
+    @Override
     public void zoomIn() {
 
         zoom(-1);
     }
 
-    // @Override
+    @Override
     public void zoomOut() {
         zoom(1);
+    }
+
+    /**
+     * Helper method to get the date from an x-coordinate.
+     * 
+     * @param x
+     * @return
+     */
+    public Date getDateFromGUIX(int x) {
+        return TimeLineObj.getDateFromViewPanelX(getPositionXFromGUIX(x));
     }
 }

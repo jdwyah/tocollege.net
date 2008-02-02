@@ -68,6 +68,8 @@ public class Interactive implements EntryPoint {
     /**
      * Initial entry point. Make sure our exception handler is set before
      * we begin.
+     * 
+     * Perform StyleInjection. See Resources.java for details.
      */
     public void onModuleLoad() {
 
