@@ -123,7 +123,7 @@ public class InvitationServiceImpl implements InvitationService {
                             mimeMessage);
                     message.setTo(invitation.getEmail());
                     message.setFrom(from);
-                    message.setSubject("MyHippocampus Invitation");
+                    message.setSubject("ToCollege.net Invitation");
 
                     Map<String, Object> model = new HashMap<String, Object>();
                     model.put("inviter", invitation.getInviter());

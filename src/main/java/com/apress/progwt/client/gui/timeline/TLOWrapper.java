@@ -14,25 +14,47 @@ public class TLOWrapper<T> extends FocusPanelExt implements
 
     private TimeLineObj<T> tlo;
     private int top;
-    private Label label;
 
-    private Image image;
+    private Image dragImage;
+    private Label label;
+    private Image mainImage;
 
     public TLOWrapper(ZoomableTimeline<T> timeline,
-            final TimeLineObj<T> tlo, Image image) {
+            final TimeLineObj<T> tlo, Image dragImage, Image mainImage) {
+        this(timeline, tlo, dragImage, mainImage, null);
+    }
+
+    public TLOWrapper(ZoomableTimeline<T> timeline,
+            final TimeLineObj<T> tlo, Image dragImage, Label mainLabel) {
+        this(timeline, tlo, dragImage, null, mainLabel);
+    }
+
+    public TLOWrapper(ZoomableTimeline<T> timeline,
+            final TimeLineObj<T> tlo, Image dragImage, Image mainImage,
+            Label mainLabel) {
         this.tlo = tlo;
         this.top = 0;
-        this.image = image;
+        this.dragImage = dragImage;
+        this.mainImage = mainImage;
 
         HorizontalPanel panel = new HorizontalPanel();
 
-        label = new Label(tlo.getHasDate().getTitle(), false);
+        if (mainLabel == null) {
+            label = new Label(tlo.getHasDate().getTitle(), false);
+        } else {
+            label = mainLabel;
+        }
 
         TLORangeEdge edge = new TLORangeEdge(timeline, tlo, this, true,
-                image);
+                dragImage);
 
         panel.add(edge);
-        panel.add(label);
+
+        if (mainImage == null) {
+            panel.add(label);
+        } else {
+            panel.add(mainImage);
+        }
 
         addClickListener(timeline);
         addDblClickListener(timeline);
@@ -59,12 +81,18 @@ public class TLOWrapper<T> extends FocusPanelExt implements
 
     public void addMouseWheelListener(MouseWheelListener listener) {
         label.addMouseWheelListener(listener);
-        image.addMouseWheelListener(listener);
+        dragImage.addMouseWheelListener(listener);
+        if (mainImage != null) {
+            mainImage.addMouseWheelListener(listener);
+        }
     }
 
     public void removeMouseWheelListener(MouseWheelListener listener) {
-        image.removeMouseWheelListener(listener);
+        dragImage.removeMouseWheelListener(listener);
         label.removeMouseWheelListener(listener);
+        if (mainImage != null) {
+            mainImage.removeMouseWheelListener(listener);
+        }
     }
 
     public void setTop(int top) {

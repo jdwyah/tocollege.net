@@ -155,7 +155,7 @@ public class UserServiceImpl implements UserService {
      * lowercase usernames before creation
      * 
      * @return
-     * @throws HippoBusinessException
+     * @throws BusinessException
      */
     public User createUser(String username, String userpass,
             String email, boolean superV, Date dateCreated,

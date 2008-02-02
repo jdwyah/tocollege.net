@@ -9,7 +9,7 @@ public interface TimelineRemembersPosition extends RemembersPosition {
 
     void updateTitle();
 
-    void addStyleName(String string);
+    void addStyleDependentName(String string);
 
-    void removeStyleName(String string);
+    void removeStyleDependentName(String string);
 }

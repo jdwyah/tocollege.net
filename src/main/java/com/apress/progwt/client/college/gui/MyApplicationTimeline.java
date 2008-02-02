@@ -6,13 +6,23 @@ import java.util.List;
 import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.ext.ContextMenu;
+import com.apress.progwt.client.college.gui.ext.H2;
+import com.apress.progwt.client.college.gui.timeline.ProcessTimeLineEntry;
+import com.apress.progwt.client.college.gui.timeline.ProcessTimeLineObjFactory;
 import com.apress.progwt.client.college.gui.timeline.ProcessTimeline;
+import com.apress.progwt.client.college.gui.timeline.TimelineController;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.ProcessType;
+import com.apress.progwt.client.domain.ProcessValue;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.domain.commands.SaveProcessCommand;
+import com.apress.progwt.client.domain.commands.SiteCommand;
+import com.apress.progwt.client.gui.timeline.TimeLineObj;
+import com.apress.progwt.client.gui.timeline.TimeLineObjFactory;
+import com.apress.progwt.client.rpc.StdAsyncCallback;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -25,7 +35,8 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Jeff Dwyer
  * 
  */
-public class MyApplicationTimeline extends Composite implements MyPageTab {
+public class MyApplicationTimeline extends Composite implements
+        MyPageTab, TimelineController {
 
     // private User thisUser;
     private ServiceCache serviceCache;
@@ -37,6 +48,10 @@ public class MyApplicationTimeline extends Composite implements MyPageTab {
     private ProcessTypePanel processTypePanel;
 
     private User lastUser;
+
+    private Application currentApplication;
+
+    private TimeLineObjFactory timelineObjFactory = new ProcessTimeLineObjFactory();
 
     public MyApplicationTimeline(ServiceCache serviceCache) {
 
@@ -63,42 +78,48 @@ public class MyApplicationTimeline extends Composite implements MyPageTab {
     /**
      * Hold all ProcessType and create new TLO's when they're chosen.
      * 
+     * Make them draggable, so they can eb drgged onto the timeline, but
+     * don't make them drggable if they'll be used in the context menu.
+     * 
      * @author Jeff Dwyer
      * 
      */
     private class ProcessTypePanel extends Composite {
         private VerticalPanel mainPanel;
-        private Date selectedDate;
+        private Date date;
+        private ClickListener allClicks;
 
         public ProcessTypePanel() {
-            this(new Date());
+            this(new Date(), null);
         }
 
-        public ProcessTypePanel(Date selectedDate) {
-            this.selectedDate = selectedDate;
+        public ProcessTypePanel(Date date, ClickListener allClicks) {
+            this.date = date;
+            this.allClicks = allClicks;
             mainPanel = new VerticalPanel();
             initWidget(mainPanel);
+
         }
 
         public void load(User user) {
 
             mainPanel.clear();
-            mainPanel.add(new HTML("<hr>"));
-            mainPanel.add(new Label("Process Types"));
+
+            mainPanel.add(new H2("Application Events"));
+
             List<ProcessType> processTypes = user.getProcessTypes();
 
             for (final ProcessType processType : processTypes) {
 
-                final Label processLabel = new Label(processType
-                        .getName());
-                processLabel.setStylePrimaryName("ProcessLabel");
-                processLabel.addClickListener(new ClickListener() {
-                    public void onClick(Widget sender) {
-                        Log.info("create " + processType + " on date "
-                                + selectedDate);
-                    }
-                });
+                ProcessLabel processLabel = new ProcessLabel(processType,
+                        MyApplicationTimeline.this, date);
 
+                if (allClicks != null) {
+                    processLabel.addClickListener(allClicks);
+                } else {
+                    timeline.getDragController().makeDraggable(
+                            processLabel);
+                }
                 mainPanel.add(processLabel);
             }
         }
@@ -127,6 +148,7 @@ public class MyApplicationTimeline extends Composite implements MyPageTab {
             List<Application> applications = user.getSchoolRankings();
 
             mainPanel.clear();
+            mainPanel.add(new H2("Applications"));
 
             for (final Application app : applications) {
 
@@ -153,6 +175,7 @@ public class MyApplicationTimeline extends Composite implements MyPageTab {
     }
 
     protected void showApplication(Application app) {
+        setCurrentApplication(app);
         timeline.showApplication(app);
     }
 
@@ -178,12 +201,76 @@ public class MyApplicationTimeline extends Composite implements MyPageTab {
 
     }
 
-    public void newProcessEvent(Date date, int x, int y) {
+    /**
+     * called from double click on the background, we know the date, but
+     * need a processtype, use a context menu to get the type, which will
+     * callback to addProcess(ProcessType,Date) when selected.
+     */
+    public void addProcess(Date date, int x, int y) {
+        Log.debug("AddProcess(date only) " + date);
 
-        ProcessTypePanel typePanel = new ProcessTypePanel(date);
+        final ContextMenu menu = new ContextMenu(x, y);
+
+        ProcessTypePanel typePanel = new ProcessTypePanel(date,
+                new ClickListener() {
+                    public void onClick(Widget sender) {
+                        menu.hide();
+                    }
+                });
         typePanel.load(lastUser);
 
-        ContextMenu menu = new ContextMenu(typePanel, x, y);
+        menu.clear();
+        menu.setWidget(typePanel);
         menu.show();
+    }
+
+    public void addProcess(ProcessType processType, Date date) {
+        Log.debug("AddProcess " + processType + " " + date);
+        ProcessValue value = new ProcessValue();
+        value.setDueDate(date);
+
+        if (getCurrentApplication() != null) {
+            ProcessValue existing = getCurrentApplication().getProcess()
+                    .get(processType);
+
+            if (existing != null) {
+                Window
+                        .alert("Sorry, that already exists for this application.");
+                return;
+            }
+
+            SaveProcessCommand command = new SaveProcessCommand(
+                    getCurrentApplication(), processType, value);
+
+            serviceCache.executeCommand(command,
+                    new StdAsyncCallback<SiteCommand>("Save Process") {
+                    });
+
+            // add before callback returns is fine. We'll just overwrite
+            // if they edit.
+            timeline.addNew(getCurrentApplication(), processType, value);
+
+        } else {
+            Window.alert("Select an application");
+        }
+
+    }
+
+    public void setCurrentApplication(Application currentApplication) {
+        this.currentApplication = currentApplication;
+    }
+
+    public Application getCurrentApplication() {
+        return currentApplication;
+    }
+
+    public TimeLineObjFactory getTimeLineObjFactory() {
+        return timelineObjFactory;
+    }
+
+    public void setSelected(TimeLineObj<?> tlo) {
+
+        timeline.showStatus((TimeLineObj<ProcessTimeLineEntry>) tlo);
+
     }
 }

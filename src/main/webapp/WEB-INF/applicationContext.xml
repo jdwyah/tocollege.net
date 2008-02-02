@@ -78,7 +78,7 @@
      <bean id="invitationService" class="com.apress.progwt.server.service.impl.InvitationServiceImpl">
           <property name="mailingListDAO" ref="mailingListDAO"></property>
           <property name="configurer" ref="freemarkerConfig"></property>
-          <property name="from" value="subscriptions@myhippocampus.com"></property>
+          <property name="from" value="help@tocollege.net"></property>
           <property name="invitationTemplate" value="/WEB-INF/freemarker/mail/invitation.ftl"></property>
           <property name="mailSender" ref="mailSender"></property>
           <property name="userService" ref="userService" />

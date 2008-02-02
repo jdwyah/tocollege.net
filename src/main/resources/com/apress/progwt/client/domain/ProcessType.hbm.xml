@@ -15,7 +15,7 @@
         <property name="status_order" column="status_order" type="int"/>
         <property name="percentage" column="percentage" type="boolean"/>
         <property name="dated" column="dated" type="boolean"/>
-
+        <property name="imageName" column="imageName" type="string"/>
 	</class>
 
 </hibernate-mapping>

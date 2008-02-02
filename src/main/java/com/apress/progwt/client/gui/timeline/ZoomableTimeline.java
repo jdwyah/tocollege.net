@@ -8,13 +8,14 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.gui.RemembersPosition;
 import com.apress.progwt.client.college.gui.ViewPanel;
 import com.apress.progwt.client.college.gui.ext.DblClickListener;
+import com.apress.progwt.client.college.gui.timeline.TimelineController;
 import com.apress.progwt.client.consts.ConstHolder;
 import com.apress.progwt.client.ext.collections.GWTSortedMap;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -87,9 +88,8 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     private TimelineRemembersPosition selectedRP;
 
-    private CheckBox showCreated;
     private GWTSortedMap<TimeLineObj<T>, Object> sorted = new GWTSortedMap<TimeLineObj<T>, Object>();
-    private TimeLineObjFactory timeLineObjFactory;
+
     private Label whenlabel;
 
     private int width;
@@ -103,14 +103,16 @@ public class ZoomableTimeline<T> extends ViewPanel implements
     private int ySpread;
 
     private int yStart;
+    private SimplePanel editWidget;
+    private TimelineController timelineController;
 
     public ZoomableTimeline(int width, int height,
-            TimeLineObjFactory timeLineObjFactory) {
+            TimelineController timelineController) {
         super();
 
         this.height = height;
         this.width = width;
-        this.timeLineObjFactory = timeLineObjFactory;
+        this.timelineController = timelineController;
         init();
 
         setStylePrimaryName("ZoomableTL");
@@ -160,8 +162,8 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
             // int top = (int) (Math.random()*(double)height);
 
-            TimelineRemembersPosition rp = timeLineObjFactory.getWidget(
-                    this, tlo);
+            TimelineRemembersPosition rp = timelineController
+                    .getTimeLineObjFactory().getWidget(this, tlo);
 
             int slot = getBestSlotFor(rp);
             int top = yStart + (slot * ySpread);
@@ -233,21 +235,12 @@ public class ZoomableTimeline<T> extends ViewPanel implements
             }
         });
 
-        showCreated = new CheckBox("Topics");
-        showCreated.setChecked(true);
-        showCreated.addClickListener(new ClickListener() {
-            public void onClick(Widget sender) {
-                showCreated(showCreated.isChecked());
-            }
-        });
+        editWidget = new SimplePanel();
 
-        // editWidget = new TimelineEditBox(manager);
-        //
-        // add(editWidget);
+        add(editWidget);
         add(magSmall);
         add(whenlabel);
         add(magBig);
-        // add(showCreated);
     }
 
     private void drawHUD() {
@@ -259,7 +252,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         setWidgetPosition(magBig, center + 70, y - 15);
         // setWidgetPosition(showCreated, center + 115, y);
 
-        // setWidgetPosition(editWidget, center + 115, y - 20);
+        setWidgetPosition(editWidget, center + 115, y - 20);
     }
 
     /**
@@ -400,9 +393,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     public void onClick(Widget sender) {
         TimelineRemembersPosition rp = (TimelineRemembersPosition) sender;
-
         setSelected(rp, true);
-
     }
 
     public void onDblClick(Widget sender) {
@@ -503,16 +494,11 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         if (selected) {
             unselect();
             selectedRP = rp;
-            // editWidget.setTopicAndVisible(selectedRP);
-            selectedRP.addStyleName("Selected");
+            selectedRP.addStyleDependentName("Selected");
+            timelineController.setSelected(rp.getTLO());
         } else {
             unselect();
         }
-    }
-
-    private void showCreated(boolean checked) {
-        // TODO Auto-generated method stub
-
     }
 
     public void showOnly(List<TimeLineObj<T>> timeObjects) {
@@ -522,9 +508,9 @@ public class ZoomableTimeline<T> extends ViewPanel implements
 
     @Override
     protected void unselect() {
-        // editWidget.setVisible(false);
+        editWidget.setVisible(false);
         if (selectedRP != null) {
-            selectedRP.removeStyleName("Selected");
+            selectedRP.removeStyleDependentName("Selected");
         }
         selectedRP = null;
     }
@@ -610,5 +596,16 @@ public class ZoomableTimeline<T> extends ViewPanel implements
      */
     public Date getDateFromGUIX(int x) {
         return TimeLineObj.getDateFromViewPanelX(getPositionXFromGUIX(x));
+    }
+
+    /**
+     * set a new status window widget
+     * 
+     * @param widget
+     */
+    public void showStatus(Widget widget) {
+        editWidget.clear();
+        editWidget.add(widget);
+        editWidget.setVisible(true);
     }
 }

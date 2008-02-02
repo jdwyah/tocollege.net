@@ -24,7 +24,8 @@
     <p>
     Throughout the application process, from initial research & school discovery, to prioritization & ranking, to creating the applications, to the final decision, ToCollege.net provides a way for you to keep track of where you are in the process and figure out what you need to focus on next. You can look to our school specific forums to see what other people are thinking about, who else is applying to schools and why. You can share your school rankings through Facebook and Google Gadgets to solicit feedback from your peers.
 
-
+<p>
+To contact us, email <a href="mailto:help@tocollege.net">help@tocollege.net</a>
 
 <h1>The Product</h1>
 

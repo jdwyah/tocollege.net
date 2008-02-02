@@ -24,7 +24,7 @@
 		 <div class="message">${message}</div>
 	 </#if>
 
-	We're sorry you received an error. Please do us a favor and let us know! Email <a href="mailto:help@myhippocampus.com">help@myhippocampus.com</a> with the error message and a description of what you were doing. Thanks!
+	We're sorry you received an error. Please do us a favor and let us know! Email <a href="mailto:help@tocollege.net">help@tocollege.net</a> with the error message and a description of what you were doing. Thanks!
 
 	<#if exception?exists>
 

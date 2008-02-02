@@ -20,4 +20,29 @@ public interface Images extends ImageBundle {
      */
     AbstractImagePrototype bullet_blue();
 
+    /**
+     * @gwt.resource applying.png
+     */
+    AbstractImagePrototype applying();
+
+    /**
+     * @gwt.resource accepted.png
+     */
+    AbstractImagePrototype accepted();
+
+    /**
+     * @gwt.resource rejected.png
+     */
+    AbstractImagePrototype rejected();
+
+    /**
+     * @gwt.resource applied.png
+     */
+    AbstractImagePrototype applied();
+
+    /**
+     * @gwt.resource considering.png
+     */
+    AbstractImagePrototype considering();
+
 }

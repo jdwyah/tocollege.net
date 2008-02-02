@@ -9,6 +9,7 @@ public abstract class AbstractProcessType implements Serializable {
     private int status_order;
     private boolean percentage;
     private boolean dated;
+    private String imageName;
 
     public AbstractProcessType() {
     }
@@ -59,6 +60,14 @@ public abstract class AbstractProcessType implements Serializable {
 
     public void setDated(boolean dated) {
         this.dated = dated;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
 }
