@@ -8,8 +8,8 @@
 <body>
 	
 	
-	 <div class="middle-column-box-white">
-        <div class="middle-column-box-title-green"><@spring.message "mailinglist.1"/></div>
+	 <div class="main">
+        <h1><@spring.message "mailinglist.1"/></h1>
 	
 	
 	 <#if message?exists>
@@ -17,7 +17,7 @@
 	 </#if>
 	
 
-		<form action="<@spring.url "/site/interested.html"/>" method="POST">
+		<form action="<@spring.url "/site/mailinglist.html"/>" method="POST">
 			<fieldset>
 				<legend><@spring.message "login.2.header"/></legend>				
 								

@@ -72,8 +72,9 @@ public class MyApplications extends Composite implements MyPageTab {
                     if (value == null) {
                         value = new ProcessValue();
                     }
-                    AppCheckboxWidget checkW = new AppCheckboxWidget(
-                            processType, value, application, serviceCache);
+
+                    ProcessValueEditWidget checkW = new ProcessCheckboxWidget(
+                            null, processType, value);
 
                     mainGrid.setWidget(row, col, checkW);
                     col++;
@@ -86,6 +87,7 @@ public class MyApplications extends Composite implements MyPageTab {
             return true;
         }
     }
+
     private Grid mainGrid;
     private SimplePanel mainP;
 

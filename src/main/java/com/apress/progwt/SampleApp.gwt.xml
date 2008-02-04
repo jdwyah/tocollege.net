@@ -6,10 +6,11 @@
 	<inherits name="com.google.gwt.i18n.I18N" />
 	<inherits name="com.google.gwt.json.JSON" />
     
-    
+    <inherits name='com.google.gwt.gears.Gears'/>    
     <inherits name="com.google.gwt.maps.GoogleMaps" />  
+    <inherits name="com.google.gwt.libideas.StyleInjector" />
 
-    <inherits name='com.allen_sauer.gwt.dragdrop.DragAndDrop'/>
+    <inherits name='com.allen_sauer.gwt.dnd.gwt-dnd'/>   
     <inherits name="com.allen_sauer.gwt.log.gwt-log" />
 
 	<!-- Specify the app entry point class.                   -->

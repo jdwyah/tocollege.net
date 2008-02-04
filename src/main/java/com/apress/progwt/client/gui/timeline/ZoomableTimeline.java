@@ -75,7 +75,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
      */
     private static final int X_SPREAD = 600;
 
-    private static final int Y_SPREAD = 17;
+    private static final int Y_SPREAD = 30;
     private ZoomLevel currentZoom;
 
     private int height;
@@ -163,7 +163,8 @@ public class ZoomableTimeline<T> extends ViewPanel implements
             // int top = (int) (Math.random()*(double)height);
 
             TimelineRemembersPosition rp = timelineController
-                    .getTimeLineObjFactory().getWidget(this, tlo);
+                    .getTimeLineObjFactory().getWidget(this,
+                            timelineController, tlo);
 
             int slot = getBestSlotFor(rp);
             int top = yStart + (slot * ySpread);
@@ -481,7 +482,7 @@ public class ZoomableTimeline<T> extends ViewPanel implements
         }
 
         if (doSave) {
-
+            timelineController.onTLOChange(tlo);
         }
 
         redraw(rp);

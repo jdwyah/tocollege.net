@@ -45,4 +45,39 @@ public interface Images extends ImageBundle {
      */
     AbstractImagePrototype considering();
 
+    /**
+     * @gwt.resource pctStatus0.png
+     */
+    AbstractImagePrototype pctStatus0();
+
+    /**
+     * @gwt.resource pctStatus25.png
+     */
+    AbstractImagePrototype pctStatus25();
+
+    /**
+     * @gwt.resource pctStatus50.png
+     */
+    AbstractImagePrototype pctStatus50();
+
+    /**
+     * @gwt.resource pctStatus75.png
+     */
+    AbstractImagePrototype pctStatus75();
+
+    /**
+     * @gwt.resource pctStatus100.png
+     */
+    AbstractImagePrototype pctStatus100();
+
+    /**
+     * @gwt.resource checked.png
+     */
+    AbstractImagePrototype checked();
+
+    /**
+     * @gwt.resource unchecked.png
+     */
+    AbstractImagePrototype unchecked();
+
 }

@@ -1,4 +1,8 @@
 <#ftl strip_whitespace=true>
+<#--Decorators can't seem to get the spring.ftl that Spring MVC exposes to us. 
+Get around this by just copying this file out of the Spring jar and putting it here. 
+Not a great solution, but it works.
+TODO find a way to access the regular spring.ftl from this decorators directory.-->
 <#--
  * spring.ftl
  *

@@ -279,6 +279,7 @@ a:visited {
 }
 
 .gwt-SuggestBoxPopup .item {
+	text-align: left;
 	padding: 1px;
 	font-size: small;
 }

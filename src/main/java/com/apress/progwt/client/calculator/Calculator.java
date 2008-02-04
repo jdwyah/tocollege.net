@@ -5,6 +5,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.SuggestionEvent;
+import com.google.gwt.user.client.ui.SuggestionHandler;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -190,6 +194,23 @@ public class Calculator extends Composite {
 
         ticker = new TextArea();
         ticker.setSize("7em", "140px");
+
+        MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
+        oracle.add("Jill");
+        oracle.add("Jeff");
+        oracle.add("James");
+        oracle.add("Jennifer");
+
+        SuggestBox box = new SuggestBox(oracle);
+        box.addEventHandler(new SuggestionHandler() {
+            public void onSuggestionSelected(SuggestionEvent suggE) {
+                String selected = suggE.getSelectedSuggestion()
+                        .getReplacementString();
+                // do something with selected suggestion
+            }
+        });
+
+        dockPanel.add(box, DockPanel.SOUTH);
 
         HorizontalPanel mainP = new HorizontalPanel();
         mainP.add(dockPanel);

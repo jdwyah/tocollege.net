@@ -238,13 +238,7 @@ public class MyApplicationTimeline extends Composite implements
                         .alert("Sorry, that already exists for this application.");
                 return;
             }
-
-            SaveProcessCommand command = new SaveProcessCommand(
-                    getCurrentApplication(), processType, value);
-
-            serviceCache.executeCommand(command,
-                    new StdAsyncCallback<SiteCommand>("Save Process") {
-                    });
+            saveProcess(processType, value);
 
             // add before callback returns is fine. We'll just overwrite
             // if they edit.
@@ -271,6 +265,31 @@ public class MyApplicationTimeline extends Composite implements
     public void setSelected(TimeLineObj<?> tlo) {
 
         timeline.showStatus((TimeLineObj<ProcessTimeLineEntry>) tlo);
+
+    }
+
+    public void onTLOChange(TimeLineObj<?> tlo) {
+        TimeLineObj<ProcessTimeLineEntry> tlopte = (TimeLineObj<ProcessTimeLineEntry>) tlo;
+
+        SaveProcessCommand command = new SaveProcessCommand(
+                getCurrentApplication(), tlopte.getObject()
+                        .getProcessType(), tlopte.getObject()
+                        .getProcessValue());
+
+        serviceCache.executeCommand(command,
+                new StdAsyncCallback<SiteCommand>("Update Process Date") {
+                });
+
+    }
+
+    public void saveProcess(ProcessType processType, ProcessValue value) {
+
+        SaveProcessCommand command = new SaveProcessCommand(
+                getCurrentApplication(), processType, value);
+
+        serviceCache.executeCommand(command,
+                new StdAsyncCallback<SiteCommand>("Save Process") {
+                });
 
     }
 }

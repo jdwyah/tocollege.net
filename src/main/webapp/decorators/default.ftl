@@ -91,7 +91,7 @@ http://www.dehora.net/journal/2007/08/tab_switching_with_sitemesh.html
 	
 
     <div id="footer">
-    	©2007 <a href="<@spring.url "/site/index.html"/>">Index</a> 
+    	©2008 <a href="<@spring.url "/site/index.html"/>">Index</a> 
     	| <a href="<@spring.url "/site/contact.html"/>">Contact Us</a> 
     	| <a href="http://blogger.com/">Blog</a>
     	| <a href="<@spring.url "/site/acknowledgements.html"/>">Acknowledgements</a> 

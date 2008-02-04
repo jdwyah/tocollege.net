@@ -1,5 +1,7 @@
 package com.apress.progwt.client.college.gui.timeline;
 
+import com.apress.progwt.client.college.gui.ProcessCheckboxWidget;
+import com.apress.progwt.client.college.gui.ProcessPercentWidget;
 import com.apress.progwt.client.consts.ConstHolder;
 import com.apress.progwt.client.domain.ProcessType;
 import com.apress.progwt.client.gui.timeline.TLOWrapper;
@@ -9,6 +11,7 @@ import com.apress.progwt.client.gui.timeline.TimelineRemembersPosition;
 import com.apress.progwt.client.gui.timeline.ZoomableTimeline;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 
 public class ProcessTimeLineObjFactory implements TimeLineObjFactory {
 
@@ -25,7 +28,8 @@ public class ProcessTimeLineObjFactory implements TimeLineObjFactory {
      * @return
      */
     public TimelineRemembersPosition getWidget(
-            ZoomableTimeline<?> zoomableTimeline, TimeLineObj<?> tlo) {
+            ZoomableTimeline<?> zoomableTimeline,
+            TimelineController controller, TimeLineObj<?> tlo) {
 
         // if (tlo.getHasDate() instanceof HippoDate) {
         // TLORangeWidget tlow = new TLORangeWidget(zoomableTimeline,
@@ -35,7 +39,8 @@ public class ProcessTimeLineObjFactory implements TimeLineObjFactory {
         // } else {
         //
 
-        Image mainWidget = null;
+        Widget mainWidget = null;
+        Label mainLabel = null;
         TLOWrapper tlow = null;
         if (tlo.getHasDate() instanceof ProcessTimeLineEntry) {
 
@@ -64,16 +69,19 @@ public class ProcessTimeLineObjFactory implements TimeLineObjFactory {
                     mainWidget = ConstHolder.images.considering()
                             .createImage();
                 }
-            }
-
-            if (mainWidget == null) {
-                tlow = new TLOWrapper(zoomableTimeline, tlo, dragImage,
-                        new Label(processType.getName(), false));
-
             } else {
-                tlow = new TLOWrapper(zoomableTimeline, tlo, dragImage,
-                        mainWidget);
+                if (processType.isPercentage()) {
+                    mainWidget = new ProcessPercentWidget(controller,
+                            processType, pte.getProcessValue());
+                } else {
+                    mainWidget = new ProcessCheckboxWidget(controller,
+                            processType, pte.getProcessValue());
+                }
+                mainLabel = new Label(processType.getName(), false);
             }
+
+            tlow = new TLOWrapper(zoomableTimeline, tlo, dragImage,
+                    mainWidget, mainLabel);
 
         }
 

@@ -25,7 +25,7 @@ public class TimeLineObj<T> implements Serializable,
         return left;
     }
 
-    private HasDate date;
+    private HasDate hasDate;
 
     private T object;
 
@@ -34,7 +34,7 @@ public class TimeLineObj<T> implements Serializable,
 
     public TimeLineObj(T object, HasDate date) {
         this.object = object;
-        this.date = date;
+        this.hasDate = date;
     }
 
     public int compareTo(TimeLineObj<T> tl) {
@@ -42,7 +42,7 @@ public class TimeLineObj<T> implements Serializable,
     }
 
     public Date getEndDate() {
-        return date.getEndDate();
+        return hasDate.getEndDate();
     }
 
     /**
@@ -50,7 +50,7 @@ public class TimeLineObj<T> implements Serializable,
      * @return
      */
     public HasDate getHasDate() {
-        return date;
+        return hasDate;
     }
 
     /**
@@ -70,7 +70,7 @@ public class TimeLineObj<T> implements Serializable,
     }
 
     public Date getStartDate() {
-        return date.getStartDate();
+        return hasDate.getStartDate();
     }
 
     public int getWidth() {
@@ -97,14 +97,14 @@ public class TimeLineObj<T> implements Serializable,
 
         Date newD = getDateFromViewPanelX(positionX);
         if (newD.after(getStartDate())) {
-            date.setEndDate(newD);
+            hasDate.setEndDate(newD);
         }
 
         Log.debug("Eat endDateSet");
 
         // Log.debug("TLO: End Date = " + getEndDate());
 
-        return date.getEndDate();
+        return hasDate.getEndDate();
 
     }
 
@@ -115,15 +115,15 @@ public class TimeLineObj<T> implements Serializable,
 
         Date newD = getDateFromViewPanelX(positionX);
 
-        date.setStartDate(newD);
+        hasDate.setStartDate(newD);
 
         if (null != getEndDate() && newD.after(getEndDate())) {
-            date.setEndDate(newD);
+            hasDate.setEndDate(newD);
         }
 
         // Log.debug("TLO: Start Date = " + getStartDate());
 
-        return date.getStartDate();
+        return hasDate.getStartDate();
     }
 
     public String toString() {

@@ -8,9 +8,7 @@
 <body id="signup">
    
       <div id="main">
-      <h1>Beta Period</h1>
-      Sorry, we're not accepting signup right now. (How did you even find us?) It shant be long though. Add yourself to the mailing list if you'd like a note when we're ready for you.
-      <#--
+      
         <h1>Sign-up now!</h1>
         
     <form action="<@spring.url "/site/createuser.html"/>" method="POST" id="signupForm">
@@ -90,13 +88,14 @@
       </table>
 
     </form>
-    -->
+    
     <#if !hideSecretKey?exists>
 	    <@spring.message "signup.message"/>
 	    <p>
-	    Add your name to the <a href="<@spring.url "/site/mailinglist.html"/>"> mailing list.</a>
-	   </div>
+	    Add your name to the <a href="<@spring.url "/site/mailinglist.html"/>"> mailing list.</a>	   
 	 </#if>
+	 
+	 
 
 	</div>
 		

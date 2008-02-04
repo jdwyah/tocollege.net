@@ -67,7 +67,12 @@
           <property name="signupView" value="signup" />
           <property name="userService" ref="userService" />
      </bean>
-
+     <bean id="mailingListController" class="com.apress.progwt.server.web.controllers.MailingListController">
+          <property name="formView" value="mailinglist" />
+          <property name="successView" value="redirect:/site/index.html" />
+          <property name="invitationService" ref="invitationService" />
+     </bean>
+     
      <bean id="createUserValidator" class="com.apress.progwt.server.web.domain.validation.CreateUserRequestValidator">
           <property name="userService" ref="userService" />
           <property name="invitationService" ref="invitationService" />
@@ -111,10 +116,13 @@
                 <prop key="/site/secure/myList.html">mylistController</prop>
                 <prop key="/site/college/*">collegeController</prop>
                 <prop key="/site/user/*">viewUserController</prop>
+                
+                <prop key="/site/mailinglist.html">mailingListController</prop>
+                <prop key="/site/signup.html">createUserController</prop>                
 
 				<prop key="/site/accessDenied.html">errorController</prop>
 				<prop key="/site/servletErrorView.html">errorController</prop>						
-
+                
 
 			    <prop key="/site/j_acegi_openid_start">openIDLoginStartController</prop>
                     

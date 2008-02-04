@@ -10,6 +10,7 @@ public abstract class AbstractProcessType implements Serializable {
     private boolean percentage;
     private boolean dated;
     private String imageName;
+    private boolean dueAlert;
 
     public AbstractProcessType() {
     }
@@ -68,6 +69,14 @@ public abstract class AbstractProcessType implements Serializable {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+    public boolean isDueAlert() {
+        return dueAlert;
+    }
+
+    public void setDueAlert(boolean dueAlert) {
+        this.dueAlert = dueAlert;
     }
 
 }

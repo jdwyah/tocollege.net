@@ -17,30 +17,20 @@ public class TLOWrapper<T> extends FocusPanelExt implements
 
     private Image dragImage;
     private Label label;
-    private Image mainImage;
+    private Widget mainWidget;
 
     public TLOWrapper(ZoomableTimeline<T> timeline,
-            final TimeLineObj<T> tlo, Image dragImage, Image mainImage) {
-        this(timeline, tlo, dragImage, mainImage, null);
-    }
-
-    public TLOWrapper(ZoomableTimeline<T> timeline,
-            final TimeLineObj<T> tlo, Image dragImage, Label mainLabel) {
-        this(timeline, tlo, dragImage, null, mainLabel);
-    }
-
-    public TLOWrapper(ZoomableTimeline<T> timeline,
-            final TimeLineObj<T> tlo, Image dragImage, Image mainImage,
+            final TimeLineObj<T> tlo, Image dragImage, Widget mainWidget,
             Label mainLabel) {
         this.tlo = tlo;
         this.top = 0;
         this.dragImage = dragImage;
-        this.mainImage = mainImage;
+        this.mainWidget = mainWidget;
 
         HorizontalPanel panel = new HorizontalPanel();
 
         if (mainLabel == null) {
-            label = new Label(tlo.getHasDate().getTitle(), false);
+            label = new Label("", false);
         } else {
             label = mainLabel;
         }
@@ -49,11 +39,9 @@ public class TLOWrapper<T> extends FocusPanelExt implements
                 dragImage);
 
         panel.add(edge);
-
-        if (mainImage == null) {
-            panel.add(label);
-        } else {
-            panel.add(mainImage);
+        panel.add(label);
+        if (mainWidget != null) {
+            panel.add(mainWidget);
         }
 
         addClickListener(timeline);
@@ -82,16 +70,18 @@ public class TLOWrapper<T> extends FocusPanelExt implements
     public void addMouseWheelListener(MouseWheelListener listener) {
         label.addMouseWheelListener(listener);
         dragImage.addMouseWheelListener(listener);
-        if (mainImage != null) {
-            mainImage.addMouseWheelListener(listener);
+        if (mainWidget instanceof SourcesMouseWheelEvents) {
+            SourcesMouseWheelEvents mI = (SourcesMouseWheelEvents) mainWidget;
+            mI.addMouseWheelListener(listener);
         }
     }
 
     public void removeMouseWheelListener(MouseWheelListener listener) {
         dragImage.removeMouseWheelListener(listener);
         label.removeMouseWheelListener(listener);
-        if (mainImage != null) {
-            mainImage.removeMouseWheelListener(listener);
+        if (mainWidget instanceof SourcesMouseWheelEvents) {
+            SourcesMouseWheelEvents mI = (SourcesMouseWheelEvents) mainWidget;
+            mI.removeMouseWheelListener(listener);
         }
     }
 

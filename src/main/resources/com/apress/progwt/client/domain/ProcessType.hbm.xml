@@ -16,6 +16,8 @@
         <property name="percentage" column="percentage" type="boolean"/>
         <property name="dated" column="dated" type="boolean"/>
         <property name="imageName" column="imageName" type="string"/>
+        <property name="dueAlert" column="duealert" type="boolean"/>
+        
 	</class>
 
 </hibernate-mapping>
