@@ -1,39 +1,51 @@
 package com.apress.progwt.server.web.controllers;
 
 import java.util.Arrays;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.apress.progwt.client.domain.GWTSerializer;
 import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.dto.ForumBootstrap;
 import com.apress.progwt.client.domain.dto.PostsList;
+import com.apress.progwt.client.exception.InfrastructureException;
 import com.apress.progwt.server.service.SchoolService;
+import com.apress.progwt.server.service.UserService;
 
-public class CollegeController extends BasicController {
+@Controller
+@RequestMapping("/college/*")
+public class CollegeController {
 
+    @Autowired
+    @Qualifier(value = "GWTSchoolService")
     private GWTSerializer serializer;
+
+    @Autowired
     private SchoolService schoolService;
 
-    private String notFoundView;
+    @Autowired
+    private UserService userService;
+
+    private String notFoundView = "redirect:/site/search.html";
+    private String view = "college";
 
     private static final Logger log = Logger
             .getLogger(CollegeController.class);
 
-    @Override
-    protected ModelAndView handleRequestInternal(HttpServletRequest req,
-            HttpServletResponse arg1) throws Exception {
+    @RequestMapping(method = RequestMethod.GET)
+    public String collegeHandler(HttpServletRequest req, ModelMap model)
+            throws InfrastructureException {
 
         log.debug("SERVLET PATH: " + req.getServletPath() + " "
                 + req.getPathInfo() + " " + req.getQueryString());
-
-        Map<String, Object> model = getDefaultModel(req);
 
         String path = req.getPathInfo();
         path = path.replace('_', ' ');
@@ -43,37 +55,37 @@ public class CollegeController extends BasicController {
 
         // "/college/dartmouth" splits to [,college,dartmouth]
         if (pathParts.length < 3) {
-            return new ModelAndView(getNotFoundView());
+            return getNotFoundView();
         }
 
         String schoolName = pathParts[2];
 
         School school = schoolService.getSchoolDetails(schoolName);
         if (school == null) {
-            return new ModelAndView(getNotFoundView(), "message",
-                    "Couldn't find school " + schoolName);
+            model.addAttribute("message", "Couldn't find school "
+                    + schoolName);
+            return getNotFoundView();
         }
 
         PostsList forumPosts = schoolService.getForum(school, 0, 10);
         ForumBootstrap forumBootstrap = new ForumBootstrap(serializer,
                 forumPosts, school);
-        model.put("forumBootstrap", forumBootstrap);
+        model.addAttribute("forumBootstrap", forumBootstrap);
 
-        model.put("school", school);
-        model.put("interestedIn", schoolService
+        model.addAttribute("school", school);
+        model.addAttribute("interestedIn", schoolService
                 .getUsersInterestedIn(school));
 
-        ModelAndView mav = getMav();
-        mav.addAllObjects(model);
-        return mav;
+        ControllerUtil
+                .updateModelMapWithDefaults(model, req, userService);
+
+        return view;
     }
 
-    @Required
     public void setSchoolService(SchoolService schoolService) {
         this.schoolService = schoolService;
     }
 
-    @Required
     public void setSerializer(GWTSerializer serializer) {
         this.serializer = serializer;
     }
@@ -82,7 +94,6 @@ public class CollegeController extends BasicController {
         return notFoundView;
     }
 
-    @Required
     public void setNotFoundView(String notFoundView) {
         this.notFoundView = notFoundView;
     }

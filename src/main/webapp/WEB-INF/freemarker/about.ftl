@@ -16,8 +16,7 @@
 	</div>
  </#if>			  	 	  
 
-  	<div id="main">
-  	
+  	<div id="main">  	
     <h1>About ToCollege.net</h1>    
     <p>
     ToCollege.net gives you an easy way to feel like you're on top of the college application process. 
@@ -75,11 +74,13 @@ Forums are available on a school by school basis. The knowledge base contained w
 
 	
   	<div id="sidebar">  		
+  	     <h1>About The Book</h1>
+  	     <div class="floatRight">
   	    <@common.pngImage src="/img/profile.png" width="150" height="164"/>
   	    <br>
-  	    Jeff Dwyer
-  	      <h1>About The Book</h1>
-    <p>
+  	    Jeff Dwyer  	     
+  	    </div>
+    
     Besides being a great place to keep track of you college application process, this website is the also the example site for
     the book <a href="http://www.amazon.com/Pro-Web-2-0-Application-Development/dp/1590599853">Pro Web 2.0 Application Development with GWT</a> by Jeff Dwyer.
     <p>

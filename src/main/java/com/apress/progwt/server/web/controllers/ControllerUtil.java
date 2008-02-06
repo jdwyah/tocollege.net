@@ -55,4 +55,9 @@ public class ControllerUtil {
         rtn.addAllAttributes(getDefaultModel(req, userService));
         return rtn;
     }
+
+    public static void updateModelMapWithDefaults(ModelMap map,
+            HttpServletRequest req, UserService userService) {
+        map.addAllAttributes(getDefaultModel(req, userService));
+    }
 }

@@ -20,8 +20,8 @@
     <inherits name="com.allen_sauer.gwt.log.gwt-log" />
 
 	<!-- Specify the app entry point class.                   -->
-	<entry-point class='com.apress.progwt.client.Interactive' />
-
+    <!-- note, multiple entry points != multiple hooks for JavaScript, all multiple entry hooks mean is that GWT will call onModuleLoad() on multiple components-->
+	<entry-point class='com.apress.progwt.client.Interactive' />    
 
     <replace-with class="com.apress.progwt.client.college.gui.ext.ClientMouseImplMozilla">
         <when-type-is class="com.apress.progwt.client.college.gui.ext.ClientMouseImpl" />

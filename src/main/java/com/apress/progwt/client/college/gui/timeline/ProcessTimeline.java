@@ -54,7 +54,7 @@ public class ProcessTimeline extends Composite implements
 
     public ProcessTimeline(MyApplicationTimeline controller) {
         this.controller = controller;
-        timeline = new ZoomableTimeline<ProcessTimeLineEntry>(700, 500,
+        timeline = new ZoomableTimeline<ProcessTimeLineEntry>(555, 500,
                 controller);
         timeline.setBackdropListener(this);
 

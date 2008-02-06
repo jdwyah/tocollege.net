@@ -94,7 +94,6 @@
                    <Valve className="org.apache.catalina.valves.AccessLogValve" prefix="www.myhippocampus.com." suffix=".txt"
                         pattern="common" />
                    <Alias>myhippocampus.com</Alias>
-                   <Context path="" />
               </Host>
 
               <Host name="www.tocollege.net" appBase="webapps/tocollege.net" unpackWARs="true" autoDeploy="false" xmlValidation="false"
@@ -102,7 +101,6 @@
                    <Valve className="org.apache.catalina.valves.AccessLogValve" prefix="www.tocollege.net." suffix=".txt"
                         pattern="common" />
                    <Alias>tocollege.net</Alias>
-                   <Context path="" />
               </Host>
           </Engine>
      </Service>

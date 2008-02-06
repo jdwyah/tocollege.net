@@ -500,3 +500,7 @@ TABLE.longRange TD {
 .ZoomableTL-tl_3century {
 	background-image: url('%tl_3century%');
 }
+
+.gwt-RichTextArea {
+	background-color: white;
+}

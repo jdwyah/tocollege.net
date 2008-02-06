@@ -30,13 +30,26 @@ public class GWTApp {
 
     private static final String MANIFEST_URL = "site/manifest.json";
 
+    private static String getLoadID(int id) {
+        return "gwt-slot-" + id;
+    }
+
+    private static String getPreLoadID(int id) {
+        return "gwt-loading-" + id;
+    }
+    public static void show(int id, Widget panel) {
+        RootPanel.get(getPreLoadID(id)).setVisible(false);
+        RootPanel.get(getLoadID(id)).add(panel);
+    }
+
+    private LoginService loginService;
     private int pageID;
 
     private GWTSchoolServiceAsync schoolService;
-    private GWTUserServiceAsync userService;
 
     private ServiceCache serviceCache;
-    private LoginService loginService;
+
+    private GWTUserServiceAsync userService;
 
     public GWTApp(int pageID) {
         this.pageID = pageID;
@@ -67,6 +80,20 @@ public class GWTApp {
             }
         }.schedule(10000);
 
+    }
+
+    public Object deserialize(String serialized) {
+
+        ClientSerializationStreamReader c;
+        Log.debug("Try to deserialize: " + serialized);
+        try {
+            c = getBootstrapService().createStreamReader(serialized);
+
+            Object o = c.readObject();
+            return o;
+        } catch (SerializationException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void doLocalServer() throws GearsException {
@@ -112,65 +139,6 @@ public class GWTApp {
         managedResourceStore.checkForUpdate();
     }
 
-    protected String getLoadID() {
-        return getLoadID(pageID);
-    }
-
-    protected String getPreLoadID() {
-        return getPreLoadID(pageID);
-    }
-
-    private static String getLoadID(int id) {
-        return "gwt-slot-" + id;
-    }
-
-    protected String getParam(String string) {
-        try {
-            Dictionary dictionary = Dictionary.getDictionary("Vars");
-            return dictionary.get(string + "_" + pageID);
-        } catch (Exception e) {
-            Log.info("Couldn't find param: " + string);
-            return null;
-        }
-
-    }
-
-    private static String getPreLoadID(int id) {
-        return "gwt-loading-" + id;
-    }
-
-    protected void initConstants() {
-        ConstHolder.images = (Images) GWT.create(Images.class);
-    }
-
-    protected void loadError(Exception e) {
-
-        Log.error("e: " + e);
-
-        e.printStackTrace();
-
-        VerticalPanel panel = new VerticalPanel();
-
-        panel.add(new Label("Error"));
-        panel.add(new Label(e.getMessage()));
-
-        RootPanel.get(getPreLoadID()).setVisible(false);
-        RootPanel.get(getLoadID()).add(panel);
-    }
-
-    protected void show(Widget panel) {
-        show(pageID, panel);
-    }
-
-    public static void show(int id, Widget panel) {
-        RootPanel.get(getPreLoadID(id)).setVisible(false);
-        RootPanel.get(getLoadID(id)).add(panel);
-    }
-
-    public LoginService getLoginService() {
-        return loginService;
-    }
-
     /**
      * get the Object that has been serialized under the JavaScript var
      * name "serialized"
@@ -208,18 +176,43 @@ public class GWTApp {
         }
     }
 
-    public Object deserialize(String serialized) {
+    private RemoteServiceProxy getBootstrapService() {
+        return (RemoteServiceProxy) getSchoolService();
+    }
 
-        ClientSerializationStreamReader c;
-        Log.debug("Try to deserialize: " + serialized);
+    protected String getLoadID() {
+        return getLoadID(pageID);
+    }
+
+    public LoginService getLoginService() {
+        return loginService;
+    }
+
+    protected String getParam(String string) {
         try {
-            c = getBootstrapService().createStreamReader(serialized);
-
-            Object o = c.readObject();
-            return o;
-        } catch (SerializationException e) {
-            throw new RuntimeException(e);
+            Dictionary dictionary = Dictionary.getDictionary("Vars");
+            return dictionary.get(string + "_" + pageID);
+        } catch (Exception e) {
+            Log.info("Couldn't find param: " + string);
+            return null;
         }
+
+    }
+
+    protected String getPreLoadID() {
+        return getPreLoadID(pageID);
+    }
+
+    public GWTSchoolServiceAsync getSchoolService() {
+        return schoolService;
+    }
+
+    public ServiceCache getServiceCache() {
+        return serviceCache;
+    }
+
+    public GWTUserServiceAsync getUserService() {
+        return userService;
     }
 
     // this doesn't work. serialization strings are different depending on
@@ -241,8 +234,8 @@ public class GWTApp {
     // }
     // }
 
-    private RemoteServiceProxy getBootstrapService() {
-        return (RemoteServiceProxy) getSchoolService();
+    protected void initConstants() {
+        ConstHolder.images = (Images) GWT.create(Images.class);
     }
 
     /**
@@ -273,15 +266,26 @@ public class GWTApp {
 
     }
 
-    public ServiceCache getServiceCache() {
-        return serviceCache;
+    protected void loadError(Exception e) {
+
+        Log.error("e: " + e);
+
+        e.printStackTrace();
+
+        VerticalPanel panel = new VerticalPanel();
+
+        panel.add(new Label("Error"));
+        panel.add(new Label(e.getMessage()));
+
+        RootPanel.get(getPreLoadID()).setVisible(false);
+        RootPanel.get(getLoadID()).add(panel);
     }
 
-    public GWTSchoolServiceAsync getSchoolService() {
-        return schoolService;
+    public void setPageID(int pageID) {
+        this.pageID = pageID;
     }
 
-    public GWTUserServiceAsync getUserService() {
-        return userService;
+    protected void show(Widget panel) {
+        show(pageID, panel);
     }
 }

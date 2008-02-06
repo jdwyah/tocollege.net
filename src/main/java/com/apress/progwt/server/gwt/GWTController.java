@@ -47,12 +47,11 @@ import com.google.gwt.user.server.rpc.SerializationPolicy;
  * 
  */
 
-public class GWTSpringControllerReplacement extends RemoteServiceServlet
-        implements ServletContextAware, Controller, RemoteService,
-        GWTSerializer {
+public class GWTController extends RemoteServiceServlet implements
+        ServletContextAware, Controller, RemoteService, GWTSerializer {
 
     private static final Logger log = Logger
-            .getLogger(GWTSpringControllerReplacement.class);
+            .getLogger(GWTController.class);
 
     private static final long serialVersionUID = 5399966488983189122L;
 
@@ -76,8 +75,8 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
                             .getParameters(), writer);
 
         } catch (IncompatibleRemoteServiceException ex) {
-            getServletContext()
-                    .log(
+            log
+                    .error(
                             "An IncompatibleRemoteServiceException was thrown while processing this call.",
                             ex);
             return RPC.encodeResponseForFailure(null, ex);
@@ -161,8 +160,11 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
         }
     }
 
-    private static ThreadLocal<HttpServletRequest> servletRequest = new ThreadLocal<HttpServletRequest>();
-    private static ThreadLocal<HttpServletResponse> servletResponse = new ThreadLocal<HttpServletResponse>();
+    public ModelAndView handleRequest(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        doPost(request, response);
+        return null;
+    }
 
     private ServletContext servletContext;
 
@@ -174,36 +176,4 @@ public class GWTSpringControllerReplacement extends RemoteServiceServlet
         return servletContext;
     }
 
-    /**
-     * Return the request which invokes the service. Valid only if used in
-     * the dispatching thread.
-     * 
-     * @return the servlet request
-     */
-    public static HttpServletRequest getRequest() {
-        return servletRequest.get();
-    }
-
-    /**
-     * Return the response which accompanies the request. Valid only if
-     * used in the dispatching thread.
-     * 
-     * @return the servlet response
-     */
-    public static HttpServletResponse getResponse() {
-        return servletResponse.get();
-    }
-
-    public ModelAndView handleRequest(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        try {
-            servletRequest.set(request);
-            servletResponse.set(response);
-            doPost(request, response);
-        } finally {
-            servletRequest.set(null);
-            servletResponse.set(null);
-        }
-        return null;
-    }
 }

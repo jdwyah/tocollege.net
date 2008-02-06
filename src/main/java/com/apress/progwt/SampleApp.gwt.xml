@@ -1,5 +1,8 @@
+<!-- This module shows that can get two modules out of the same codebase.
+ We can do this if we have some specific small functionality that we want
+ to export and size concerns trump the re-usable 'one-cache-to-rule-them-all'
+ strategy that we use in the rest of the site. -->
 <module>
-
 	<!-- Inherit the core Web Toolkit stuff.                  -->
 	<inherits name='com.google.gwt.user.User' />
 

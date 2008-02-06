@@ -16,6 +16,10 @@ public class School extends AbstractSchool implements Serializable,
         setId(id);
     }
 
+    public School(String name) {
+        setName(name);
+    }
+
     @Override
     public String toString() {
         return "School:" + getId() + ":name:" + getName();

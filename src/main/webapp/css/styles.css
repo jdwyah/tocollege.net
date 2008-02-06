@@ -147,6 +147,25 @@ body {
 #sidebar ul.sidemenu ul { margin: 0 0 0 5px; padding: 0; }
 #sidebar ul.sidemenu ul li { border: none; }
 
+#about #main {
+	width: 380px;
+}
+#about #sidebar {
+	spacing-left: 5px;	
+	width: 380px;
+}
+#about #wrapper {
+    width:820px;
+    background:#CECFD6 url(bg5050.png) repeat-y center top;
+}
+.floatRight {
+	float: right;
+} 
+#mylist #wrapper {
+	background:#CECFD6 url(bg0.png) repeat-y center top;
+}
+
+
 #footer {
 	color: #C6DDEE;
 	background: #CECFD6 url(footer.jpg) no-repeat center top;

@@ -37,13 +37,7 @@
 	<bean id="errorController" class="com.apress.progwt.server.web.controllers.ErrorController">
 	     <property name="userService" ref="userService" />
 	</bean>
-	<bean id="collegeController" class="com.apress.progwt.server.web.controllers.CollegeController">
-         <property name="view" value="college"/>
-	     <property name="schoolService" ref="schoolService" />
-	     <property name="userService" ref="userService" />
-	     <property name="notFoundView" value="redirect:/site/search.html" />
-         <property name="serializer" ref="GWTSchoolService" />
-	</bean>
+	
 	<bean id="viewUserController" class="com.apress.progwt.server.web.controllers.ViewUserController">
          <property name="view" value="viewuser"/>
 	     <property name="schoolService" ref="schoolService" />
@@ -113,8 +107,7 @@
 				<prop key="/service/userService">GWTUserService</prop>
                 <prop key="/service/schoolService">GWTSchoolService</prop>
 				
-                <prop key="/site/secure/myList.html">mylistController</prop>
-                <prop key="/site/college/*">collegeController</prop>
+                <prop key="/site/secure/myList.html">mylistController</prop>                
                 <prop key="/site/user/*">viewUserController</prop>
                 
                 <prop key="/site/mailinglist.html">mailingListController</prop>
@@ -137,18 +130,10 @@
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" abstract="false"
 		scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
-		<property name="requestContextAttribute">
-			<value>rc</value>
-		</property>
-		<property name="cache">
-			<value>true</value>
-		</property>
-		<property name="prefix">
-			<value>/WEB-INF/freemarker/</value>
-		</property>
-		<property name="suffix">
-			<value>.ftl</value>
-		</property>
+		<property name="requestContextAttribute" value="rc"/>
+		<property name="cache" value="true"/>
+		<property name="prefix" value="/WEB-INF/freemarker/"/>
+		<property name="suffix" value=".ftl"/>
 		<property name="exposeSpringMacroHelpers" value="true" />
 	</bean>
 

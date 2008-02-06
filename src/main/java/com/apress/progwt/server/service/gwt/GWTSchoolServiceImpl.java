@@ -12,7 +12,7 @@ import com.apress.progwt.client.domain.dto.PostsList;
 import com.apress.progwt.client.domain.forum.ForumTopic;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.service.remote.GWTSchoolService;
-import com.apress.progwt.server.gwt.GWTSpringControllerReplacement;
+import com.apress.progwt.server.gwt.GWTController;
 import com.apress.progwt.server.service.SchoolService;
 
 /**
@@ -22,7 +22,7 @@ import com.apress.progwt.server.service.SchoolService;
  * @author Jeff Dwyer
  * 
  */
-public class GWTSchoolServiceImpl extends GWTSpringControllerReplacement
+public class GWTSchoolServiceImpl extends GWTController
         implements GWTSchoolService {
 
     private static final Logger log = Logger

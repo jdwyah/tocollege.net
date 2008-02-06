@@ -84,6 +84,15 @@ public class GearsLocalServerManifestController {
         return getEntries(dir, localServerURL, "", fileArray);
     }
 
+    /**
+     * 
+     * @param dir
+     * @param localServerURL
+     * @param dirString
+     * @param fileArray
+     * @return
+     * @throws JSONException
+     */
     private JSONArray getEntries(File dir, String localServerURL,
             String dirString, JSONArray fileArray) throws JSONException {
 
@@ -91,11 +100,10 @@ public class GearsLocalServerManifestController {
 
         for (File f : dir.listFiles()) {
 
-            // skip what we can
-            if (f.getName().endsWith(".xml")
-                    || f.getName().endsWith(".rpc")) {
+            if (shouldSkip(f.getName())) {
                 continue;
             }
+
             // descend into directory
             if (f.isDirectory()) {
                 log.info("found dir " + f);
@@ -109,6 +117,30 @@ public class GearsLocalServerManifestController {
             fileArray.put(oo);
         }
         return fileArray;
+    }
+
+    /**
+     * Skip .xml - Compile artifact
+     * 
+     * Skip .rpc - Server Side only
+     * 
+     * Skip .nocache. - If we don't skip this, we'll end up running old
+     * copies while new version download. While ok for some apps, this
+     * causes us IncompatibleServiceExceptions
+     * 
+     * Skip .cache. - No real reason to include .cache. since the
+     * cache-control header is set to forever anyway. This is a judgment
+     * call I suppose. Shouldn't matter either way.
+     * 
+     * @param name
+     * @return
+     */
+    private boolean shouldSkip(String name) {
+        if (name.endsWith(".xml") || name.endsWith(".rpc")
+                || name.contains(".nocache.")) {
+            return true;
+        }
+        return false;
     }
 
     public void setHostConfigurer(

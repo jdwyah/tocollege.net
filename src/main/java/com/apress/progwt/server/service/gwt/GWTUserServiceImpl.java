@@ -7,10 +7,10 @@ import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.exception.BusinessException;
 import com.apress.progwt.client.service.remote.GWTUserService;
-import com.apress.progwt.server.gwt.GWTSpringControllerReplacement;
+import com.apress.progwt.server.gwt.GWTController;
 import com.apress.progwt.server.service.UserService;
 
-public class GWTUserServiceImpl extends GWTSpringControllerReplacement
+public class GWTUserServiceImpl extends GWTController
         implements GWTUserService {
     private static final Logger log = Logger
             .getLogger(GWTUserServiceImpl.class);
