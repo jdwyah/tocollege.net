@@ -16,6 +16,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.security.Authentication;
 import org.springframework.security.AuthenticationManager;
 import org.springframework.security.context.SecurityContextHolder;
+import org.springframework.security.providers.UsernamePasswordAuthenticationToken;
 import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.dao.UserCache;
 import org.springframework.security.providers.encoding.PasswordEncoder;
@@ -119,6 +120,31 @@ public class UserServiceImpl implements UserService {
         save(inviter);
     }
 
+    public void changePassword(String oldPassword, String newPassword) {
+
+        User user = getCurrentUser();
+
+        Authentication oldAuth = new UsernamePasswordAuthenticationToken(
+                user.getUsername(), oldPassword);
+        authMgr.authenticate(oldAuth);
+
+        createPassWord(user, newPassword);
+
+        log.debug("password changed, saving");
+        save(user);
+
+        log.debug("remove from cache");
+        userCache.removeUserFromCache(user.getUsername());
+
+        log.debug("change security context");
+        Authentication newAuthentication = new UsernamePasswordAuthenticationToken(
+                user.getUsername(), newPassword);
+        authMgr.authenticate(newAuthentication);
+        SecurityContextHolder.getContext().setAuthentication(
+                newAuthentication);
+
+    }
+
     public boolean couldBeOpenID(String username) {
         return username.contains(".") || username.contains("=");
     }
@@ -182,11 +208,7 @@ public class UserServiceImpl implements UserService {
         user = save(user);
 
         if (userpass != null) {
-
-            Object salt = saltSource.getSalt(new ServerSideUser(user));
-
-            user.setPassword(passwordEncoder.encodePassword(userpass,
-                    salt));
+            createPassWord(user, userpass);
 
         }
 
@@ -199,6 +221,11 @@ public class UserServiceImpl implements UserService {
         // authenticated state, despite our redirect:/site/index.html
         SecurityContextHolder.getContext().setAuthentication(null);
         return createdU;
+    }
+
+    private void createPassWord(User user, String userpass) {
+        Object salt = saltSource.getSalt(new ServerSideUser(user));
+        user.setPassword(passwordEncoder.encodePassword(userpass, salt));
     }
 
     public void delete(Integer id) throws PermissionDeniedException {

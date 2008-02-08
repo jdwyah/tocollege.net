@@ -15,6 +15,8 @@ public interface UserService {
 
     void addInvitationsTo(User inviter, int num);
 
+    void changePassword(String oldPassword, String newPassword);
+
     boolean couldBeOpenID(String openIDusername);
 
     User createUser(CreateUserRequestCommand comm) throws SiteException;

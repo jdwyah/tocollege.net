@@ -153,8 +153,8 @@
           </property>
      </bean>
 
-     <bean id="passwordEncoder" class="org.springframework.security.providers.encoding.Md5PasswordEncoder"/>
-
+     <bean id="passwordEncoder" class="org.springframework.security.providers.encoding.ShaPasswordEncoder"/>
+     
 
      <!-- This bean is optional; it isn't used by any other bean as it only listens and logs -->
      <bean id="loggerListener" class="org.springframework.security.event.authentication.LoggerListener" />

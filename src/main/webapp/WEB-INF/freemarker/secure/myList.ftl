@@ -20,7 +20,7 @@
 
 
   	
-  	<div id="side1">
+  	<div id="main">
   	 
 	
 	<@common.box "boxStyle", "myList", "MyList">

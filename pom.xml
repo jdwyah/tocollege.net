@@ -14,7 +14,7 @@
   </repositories>
   
   <build>
-		<plugins>                 <!-- 
+		<plugins>                 
 			<plugin>
 				<groupId>org.xi8ix</groupId>
 				<artifactId>xi8ix-gwtc</artifactId>
@@ -36,7 +36,7 @@
 
 					<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 				</configuration>
-			</plugin>                -->           
+			</plugin>                           
 			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -92,7 +92,11 @@
 		</resources>
   </build>
   <!-- an attempt to get maven filtering to help us keep passwords out of DB. Not currently deployed, because it didn't seem to be able to run on the webapps dir -->
-  <properties>
+<!-- http://sujitpal.blogspot.com/2006/10/maven2-multi-environment-filter-setup.html -->
+<!-- http://maven.apache.org/guides/getting-started/index.html#How_do_I_filter_resource_files -->
+<!-- http://www.devx.com/Java/Article/32386/1954?pf=true -->
+<!-- http://blog.arendsen.net/index.php/2005/03/12/configuration-management-with-spring/ -->
+<!--   <properties>
        <env>foo</env>
        <configLocation>src/main/resources/profile.properties</configLocation>
   </properties>
@@ -109,7 +113,7 @@
                  <configLocation>/etc/tocollege.net/profile.properties</configLocation>
             </properties>
        </profile>
-  </profiles>
+  </profiles> -->
 	<dependencies>
 		<dependency>
 			<groupId>com.google</groupId>

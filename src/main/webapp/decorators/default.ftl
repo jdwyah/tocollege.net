@@ -43,7 +43,7 @@ http://www.dehora.net/journal/2007/08/tab_switching_with_sitemesh.html
     		  	  <a href="<@spring.url "/site/secure/myList.html"/>">My List</a></strong>
     		  	  </li>    		  	  
     		  	  |<li>
-    		  	  <a href="<@spring.url "/site/secure/userPage.html"/>">Settings</a>
+    		  	  <a href="<@spring.url "/site/secure/settings.html"/>">Settings</a>
     		  	  </li>    		  	 
     		  	  |<li>
     		  	  <a href="<@spring.url "/site/j_acegi_logout"/>">Logout</a>

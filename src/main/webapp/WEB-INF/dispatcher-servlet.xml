@@ -72,6 +72,9 @@
           <property name="invitationService" ref="invitationService" />
      </bean>
 
+     <bean id="passwordCommandValidator" class="com.apress.progwt.server.web.domain.validation.PasswordChangeCommandValidator">          
+     </bean>
+
      <bean id="createUserController" class="com.apress.progwt.server.web.controllers.CreateUserController">
           <property name="formView" value="signup" />
           <property name="successView" value="redirect:/site/index.html" /><!-- redirect index needs command in model -->
