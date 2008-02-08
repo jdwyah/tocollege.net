@@ -24,7 +24,7 @@
   	 
 	
 	<@common.box "boxStyle", "myList", "MyList">
-		<@gwt.widget "CollegeBound"/>		
+		<@gwt.widget "MyPage"/>		
 		<@gwt.finalize/>	
 	</@common.box>	
 	

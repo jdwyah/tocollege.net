@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
+import com.apress.progwt.client.college.gui.ext.AlertDialog;
 import com.apress.progwt.client.college.gui.ext.ContextMenu;
 import com.apress.progwt.client.college.gui.ext.H2;
 import com.apress.progwt.client.college.gui.timeline.ProcessTimeLineEntry;
@@ -20,7 +21,7 @@ import com.apress.progwt.client.domain.commands.SiteCommand;
 import com.apress.progwt.client.gui.timeline.TimeLineObj;
 import com.apress.progwt.client.gui.timeline.TimeLineObjFactory;
 import com.apress.progwt.client.rpc.StdAsyncCallback;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -37,94 +38,6 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class MyApplicationTimeline extends Composite implements
         MyPageTab, TimelineController {
-
-    // private User thisUser;
-    private ServiceCache serviceCache;
-
-    private ProcessTimeline timeline;
-
-    private AppList schoolPanel;
-
-    private ProcessTypePanel processTypePanel;
-
-    private User lastUser;
-
-    private Application currentApplication;
-
-    private TimeLineObjFactory timelineObjFactory = new ProcessTimeLineObjFactory();
-
-    public MyApplicationTimeline(ServiceCache serviceCache) {
-
-        this.serviceCache = serviceCache;
-
-        HorizontalPanel mainP = new HorizontalPanel();
-        VerticalPanel chooserP = new VerticalPanel();
-
-        timeline = new ProcessTimeline(this);
-
-        schoolPanel = new AppList();
-        processTypePanel = new ProcessTypePanel();
-
-        chooserP.add(schoolPanel);
-        chooserP.add(processTypePanel);
-
-        mainP.add(timeline);
-        mainP.add(chooserP);
-
-        initWidget(mainP);
-
-    }
-
-    /**
-     * Hold all ProcessType and create new TLO's when they're chosen.
-     * 
-     * Make them draggable, so they can eb drgged onto the timeline, but
-     * don't make them drggable if they'll be used in the context menu.
-     * 
-     * @author Jeff Dwyer
-     * 
-     */
-    private class ProcessTypePanel extends Composite {
-        private VerticalPanel mainPanel;
-        private Date date;
-        private ClickListener allClicks;
-
-        public ProcessTypePanel() {
-            this(new Date(), null);
-        }
-
-        public ProcessTypePanel(Date date, ClickListener allClicks) {
-            this.date = date;
-            this.allClicks = allClicks;
-            mainPanel = new VerticalPanel();
-            initWidget(mainPanel);
-
-        }
-
-        public void load(User user) {
-
-            mainPanel.clear();
-
-            mainPanel.add(new H2("Application Events"));
-
-            List<ProcessType> processTypes = user.getProcessTypes();
-
-            for (final ProcessType processType : processTypes) {
-
-                ProcessLabel processLabel = new ProcessLabel(processType,
-                        MyApplicationTimeline.this, date);
-
-                if (allClicks != null) {
-                    processLabel.addClickListener(allClicks);
-                } else {
-                    timeline.getDragController().makeDraggable(
-                            processLabel);
-                }
-                mainPanel.add(processLabel);
-            }
-        }
-
-    }
 
     /**
      * Hold all Applications and set the timeline to display the chosen
@@ -174,30 +87,91 @@ public class MyApplicationTimeline extends Composite implements
 
     }
 
-    protected void showApplication(Application app) {
-        setCurrentApplication(app);
-        timeline.showApplication(app);
+    /**
+     * Hold all ProcessType and create new TLO's when they're chosen.
+     * 
+     * Make them draggable, so they can eb drgged onto the timeline, but
+     * don't make them drggable if they'll be used in the context menu.
+     * 
+     * @author Jeff Dwyer
+     * 
+     */
+    private class ProcessTypePanel extends Composite {
+        private ClickListener allClicks;
+        private Date date;
+        private VerticalPanel mainPanel;
+
+        public ProcessTypePanel() {
+            this(new Date(), null);
+        }
+
+        public ProcessTypePanel(Date date, ClickListener allClicks) {
+            this.date = date;
+            this.allClicks = allClicks;
+            mainPanel = new VerticalPanel();
+            initWidget(mainPanel);
+
+        }
+
+        public void load(User user) {
+
+            mainPanel.clear();
+
+            mainPanel.add(new H2("Application Events"));
+
+            List<ProcessType> processTypes = user.getProcessTypes();
+
+            for (final ProcessType processType : processTypes) {
+
+                ProcessLabel processLabel = new ProcessLabel(processType,
+                        MyApplicationTimeline.this, date);
+
+                if (allClicks != null) {
+                    processLabel.addClickListener(allClicks);
+                } else {
+                    timeline.getDragController().makeDraggable(
+                            processLabel);
+                }
+                mainPanel.add(processLabel);
+            }
+        }
+
     }
 
-    public void delete(Application application) {
-        // TODO Auto-generated method stub
+    private Application currentApplication;
 
-    }
+    private User lastUser;
 
-    public String getHistoryName() {
-        return "MyApplications";
-    }
+    private ProcessTypePanel processTypePanel;
 
-    public void load(User user) {
+    private AppList schoolPanel;
 
-        timeline.load(user);
-        schoolPanel.load(user);
-        processTypePanel.load(user);
+    // private User thisUser;
+    private ServiceCache serviceCache;
 
-    }
+    private ProcessTimeline timeline;
 
-    public void refresh() {
-        // TODO Auto-generated method stub
+    private TimeLineObjFactory timelineObjFactory = new ProcessTimeLineObjFactory();
+
+    public MyApplicationTimeline(ServiceCache serviceCache) {
+
+        this.serviceCache = serviceCache;
+
+        HorizontalPanel mainP = new HorizontalPanel();
+        VerticalPanel chooserP = new VerticalPanel();
+
+        timeline = new ProcessTimeline(this);
+
+        schoolPanel = new AppList();
+        processTypePanel = new ProcessTypePanel();
+
+        chooserP.add(schoolPanel);
+        chooserP.add(processTypePanel);
+
+        mainP.add(timeline);
+        mainP.add(chooserP);
+
+        initWidget(mainP);
 
     }
 
@@ -234,7 +208,7 @@ public class MyApplicationTimeline extends Composite implements
                     .get(processType);
 
             if (existing != null) {
-                Window
+                AlertDialog
                         .alert("Sorry, that already exists for this application.");
                 return;
             }
@@ -245,26 +219,33 @@ public class MyApplicationTimeline extends Composite implements
             timeline.addNew(getCurrentApplication(), processType, value);
 
         } else {
-            Window.alert("Select an application");
+            AlertDialog.alert("Select an application");
         }
 
     }
 
-    public void setCurrentApplication(Application currentApplication) {
-        this.currentApplication = currentApplication;
+    public void delete(Application application) {
+        // TODO Auto-generated method stub
+
     }
 
     public Application getCurrentApplication() {
         return currentApplication;
     }
 
+    public String getHistoryName() {
+        return "MyApplications";
+    }
+
     public TimeLineObjFactory getTimeLineObjFactory() {
         return timelineObjFactory;
     }
 
-    public void setSelected(TimeLineObj<?> tlo) {
+    public void load(User user) {
 
-        timeline.showStatus((TimeLineObj<ProcessTimeLineEntry>) tlo);
+        timeline.load(user);
+        schoolPanel.load(user);
+        processTypePanel.load(user);
 
     }
 
@@ -277,8 +258,24 @@ public class MyApplicationTimeline extends Composite implements
                         .getProcessValue());
 
         serviceCache.executeCommand(command,
+                new AsyncCallback<SiteCommand>() {
+
+                    public void onFailure(Throwable caught) {
+                        Log.error("fail");
+                    }
+
+                    public void onSuccess(SiteCommand result) {
+                        Log.debug("Success");
+                    }
+                });
+        serviceCache.executeCommand(command,
                 new StdAsyncCallback<SiteCommand>("Update Process Date") {
                 });
+
+    }
+
+    public void refresh() {
+        // TODO Auto-generated method stub
 
     }
 
@@ -291,5 +288,20 @@ public class MyApplicationTimeline extends Composite implements
                 new StdAsyncCallback<SiteCommand>("Save Process") {
                 });
 
+    }
+
+    public void setCurrentApplication(Application currentApplication) {
+        this.currentApplication = currentApplication;
+    }
+
+    public void setSelected(TimeLineObj<?> tlo) {
+
+        timeline.showStatus((TimeLineObj<ProcessTimeLineEntry>) tlo);
+
+    }
+
+    protected void showApplication(Application app) {
+        setCurrentApplication(app);
+        timeline.showApplication(app);
     }
 }

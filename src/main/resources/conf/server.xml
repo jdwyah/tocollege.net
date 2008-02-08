@@ -83,20 +83,19 @@
          pattern="common"/>
                </Host> -->
 
-
-              <!-- I think we should move these two hosts to conf/Catalina/www.myhippocampus.com/ROOT.xml & one for tocollege.net appBase == ? empty??? This makes very little sense to me. -->
-
+              <!-- Are we deploying multiple times? -->
+              <!-- Should we move these two hosts to conf/Catalina/www.myhippocampus.com/ROOT.xml & one for tocollege.net appBase == ? empty??? This makes very little sense to me. -->
 
               <!-- This was a nightmare to figure out, but finally working. Initial tries were for the wars to just be in webapps/ then reference them with appBase="Hippo" but that doesn't work at all.s -->
               <!-- Should have webbapps/myhippocampus.com/ROOT/WEB-INF/web.xml -->
-              <Host name="www.myhippocampus.com" appBase="webapps/myhippocampus.com" unpackWARs="true" autoDeploy="false" xmlValidation="false"
+              <Host name="www.myhippocampus.com" appBase="webhosts/myhippocampus.com" unpackWARs="true" autoDeploy="false" xmlValidation="false"
                    xmlNamespaceAware="false">
                    <Valve className="org.apache.catalina.valves.AccessLogValve" prefix="www.myhippocampus.com." suffix=".txt"
                         pattern="common" />
                    <Alias>myhippocampus.com</Alias>
               </Host>
 
-              <Host name="www.tocollege.net" appBase="webapps/tocollege.net" unpackWARs="true" autoDeploy="false" xmlValidation="false"
+              <Host name="www.tocollege.net" appBase="webhosts/tocollege.net" unpackWARs="true" autoDeploy="false" xmlValidation="false"
                    xmlNamespaceAware="false">
                    <Valve className="org.apache.catalina.valves.AccessLogValve" prefix="www.tocollege.net." suffix=".txt"
                         pattern="common" />

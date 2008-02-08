@@ -37,6 +37,7 @@ public class GWTApp {
     private static String getPreLoadID(int id) {
         return "gwt-loading-" + id;
     }
+
     public static void show(int id, Widget panel) {
         RootPanel.get(getPreLoadID(id)).setVisible(false);
         RootPanel.get(getLoadID(id)).add(panel);
@@ -59,10 +60,11 @@ public class GWTApp {
         try {
             RootPanel status = RootPanel.get("gwt-status");
             if (status.getWidgetCount() == 0) {
-                status.add(new StatusPanel());
+                StatusPanel sp = new StatusPanel();
+                status.add(sp);
+                StdAsyncCallback.setManager(sp);
             }
-            StdAsyncCallback
-                    .setManager((StatusPanel) status.getWidget(0));
+
         } catch (Exception e) {
             Log.error("Status Panel problem: ");
         }

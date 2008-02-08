@@ -114,7 +114,7 @@ public class Interactive implements EntryPoint {
                 Log.info("Do " + widget);
                 if (widget.equals("Calculator")) {
                     CalculatorApp m = new CalculatorApp(currentWidget);
-                } else if (widget.equals("CollegeBound")) {
+                } else if (widget.equals("MyPage")) {
                     ToCollegeApp c = new ToCollegeApp(currentWidget);
                 } else if (widget.equals("CollegeMap")) {
                     CollegeMapApp c = new CollegeMapApp(currentWidget);

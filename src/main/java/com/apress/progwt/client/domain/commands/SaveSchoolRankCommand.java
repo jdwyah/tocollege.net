@@ -35,16 +35,13 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
     }
 
     public void execute(CommandService commandService) {
-        Log.debug("Execute Command");
+        // Log.debug("Execute Command");
 
-        Log.debug("\n----A----\n");
         User currentUser = commandService.get(User.class, userID);
 
         assertUserIsAuthenticated(currentUser);
 
         List<Application> rankings = currentUser.getSchoolRankings();
-
-        Log.debug("\n----A2----\n");
 
         // Utilities.reOrder(rankings, currentUser, rank)
 
@@ -55,15 +52,13 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
         for (Iterator iterator = rankings.iterator(); iterator.hasNext();) {
             Application scAndApp = (Application) iterator.next();
 
-            Log.debug("\n----A3-LOOP----\n");
             if (scAndApp.getSchool().equals(school)) {
                 sap = scAndApp;
             }
         }
-        Log.debug("\n----B----\n");
 
         if (null == sap) {
-            Log.debug("\n----B-CREATE-NEW-SAP----\n");
+            // Log.debug("\n----B-CREATE-NEW-SAP----\n");
             sap = new Application(school);
             commandService.save(sap);
             currentUser.addRanked(rank, sap);
@@ -73,10 +68,8 @@ public class SaveSchoolRankCommand extends AbstractCommand implements
         // implementation didn't work
         Utilities.reOrder(rankings, sap, rank);
 
-        Log.debug("\n----C----\n");
-
-        Log.debug("Command Executed");
-        Log.debug("User " + currentUser);
+        // Log.debug("Command Executed");
+        // Log.debug("User " + currentUser);
 
         for (Application ranked : currentUser.getSchoolRankings()) {
             Log.debug("Command.Ranks To Save: Rank: " + ranked);

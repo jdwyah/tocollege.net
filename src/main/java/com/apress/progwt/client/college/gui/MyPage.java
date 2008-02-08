@@ -53,7 +53,15 @@ public class MyPage extends Composite implements TabListener,
         mainPanel.addTabListener(this);
         initWidget(mainPanel);
 
-        mainPanel.selectTab(0);
+        String initToken = History.getToken();
+        if (initToken.length() == 0) {
+            initToken = myRankings.getHistoryName();
+        }
+
+        // onHistoryChanged() is not called when the application first
+        // runs. Call
+        // it now in order to reflect the initial state.
+        onHistoryChanged(initToken);
 
         History.addHistoryListener(this);
 

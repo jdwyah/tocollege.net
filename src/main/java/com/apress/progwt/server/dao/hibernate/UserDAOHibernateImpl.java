@@ -107,6 +107,10 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
                 throw new UsernameNotFoundException(
                         "Duplicate Username Problem: " + username);
             } else {
+
+                // if OpenID
+                // consider returning a ROLE 'TRANSIENT_OpenID' user...
+
                 throw new UsernameNotFoundException(
                         "Username not found: " + username);
             }

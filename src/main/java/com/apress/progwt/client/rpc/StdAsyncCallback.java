@@ -1,11 +1,11 @@
 package com.apress.progwt.client.rpc;
 
 import com.allen_sauer.gwt.log.client.Log;
+import com.apress.progwt.client.college.gui.ext.AlertDialog;
 import com.apress.progwt.client.college.gui.status.StatusPanel;
 import com.apress.progwt.client.college.gui.status.StatusPanel.StatusCode;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.exception.SiteSecurityException;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
@@ -56,11 +56,11 @@ public class StdAsyncCallback<T> implements AsyncCallback<T> {
 
         if (caught.getMessage() != null) {
             if (caught.getMessage().startsWith("Username not found")) {
-                Window.alert("Need Login " + caught);
+                AlertDialog.alert("Need Login " + caught);
             }
         }
         if (caught instanceof SiteSecurityException) {
-            Window.alert("Access Exception " + caught);
+            AlertDialog.alert("Access Exception " + caught);
         }
 
         if (manager != null) {

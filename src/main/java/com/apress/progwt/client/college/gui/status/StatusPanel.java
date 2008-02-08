@@ -17,14 +17,14 @@ import com.google.gwt.user.client.ui.Widget;
  * 
  * Style suggestions:
  * 
- * .StatusLabels { width: 5px; height: 20px; filter: alpha(opacity = 40);
+ * .StatusLabel { width: 5px; height: 20px; filter: alpha(opacity = 40);
  * -moz-opacity: .40; opacity: .40; -khtml-opacity: .4; }
  * 
- * .StatusLabels .Send { background: yellow; }
+ * .StatusLabel-Send { background: yellow; }
  * 
- * .StatusLabels .Fail { background: red; }
+ * .StatusLabel-Fail { background: red; }
  * 
- * .StatusLabels .Success { background-color: green; }
+ * .StatusLabel-Success { background-color: green; }
  * 
  * @author Jeff Dwyer
  * 
@@ -51,8 +51,6 @@ public class StatusPanel extends SimplePanel {
 
     public StatusPanel() {
 
-        displayPanel.setStylePrimaryName("StatusLabels");
-
         add(displayPanel);
 
         setStylePrimaryName("StatusPanel");
@@ -69,19 +67,19 @@ public class StatusPanel extends SimplePanel {
             map.put(new Integer(id), lab);
             displayPanel.add(lab);
         } else if (statusCode == StatusCode.SUCCESS) {
-            final StatusLabel sl = map.get(new Integer(id));
+            final StatusLabel sl = map.remove(new Integer(id));
             if (sl != null) {
                 sl.setCode(statusCode);
-                GUIEffects.fadeAndRemove(sl, 2000);
+                GUIEffects.fadeAndRemove(sl, 5000);
             }
         }
         // FAIL
         else {
-            StatusLabel sl = map.get(new Integer(id));
+            StatusLabel sl = map.remove(new Integer(id));
             if (sl != null) {
                 sl.setText(string);
                 sl.setCode(statusCode);
-                GUIEffects.fadeAndRemove(sl, 3000, 6000);
+                GUIEffects.fadeAndRemove(sl, 6000, 8000);
             }
         }
     }
@@ -96,16 +94,23 @@ public class StatusPanel extends SimplePanel {
      */
     private class StatusLabel extends Label implements MouseListener {
         private String string;
+        private StatusCode currentCode;
 
         public StatusLabel(String string, StatusCode statusCode) {
             super(" ");
             this.string = string;
             setCode(statusCode);
+            setStylePrimaryName("StatusLabel");
+
             addMouseListener(this);
         }
 
         private void setCode(StatusCode statusCode) {
-            setStylePrimaryName(statusCode.getCode());
+            if (currentCode != null) {
+                removeStyleDependentName(currentCode.getCode());
+            }
+            this.currentCode = statusCode;
+            addStyleDependentName(currentCode.getCode());
         }
 
         public void onMouseEnter(Widget sender) {

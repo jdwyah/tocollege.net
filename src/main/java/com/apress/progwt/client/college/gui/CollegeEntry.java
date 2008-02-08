@@ -3,6 +3,7 @@ package com.apress.progwt.client.college.gui;
 import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.calculator.GUIEffects;
 import com.apress.progwt.client.college.ServiceCache;
+import com.apress.progwt.client.college.gui.ext.RichTextToolbar;
 import com.apress.progwt.client.domain.Application;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.commands.AbstractCommand;
@@ -43,18 +44,22 @@ public class CollegeEntry extends Composite implements Orderable {
         this.myRankings = myRankings;
 
         collegeNameLabel = new Label(application.getSchool().getName());
+        collegeNameLabel.setStylePrimaryName("TC-CollegeLabel");
         rankLabel = new Label();
-        rankLabel.setStyleName("TC-CollegeEntry-RankLabel");
+        rankLabel.setStylePrimaryName("TC-CollegeEntry-RankLabel");
 
         HorizontalPanel mainPanel = new HorizontalPanel();
         mainPanel.add(rankLabel);
         mainPanel.add(collegeNameLabel);
+        mainPanel.setCellWidth(rankLabel, "30px");
 
         DisclosurePanel disclosurePanel = new DisclosurePanel(" ");
         disclosurePanel.add(getInfoPanel());
         mainPanel.add(disclosurePanel);
-
-        mainPanel.setStyleName("TC-CollegEntry");
+        mainPanel.setCellWidth(disclosurePanel, "20px");
+        mainPanel.setCellHorizontalAlignment(disclosurePanel,
+                HorizontalPanel.ALIGN_RIGHT);
+        mainPanel.setStylePrimaryName("TC-CollegeEntry");
 
         initWidget(mainPanel);
 
@@ -118,8 +123,9 @@ public class CollegeEntry extends Composite implements Orderable {
         proConPanel = new ProConPanel(user, application, this);
 
         notesField = new RichTextArea();
-        notesField.setSize("40em", "15em");
+        notesField.setSize("30em", "15em");
         notesField.setHTML(application.getNotes());
+        RichTextToolbar rtt = new RichTextToolbar(notesField);
 
         saveB = new Button("Save");
         saveB.addClickListener(new ClickListener() {
@@ -140,6 +146,7 @@ public class CollegeEntry extends Composite implements Orderable {
         });
 
         VerticalPanel thoughtsP = new VerticalPanel();
+        thoughtsP.add(rtt);
         thoughtsP.add(notesField);
         thoughtsP.add(proConPanel);
         thoughtsP.add(saveB);

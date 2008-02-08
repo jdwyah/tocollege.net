@@ -137,7 +137,7 @@ public class GearsLocalServerManifestController {
      */
     private boolean shouldSkip(String name) {
         if (name.endsWith(".xml") || name.endsWith(".rpc")
-                || name.contains(".nocache.")) {
+                || name.contains(".nocache.") || name.contains(".cache.")) {
             return true;
         }
         return false;

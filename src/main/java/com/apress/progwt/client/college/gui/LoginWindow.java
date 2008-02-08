@@ -142,11 +142,11 @@ public class LoginWindow extends DialogBox implements TabListener {
                 // We can take
                 // this opportunity to perform validation.
                 // if (username.getText().length() == 0) {
-                // Window.alert("Username cannot be empty");
+                // AlertDialog.alert("Username cannot be empty");
                 // event.setCancelled(true);
                 // }
                 // if (password.getText().length() == 0) {
-                // Window.alert("Password cannot be empty");
+                // AlertDialog.alert("Password cannot be empty");
                 // event.setCancelled(true);
                 // }
                 lastNameEntered = username.getText();

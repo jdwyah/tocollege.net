@@ -28,7 +28,7 @@
                     <div style="padding-bottom:10px;border-bottom:1px solid #ccc;"><small><a href="https://myvidoop.com/help/what-is-openid" target="_blank">What is OpenID?</a></small></div>
     Don't have OpenID?<br>
     <div style="padding:5px 5px 7px 5px;background-color:#f2f2f2;border-bottom:1px solid #ccc;">
-        <div style="font-weight:bold;"><a href="https://myvidoop.com/register/affiliate/13">Sign up with Vidoop!</a></div>
+        <div style="font-weight:bold;"><a href="https://myvidoop.com/register/affiliate/27">Sign up with Vidoop!</a></div>
         <div><img src="http://global.vidoop.com/images/myVidoopSiteBadge_82x17.png" width=80 height=15 valign=bottom/>           <small> More secure than passwords.</small>        </div>
     </div>    
     <div style="padding:5px 5px 7px 5px;background-color:#f2f2f2;border-bottom:1px solid #ccc;">
