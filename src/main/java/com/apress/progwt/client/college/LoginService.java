@@ -15,14 +15,10 @@ public class LoginService implements LoginListener {
         this.serviceCache = serviceCache;
     }
 
-    public void getUserOrDoLogin(final AsyncCallback<User> callback) {
-        getUserOrDoLogin(null, callback);
-    }
-
     private void doLogin(String secureTargetURL,
             AsyncCallback<User> callback) {
         this.callback = callback;
-        LoginWindow lw = new LoginWindow(this);
+        LoginWindow lw = new LoginWindow(this, secureTargetURL);
         lw.center();
     }
 
@@ -30,6 +26,23 @@ public class LoginService implements LoginListener {
         serviceCache.getCurrentUser(callback);
     }
 
+    /**
+     * Callers need to specify a URL that we can use to perform possible
+     * login via forwarding. We can't do OpenID logins with a simple
+     * asynchronous form POST (maybe with Comet?) because the user might
+     * need to go offsite to type in their URL. When they come back from
+     * that, we need to have a URL that will bring us back to the desired
+     * state of the application.
+     * 
+     * Of course for Username/Password logins, this URL will not be used,
+     * we'll just do the asyncronous FormPost.
+     * 
+     * 
+     * @param secureTargetURL
+     * @param callback -
+     *            A method that needs a user. We'll supply a user, or
+     *            force a login if there is no current user.
+     */
     public void getUserOrDoLogin(final String secureTargetURL,
             final AsyncCallback<User> callback) {
         this.callback = callback;

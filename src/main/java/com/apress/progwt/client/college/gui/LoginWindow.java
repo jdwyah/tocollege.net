@@ -17,26 +17,26 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.PopupListener;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.SourcesTabEvents;
-import com.google.gwt.user.client.ui.TabListener;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LoginWindow extends DialogBox implements TabListener {
+public class LoginWindow extends DialogBox {
 
-    private static final String SECURITY_URL = "j_acegi_security_check";
-    private static final String SECURITY_URL_OPENID = "site/j_acegi_openid_start";
+    private static final String SECURITY_URL = "j_acegi_security_check?gwt=true";
 
     private FormPanel form;
     private Label messageLabel;
     private LoginListener listener;
 
-    private boolean isOpenID;
-
     private TextBox username;
-    private TextBox openID;
+
+    /**
+     * this has the secureTargetURL which is a way for us to get to the
+     * right page even after a reloaction to OpenID login.
+     */
+    private String secureTargetURL;
 
     private static boolean semaphore = false;
 
@@ -52,8 +52,9 @@ public class LoginWindow extends DialogBox implements TabListener {
      * 
      * @param manager
      */
-    public LoginWindow(LoginListener listener) {
+    public LoginWindow(LoginListener listener, String secureTargetURL) {
         super(false, false);
+        this.secureTargetURL = secureTargetURL;
 
         this.listener = listener;
 
@@ -78,8 +79,6 @@ public class LoginWindow extends DialogBox implements TabListener {
             }
         });
 
-        setToOpenID(false);
-
         setWidget(form);
 
         setStyleName("TC-Popup");
@@ -100,38 +99,43 @@ public class LoginWindow extends DialogBox implements TabListener {
         TabPanel tabs = new TabPanel();
         tabs.add(getOpenIDTab(), "OpenID");
         tabs.add(getUPTab(), "Username/Password");
-        tabs.addTabListener(this);
         tabs.selectTab(1);
 
         panel.add(tabs);
-
-        panel.add(new Button("Login", new ClickListener() {
-            public void onClick(Widget sender) {
-                form.submit();
-            }
-        }));
 
         messageLabel = new Label("");
         panel.add(messageLabel);
 
         form.addFormHandler(new FormHandler() {
 
+            // note, this doesn't need to be perfectly secure. We just
+            // want to know that we think we're secure. The next request
+            // will tell us for sure
             public void onSubmitComplete(FormSubmitCompleteEvent event) {
 
-                // TODO parse bad password etc. Super-Fragile string comps
-                if (event.getResults() == null
-                        || -1 != event.getResults().indexOf(
-                                "not successful")
-                        || -1 != event.getResults().indexOf(
-                                "Bad credentials")
-                        || -1 != event.getResults().indexOf("404")) {
+                Log.debug("submit event results " + event.getResults());
+                if (event.getResults().equals("OK")) {
+                    success();
+                } else {
                     Log.warn("Login Fail: " + event.getResults());
                     failure();
-                } else {
-                    Log.info("Login Success");
-                    Log.debug(event.getResults());
-                    success();
                 }
+
+                // // TODO parse bad password etc. Super-Fragile string
+                // comps
+                // if (event.getResults() == null
+                // || -1 != event.getResults().indexOf(
+                // "not successful")
+                // || -1 != event.getResults().indexOf(
+                // "Bad credentials")
+                // || -1 != event.getResults().indexOf("404")) {
+                // Log.warn("Login Fail: " + event.getResults());
+                // failure();
+                // } else {
+                // Log.info("Login Success");
+                // Log.debug(event.getResults());
+                // success();
+                // }
 
             }
 
@@ -190,33 +194,23 @@ public class LoginWindow extends DialogBox implements TabListener {
 
         uptab.add(userP);
         uptab.add(passPanel);
-
+        uptab.add(new Button("Login", new ClickListener() {
+            public void onClick(Widget sender) {
+                form.submit();
+            }
+        }));
         return uptab;
     }
 
     private Widget getOpenIDTab() {
 
-        openID = new TextBox();
-        openID.setName("openid_url");
-        openID.setText(lastNameEntered);
-
         HorizontalPanel hP = new HorizontalPanel();
 
-        hP.add(new Label("Username"));
-        hP.add(openID);
+        hP
+                .add(new ExternalLink("Do OpenID login", secureTargetURL,
+                        true));
 
         return hP;
-    }
-
-    private void setToOpenID(boolean toOpenID) {
-        if (toOpenID) {
-            form.setAction(Interactive
-                    .getRelativeURL(SECURITY_URL_OPENID));
-        } else {
-            form.setAction(Interactive.getRelativeURL(SECURITY_URL));
-        }
-
-        isOpenID = toOpenID;
     }
 
     private void failure() {
@@ -238,19 +232,6 @@ public class LoginWindow extends DialogBox implements TabListener {
         };
         t.schedule(2000);
 
-    }
-
-    public boolean onBeforeTabSelected(SourcesTabEvents sender,
-            int tabIndex) {
-        return true;
-    }
-
-    public void onTabSelected(SourcesTabEvents sender, int tabIndex) {
-        if (tabIndex == 0) {
-            setToOpenID(true);
-        } else {
-            setToOpenID(false);
-        }
     }
 
 }

@@ -37,7 +37,7 @@ http://www.dehora.net/journal/2007/08/tab_switching_with_sitemesh.html
     		<#if "true" == page.properties["meta.sm.showAccount"]?default("true")>
     		<div id="header_account">
     		  <#if user?exists>
-    		  	<@common.box "boxStyleSm", "userBox", "Welcome ${user.username}">  	
+    		  	<@common.box "boxStyleSm", "userBox", "Welcome ${user.nickname}">  	
     		  	<ul>
     		  	  <li><strong>
     		  	  <a href="<@spring.url "/site/secure/myList.html"/>">My List</a></strong>

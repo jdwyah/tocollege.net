@@ -145,11 +145,6 @@ public class ServiceCache {
         schoolService.getSchoolDetails(replacementString, callback);
     }
 
-    public void login(String username, String password,
-            AsyncCallback<User> callback) {
-        userService.login(username, password, callback);
-    }
-
     public void matchProcessType(final String query,
             final AsyncCallback<List<ProcessType>> origCallback) {
 

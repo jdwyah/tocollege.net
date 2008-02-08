@@ -43,7 +43,7 @@
           <property name="filterProcessesUrl" value="/j_acegi_logout" />
      </bean>
 
-     <bean id="authenticationProcessingFilter" class="com.apress.progwt.server.web.filters.ToCollegeAuthenticationProcessingFilter">
+     <bean id="authenticationProcessingFilter" class="com.apress.progwt.server.web.filters.GWTExtendedAuthenticationProcessingFilter">
           <property name="authenticationManager" ref="authenticationManager" />
           <property name="authenticationFailureUrl" value="/site/login.html?login_error=1" />
           <property name="defaultTargetUrl" value="/site/secure/myList.html" />

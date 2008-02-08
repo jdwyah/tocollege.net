@@ -12,6 +12,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class ToCollegeApp extends GWTApp {
 
+    private static final String SECURE_TARGET_URL = "site/secure/myList.html";
+
     private void loadGUI(Widget widget) {
         RootPanel.get(getPreLoadID()).setVisible(false);
         RootPanel.get(getLoadID()).add(widget);
@@ -41,7 +43,9 @@ public class ToCollegeApp extends GWTApp {
 
         final long start2 = System.currentTimeMillis();
 
-        getLoginService().getUserOrDoLogin(new AsyncCallback<User>() {
+        getLoginService().getUserOrDoLogin(SECURE_TARGET_URL,
+
+        new AsyncCallback<User>() {
 
             public void onFailure(Throwable caught) {
                 Log.error("setmeupFailure " + caught);
