@@ -57,6 +57,7 @@ public class GearsLocalServerManifestController {
             manifest = createManifest();
         }
         output.append(manifest);
+        output.close();
     }
 
     private String createManifest() throws JSONException {

@@ -1,4 +1,4 @@
-package com.apress.progwt.server.util;
+package com.apress.progwt.server.web.filters;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

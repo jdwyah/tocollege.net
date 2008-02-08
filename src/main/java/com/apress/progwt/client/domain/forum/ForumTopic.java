@@ -25,6 +25,7 @@ public interface ForumTopic {
     ForumPost getForumPost();
 
     public static String SEP = "~";
+    public static String CREATE = "~Create";
 
     String getForumDisplayName();
 

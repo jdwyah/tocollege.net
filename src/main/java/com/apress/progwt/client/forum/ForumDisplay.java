@@ -23,6 +23,8 @@ public class ForumDisplay extends Composite {
     private VerticalPanel allPosts;
     private ForumApp forumApp;
 
+    private CreatePostButton createB;
+
     public ForumDisplay(ForumApp forumApp) {
         this.forumApp = forumApp;
         allPosts = new VerticalPanel();
@@ -64,8 +66,7 @@ public class ForumDisplay extends Composite {
             allPosts.add(new Label("No Posts Yet"));
         }
 
-        CreatePostButton createB = new CreatePostButton(forumApp,
-                isReply, topic);
+        createB = new CreatePostButton(forumApp, isReply, topic);
         allPosts.add(createB);
 
         ForumControlPanel fcb = new ForumControlPanel(topic, result,
@@ -141,6 +142,13 @@ public class ForumDisplay extends Composite {
             initWidget(mainP);
             mainP.setStylePrimaryName("ForumPost");
         }
+    }
+
+    /**
+     * create a post
+     */
+    public void create() {
+        createB.onClick(createB);
     }
 
 }

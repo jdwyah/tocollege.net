@@ -43,10 +43,11 @@
           <property name="filterProcessesUrl" value="/j_acegi_logout" />
      </bean>
 
-     <bean id="authenticationProcessingFilter" class="org.springframework.security.ui.webapp.AuthenticationProcessingFilter">
+     <bean id="authenticationProcessingFilter" class="com.apress.progwt.server.web.filters.ToCollegeAuthenticationProcessingFilter">
           <property name="authenticationManager" ref="authenticationManager" />
           <property name="authenticationFailureUrl" value="/site/login.html?login_error=1" />
           <property name="defaultTargetUrl" value="/site/secure/myList.html" />
+          <property name="gwtLoginTargetURL" value="/site/secure/gwtLoginOK.html" />          
           <property name="filterProcessesUrl" value="/j_acegi_security_check" />
           <property name="rememberMeServices" ref="rememberMeServices" />
      </bean>

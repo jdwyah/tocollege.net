@@ -35,7 +35,7 @@ public class Interactive implements EntryPoint {
 
         if (GWT.isScript()) {
 
-            Log.info("ModuleBaseURL: " + GWT.getModuleBaseURL());
+            // Log.debug("ModuleBaseURL: " + GWT.getModuleBaseURL());
 
             String moduleBase = GWT.getModuleBaseURL();
 
@@ -46,7 +46,7 @@ public class Interactive implements EntryPoint {
             // Use to test compiled browser locally
             //
             if (moduleBase.indexOf("localhost") != -1) {
-                Log.info("Testing. Using Localhost");
+                // Log.debug("Testing. Using Localhost");
                 realModuleBase = LOCAL_HOST;
             }
 
@@ -78,7 +78,10 @@ public class Interactive implements EntryPoint {
         GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
             public void onUncaughtException(Throwable arg0) {
                 arg0.printStackTrace();
-                Log.error(arg0.getMessage());
+                // gwt-log errors on null message;
+                String message = arg0.getMessage() == null ? "No Message"
+                        : arg0.getMessage();
+                Log.error(message);
             }
         });
 

@@ -28,6 +28,8 @@ public class ForumApp extends GWTApp implements HistoryListener {
     private static final int FORUM_THREAD_MAX = 10;
     private ForumTopic originalTopic;
 
+    private ForumCommand currentCommand;
+
     public ForumApp(int pageID) {
         super(pageID);
 
@@ -51,17 +53,25 @@ public class ForumApp extends GWTApp implements HistoryListener {
             initToken = uniqueForumID;
             History.newItem(initToken);
         }
+        ForumCommand fc = ForumCommand.getFromLocation();
 
-        if (bootstrapped != null) {
-            Log.info("Running off Bootstrap");
+        // prioritize this over uniqueID
+        // used when we've forwarded to /secure/
+        if (fc != null) {
+            Log.info("Forum Processing From Location " + fc);
+            process(fc);
+
+        } else if (bootstrapped != null) {
+            Log.info("ForumApp Running off Bootstrap");
 
             load(0, bootstrapped.getPostsList(), false, bootstrapped
-                    .getForumTopic(), FORUM_POST_MAX);
+                    .getForumTopic(), FORUM_POST_MAX, false);
 
             History.newItem(bootstrapped.getForumTopic()
                     .getUniqueForumID());
 
         } else if (initToken.length() > 0) {
+            Log.info("ForumApp token:" + initToken);
             // onHistoryChanged() is not called when the application first
             // runs. Call it now in order to reflect the initial state.
             // this will affect a load
@@ -109,44 +119,53 @@ public class ForumApp extends GWTApp implements HistoryListener {
 
     }
 
-    private void gotoUser(final User user, final int start) {
+    private void gotoUser(final User user, final int start,
+            final boolean create) {
         originalTopic = user;
-        gotoForum(user, start, false, FORUM_THREAD_MAX);
+        gotoForum(user, start, false, FORUM_THREAD_MAX, create);
     }
 
-    private void gotoSchool(final School school, final int start) {
+    private void gotoSchool(final School school, final int start,
+            final boolean create) {
         originalTopic = school;
-        gotoForum(school, start, false, FORUM_THREAD_MAX);
+        gotoForum(school, start, false, FORUM_THREAD_MAX, create);
     }
 
     public void gotoThread(ForumPost post) {
-        gotoThread(post, 0);
+        gotoThread(post, 0, false);
     }
 
-    public void gotoThread(final ForumPost thread, final int start) {
-        gotoForum(thread, start, true, FORUM_POST_MAX);
+    public void gotoThread(final ForumPost thread, final int start,
+            final boolean create) {
+        gotoForum(thread, start, true, FORUM_POST_MAX, create);
     }
 
     private void gotoForum(final ForumTopic forumTopic, final int start,
-            final boolean isReply, final int max) {
+            final boolean isReply, final int max, final boolean create) {
 
         getServiceCache().getForum(forumTopic, start, max,
                 new StdAsyncCallback<PostsList>("Get Posts For Thread") {
                     @Override
                     public void onSuccess(PostsList result) {
                         super.onSuccess(result);
-                        load(start, result, true, forumTopic, max);
+                        load(start, result, true, forumTopic, max, create);
                     }
                 });
     }
 
     protected void load(int start, PostsList result, boolean isReply,
-            ForumTopic current, int maxPerPage) {
+            ForumTopic current, int maxPerPage, boolean create) {
 
         currentTopic = current;
 
         forumDisplay.load(start, result, originalTopic, current, isReply,
                 maxPerPage);
+        if (create) {
+            forumDisplay.create();
+        }
+    }
+
+    public void parseToken(String historyToken) {
 
     }
 
@@ -160,35 +179,51 @@ public class ForumApp extends GWTApp implements HistoryListener {
     public void onHistoryChanged(String historyToken) {
 
         Log.debug("HISTORY CHANGE " + historyToken);
-
         try {
+            ForumCommand fc = new ForumCommand();
+
             String[] tok = historyToken.split(ForumTopic.SEP);
-            int start = 0;
-            long id = Long.parseLong(tok[1]);
+
+            fc.setId(Long.parseLong(tok[1]));
             if (tok.length == 3) {
-                start = Integer.parseInt(tok[2]);
+                fc.setStart(Integer.parseInt(tok[2]));
             }
-            if (tok[0].equals("School")) {
-                School s = new School(id);
-                gotoSchool(s, start);
-            } else if (tok[0].equals("SchoolForumPost")) {
-                ForumPost fp = new SchoolForumPost();
-                fp.setId(id);
-                gotoThread(fp, start);
-            } else if (tok[0].equals("User")) {
-                User u = new User();
-                u.setId(id);
-                gotoUser(u, start);
-            } else if (tok[0].equals("UserForumPost")) {
-                ForumPost fp = new UserForumPost();
-                fp.setId(id);
-                gotoThread(fp, start);
-            } else if (tok[0].equals("RecentForumPost")) {
-                gotoForum(new RecentForumPostTopic(), start, false,
-                        FORUM_THREAD_MAX);
-            }
+            fc.setType(tok[0]);
+
+            process(fc);
+
         } catch (Exception e) {
             Log.warn("Problem parsing token:" + historyToken);
+        }
+    }
+
+    public ForumCommand getCurrentCommand() {
+        return currentCommand;
+    }
+
+    private void process(ForumCommand fc) {
+        currentCommand = fc;
+        if (fc.getType().equals("School")) {
+            School s = new School(fc.getId());
+            gotoSchool(s, fc.getStart(), fc.isCreate());
+        } else if (fc.getType().equals("SchoolForumPost")) {
+            ForumPost fp = new SchoolForumPost();
+            fp.setId(fc.getId());
+            gotoThread(fp, fc.getStart(), fc.isCreate());
+        } else if (fc.getType().equals("User")) {
+            User u = new User();
+            u.setId(fc.getId());
+            gotoUser(u, fc.getStart(), fc.isCreate());
+        } else if (fc.getType().equals("UserForumPost")) {
+            ForumPost fp = new UserForumPost();
+            fp.setId(fc.getId());
+            gotoThread(fp, fc.getStart(), fc.isCreate());
+        } else if (fc.getType().equals("RecentForumPost")) {
+            gotoForum(new RecentForumPostTopic(), fc.getStart(), false,
+                    FORUM_THREAD_MAX, fc.isCreate());
+        } else {
+            throw new UnsupportedOperationException("Bad Forum Type: "
+                    + fc.getType());
         }
     }
 

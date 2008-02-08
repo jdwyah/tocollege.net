@@ -104,8 +104,14 @@ public class UserServiceImplTest extends
         assertEquals("http://www.factoryjoe.com/", UrlIdentifier
                 .normalize("http://www.factoryjoe.com").toExternalForm());
 
-        assertEquals("http://factoryjoe.com/", UrlIdentifier.normalize(
-                "factoryjoe.com").toExternalForm());
+        // show that current is unsatisfactory
+        new AssertThrows(IllegalArgumentException.class) {
+            public void test() throws Exception {
+                assertEquals("http://factoryjoe.com/", UrlIdentifier
+                        .normalize("factoryjoe.com").toExternalForm());
+            }
+        };
+
     }
 
     public void testNormalizeUrl() throws SiteException {
@@ -169,6 +175,22 @@ public class UserServiceImplTest extends
                 .normalizeUrl("\u8349.com/\u8349"));
         assertEquals("http://xn--vl1a.com/%E8%8D%89", UserServiceImpl
                 .normalizeUrl("http://\u8349.com/\u8349"));
+    }
+
+    public void testProgrammaticLogin() throws SiteException {
+
+        userService.programmaticLogin("test", "testaroo");
+        assertNotNull(userService.getCurrentUser());
+        assertEquals("test", userService.getCurrentUser().getUsername());
+
+        userService.programmaticLogin("sandy7", "sandy7p");
+        assertNotNull(userService.getCurrentUser());
+        assertEquals("sandy7", userService.getCurrentUser().getUsername());
+
+        userService.programmaticLogin("richie", "richiep");
+        assertNotNull(userService.getCurrentUser());
+        assertEquals("richie", userService.getCurrentUser().getUsername());
+
     }
 
     public void testToken() throws SiteException {

@@ -6,12 +6,13 @@ import org.springframework.security.userdetails.UsernameNotFoundException;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.exception.BusinessException;
+import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.client.service.remote.GWTUserService;
 import com.apress.progwt.server.gwt.GWTController;
 import com.apress.progwt.server.service.UserService;
 
-public class GWTUserServiceImpl extends GWTController
-        implements GWTUserService {
+public class GWTUserServiceImpl extends GWTController implements
+        GWTUserService {
     private static final Logger log = Logger
             .getLogger(GWTUserServiceImpl.class);
 
@@ -44,12 +45,23 @@ public class GWTUserServiceImpl extends GWTController
             return rtn;
 
         } catch (UsernameNotFoundException u) {
-            throw new BusinessException(u.getMessage());
+            log.debug("No User Found " + u);
+            throw new BusinessException(u);
         }
     }
 
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public User login(String username, String password)
+            throws SiteException {
+        log.debug("login: " + username);
+        userService.programmaticLogin(username, password);
+
+        log.debug("now logged in: " + userService.getCurrentUser());
+
+        return userService.getCurrentUser();
     }
 
 }

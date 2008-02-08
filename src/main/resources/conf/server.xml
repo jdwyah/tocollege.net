@@ -50,7 +50,8 @@
                connectionTimeout="20000" disableUploadTimeout="true" proxyName="www.myhippocampus.com" proxyPort="80"
                compression="on" compressionMinSize="2048" noCompressionUserAgents="gozilla, traviata"
                compressableMimeType="text/html,text/xml,text/css,text/plain" />
-          <Connector port="8082" protocol="HTTP/1.1" server="Apache" maxHttpHeaderSize="8192" maxThreads="150"
+          
+          <Connector port="8082" protocol="org.apache.coyote.http11.Http11NioProtocol" server="Apache" maxHttpHeaderSize="8192" maxThreads="150"
                minSpareThreads="25" maxSpareThreads="75" enableLookups="false" redirectPort="8443" acceptCount="100"
                connectionTimeout="20000" disableUploadTimeout="true" proxyName="www.tocollege.net" proxyPort="80" compression="on"
                compressionMinSize="2048" noCompressionUserAgents="gozilla, traviata"

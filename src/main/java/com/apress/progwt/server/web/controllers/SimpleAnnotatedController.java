@@ -1,5 +1,7 @@
 package com.apress.progwt.server.web.controllers;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,6 +67,20 @@ public class SimpleAnnotatedController {
         rtn.addAttribute("topUsers", userService.getTopUsers(20));
 
         return rtn;
+    }
+
+    /**
+     * this is the gwtLoginTargetURL. When GWT does a form based login, it
+     * will redirect here. GWT can then read this 'ok' in to know that it
+     * was ok.
+     * 
+     * @param w
+     * @throws IOException
+     */
+    @RequestMapping("/secure/gwtLoginOK.html")
+    public void gwtLoginHandler(Writer w) throws IOException {
+        w.write("OK");
+        w.close();
     }
 
     /**

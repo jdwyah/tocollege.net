@@ -3,6 +3,7 @@ package com.apress.progwt.client.college;
 import com.apress.progwt.client.college.gui.LoginListener;
 import com.apress.progwt.client.college.gui.LoginWindow;
 import com.apress.progwt.client.domain.User;
+import com.apress.progwt.client.rpc.StdAsyncCallback;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class LoginService implements LoginListener {
@@ -15,25 +16,11 @@ public class LoginService implements LoginListener {
     }
 
     public void getUserOrDoLogin(final AsyncCallback<User> callback) {
-
-        serviceCache.getCurrentUser(new AsyncCallback<User>() {
-
-            public void onSuccess(User result) {
-                if (result == null) {
-                    doLogin(callback);
-                } else {
-                    callback.onSuccess(result);
-                }
-            }
-
-            public void onFailure(Throwable caught) {
-                doLogin(callback);
-            }
-        });
-
+        getUserOrDoLogin(null, callback);
     }
 
-    private void doLogin(AsyncCallback<User> callback) {
+    private void doLogin(String secureTargetURL,
+            AsyncCallback<User> callback) {
         this.callback = callback;
         LoginWindow lw = new LoginWindow(this);
         lw.center();
@@ -41,6 +28,30 @@ public class LoginService implements LoginListener {
 
     public void loginSuccess() {
         serviceCache.getCurrentUser(callback);
+    }
+
+    public void getUserOrDoLogin(final String secureTargetURL,
+            final AsyncCallback<User> callback) {
+        this.callback = callback;
+
+        serviceCache
+                .getCurrentUser(new StdAsyncCallback<User>("Get User") {
+
+                    public void onSuccess(User result) {
+                        super.onSuccess(result);
+                        if (result == null) {
+                            doLogin(secureTargetURL, callback);
+                        } else {
+                            callback.onSuccess(result);
+                        }
+                    }
+
+                    public void onFailure(Throwable caught) {
+                        super.onFailure(caught);
+                        doLogin(secureTargetURL, callback);
+                    }
+                });
+
     }
 
 }

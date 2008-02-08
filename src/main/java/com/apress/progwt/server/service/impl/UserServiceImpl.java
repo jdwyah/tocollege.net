@@ -14,7 +14,10 @@ import org.openid4java.discovery.UrlIdentifier;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.MessageSource;
 import org.springframework.security.Authentication;
+import org.springframework.security.AuthenticationManager;
+import org.springframework.security.context.SecurityContext;
 import org.springframework.security.context.SecurityContextHolder;
+import org.springframework.security.providers.UsernamePasswordAuthenticationToken;
 import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.dao.UserCache;
 import org.springframework.security.providers.encoding.PasswordEncoder;
@@ -27,6 +30,7 @@ import com.apress.progwt.client.domain.RatingType;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.exception.BusinessException;
+import com.apress.progwt.client.exception.SiteAuthException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
 import com.apress.progwt.server.dao.UserDAO;
@@ -103,6 +107,8 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     private Cache userTokenCache;
+
+    private AuthenticationManager authMgr;
 
     /**
      * don't let it go negative
@@ -366,6 +372,41 @@ public class UserServiceImpl implements UserService {
         return messageSource.getMessage(messageName, null, null);
     }
 
+    public void programmaticLogin(String username, String password)
+            throws SiteAuthException {
+
+        try {
+
+            UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(
+                    username, password);
+
+            Authentication auth = authMgr.authenticate(upat);
+            SecurityContext ctx = SecurityContextHolder.getContext();
+            ctx.setAuthentication(auth);
+
+            // UsernamePasswordAuthenticationToken spa = new
+            // UsernamePasswordAuthenticationToken(
+            // username, password);
+            // SecurityContextHolder.getContext().setAuthentication(spa);
+            // request.getSession().setAttribute(
+            // ACEGI_SECURITY_LAST_USERNAME_KEY, user.getLogin());
+            // AuthenticationManager authenticationManager =
+            // getAuthenticationManager();
+            // authenticationManager.authenticate(spa);
+            // getRememberMeServices().loginSuccess(request, response,
+            // spa);
+
+            // SecurityContext secureContext = new SecurityContextImpl();
+            // secureContext.setAuthentication(auth);
+            // SecurityContextHolder.setContext(secureContext);
+
+            log.debug("authentication set");
+        } catch (Exception e) {
+            log.error("Problem " + e);
+            throw new SiteAuthException(e);
+        }
+    }
+
     public boolean nowAcceptingSignups() {
         return userDAO.getUserCount() < maxUsers;
     }
@@ -416,6 +457,11 @@ public class UserServiceImpl implements UserService {
         }
 
         return save(createdU);
+    }
+
+    @Required
+    public void setAuthMgr(AuthenticationManager authMgr) {
+        this.authMgr = authMgr;
     }
 
     @Required

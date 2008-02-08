@@ -44,6 +44,7 @@
      <bean id="userService" class="com.apress.progwt.server.service.impl.UserServiceImpl">
           <property name="userDAO" ref="userDAO" />
           <property name="schoolDAO" ref="schoolDAO"/>
+          <property name="authMgr" ref="authenticationManager"/>
           <property name="userCache" ref="userCache" />
           <property name="messageSource" ref="messageSource" />
           <property name="maxUsers" value="${users.maxUsers}" />

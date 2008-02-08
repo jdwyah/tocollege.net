@@ -8,6 +8,7 @@ import org.springframework.security.userdetails.UsernameNotFoundException;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.domain.dto.UserAndToken;
 import com.apress.progwt.client.exception.BusinessException;
+import com.apress.progwt.client.exception.SiteAuthException;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.web.domain.CreateUserRequestCommand;
 
@@ -43,6 +44,9 @@ public interface UserService {
 
     User getUserWithNormalization(String username)
             throws UsernameNotFoundException, SiteException;
+
+    void programmaticLogin(String username, String password)
+            throws SiteAuthException;
 
     boolean nowAcceptingSignups();
 
