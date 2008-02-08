@@ -60,7 +60,7 @@
      </bean>
 
      <bean id="anonymousProcessingFilter" class="org.springframework.security.providers.anonymous.AnonymousProcessingFilter">
-          <property name="key" value="${security.anonymous.key}" />
+          <property name="key" value="${env.security.anonymous.key}" />
           <property name="userAttribute" value="anonymousUser,ROLE_ANONYMOUS" />
      </bean>
 
@@ -107,7 +107,7 @@
 
      <bean id="rememberMeServices" class="org.springframework.security.ui.rememberme.TokenBasedRememberMeServices">
           <property name="userDetailsService" ref="userDAO" />
-          <property name="key" value="${security.remembersme.key}" />
+          <property name="key" value="${env.security.remembersme.key}" />
      </bean>
 
      <bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
@@ -116,10 +116,10 @@
                     <ref local="daoAuthenticationProvider" />
                     <ref local="openIDAuthProvider" />
                     <bean class="org.springframework.security.providers.anonymous.AnonymousAuthenticationProvider">
-                         <property name="key" value="${security.anonymous.key}" />
+                         <property name="key" value="${env.security.anonymous.key}" />
                     </bean>
                     <bean class="org.springframework.security.providers.rememberme.RememberMeAuthenticationProvider">
-                         <property name="key" value="${security.remembersme.key}" />
+                         <property name="key" value="${env.security.remembersme.key}" />
                     </bean>
                </list>
           </property>

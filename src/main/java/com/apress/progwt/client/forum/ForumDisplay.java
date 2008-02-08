@@ -66,8 +66,11 @@ public class ForumDisplay extends Composite {
             allPosts.add(new Label("No Posts Yet"));
         }
 
-        createB = new CreatePostButton(forumApp, isReply, topic);
-        allPosts.add(createB);
+        // no reply button when we're just browsing 'recent forum posts'
+        if (original != null) {
+            createB = new CreatePostButton(forumApp, isReply, topic);
+            allPosts.add(createB);
+        }
 
         ForumControlPanel fcb = new ForumControlPanel(topic, result,
                 start, maxPerPage);

@@ -70,7 +70,7 @@
      <filter>
           <filter-name>CacheControlFilter</filter-name>
           <display-name>CacheControlFilter</display-name>
-          <filter-class>com.apress.progwt.server.util.CacheControlFilter</filter-class>
+          <filter-class>com.apress.progwt.server.web.filters.CacheControlFilter</filter-class>
      </filter>
      <filter-mapping>
           <filter-name>CacheControlFilter</filter-name>

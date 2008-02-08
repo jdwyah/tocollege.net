@@ -5,16 +5,19 @@
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
        >
-
+ 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
  		<property name="driverClass" value="${jdbc.driverClass}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.user}" />
-		<property name="password" value="${HOST.jdbc.password}" />
+                  
+        <!-- password overriden by env.properties -->
+        <property name="password" value="${env.jdbc.password}"/>                  	
 		<property name="testConnectionOnCheckout" value="true"/>
 	</bean>
-	
-    <!-- Enable @Repository // from org.springframework.stereotype -->
+
+
+	<!-- Enable @Repository // from org.springframework.stereotype -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
      
 

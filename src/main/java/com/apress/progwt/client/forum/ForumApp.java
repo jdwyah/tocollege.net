@@ -137,6 +137,11 @@ public class ForumApp extends GWTApp implements HistoryListener {
 
     public void gotoThread(final ForumPost thread, final int start,
             final boolean create) {
+
+        // TODO
+        if (originalTopic == null) {
+            // thread.getTopic() is null too...
+        }
         gotoForum(thread, start, true, FORUM_POST_MAX, create);
     }
 

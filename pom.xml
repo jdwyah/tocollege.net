@@ -12,9 +12,9 @@
             <url>http://s3.amazonaws.com/maven.springframework.org/milestone</url>
        </repository>
   </repositories>
-
+  
   <build>
-		<plugins>                
+		<plugins>                 <!-- 
 			<plugin>
 				<groupId>org.xi8ix</groupId>
 				<artifactId>xi8ix-gwtc</artifactId>
@@ -36,7 +36,7 @@
 
 					<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 				</configuration>
-			</plugin>                         
+			</plugin>                -->           
 			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -82,7 +82,34 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+		
+		<!--  -->
+          <resources>		     
+               <resource>
+                  <directory>src/main/resources</directory>
+                  <filtering>true</filtering>
+             </resource>
+		</resources>
+  </build>
+  <!-- an attempt to get maven filtering to help us keep passwords out of DB. Not currently deployed, because it didn't seem to be able to run on the webapps dir -->
+  <properties>
+       <env>foo</env>
+       <configLocation>src/main/resources/profile.properties</configLocation>
+  </properties>
+  <profiles>
+       <profile>
+            <id>dev</id>
+            <properties>
+                 <configLocation>src/main/resources/profile.properties</configLocation>
+            </properties>
+       </profile>      
+       <profile>
+            <id>live</id>
+            <properties>
+                 <configLocation>/etc/tocollege.net/profile.properties</configLocation>
+            </properties>
+       </profile>
+  </profiles>
 	<dependencies>
 		<dependency>
 			<groupId>com.google</groupId>

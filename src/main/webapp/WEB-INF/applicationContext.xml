@@ -9,8 +9,13 @@
      <!-- Turn on HostPrecedingPropertyPlaceholderConfigurer -->
      <!-- http://jdwyah.blogspot.com/2006/12/updated-spring-configuration.html -->
      <bean id="propertyConfigurer" class="com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer">
-          <property name="location" value="classpath:config.properties" />
-     </bean>
+          <property name="locations">
+               <list>
+                    <value>classpath:config.properties</value>
+                    <value>classpath:env.properties</value>
+               </list>
+          </property>
+     </bean>          
 
      <!-- Turn on @Required -->
      <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
@@ -83,8 +88,8 @@
           <property name="invitationTemplate" value="/WEB-INF/freemarker/mail/invitation.ftl"></property>
           <property name="mailSender" ref="mailSender"></property>
           <property name="userService" ref="userService" />
-          <property name="masterkey" value="${invitations.masterkey}"></property>
-          <property name="salt" value="${invitations.salt}"></property>
+          <property name="masterkey" value="${env.invitations.masterkey}"></property>
+          <property name="salt" value="${env.invitations.salt}"></property>
      </bean>
 
      <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer" abstract="false"
