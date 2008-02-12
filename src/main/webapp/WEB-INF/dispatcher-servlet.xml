@@ -81,6 +81,7 @@
 			<props>
 				
 				<prop key="/service/userService">GWTUserService</prop>
+                <prop key="/service/schoolService">GWTSchoolService</prop>
 												
 				<prop key="/site/acegilogin.html">loginController</prop>
 			
@@ -127,7 +128,7 @@
 		scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="java.lang.Exception">errorView</prop>
+				<prop key="java.lang.Exception">error</prop>
 			</props>
 		</property>
 	</bean>

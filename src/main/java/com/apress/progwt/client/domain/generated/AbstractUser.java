@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.apress.progwt.client.domain.School;
+import com.apress.progwt.client.domain.SchoolAndAppProcess;
 
 // Generated Oct 31, 2006 9:16:47 AM by Hibernate Tools 3.1.0.beta5
 
@@ -19,11 +19,15 @@ public abstract class AbstractUser implements java.io.Serializable {
     private boolean enabled;
     private long id;
     private int invitations;
-    private String password;
+
+    /**
+     * don't serialize and pass around the hashed password
+     */
+    private transient String password;
 
     private Date dateCreated;
 
-    private List<School> schoolRankings = new LinkedList<School>();
+    private List<SchoolAndAppProcess> schoolRankings = new LinkedList<SchoolAndAppProcess>();
 
     private boolean supervisor;
 
@@ -116,11 +120,12 @@ public abstract class AbstractUser implements java.io.Serializable {
         this.supervisor = supervisor;
     }
 
-    public List<School> getSchoolRankings() {
+    public List<SchoolAndAppProcess> getSchoolRankings() {
         return schoolRankings;
     }
 
-    public void setSchoolRankings(List<School> schoolRankings) {
+    public void setSchoolRankings(
+            List<SchoolAndAppProcess> schoolRankings) {
         this.schoolRankings = schoolRankings;
     }
 

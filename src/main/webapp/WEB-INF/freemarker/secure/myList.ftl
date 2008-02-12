@@ -3,7 +3,7 @@
 <#import "common.ftl" as common/>
 <#import "commonGWT.ftl" as gwt/>
 <head>
-  <title>My List</title>
+  <title>Calculator</title>
 </head>
 
 
@@ -21,6 +21,7 @@
   	
   	<div id="side1">
   	 
+				
 	
 	<@common.box "boxStyle", "calculator", "Calculator">
 		

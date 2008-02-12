@@ -49,3 +49,28 @@ a:visited {
 .ResultBox {
 	text-align: right;
 }
+
+
+.TC-App-CheckBoxes {
+	position: absolute;
+	left: 200px;
+}
+.TC-App-CheckBox {
+	width: 50px;
+}
+
+.gwt-SuggestBoxPopup {
+	border: 2px solid #576B93;
+	background: white;
+	z-index: 9999;
+}
+
+.gwt-SuggestBoxPopup .item {
+	padding: 1px;
+	font-size: small;
+}
+
+.gwt-SuggestBoxPopup .item-selected {
+	background-color: #C3D9FF;
+	padding: 1px;
+}

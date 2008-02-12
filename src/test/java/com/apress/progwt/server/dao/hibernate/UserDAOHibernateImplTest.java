@@ -9,123 +9,114 @@ import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
 
 public class UserDAOHibernateImplTest extends HibernateTransactionalTest {
-	private static final Logger log = Logger.getLogger(UserDAOHibernateImplTest.class);
+    private static final Logger log = Logger
+            .getLogger(UserDAOHibernateImplTest.class);
 
-	private static final String A = "dsafd";
-	private static final String B = "324234234";
+    private static final String A = "dsafd";
+    private static final String B = "324234234";
 
-	private UserDAO userDAO;
+    private UserDAO userDAO;
 
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
+    public void testGetUserByUsername() {
+        String USER = "test";
+        User u = userDAO.getUserByUsername(USER);
+        assertEquals(USER, u.getUsername());
 
+    }
 
-	public void testGetUserByUsername() {
-		String USER = "test";
-		User u = userDAO.getUserByUsername(USER);
-		assertEquals(USER, u.getUsername());
+    public void testLoadUserByUsername() {
+        String USER = "test";
+        ServerSideUser u = userDAO.loadUserByUsername(USER);
+        assertEquals(USER, u.getUsername());
 
+    }
 
-	}
+    public void testSave() {
 
+        User u = new User();
+        u.setUsername(A);
+        u.setPassword(A);
 
-	public void testLoadUserByUsername() {
-		String USER = "test";
-		ServerSideUser u = userDAO.loadUserByUsername(USER);
-		assertEquals(USER, u.getUsername());
+        List<User> list = userDAO.getAllUsers();
 
-	}
+        userDAO.save(u);
 
-	public void testSave() {
+        User saved = userDAO.getUserByUsername(A);
 
+        assertEquals(A, saved.getUsername());
+        assertNotSame(0, saved.getId());
+        assertFalse(saved.isSupervisor());
+        assertTrue(saved.isEnabled());
+        assertTrue(saved.isAccountNonExpired());
 
-		User u = new User();
-		u.setUsername(A);
-		u.setPassword(A);
+        List<User> listPost = userDAO.getAllUsers();
 
-		List<User> list = userDAO.getAllUsers();
+        assertEquals(listPost.size(), list.size() + 1);
+        log.debug("User list size " + list.size());
+    }
 
+    public void testEdit() {
+        String A = "dsafd";
+        String B = "sdfn&S*AS";
 
-		userDAO.save(u);
+        User u = new User();
+        u.setUsername(A);
+        u.setPassword(B);
 
-		User saved = userDAO.getUserByUsername(A);
+        List<User> list = userDAO.getAllUsers();
 
-		assertEquals(A, saved.getUsername());
-		assertNotSame(0, saved.getId());
-		assertFalse(saved.isSupervisor());
-		assertTrue(saved.isEnabled());
-		assertTrue(saved.isAccountNonExpired());
+        userDAO.save(u);
 
+        User saved = userDAO.getUserByUsername(A);
 
-		List<User> listPost = userDAO.getAllUsers();
+        assertEquals(A, saved.getUsername());
+        assertNotSame(0, saved.getId());
+        assertFalse(saved.isSupervisor());
+        assertTrue(saved.isEnabled());
+        assertTrue(saved.isAccountNonExpired());
 
-		assertEquals(listPost.size(), list.size() + 1);
-		log.debug("User list size " + list.size());
-	}
+        List<User> listPost = userDAO.getAllUsers();
 
-	public void testEdit() {
-		String A = "dsafd";
-		String B = "sdfn&S*AS";
+        assertEquals(listPost.size(), list.size() + 1);
+        log.debug("User list size " + list.size());
 
-		User u = new User();
-		u.setUsername(A);
-		u.setPassword(B);
+        // now do some edits
+        //
+        saved.setUsername(B);
+        saved.setSupervisor(true);
 
-		List<User> list = userDAO.getAllUsers();
+        userDAO.save(saved);
+        User editted = userDAO.getUserByUsername(B);
 
-		userDAO.save(u);
+        assertNotNull(editted);
+        assertEquals(B, editted.getUsername());
+        assertSame(saved.getId(), editted.getId());
+        assertTrue(saved.isSupervisor());
+        assertTrue(saved.isEnabled());
+        assertTrue(saved.isAccountNonExpired());
 
-		User saved = userDAO.getUserByUsername(A);
+    }
 
-		assertEquals(A, saved.getUsername());
-		assertNotSame(0, saved.getId());
-		assertFalse(saved.isSupervisor());
-		assertTrue(saved.isEnabled());
-		assertTrue(saved.isAccountNonExpired());
+    public void testGetUserCount() {
 
-		List<User> listPost = userDAO.getAllUsers();
+        List<User> list = userDAO.getAllUsers();
 
-		assertEquals(listPost.size(), list.size() + 1);
-		log.debug("User list size " + list.size());
+        long pre = userDAO.getUserCount();
 
+        assertEquals(pre, list.size());
 
-		// now do some edits
-		//
-		saved.setUsername(B);
-		saved.setSupervisor(true);
+        User u = new User();
+        u.setUsername(A);
+        u.setPassword(B);
 
-		userDAO.save(saved);
-		User editted = userDAO.getUserByUsername(B);
+        userDAO.save(u);
 
-		assertNotNull(editted);
-		assertEquals(B, editted.getUsername());
-		assertSame(saved.getId(), editted.getId());
-		assertTrue(saved.isSupervisor());
-		assertTrue(saved.isEnabled());
-		assertTrue(saved.isAccountNonExpired());
+        assertEquals(pre + 1, userDAO.getUserCount());
 
-
-
-	}
-
-	public void testGetUserCount() {
-
-		List<User> list = userDAO.getAllUsers();
-
-		long pre = userDAO.getUserCount();
-
-		assertEquals(pre, list.size());
-
-		User u = new User();
-		u.setUsername(A);
-		u.setPassword(B);
-
-		userDAO.save(u);
-
-		assertEquals(pre + 1, userDAO.getUserCount());
-
-	}
+    }
 
 }

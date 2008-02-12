@@ -1,13 +1,18 @@
 package com.apress.progwt.client.exception;
 
-public class SiteException extends Exception {
+import java.io.Serializable;
 
-	public SiteException(String message) {
-		super(message);
-	}
+public class SiteException extends Exception implements Serializable {
 
-	public SiteException(Exception e) {
-		super(e);
-	}
+    public SiteException() {
+    }
+
+    public SiteException(String message) {
+        super(message);
+    }
+
+    public SiteException(Exception e) {
+        super(e);
+    }
 
 }

@@ -87,20 +87,26 @@
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>1.5.0.build1481</version>
+			<version>1.5.0.build1491</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-dev-windows</artifactId>
-			<version>1.5.0.build1481</version>
+			<version>1.5.0.build1491</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-servlet</artifactId>
-			<version>1.5.0.build1481</version>
+			<version>1.5.0.build1491</version>
 		</dependency>
+          <dependency>
+               <groupId>com.google</groupId>
+               <artifactId>gwt-dragdrop</artifactId>
+               <version>1.2.5</version>
+          </dependency>
+          
 			<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>

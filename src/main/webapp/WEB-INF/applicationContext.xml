@@ -32,6 +32,11 @@
           <property name="serializeEverything" value="${HOST.gwt.serializeEverything}" />
      </bean>
 
+     <bean id="GWTSchoolService" class="com.apress.progwt.server.service.gwt.GWTSchoolServiceImpl">
+          <property name="schoolService" ref="schoolService" />
+          <property name="serializeEverything" value="${HOST.gwt.serializeEverything}" />
+     </bean>
+     
      <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" abstract="false"
           scope="singleton" lazy-init="default" autowire="default" dependency-check="default">
           <property name="basename" value="messages" />
@@ -47,6 +52,7 @@
      </bean>
      <bean id="schoolService" class="com.apress.progwt.server.service.impl.SchoolServiceImpl">
           <property name="schoolDAO" ref="schoolDAO" />
+          <property name="userService" ref="userService"/>
      </bean>
      <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
           <property name="host" value="k2smtpout.secureserver.net" /><!-- http://help.godaddy.com/article.php?article_id=122&topic_id=120 -->

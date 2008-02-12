@@ -94,7 +94,6 @@
 			<span style="display:inline-block;width:${width}px;height:${height}px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<@spring.url "${src}"/>', sizingMethod='scale')"></span>
 		</div>
 	<#else>
-		<!-- commonPNG -->
 		<img src=<@spring.url "${src}"/> width=${width} height=${height} border=0/>
 	</#if>
 </#macro>

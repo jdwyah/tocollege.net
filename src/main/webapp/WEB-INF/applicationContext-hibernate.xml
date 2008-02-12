@@ -23,7 +23,9 @@
 			<list>
 				<value>com/apress/progwt/client/domain/User.hbm.xml</value>
                 <value>com/apress/progwt/client/domain/School.hbm.xml</value>   
-                <value>com/apress/progwt/client/domain/MailingList.hbm.xml</value>   			
+                <value>com/apress/progwt/client/domain/MailingList.hbm.xml</value>
+                <value>com/apress/progwt/client/domain/SchoolAndAppProcess.hbm.xml</value>   			
+                <value>com/apress/progwt/client/domain/ApplicationProcess.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

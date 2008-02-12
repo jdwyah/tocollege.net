@@ -1,6 +1,12 @@
 package com.apress.progwt.client.exception;
 
-public class BusinessException extends SiteException {
+import java.io.Serializable;
+
+public class BusinessException extends SiteException implements
+        Serializable {
+
+    public BusinessException() {
+    }
 
     public BusinessException(String message) {
         super(message);

@@ -17,6 +17,7 @@
 			<meta attribute="use-in-equals">true</meta>
 		</property>
 		
+          
 		<property name="password" type="string" column="password">
 		</property>
 		<property name="email" type="string" column="email">
@@ -33,9 +34,13 @@
 			<meta attribute="field-description">User Was Created</meta>
 			<column name="dateCreated" sql-type="timestamp" />
 		</property>
-				
-	
-	
+
+		<list name="schoolRankings" table="UserSchoolRankings">
+		     <key column="userId" />
+		     <list-index column="sortOrder" />
+             <one-to-many class="SchoolAndAppProcess"/>		     
+		</list>
+
 	</class>
 
 </hibernate-mapping>

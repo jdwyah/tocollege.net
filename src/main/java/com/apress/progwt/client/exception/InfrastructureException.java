@@ -1,6 +1,12 @@
 package com.apress.progwt.client.exception;
 
-public class InfrastructureException extends SiteException {
+import java.io.Serializable;
+
+public class InfrastructureException extends SiteException implements
+        Serializable {
+
+    public InfrastructureException() {
+    }
 
     public InfrastructureException(String message) {
         super(message);
