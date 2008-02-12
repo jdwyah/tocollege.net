@@ -12,7 +12,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.security.AuthenticationException;
-import org.springframework.security.providers.AuthoritiesPopulator;
+import org.springframework.security.providers.cas.CasAuthoritiesPopulator;
 import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
 import org.springframework.security.userdetails.UsernameNotFoundException;
@@ -23,7 +23,7 @@ import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
 
 public class UserDAOHibernateImpl extends HibernateDaoSupport implements
-        UserDAO, UserDetailsService, AuthoritiesPopulator {
+        UserDAO, UserDetailsService, CasAuthoritiesPopulator{
 
     private static final Logger log = Logger
             .getLogger(UserDAOHibernateImpl.class);

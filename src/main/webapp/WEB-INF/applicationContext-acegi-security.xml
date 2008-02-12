@@ -162,7 +162,7 @@
      <bean id="openIDStore" class="org.openid4java.consumer.InMemoryConsumerAssociationStore"/>
      
      <bean id="openIDConsumer" class="org.springframework.security.ui.openid.consumers.OpenId4JavaConsumer"></bean>
-     <bean id="openIDResponseProcess" class="org.springframework.security.ui.openid.OpenIDResponseProcessingFilter">
+     <bean id="openIDResponseProcess" class="org.springframework.security.ui.openid.OpenIdAuthenticationProcessingFilter">
           <property name="consumer" ref="openIDConsumer" />          
           <property name="defaultTargetUrl" value="/site/index.html" />
           <property name="authenticationFailureUrl" value="/site/login.html?login_error=1" />
@@ -171,7 +171,7 @@
           <property name="filterProcessesUrl" value="/j_spring_openid_security_check"/>           
      </bean>
      <bean id="openIDAuthProvider" class="org.springframework.security.providers.openid.OpenIDAuthenticationProvider">
-          <property name="authoritiesPopulator" ref="userDAO"/>          
+        <property name="userDetailsService" ref="userDAO"/>              
      </bean>
 
 </beans>

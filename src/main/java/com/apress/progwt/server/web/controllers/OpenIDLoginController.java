@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.ui.openid.OpenIDConsumer;
 import org.springframework.security.ui.openid.OpenIDConsumerException;
-import org.springframework.security.ui.openid.OpenIDResponseProcessingFilter;
+import org.springframework.security.ui.openid.OpenIdAuthenticationProcessingFilter;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -19,7 +19,7 @@ public class OpenIDLoginController extends AbstractController {
             .getLogger(OpenIDLoginController.class);
 
     private OpenIDConsumer consumer;
-    private OpenIDResponseProcessingFilter openIDFilter;
+    private OpenIdAuthenticationProcessingFilter openIDFilter;
 
     private String identityField = "openid_url";
 
@@ -27,7 +27,7 @@ public class OpenIDLoginController extends AbstractController {
 
     @Required
     public void setOpenIDFilter(
-            OpenIDResponseProcessingFilter openIDFilter) {
+            OpenIdAuthenticationProcessingFilter openIDFilter) {
         this.openIDFilter = openIDFilter;
     }
 
