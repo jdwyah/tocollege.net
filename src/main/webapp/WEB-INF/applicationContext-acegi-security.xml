@@ -49,7 +49,7 @@
           <property name="defaultTargetUrl" value="/site/secure/myList.html" />
           <property name="gwtLoginTargetURL" value="/site/secure/gwtLoginOK.html" />          
           <property name="filterProcessesUrl" value="/j_acegi_security_check" />
-          <property name="rememberMeServices" ref="rememberMeServices" />
+          <property name="rememberMeServices" ref="rememberMeServices" />          
      </bean>
 
      <bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.wrapper.SecurityContextHolderAwareRequestFilter" />
@@ -73,7 +73,7 @@
           </property>
           <property name="accessDeniedHandler">
                <bean class="org.springframework.security.ui.AccessDeniedHandlerImpl">
-                    <property name="errorPage" value="/site/accessDenied.html" />
+                    <property name="errorPage" value="/site/login.html?access_error=1" />
                </bean>
           </property>
      </bean>
@@ -163,11 +163,12 @@
      
      <bean id="openIDConsumer" class="org.springframework.security.ui.openid.consumers.OpenId4JavaConsumer"></bean>
      <bean id="openIDResponseProcess" class="org.springframework.security.ui.openid.OpenIDResponseProcessingFilter">
-          <property name="consumer" ref="openIDConsumer" />
+          <property name="consumer" ref="openIDConsumer" />          
           <property name="defaultTargetUrl" value="/site/index.html" />
           <property name="authenticationFailureUrl" value="/site/login.html?login_error=1" />
           <property name="authenticationManager" ref="authenticationManager"></property>
-          <property name="rememberMeServices" ref="rememberMeServices"></property>                
+          <property name="rememberMeServices" ref="rememberMeServices"></property>     
+          <property name="filterProcessesUrl" value="/j_spring_openid_security_check"/>           
      </bean>
      <bean id="openIDAuthProvider" class="org.springframework.security.providers.openid.OpenIDAuthenticationProvider">
           <property name="authoritiesPopulator" ref="userDAO"/>          

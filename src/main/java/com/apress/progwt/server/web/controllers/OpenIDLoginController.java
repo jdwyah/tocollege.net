@@ -21,10 +21,7 @@ public class OpenIDLoginController extends AbstractController {
     private OpenIDConsumer consumer;
     private OpenIDResponseProcessingFilter openIDFilter;
 
-    private static final String passwordField = "j_password";
     private String identityField = "openid_url";
-    private String formLoginUrl = "/j_acegi_security_check";
-    private String errorPage = "acegilogin";
 
     private String trustRoot;
 
@@ -54,58 +51,37 @@ public class OpenIDLoginController extends AbstractController {
         // get the submitted id field
         String openID = req.getParameter(identityField);
 
-        // TODO: pattern matching
-        String password = req.getParameter(passwordField);
+        // send the user the redirect url to proceed with OpenID
+        // authentication
+        try {
+            String returnToURL = trustRoot
+                    + openIDFilter.getFilterProcessesUrl();
 
-        if ((password != null) && (password.length() > 0)) {
-            log
-                    .debug("Attempting to authenticate using username/password "
-                            + formLoginUrl);
-            log
-                    .debug("Attempting to authenticate using username/password ");
+            log.debug("ReturnToURL to: " + returnToURL);
 
-            // forward to authenticationProcessingFilter
-            // (/j_acegi_security_check - depends on param names)
-            return new ModelAndView(formLoginUrl);
+            String redirect = consumer.beginConsumption(req, openID,
+                    returnToURL);
+            log.debug("Redirecting to: " + redirect);
 
-        } else {
-            log.info("No pass, doing  OPENID " + openID);
-            // send the user the redirect url to proceed with OpenID
-            // authentication
-            try {
-                String returnToURL = trustRoot
-                        + openIDFilter.getFilterProcessesUrl();
+            return new ModelAndView("redirect:" + redirect);
 
-                log.debug("ReturnToURL to: " + returnToURL);
+        } catch (OpenIDConsumerException oice) {
+            log.error("Consumer error!" + oice + " " + oice.getMessage());
 
-                String redirect = consumer.beginConsumption(req, openID,
-                        returnToURL);
-                log.debug("Redirecting to: " + redirect);
-
-                return new ModelAndView("redirect:" + redirect);
-
-            } catch (OpenIDConsumerException oice) {
-                log.error("Consumer error!" + oice + " "
-                        + oice.getMessage());
-
-                Map<String, Object> model = new HashMap<String, Object>();
-                model.put("message", oice.getMessage());
-                if (oice.getCause() != null) {
-                    model
-                            .put(
-                                    "login_error",
-                                    "Cause: "
-                                            + oice.getCause()
-                                                    .getMessage()
-                                            + " Couldn't communicate with OpenID server for "
-                                            + openID);
-                } else {
-                    model.put("login_error",
-                            "Are you sure you have an OpenID account?");
-                }
-
-                return new ModelAndView(errorPage, model);
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("message", oice.getMessage());
+            if (oice.getCause() != null) {
+                model.put("login_error", "Cause: "
+                        + oice.getCause().getMessage()
+                        + " Couldn't communicate with OpenID server for "
+                        + openID);
+            } else {
+                model.put("login_error",
+                        "Are you sure you have an OpenID account?");
             }
+
+            return new ModelAndView(openIDFilter
+                    .getAuthenticationFailureUrl(), model);
         }
 
     }

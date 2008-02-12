@@ -83,13 +83,13 @@
 			</plugin>
 		</plugins>
 		
-		<!--  -->
+		<!--  Eek, this totally screw with GWT ImageBundle creation
           <resources>		     
                <resource>
                   <directory>src/main/resources</directory>
                   <filtering>true</filtering>
              </resource>
-		</resources>
+		</resources>-->
   </build>
   <!-- an attempt to get maven filtering to help us keep passwords out of DB. Not currently deployed, because it didn't seem to be able to run on the webapps dir -->
 <!-- http://sujitpal.blogspot.com/2006/10/maven2-multi-environment-filter-setup.html -->

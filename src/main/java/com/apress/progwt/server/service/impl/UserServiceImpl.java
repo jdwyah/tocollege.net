@@ -278,7 +278,7 @@ public class UserServiceImpl implements UserService {
                 .getAuthentication();
 
         if (null == auth) {
-            throw new UsernameNotFoundException("No Authorizations");
+            throw new UsernameNotFoundException("No Authentications");
         }
 
         Object obj = auth.getPrincipal();
@@ -297,30 +297,22 @@ public class UserServiceImpl implements UserService {
 
         log.debug("loadUserByUsername " + username);
 
-        try {
-
-            ServerSideUser serverUser = null;
-            if (useCache) {
-                serverUser = (ServerSideUser) userCache
-                        .getUserFromCache(username);
-            }
-
-            User u;
-            if (serverUser == null) {
-
-                u = userDAO.getUserByUsername(username);
-                userCache.putUserInCache(new ServerSideUser(u));
-
-            } else {
-                u = serverUser.getUser();
-            }
-
-            return u;
-        } catch (UsernameNotFoundException e) {
-            log.debug(e);
-            throw e;
+        ServerSideUser serverUser = null;
+        if (useCache) {
+            serverUser = (ServerSideUser) userCache
+                    .getUserFromCache(username);
         }
 
+        User u;
+        if (serverUser == null) {
+
+            u = userDAO.getUserByUsername(username);
+            userCache.putUserInCache(new ServerSideUser(u));
+
+        } else {
+            u = serverUser.getUser();
+        }
+        return u;
     }
 
     public UserAndToken getCurrentUserAndToken() {

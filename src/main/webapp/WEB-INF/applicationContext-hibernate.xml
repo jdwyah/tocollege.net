@@ -9,9 +9,8 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
  		<property name="driverClass" value="${jdbc.driverClass}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
-		<property name="user" value="${jdbc.user}" />
-                  
-        <!-- password overriden by env.properties -->
+        <!-- user/password overriden by env.properties -->
+		<property name="user" value="${env.jdbc.user}" />                          
         <property name="password" value="${env.jdbc.password}"/>                  	
 		<property name="testConnectionOnCheckout" value="true"/>
 	</bean>

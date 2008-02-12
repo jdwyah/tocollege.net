@@ -51,8 +51,6 @@
           <property name="userService" ref="userService" />          
      </bean>
      
-     <!-- maps to login.html will be seen on failed logins -->
-	 <bean id="loginController" class="com.apress.progwt.server.web.controllers.LoginController"></bean>
      
      
      <bean id="signupIfPossibleController" class="com.apress.progwt.server.web.controllers.SignupIfPossibleController">
