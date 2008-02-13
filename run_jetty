@@ -1,0 +1,1 @@
+mvn -Dwebdir=/src/main/webapp jetty:run

@@ -70,7 +70,8 @@
 						<version>1.2.13</version>
 					</dependency> 
 				</dependencies> 
-				<configuration>
+				<configuration>                    
+                    <webAppSourceDirectory>${webdir}</webAppSourceDirectory>                    
 					<scanIntervalSeconds>9999</scanIntervalSeconds>
 					<contextPath>/</contextPath>
 					<systemProperties>
