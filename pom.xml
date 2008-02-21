@@ -119,24 +119,24 @@
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>1.5.0.build1806</version>
-			<scope>provided</scope>
+			<version>1.5.0.build1867</version>			
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-dev-windows</artifactId>
-			<version>1.5.0.build1806</version>
+			<version>1.5.0.build1867</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>1.5.0.build1806</version>
+			<artifactId>gwt-servlet</artifactId>               
+			<version>1.5.0.build1867</version>
+            <scope>runtime</scope>
 		</dependency>
            <dependency>
                <groupId>com.google</groupId>
                <artifactId>gwt-google-apis</artifactId>
-               <version>1.5.0.build99</version>
+               <version>1.5.0.build125</version>
           </dependency>
             <dependency>
                <groupId>com.google</groupId>

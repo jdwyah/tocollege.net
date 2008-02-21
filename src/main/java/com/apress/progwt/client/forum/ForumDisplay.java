@@ -74,6 +74,9 @@ public class ForumDisplay extends Composite {
                 addShortDisplay(table, row, post);
                 row++;
             }
+            table.getColumnFormatter().setStyleName(0, "title");
+            table.getColumnFormatter().setStyleName(1, "replies");
+            table.getColumnFormatter().setStyleName(3, "author");
             allPosts.add(table);
         }
 
@@ -110,9 +113,7 @@ public class ForumDisplay extends Composite {
         table.setWidget(row, 1, replies);
         table.setWidget(row, 2, date);
         table.setWidget(row, 3, author);
-        table.getColumnFormatter().setStyleName(0, "title");
-        table.getColumnFormatter().setStyleName(1, "replies");
-        table.getColumnFormatter().setStyleName(3, "author");
+
         if (row % 2 == 1) {
             table.getRowFormatter().setStyleName(row, "Odd");
         }

@@ -26,6 +26,15 @@ import com.google.gwt.user.client.Window.Location;
  */
 public class ForumCommand {
 
+    /**
+     * Look at the URL bar and see if we've stored a ForumCommand in URL
+     * parameters. We normally use GWT-style hyperlinks with this info
+     * inserted after the URL #, but when passing request through to Acegi
+     * for login and coming back, we need to do it in regular URL
+     * parameters.
+     * 
+     * @return
+     */
     public static ForumCommand getFromLocation() {
 
         ForumCommand rtn = new ForumCommand();

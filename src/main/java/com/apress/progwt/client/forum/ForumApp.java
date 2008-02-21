@@ -160,6 +160,18 @@ public class ForumApp extends GWTApp implements HistoryListener {
         gotoForum(thread, start, true, FORUM_POST_MAX, create);
     }
 
+    /**
+     * 
+     * @param forumTopic
+     * @param start
+     * @param isReply
+     * @param max
+     * @param create -
+     *            whether or not this goto should act as if the create
+     *            button were pressed. This allows us to remember the fact
+     *            that an un-athenticated user wanted to create a post,
+     *            but needed to login first.
+     */
     private void gotoForum(final ForumTopic forumTopic, final int start,
             final boolean isReply, final int max, final boolean create) {
 

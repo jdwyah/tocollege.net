@@ -89,9 +89,6 @@ public class CreatePostWidget extends Composite {
 
         initWidget(mainP);
 
-        Log.debug("setHTML: " + selection);
-
-        // selection = "start<script>alert('xss');</script>end";
         setHTML(makeReplyFromString(selection));
     }
 
@@ -117,8 +114,14 @@ public class CreatePostWidget extends Composite {
         return selectionSB.toString();
     }
 
+    /**
+     * 
+     * @param text
+     */
     public void setHTML(final String text) {
+        Log.debug("CreatePostWidget setting: " + text);
         DeferredCommand.addCommand(new Command() {
+
             public void execute() {
                 textArea.setHTML(text);
             }

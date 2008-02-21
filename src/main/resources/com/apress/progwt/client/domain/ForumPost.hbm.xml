@@ -4,7 +4,7 @@
 
 <hibernate-mapping package="com.apress.progwt.client.domain">
 
-	<class name="ForumPost" table="forumposts" discriminator-value="abstractForumPost">
+	<class name="ForumPost" abstract="true" table="forumposts" discriminator-value="abstractForumPost">
 		<meta attribute="generated-class">com.apress.progwt.server.domain.generated.AbstractForumPost</meta>
 		<meta attribute="scope-class">public abstract</meta>
 

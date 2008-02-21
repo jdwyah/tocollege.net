@@ -69,6 +69,11 @@ public class SimpleAnnotatedController {
         return ControllerUtil.getModelMap(req, userService);
     }
 
+    @RequestMapping("/contact.html")
+    public ModelMap contactHandler(HttpServletRequest req) {
+        return ControllerUtil.getModelMap(req, userService);
+    }
+
     @RequestMapping("/about.html")
     public ModelMap aboutHandler(HttpServletRequest req) {
         return ControllerUtil.getModelMap(req, userService);

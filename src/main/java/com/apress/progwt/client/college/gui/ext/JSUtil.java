@@ -34,6 +34,13 @@ public class JSUtil {
             //target.style.cursor = "default"			
             }-*/;
 
+    /**
+     * note the important return txt+"" Without this, the 'String' object
+     * that is returned is a weirdo. Calling length() on it returns
+     * undefined on Firefox.
+     * 
+     * @return
+     */
     public static native String getTextSelection()
     /*-{ 
             try{              
@@ -49,7 +56,7 @@ public class JSUtil {
                { 
                 txt = $doc.selection.createRange().text; 
                }           
-              return txt; 
+              return txt+""; 
              } 
              catch( e ){ 
               $wnd.console.log("err:"+e);

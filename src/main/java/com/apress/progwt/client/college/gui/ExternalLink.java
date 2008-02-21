@@ -20,8 +20,6 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.ClickListenerCollection;
 import com.google.gwt.user.client.ui.FocusWidget;
 import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.MouseListener;
@@ -38,7 +36,6 @@ public class ExternalLink extends FocusWidget implements HasHTML,
     }-*/;
 
     private Element anchorElem;
-    private ClickListenerCollection fClickListeners;
     private MouseListenerCollection fMouseListeners;
 
     private String target;
@@ -49,8 +46,6 @@ public class ExternalLink extends FocusWidget implements HasHTML,
     public ExternalLink() {
         super(DOM.createDiv());
         DOM.appendChild(getElement(), anchorElem = DOM.createAnchor());
-        sinkEvents(Event.ONCLICK);
-        sinkEvents(Event.MOUSEEVENTS);
 
         setStyleName("H-External-Hyperlink");
     }
@@ -66,15 +61,11 @@ public class ExternalLink extends FocusWidget implements HasHTML,
         }
     }
 
-    public void addClickListener(ClickListener listener) {
-        if (fClickListeners == null)
-            fClickListeners = new ClickListenerCollection();
-        fClickListeners.add(listener);
-    }
-
     public void addMouseListener(MouseListener listener) {
-        if (fMouseListeners == null)
+        if (fMouseListeners == null) {
             fMouseListeners = new MouseListenerCollection();
+            sinkEvents(Event.MOUSEEVENTS);
+        }
         fMouseListeners.add(listener);
     }
 
@@ -97,12 +88,8 @@ public class ExternalLink extends FocusWidget implements HasHTML,
     }
 
     public void onBrowserEvent(Event event) {
+        super.onBrowserEvent(event);
         switch (DOM.eventGetType(event)) {
-        case Event.ONCLICK:
-            if (fClickListeners != null)
-                fClickListeners.fireClick(this);
-            break;
-
         case Event.ONMOUSEDOWN:
         case Event.ONMOUSEUP:
         case Event.ONMOUSEMOVE:
@@ -112,11 +99,6 @@ public class ExternalLink extends FocusWidget implements HasHTML,
                 fMouseListeners.fireMouseEvent(this, event);
             break;
         }
-    }
-
-    public void removeClickListener(ClickListener listener) {
-        if (fClickListeners != null)
-            fClickListeners.remove(listener);
     }
 
     public void removeMouseListener(MouseListener listener) {
