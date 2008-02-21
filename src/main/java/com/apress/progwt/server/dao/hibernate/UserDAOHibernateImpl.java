@@ -26,9 +26,6 @@ import org.hibernate.criterion.Expression;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.security.AuthenticationException;
-import org.springframework.security.providers.cas.CasAuthoritiesPopulator;
-import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
@@ -38,7 +35,7 @@ import com.apress.progwt.server.dao.UserDAO;
 import com.apress.progwt.server.domain.ServerSideUser;
 
 public class UserDAOHibernateImpl extends HibernateDaoSupport implements
-        UserDAO, UserDetailsService, CasAuthoritiesPopulator{
+        UserDAO, UserDetailsService {
 
     private static final Logger log = Logger
             .getLogger(UserDAOHibernateImpl.class);
@@ -217,9 +214,4 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
                 Expression.eq("username", username)));
     }
 
-    public UserDetails getUserDetails(String casUserId)
-            throws AuthenticationException {
-
-        return loadUserByUsername(casUserId);
-    }
 }
