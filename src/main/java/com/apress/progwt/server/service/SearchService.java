@@ -29,4 +29,6 @@ public interface SearchService {
 
     List<String> searchForSchool(String searchStringP, int start,
             int max_num_hits) throws SiteException;
+
+    void reindex();
 }

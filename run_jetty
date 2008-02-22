@@ -1,1 +1,1 @@
-mvn -Dwebdir=/src/main/webapp jetty:run
+mvn -Dwebdir=/src/main/webapp -Dmaven.compiler.gwt.skip=true jetty:run

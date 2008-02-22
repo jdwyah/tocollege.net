@@ -1,4 +1,4 @@
-./install org.xi8ix xi8ix-gwtc 1.3.3.2  xi8ix-gwtc-1.3.3.2.jar
+./install org.xi8ix xi8ix-gwtc 1.3.3.3  xi8ix-gwtc-1.3.3.3.jar
 ./install com.google gwt-incubator 0.0.1-20080117 gwt-incubator-0.0.1-20080117.jar
 ./install com.allen_sauer.gwt.dnd gwt-dnd 2.0.7 gwt-dnd-2.0.7.jar
 ./install com.allen_sauer.gwt.log gwt-log 1.5.1 gwt-log-1.5.1.jar

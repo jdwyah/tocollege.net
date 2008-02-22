@@ -35,6 +35,16 @@
 			
 	</@common.box>	
 	
+	<#if user?exists>
+	   <#if user.supervisor>
+	       <@common.box "boxStyle", "admin", "Admin">	
+                <ul>                                    
+                    <li><a href="<@spring.url "/site/secure/extreme/mailinglist.html"/>"/>Mailing List</a></li>
+                    <li><a href="<@spring.url "/site/secure/extreme/scripts.html"/>"/>Scripts</a></li>
+                </ul>                             
+            </@common.box>
+        </#if>
+    </#if>  
 	
 	</div><!--end browseWidgets-->  
 

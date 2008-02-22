@@ -87,11 +87,6 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
         }
         this.compassTemplate = new CompassTemplate(compass);
 
-        // TODO find another way to call this, since it's a bit
-        // inefficient. Should be a administrator tool or something.
-        // to do it everytime tomcat restarts
-        // compassGPS.index();
-
         // ensure that our gps is going to mirror all data changes from
         // here on out.
         // this will give us real time searchability of saved objects
@@ -290,5 +285,14 @@ public class SearchServiceImpl implements SearchService, InitializingBean {
         } catch (Exception e) {
             throw new SiteException(e);
         }
+    }
+
+    /**
+     * re-index search. GPS will take care of most things, but if we edit
+     * the DB directly compass won't hear about it and we'll need to
+     * re-index.
+     */
+    public void reindex() {
+        compassGPS.index();
     }
 }
