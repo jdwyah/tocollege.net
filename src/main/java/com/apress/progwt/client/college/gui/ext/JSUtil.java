@@ -82,7 +82,7 @@ public class JSUtil {
      */
     public static native void tickleUrchin(String pageName)
     /*-{
-    $wnd.urchinTracker(pageName);
+    $wnd.pageTracker._trackPageview(pageName);
     }-*/;
 
 }

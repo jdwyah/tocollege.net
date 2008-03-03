@@ -12,7 +12,19 @@
             <url>http://s3.amazonaws.com/maven.springframework.org/milestone</url>
        </repository>
   </repositories>
-  
+  <pluginRepositories>
+       <pluginRepository>
+            <id>mc-release</id>
+            <name>Local Maven repository of releases</name>
+            <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+            <snapshots>
+                 <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                 <enabled>true</enabled>
+            </releases>
+       </pluginRepository>
+  </pluginRepositories>
   <build>
 		<plugins>                 
 			<plugin>
@@ -60,27 +72,36 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.7</version>
-				 <dependencies>
-					 <dependency>
-						<groupId>log4j</groupId>
-						<artifactId>log4j</artifactId>
-						<version>1.2.13</version>
-					</dependency> 
-				</dependencies> 
-				<configuration>                    
-                    <webAppSourceDirectory>${webdir}</webAppSourceDirectory>                    
-					<scanIntervalSeconds>9999</scanIntervalSeconds>
-					<contextPath>/</contextPath>
-					<systemProperties>
-						<systemProperty>
-							<name>maven.test.skip</name>
-							<value>true</value>
-						</systemProperty>
-					</systemProperties>
-				</configuration>
+			     <groupId>org.mortbay.jetty</groupId>
+			     <artifactId>maven-jetty-plugin</artifactId>
+			     <version>6.1.7</version>
+			     <dependencies>
+			          <dependency>
+			               <groupId>log4j</groupId>
+			               <artifactId>log4j</artifactId>
+			               <version>1.2.13</version>
+			          </dependency>
+			     </dependencies>
+			     <configuration>
+			          <webAppSourceDirectory>${webdir}</webAppSourceDirectory>
+			          <scanIntervalSeconds>9999</scanIntervalSeconds>
+			          <contextPath>/</contextPath>
+			          <systemProperties>
+			               <systemProperty>
+			                    <name>maven.test.skip</name>
+			                    <value>true</value>
+			               </systemProperty>
+			          </systemProperties>
+			     </configuration>
+			</plugin>
+			<!-- mvn license:check -Dyear=2008 -->
+            <!-- Nice idea, but not quite ready for primetime. http://code.google.com/p/maven-license-plugin/wiki/HowTo -->
+            <plugin>
+			     <groupId>com.mathieucarbou.mojo</groupId>
+			     <artifactId>maven-license-plugin</artifactId>
+			     <configuration>
+			          <header>src/main/resources/copyright.txt</header>
+			     </configuration>
 			</plugin>
 		</plugins>
 		
@@ -199,7 +220,7 @@
         <dependency>
              <groupId>org.springframework.security</groupId>
              <artifactId>spring-security-core</artifactId>
-             <version>2.0-SNAPSHOT</version>
+             <version>2.0-M2</version>
         </dependency>
         <dependency>
              <groupId>org.openid4java</groupId>
@@ -210,7 +231,7 @@
         <dependency>
 		     <groupId>org.springframework.security</groupId>
 		     <artifactId>spring-security-openid</artifactId>
-		     <version>2.0-SNAPSHOT</version>		
+		     <version>2.0-M2</version>		
 		</dependency>
        
 
@@ -247,7 +268,7 @@
             <artifactId>spring-aop</artifactId>
             <version>2.5</version>
         </dependency>
-		<dependency><!-- override default 1.2.3 inclusion -->
+		<dependency><!-- override hibernate default 1.2.3 inclusion -->
 		     <groupId>net.sf.ehcache</groupId>
 		     <artifactId>ehcache</artifactId>
 		     <version>1.3.0</version>
