@@ -16,21 +16,22 @@
 package com.apress.progwt.server.gwt;
 
 /**
- * Updated by Jeff Dwyer to add HibernateFilter and allow explicit Serialization
+ * Updated by Jeff Dwyer to add HibernateFilter and allow explicit
+ * Serialization
  * 
  * Copyright 2006 George Georgovassilis <g.georgovassilis[at]gmail.com>
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
  * 
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 import javax.servlet.ServletContext;
@@ -83,11 +84,10 @@ public class GWTController extends RemoteServiceServlet implements
 
             RPCRequest rpcRequest = RPC.decodeRequest(payload, this
                     .getClass(), this);
-            ServerSerializationStreamWriter1529 writer = getWriter(rpcRequest);
+            ServerSerializationStreamWriter1941 writer = getWriter(rpcRequest);
 
-            return RPCWithHibernateSupport1529.invokeAndEncodeResponse(
-                    this, rpcRequest.getMethod(), rpcRequest
-                            .getParameters(), writer);
+            return RPC1524.invokeAndEncodeResponse(this, rpcRequest
+                    .getMethod(), rpcRequest.getParameters(), writer);
 
         } catch (IncompatibleRemoteServiceException ex) {
             log
@@ -98,7 +98,7 @@ public class GWTController extends RemoteServiceServlet implements
         }
     }
 
-    private ServerSerializationStreamWriter1529 getWriter(
+    private ServerSerializationStreamWriter1941 getWriter(
             RPCRequest rpcRequest) {
         return getWriter(rpcRequest.getSerializationPolicy());
     }
@@ -110,18 +110,18 @@ public class GWTController extends RemoteServiceServlet implements
      * 
      * @return
      */
-    private ServerSerializationStreamWriter1529 getWriter() {
+    private ServerSerializationStreamWriter1941 getWriter() {
         return getWriter(OneFourTenSerializationPolicy.getInstance());
     }
 
-    private ServerSerializationStreamWriter1529 getWriter(
+    private ServerSerializationStreamWriter1941 getWriter(
             SerializationPolicy serializationPolicy) {
 
-        ServerSerializationStreamWriter1529 writer = new ServerSerializationStreamWriter1529(
+        ServerSerializationStreamWriter1941 writer = new ServerSerializationStreamWriter1941(
                 serializationPolicy);
 
         writer.setValueWriter(Object.class, new ValueWriter() {
-            public void write(ServerSerializationStreamWriter1529 stream,
+            public void write(ServerSerializationStreamWriter1941 stream,
                     Object instance) throws SerializationException {
                 stream.writeObject(HibernateFilter.filter(instance));
             }
@@ -137,7 +137,7 @@ public class GWTController extends RemoteServiceServlet implements
     public String serializeObject(Object object, Class<?> clazz)
             throws InfrastructureException {
 
-        ServerSerializationStreamWriter1529 serializer = getWriter();
+        ServerSerializationStreamWriter1941 serializer = getWriter();
 
         try {
             serializer.serializeValue(object, clazz);

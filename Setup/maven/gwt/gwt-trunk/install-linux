@@ -1,0 +1,10 @@
+mvn install:install-file -DgroupId=com.google -DartifactId=gwt-servlet -Dversion=$1 -Dpackaging=jar -Dfile=build/staging/gwt-linux-0.0.0/gwt-servlet.jar -DgeneratePom=true
+mvn install:install-file -DgroupId=com.google -DartifactId=gwt-user -Dversion=$1 -Dpackaging=jar -Dfile=build/staging/gwt-linux-0.0.0/gwt-user.jar -DgeneratePom=true
+mvn install:install-file -Dclassifier=sources -DgroupId=com.google -DartifactId=gwt-user -Dversion=$1 -Dpackaging=jar -Dfile=build/staging/gwt-linux-0.0.0/gwt-user.jar -DgeneratePom=true
+mvn install:install-file -DgroupId=com.google -DartifactId=gwt-dev-linux -Dversion=$1 -Dpackaging=jar -Dfile=build/staging/gwt-linux-0.0.0/gwt-dev-linux.jar -DgeneratePom=true
+cp build/staging/gwt-linux-0.0.0/lib* ~/.m2/repository/com/google/gwt-dev-linux/$1
+cp -r build/staging/gwt-linux-0.0.0/moz* ~/.m2/repository/com/google/gwt-dev-linux/$1
+
+
+
+
