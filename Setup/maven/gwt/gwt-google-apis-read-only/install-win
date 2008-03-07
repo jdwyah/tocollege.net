@@ -1,5 +1,0 @@
-mvn install:install-file -DgroupId=com.google -DartifactId=gwt-google-apis -Dversion=$1 -Dpackaging=jar -Dfile=build\\lib\\gwt-google-apis.jar -DgeneratePom=true
-mvn install:install-file -Dclassifier=sources -DgroupId=com.google -DartifactId=gwt-google-apis -Dversion=$1 -Dpackaging=jar -Dfile=build\\lib\\gwt-google-apis.jar -DgeneratePom=true
-
-
-
