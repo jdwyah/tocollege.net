@@ -1,1 +1,1 @@
-mvn -Dwebdir=/target/ProGWT-1.0-SNAPSHOT jetty:run
+mvn -Dwebdir=target/ProGWT-1.0-SNAPSHOT jetty:run

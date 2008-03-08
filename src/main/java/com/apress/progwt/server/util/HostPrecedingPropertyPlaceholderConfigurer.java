@@ -64,14 +64,19 @@ public class HostPrecedingPropertyPlaceholderConfigurer extends
     public String resolvePlaceholder(String placeholder, Properties props) {
 
         try {
-
             if (placeholder.startsWith("HOST.")) {
                 log.debug("Host: "
                         + InetAddress.getLocalHost().getHostName()
                         + " for property " + placeholder);
                 String replace = placeholder.replaceFirst("HOST",
                         InetAddress.getLocalHost().getHostName());
-                return props.getProperty(replace);
+
+                String prop = props.getProperty(replace);
+                if (prop == null) {
+                    log.warn("Please define property: " + replace);
+                }
+                return prop;
+
             } else {
                 log.debug("reg");
                 return props.getProperty(placeholder);
@@ -81,5 +86,4 @@ public class HostPrecedingPropertyPlaceholderConfigurer extends
             return null;
         }
     }
-
 }
