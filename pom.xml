@@ -115,18 +115,7 @@
        </profile>
   </profiles> -->
   <profiles>
-       <profile>
-            <id>mac</id>
-            <activation>
-                 <os>
-                      <family>mac</family>
-                 </os>
-            </activation>
-            <properties>
-                 <gwt-dev>gwt-dev-mac</gwt-dev>
-            </properties>
-       </profile>
-       <profile>
+   <profile>
             <id>unix</id>
             <activation>
                  <os>
@@ -137,6 +126,17 @@
                  <gwt-dev>gwt-dev-linux</gwt-dev>
             </properties>
        </profile>
+       <profile><!-- arg, must come AFTER linux or misidentifies -->
+            <id>mac</id>
+          <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                 <gwt-dev>gwt-dev-mac</gwt-dev>
+            </properties>
+       </profile>      
        <profile>
             <id>windows</id>
             <activation>
