@@ -63,7 +63,7 @@ public class ToCollegeApp extends GWTApp {
         new AsyncCallback<User>() {
 
             public void onFailure(Throwable caught) {
-                Log.error("setmeupFailure " + caught);
+                Log.error("ToCollegeApp.setmeupFailure " + caught);
             }
 
             public void onSuccess(User result) {

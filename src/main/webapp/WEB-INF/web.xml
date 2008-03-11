@@ -132,11 +132,11 @@
 
      <error-page>
           <error-code>404</error-code>
-          <location>/site/servletErrorView.html</location>
+          <location>/site/servletErrorView.html?code=404</location>
      </error-page>
      <error-page>
           <error-code>500</error-code>
-          <location>/site/servletErrorView.html</location>
+          <location>/site/servletErrorView.html?code=500</location>
      </error-page>
 
      <!-- screws things up??? weird.

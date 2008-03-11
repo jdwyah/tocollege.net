@@ -254,12 +254,12 @@
 		<dependency>
 		     <groupId>org.springframework</groupId>
 		     <artifactId>spring</artifactId>
-		     <version>2.5</version>
+		     <version>2.5.2</version>
 		</dependency>       
 		<dependency>
 		     <groupId>org.springframework</groupId>
 		     <artifactId>spring-webmvc</artifactId>
-		     <version>2.5</version>
+		     <version>2.5.2</version>
 		</dependency>
 
 		<dependency>
@@ -282,17 +282,17 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>2.5</version>
+			<version>2.5.2</version>
 		</dependency>
          <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>2.5</version>
+            <version>2.5.2</version>
         </dependency>
           <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>2.5</version>
+            <version>2.5.2</version>
         </dependency>
 		<dependency><!-- override hibernate default 1.2.3 inclusion -->
 		     <groupId>net.sf.ehcache</groupId>
@@ -333,7 +333,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>2.5</version>
+			<version>2.5.2</version>
 			<scope>test</scope>
 		</dependency>
 			<dependency>

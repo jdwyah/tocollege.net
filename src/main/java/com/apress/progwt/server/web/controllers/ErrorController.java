@@ -15,11 +15,45 @@
  */
 package com.apress.progwt.server.web.controllers;
 
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
+import org.springframework.web.servlet.ModelAndView;
 
 public class ErrorController extends BasicController {
 
     private static final Logger log = Logger
-            .getLogger(ErrorController.class);
+    .getLogger(ErrorController.class);
+
+    @Override
+    protected ModelAndView handleRequestInternal(HttpServletRequest req,
+            HttpServletResponse arg1) throws Exception {
+
+        log.error("\n\n\nErrorController req "+req.getPathInfo()+"\n"+req.getParameterNames().toString()+" "+req.getQueryString()+"\n");
+
+
+        if(log.isDebugEnabled()){
+            for(Object s :req.getParameterMap().keySet()){
+                log.debug("param "+s);
+            }
+            Enumeration attrs = req.getAttributeNames();
+            while(attrs.hasMoreElements()){
+                String attr = (String) attrs.nextElement();
+                log.debug("attr: "+attr+" "+req.getAttribute(attr));
+            }
+        }
+
+
+        ModelAndView m = super.handleRequestInternal(req, arg1);        
+        String code=req.getParameter("code");
+        if(code != null){
+            Object uri = req.getAttribute("javax.servlet.error.request_ uri");
+            m.addObject("message", code+" error for page "+uri);
+        }
+        return m;
+    }
 
 }
