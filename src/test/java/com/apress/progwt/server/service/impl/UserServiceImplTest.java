@@ -3,13 +3,8 @@ package com.apress.progwt.server.service.impl;
 import org.apache.log4j.Logger;
 import org.openid4java.discovery.DiscoveryException;
 import org.openid4java.discovery.UrlIdentifier;
-import org.springframework.security.userdetails.UsernameNotFoundException;
 import org.springframework.test.AssertThrows;
 
-import com.apress.progwt.client.domain.Application;
-import com.apress.progwt.client.domain.ProcessType;
-import com.apress.progwt.client.domain.RatingType;
-import com.apress.progwt.client.domain.School;
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.client.exception.SiteException;
 import com.apress.progwt.server.dao.SchoolDAO;
@@ -44,56 +39,56 @@ public class UserServiceImplTest extends
 
     }
 
-    public void testCreateUser() throws UsernameNotFoundException,
-            SiteException {
-
-        userService.createUser("username", "pass", "email", false);
-
-        User saved = userService.getUserWithNormalization("username");
-
-        assertEquals(PROCESS_TYPES, saved.getProcessTypes().size());
-
-        for (ProcessType pType : saved.getProcessTypes()) {
-            assertNotNull(pType);
-        }
-
-        assertEquals(RATING_TYPES, saved.getRatingTypes().size());
-
-        for (RatingType rType : saved.getRatingTypes()) {
-            assertNotNull(rType);
-        }
-    }
-
-    public void testFetch() throws UsernameNotFoundException,
-            SiteException {
-
-        userService.createUser("username", "pass", "email", false);
-
-        User saved = userService.getUserWithNormalization("username");
-        School dart = schoolService.getSchoolDetails("Dartmouth College");
-
-        saved.addRanked(new Application(dart));
-        userDAO.save(saved);
-
-        assertEquals(PROCESS_TYPES, saved.getProcessTypes().size());
-
-        for (ProcessType pType : saved.getProcessTypes()) {
-            assertNotNull(pType);
-        }
-
-        User fetched = userService.getUserByNicknameFullFetch("username");
-
-        assertEquals(PROCESS_TYPES, fetched.getProcessTypes().size());
-        assertEquals(1, fetched.getSchoolRankings().size());
-
-        User fetched2 = userService.getUserByNicknameFullFetch("test");
-
-        assertEquals(PROCESS_TYPES, fetched2.getProcessTypes().size());
-        assertEquals(RATING_TYPES, fetched2.getRatingTypes().size());
-        assertEquals(1, fetched2.getSchoolRankings().size());
-        assertEquals(4, fetched2.getSchoolRankings().get(0).getProcess()
-                .size());
-    }
+    // public void testCreateUser() throws UsernameNotFoundException,
+    // SiteException {
+    //
+    // userService.createUser("username", "pass", "email", false);
+    //
+    // User saved = userService.getUserWithNormalization("username");
+    //
+    // assertEquals(PROCESS_TYPES, saved.getProcessTypes().size());
+    //
+    // for (ProcessType pType : saved.getProcessTypes()) {
+    // assertNotNull(pType);
+    // }
+    //
+    // assertEquals(RATING_TYPES, saved.getRatingTypes().size());
+    //
+    // for (RatingType rType : saved.getRatingTypes()) {
+    // assertNotNull(rType);
+    // }
+    // }
+    //
+    // public void testFetch() throws UsernameNotFoundException,
+    // SiteException {
+    //
+    // userService.createUser("username", "pass", "email", false);
+    //
+    // User saved = userService.getUserWithNormalization("username");
+    // School dart = schoolService.getSchoolDetails("Dartmouth College");
+    //
+    // saved.addRanked(new Application(dart));
+    // userDAO.save(saved);
+    //
+    // assertEquals(PROCESS_TYPES, saved.getProcessTypes().size());
+    //
+    // for (ProcessType pType : saved.getProcessTypes()) {
+    // assertNotNull(pType);
+    // }
+    //
+    // User fetched = userService.getUserByNicknameFullFetch("username");
+    //
+    // assertEquals(PROCESS_TYPES, fetched.getProcessTypes().size());
+    // assertEquals(1, fetched.getSchoolRankings().size());
+    //
+    // User fetched2 = userService.getUserByNicknameFullFetch("test");
+    //
+    // assertEquals(PROCESS_TYPES, fetched2.getProcessTypes().size());
+    // assertEquals(RATING_TYPES, fetched2.getRatingTypes().size());
+    // assertEquals(1, fetched2.getSchoolRankings().size());
+    // assertEquals(4, fetched2.getSchoolRankings().get(0).getProcess()
+    // .size());
+    // }
 
     public void testOpenIDNormalize() throws DiscoveryException {
 

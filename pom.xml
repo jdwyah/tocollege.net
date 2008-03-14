@@ -12,6 +12,9 @@
             <url>http://s3.amazonaws.com/maven.springframework.org/milestone</url>
        </repository>
   </repositories>  
+  <properties>
+    <maven.test.failure.ignore>true</maven.test.failure.ignore>
+  </properties>
   <build>
 		<plugins>                 
 			<plugin>
@@ -391,9 +394,22 @@
           </dependency>
         
 
-
-
-
 	</dependencies>
+
+  <reporting>
+       <plugins>
+            <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <!-- Uncomment for code coverage statistics -->
+            <!-- <plugin>
+                 <groupId>org.codehaus.mojo</groupId>
+                 <artifactId>cobertura-maven-plugin</artifactId>
+                 </plugin> -->
+
+       </plugins>
+  </reporting>
+
 </project>
 

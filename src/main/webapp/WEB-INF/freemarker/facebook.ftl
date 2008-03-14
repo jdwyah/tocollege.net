@@ -3,7 +3,7 @@
 <#import "common.ftl" as common/>
 <#import "commonGWT.ftl" as gwt/>
 <head>
-  <title>${viewUser.nickname?html}</title>
+  <title>Facebook ${viewUser.nickname?html}</title>
 </head>
 
 
@@ -77,8 +77,7 @@
 		<#assign processVal = sap.getTheProcess(processType)?default("")/>
 		<#if processVal?has_content>
 		  <#if processType.percentage>
-		      <#assign pct = processVal.pctComplete * 100/>
-		      <@gwt.widget "ImageBundle", {"name":"pctStatus${pct?int}"}/>		  
+		  ${processVal.pctComplete}
 		  <#else>
 		      <#if processVal.pctComplete == 1>		        
 		       <@gwt.widget "ImageBundle", {"name":"checked"}/>

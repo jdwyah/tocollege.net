@@ -141,6 +141,9 @@ public class Interactive implements EntryPoint {
                 } else if (widget.equals("VerticalLabel")) {
                     VerticalLabelApp c = new VerticalLabelApp(
                             currentWidget);
+                } else if (widget.equals("ImageBundle")) {
+                    ImageBundleApp c = new ImageBundleApp(
+                            currentWidget);
                 } else {
                     throw new Exception("Vars['widget_" + currentWidget
                             + "] => " + widget + " null or no match.");

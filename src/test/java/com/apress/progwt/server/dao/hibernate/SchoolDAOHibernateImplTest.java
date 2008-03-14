@@ -114,21 +114,21 @@ public class SchoolDAOHibernateImplTest extends
         assertEquals(2, post1Thread.getPosts().size());
     }
 
-    public void testIncrement() {
-        School sc = schoolDAO
-                .getSchoolFromName("Jarvis Christian College");
-        assertNotNull(sc);
-
-        int original = sc.getPopularityCounter();
-
-        schoolDAO.incrementSchoolPopularity(sc);
-        sc = (School) schoolDAO.get(School.class, sc.getId());
-        assertEquals(original + 1, sc.getPopularityCounter());
-
-        schoolDAO.incrementSchoolPopularity(sc);
-        sc = schoolDAO.getSchoolFromName("Jarvis Christian College");
-        assertEquals(original + 2, sc.getPopularityCounter());
-
-    }
+    // public void testIncrement() {
+    // School sc = schoolDAO
+    // .getSchoolFromName("Jarvis Christian College");
+    // assertNotNull(sc);
+    //
+    // int original = sc.getPopularityCounter();
+    //
+    // schoolDAO.incrementSchoolPopularity(sc);
+    // sc = (School) schoolDAO.get(School.class, sc.getId());
+    // assertEquals(original + 1, sc.getPopularityCounter());
+    //
+    // schoolDAO.incrementSchoolPopularity(sc);
+    // sc = schoolDAO.getSchoolFromName("Jarvis Christian College");
+    // assertEquals(original + 2, sc.getPopularityCounter());
+    //
+    // }
 
 }

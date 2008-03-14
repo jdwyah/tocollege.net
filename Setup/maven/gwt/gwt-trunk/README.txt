@@ -1,4 +1,6 @@
-These scripts are designed to be copied into the GWT trunk to install 
+These scripts are designed to be copied into the GWT trunk to help you install GWT to your Maven repository.
+You ONLY need to do this if you want to install GWT directly from SVN. 
+If your happy running released GWT jars, you should stick to the install script located one directory above this. 
 
 1) Checkout GWT from SVN
 

@@ -252,7 +252,9 @@ public class GWTApp {
     // }
 
     protected void initConstants() {
-        ConstHolder.images = (Images) GWT.create(Images.class);
+        if(ConstHolder.images == null){
+            ConstHolder.images = (Images) GWT.create(Images.class);
+        }
     }
 
     /**
