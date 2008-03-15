@@ -1,20 +1,18 @@
-<html>
+
 <#import "/spring.ftl" as spring/>
 <#import "common.ftl" as common/>
 <#import "commonGWT.ftl" as gwt/>
-<head>
-  <title>Facebook ${viewUser.nickname?html}</title>
-</head>
 
-
-
-<body>					
-        
  <#if message?exists>
 	<div style="z-index: 99; position: absolute; left: 200px;">
 	 <div class="message">${message}</div>
 	</div>
  </#if>			  	 	  
+
+
+     <#list friends as friend>
+      fr: ${friend}
+     </#list>
 
 <h1>${viewUser.nickname?html}</h1>
   	
@@ -44,14 +42,13 @@
   	 </table>
   	</@common.box>   
   	
-  	
+<#--
 	<@common.box "boxStyle", "list", "The List">
 	
 	<table>
 	<tr class="headerRow">
 	<th>School</th>
 	
-	<#--Hold all params for our VerticalLabel widget-->
 	<#assign allparams = {"total":"${viewUser.processTypes?size}"}/>
 	
 	<#list viewUser.processTypes as processType>
@@ -60,7 +57,7 @@
 	   
 	   <#assign params = {"text${processType_index}":"${processType.name}",
                               "id${processType_index}":"${id}"}/>  
-       <#--Use concatenation to work around lack of mutable hash-->                                
+                                    
        <#assign allparams = allparams + params />               					
 	   </th>
 	</#list>
@@ -117,21 +114,10 @@
 		State: NH
 		
 	</@common.box>	
-  		    <script type="text/javascript"><!--
-google_ad_client = "pub-4227468677841471";
-/* 160x600, created 2/20/08 */
-google_ad_slot = "3131680677";
-google_ad_width = 160;
-google_ad_height = 600;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-  	</div>
-  	
+           
+    </div>
+    
   
         
     <@gwt.finalize/>
-</body>
-</html>
+    -->

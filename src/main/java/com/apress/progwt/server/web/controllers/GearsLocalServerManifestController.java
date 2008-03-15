@@ -18,19 +18,15 @@ package com.apress.progwt.server.web.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer;
 import com.apress.progwt.server.util.RandomUtils;
 
 /**
@@ -42,16 +38,11 @@ import com.apress.progwt.server.util.RandomUtils;
  */
 @Controller
 @RequestMapping("/manifest.json")
-public class GearsLocalServerManifestController {
+public class GearsLocalServerManifestController extends PropertiesSupport{
     private static final Logger log = Logger
             .getLogger(GearsLocalServerManifestController.class);
 
-    @Autowired
-    @Qualifier(value = "propertyConfigurer2")
-    private HostPrecedingPropertyPlaceholderConfigurer hostConfigurer;
-
-    @Autowired
-    private Properties properties;
+   
 
     private static String manifest;
 
@@ -77,17 +68,15 @@ public class GearsLocalServerManifestController {
 
     private String createManifest() throws JSONException {
 
-        String gwtROOT = hostConfigurer.resolvePlaceholder(
-                "HOST.gears.localserver.dir", properties);
-        String localServerURL = hostConfigurer.resolvePlaceholder(
-                "HOST.gears.localserver.url", properties);
+        String gwtROOT = getProperty(
+                "HOST.gears.localserver.dir");
+        String localServerURL = getProperty(
+                "HOST.gears.localserver.url");
 
         File contextF = new File(gwtROOT);
 
         JSONObject json = new JSONObject();
-        json.put("betaManifestVersion", Integer.parseInt(hostConfigurer
-                .resolvePlaceholder("gears.betaManifestVersion",
-                        properties)));
+        json.put("betaManifestVersion", Integer.parseInt(getProperty("gears.betaManifestVersion")));
         json.put("version", "0.0.1." + RandomUtils.rand(0, 2048));
         json.put("entries", getEntries(contextF, localServerURL));
 
@@ -157,15 +146,6 @@ public class GearsLocalServerManifestController {
             return true;
         }
         return false;
-    }
-
-    public void setHostConfigurer(
-            HostPrecedingPropertyPlaceholderConfigurer hostConfigurer) {
-        this.hostConfigurer = hostConfigurer;
-    }
-
-    public void setProperties(Properties properties) {
-        this.properties = properties;
     }
 
 }

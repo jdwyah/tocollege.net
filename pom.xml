@@ -392,9 +392,21 @@
                <artifactId>compass</artifactId>
                <version>1.2.0</version>
           </dependency>
-        
 
-	</dependencies>
+          <dependency>
+               <groupId>com.facebook.api</groupId>
+               <artifactId>facebook-util</artifactId>
+               <version>1.7.3</version>
+          </dependency>
+          <dependency>
+               <groupId>com.facebook.api</groupId>
+               <artifactId>facebook-java-api</artifactId>
+               <version>1.7.3</version>
+          </dependency>
+
+
+
+  </dependencies>
 
   <reporting>
        <plugins>
