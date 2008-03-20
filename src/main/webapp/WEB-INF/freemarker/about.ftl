@@ -82,7 +82,8 @@ Forums are available on a school by school basis. The knowledge base contained w
   	    </div>
     
     Besides being a great place to keep track of you college application process, this website is the also the example site for
-    the book <a href="http://www.amazon.com/Pro-Web-2-0-Application-Development/dp/1590599853">Pro Web 2.0 Application Development with GWT</a> by Jeff Dwyer.
+    the book <a href="http://www.amazon.com/gp/product/1590599853?ie=UTF8&tag=tocollege-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599853">Pro Web 2.0 Application Development with GWT</a><img src="http://www.assoc-amazon.com/e/ir?t=tocollege-20&l=as2&o=1&a=1590599853" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    by Jeff Dwyer.
     <p>
     ToCollege.net was conceived in September 2007 and went live in February 2008. It was created by one developer working about 50% (writing a 350 page book and paying the bills with consulting takes up a considerable amount of time!) so it represents about three months of development work with GWT, Spring & Hibernate.
   	<p>

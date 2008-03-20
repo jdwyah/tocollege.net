@@ -21,6 +21,10 @@
 		</style>
 </#macro>
 
+<#macro image imageName>
+<@widget "ImageBundle", {"name":"${imageName}"}/>
+</#macro>
+
 <#assign widgetID = 0>
 <#macro widget widgetName, extraParams={}, bootstrap="">
     <#assign widgetID = widgetID + 1>    

@@ -10,7 +10,7 @@ import com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer;
 public class PropertiesSupport {
     
     @Autowired
-    @Qualifier(value = "propertyConfigurer2")
+    @Qualifier(value = "propertyConfigurer")
     private HostPrecedingPropertyPlaceholderConfigurer hostConfigurer;
 
     @Autowired

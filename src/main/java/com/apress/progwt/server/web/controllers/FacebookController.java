@@ -56,6 +56,8 @@ public class FacebookController extends PropertiesSupport {
         String apiKey = getProperty("env.facebook.apikey");
         String secret = getProperty("env.facebook.secret");
         
+        log.debug("apikey: "+apiKey);
+        
         Facebook f = new Facebook(req,resp,apiKey,secret);
         
         if(f.requireLogin("#")){

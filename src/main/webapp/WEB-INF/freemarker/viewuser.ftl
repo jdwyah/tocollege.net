@@ -75,18 +75,22 @@
 		<#list viewUser.processTypes as processType>		
 		<td>		 				
 		<#assign processVal = sap.getTheProcess(processType)?default("")/>
-		<#if processVal?has_content>
+		
 		  <#if processType.percentage>
+		     <#if processVal?has_content>
 		      <#assign pct = processVal.pctComplete * 100/>
-		      <@gwt.widget "ImageBundle", {"name":"pctStatus${pct?int}"}/>		  
-		  <#else>
-		      <#if processVal.pctComplete == 1>		        
-		       <@gwt.widget "ImageBundle", {"name":"checked"}/>
+		      <@gwt.image "pctStatus${pct?int}"/>
+		     <#else>
+		      <@gwt.image "pctStatus0"/>
+		     </#if>		  
+		   <#else>
+		      <#if processVal?has_content && processVal.pctComplete == 1>		        
+		       <@gwt.image "checked"/>
 		      <#else>
-		       <@gwt.widget "ImageBundle", {"name":"unchecked"}/>
+		       <@gwt.image "unchecked"/>
 		      </#if>		  	
 		  </#if>
-		</#if>
+		
 		</td>		
 		</#list>
 	</tr>
