@@ -19,7 +19,7 @@
 	
 	<@common.box "boxStyle", "myList", "Settings">
 	
-	   <form action="<@spring.url "/site/secure/settings.html"/>" method="POST">
+	   <form action="<@spring.url "/secure/settings.html"/>" method="POST">
         <fieldset>          
          <p>
              <label for="oldPassword"><@spring.formPasswordInput "command.oldPassword"/><@common.regError/>Old Password 
@@ -39,8 +39,8 @@
 	   <#if user.supervisor>
 	       <@common.box "boxStyle", "admin", "Admin">	
                 <ul>                                    
-                    <li><a href="<@spring.url "/site/secure/extreme/mailinglist.html"/>"/>Mailing List</a></li>
-                    <li><a href="<@spring.url "/site/secure/extreme/scripts.html"/>"/>Scripts</a></li>
+                    <li><a href="<@spring.url "/secure/extreme/mailinglist.html"/>"/>Mailing List</a></li>
+                    <li><a href="<@spring.url "/secure/extreme/scripts.html"/>"/>Scripts</a></li>
                 </ul>                             
             </@common.box>
         </#if>

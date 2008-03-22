@@ -15,8 +15,6 @@
  */
 package com.apress.progwt.server.web.controllers;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,19 +30,19 @@ public class ErrorController extends BasicController {
     protected ModelAndView handleRequestInternal(HttpServletRequest req,
             HttpServletResponse arg1) throws Exception {
 
-        log.error("\n\n\nErrorController req "+req.getPathInfo()+"\n"+req.getParameterNames().toString()+" "+req.getQueryString()+"\n");
+        log.error("\nErrorController reqServ "+req.getServletPath()+ " PathInfo:"+req.getPathInfo()+" Param: "+req.getParameterNames().toString()+" Q: "+req.getQueryString()+"</>");
 
 
-        if(log.isDebugEnabled()){
-            for(Object s :req.getParameterMap().keySet()){
-                log.debug("param "+s);
-            }
-            Enumeration attrs = req.getAttributeNames();
-            while(attrs.hasMoreElements()){
-                String attr = (String) attrs.nextElement();
-                log.debug("attr: "+attr+" "+req.getAttribute(attr));
-            }
-        }
+//        if(log.isDebugEnabled()){
+//            for(Object s :req.getParameterMap().keySet()){
+//                log.debug("param "+s);
+//            }
+//            Enumeration attrs = req.getAttributeNames();
+//            while(attrs.hasMoreElements()){
+//                String attr = (String) attrs.nextElement();
+//                log.debug("attr: "+attr+" "+req.getAttribute(attr));
+//            }
+//        }
 
 
         ModelAndView m = super.handleRequestInternal(req, arg1);        

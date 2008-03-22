@@ -33,7 +33,7 @@
      <bean id="httpSessionContextIntegrationFilter" class="org.springframework.security.context.HttpSessionContextIntegrationFilter" />
 
      <bean id="logoutFilter" class="org.springframework.security.ui.logout.LogoutFilter">
-          <constructor-arg value="/site/index.html" /><!-- URL redirected to after logout -->
+          <constructor-arg value="/index.html" /><!-- URL redirected to after logout -->
           <constructor-arg>
                <list>
                     <ref bean="rememberMeServices" />
@@ -45,9 +45,9 @@
 
      <bean id="authenticationProcessingFilter" class="com.apress.progwt.server.web.filters.GWTExtendedAuthenticationProcessingFilter">
           <property name="authenticationManager" ref="authenticationManager" />
-          <property name="authenticationFailureUrl" value="/site/login.html?login_error=1" />
-          <property name="defaultTargetUrl" value="/site/secure/myList.html" />
-          <property name="gwtLoginTargetURL" value="/site/secure/gwtLoginOK.html" />          
+          <property name="authenticationFailureUrl" value="/login.html?login_error=1" />
+          <property name="defaultTargetUrl" value="/secure/myList.html" />
+          <property name="gwtLoginTargetURL" value="/secure/gwtLoginOK.html" />          
           <property name="filterProcessesUrl" value="/j_acegi_security_check" />
           <property name="rememberMeServices" ref="rememberMeServices" />          
      </bean>
@@ -67,13 +67,13 @@
      <bean id="exceptionTranslationFilter" class="org.springframework.security.ui.ExceptionTranslationFilter">
           <property name="authenticationEntryPoint">
                <bean class="org.springframework.security.ui.webapp.AuthenticationProcessingFilterEntryPoint">
-                    <property name="loginFormUrl" value="/site/login.html" />
+                    <property name="loginFormUrl" value="/login.html" />
                     <property name="forceHttps" value="false" />
                </bean>
           </property>
           <property name="accessDeniedHandler">
                <bean class="org.springframework.security.ui.AccessDeniedHandlerImpl">
-                    <property name="errorPage" value="/site/login.html?access_error=1" />
+                    <property name="errorPage" value="/login.html?access_error=1" />
                </bean>
           </property>
      </bean>
@@ -95,10 +95,10 @@
                <value>
                     CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
                     PATTERN_TYPE_APACHE_ANT 
-                    /site/secure/extreme/**=ROLE_SUPERVISOR
+                    /secure/extreme/**=ROLE_SUPERVISOR
                     <!--  				/service/**=IS_AUTHENTICATED_REMEMBERED-->
                     <!-- need to put login service under diff path -->
-                    /site/secure/**=IS_AUTHENTICATED_REMEMBERED 
+                    /secure/**=IS_AUTHENTICATED_REMEMBERED 
                     /com.aavu.addlink/**=IS_AUTHENTICATED_REMEMBERED
                     /**=IS_AUTHENTICATED_ANONYMOUSLY
                </value>
@@ -164,8 +164,8 @@
      <bean id="openIDConsumer" class="org.springframework.security.ui.openid.consumers.OpenID4JavaConsumer"></bean>
      <bean id="openIDResponseProcess" class="org.springframework.security.ui.openid.OpenIDAuthenticationProcessingFilter">
           <property name="consumer" ref="openIDConsumer" />          
-          <property name="defaultTargetUrl" value="/site/index.html" />
-          <property name="authenticationFailureUrl" value="/site/login.html?login_error=1" />
+          <property name="defaultTargetUrl" value="/index.html" />
+          <property name="authenticationFailureUrl" value="/login.html?login_error=1" />
           <property name="authenticationManager" ref="authenticationManager"></property>
           <property name="rememberMeServices" ref="rememberMeServices"></property>     
           <property name="filterProcessesUrl" value="/j_spring_openid_security_check"/>           

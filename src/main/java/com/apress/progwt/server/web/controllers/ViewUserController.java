@@ -53,23 +53,27 @@ public class ViewUserController extends BasicController {
         String[] pathParts = path.split("/");
         log.debug("!path parts " + Arrays.toString(pathParts));
 
-        // "/user/jeff" splits to [,user,jeff]
-        if (pathParts.length < 3) {
+        // "/user/jeff" splits to [,jeff]
+        if (pathParts.length < 2) {
             return new ModelAndView(getNotFoundView());
         }
 
-        String nickname = pathParts[2];
+        String nickname = pathParts[1];
 
         User fetchedUser = userService
                 .getUserByNicknameFullFetch(nickname);
 
-        log.debug("user u: " + fetchedUser);
-        log.debug("isinit user " + Hibernate.isInitialized(fetchedUser));
-        log.debug("isinit schools "
-                + Hibernate
-                        .isInitialized(fetchedUser.getSchoolRankings()));
-        for (Application sap : fetchedUser.getSchoolRankings()) {
-            log.debug("isinit sap " + Hibernate.isInitialized(sap));
+        if(log.isDebugEnabled()){
+            log.debug("user u: " + fetchedUser);
+            log.debug("isinit user " + Hibernate.isInitialized(fetchedUser));
+            log.debug("isinit schools "
+                    + Hibernate
+                    .isInitialized(fetchedUser.getSchoolRankings()));
+            for (Application sap : fetchedUser.getSchoolRankings()) {
+                if(!Hibernate.isInitialized(sap)){
+                    log.debug("Not initialized");
+                }            
+            }
         }
 
         if (fetchedUser == null) {

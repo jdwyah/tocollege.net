@@ -14,7 +14,7 @@
             <p class="message">${message}</p>
         </#if>                    
       <div class="main">
-        <a href="<@spring.url "/site/secure/extreme/scripts_action_search_index.html"/>"/>Re-Index Search</a>
+        <a href="<@spring.url "/secure/extreme/scripts_action_search_index.html"/>"/>Re-Index Search</a>
       </div>
 
   </body>

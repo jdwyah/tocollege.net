@@ -9,8 +9,8 @@ ToCollege.net is a website that let's you keep track of your College application
 <p>
 Your secret key is ${randomkey}	
 <p>
-You can use this key to signup for an account. Go to http://www.ToCollege.net/site/signup.html?secretkey=${randomkey} to signup or just
-<a href="http://www.ToCollege.net.com/site/signup.html?secretkey=${randomkey}&email=${email?url}">click here.</a>
+You can use this key to signup for an account. Go to http://www.ToCollege.net/signup.html?secretkey=${randomkey} to signup or just
+<a href="http://www.ToCollege.net.com/signup.html?secretkey=${randomkey}&email=${email?url}">click here.</a>
 <p>
 If you want to learn more about the site, just go to <a href="http://www.ToCollege.net/">ToCollege.net</a> and take a look at the screencasts.
 <p>

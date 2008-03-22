@@ -33,7 +33,7 @@
 		 <div class="message">${message}</div>
 	 </#if>
 
-     <form action="<@spring.url "/site/search.html"/>" method="POST" id="searchForm">
+     <form action="<@spring.url "/search.html"/>" method="POST" id="searchForm">
       
      <fieldset id="search">
           <legend>Search ToCollege.net</legend>

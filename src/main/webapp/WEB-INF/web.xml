@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ 
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
 
      <listener>
           <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -38,13 +38,11 @@
      </filter>          
      <filter-mapping>
           <filter-name>osivFilter</filter-name>
-          <url-pattern>/site/*</url-pattern>
-     </filter-mapping>
-     <filter-mapping>
-          <filter-name>osivFilter</filter-name>
+          <url-pattern>*.html</url-pattern>
           <url-pattern>/service/*</url-pattern>
-     </filter-mapping>
-
+          <url-pattern>/user/*</url-pattern>
+          <url-pattern>/college/*</url-pattern>
+     </filter-mapping>     
 
      <filter>
           <filter-name>sitemesh</filter-name>
@@ -78,22 +76,32 @@
      </filter-mapping>
 
      <servlet>
+          <servlet-name>gwtFiles</servlet-name>
+          <servlet-class>com.apress.progwt.server.web.servlet.FileServlet</servlet-class>          
+          <load-on-startup>1</load-on-startup>
+     </servlet>
+     <servlet-mapping>
+          <servlet-name>gwtFiles</servlet-name>          
+          <url-pattern>/com.apress.progwt.Interactive/*</url-pattern>
+     </servlet-mapping>
+
+     <servlet>
           <servlet-name>dispatcher</servlet-name>
           <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-          <load-on-startup>-1</load-on-startup>
+          <load-on-startup>2</load-on-startup>
      </servlet>
 
+
      <servlet-mapping>
           <servlet-name>dispatcher</servlet-name>
-          <url-pattern>/site/*</url-pattern>
-     </servlet-mapping>
-     <servlet-mapping>
-          <servlet-name>dispatcher</servlet-name>
+          <url-pattern>*.html</url-pattern>
           <url-pattern>/service/*</url-pattern>
-     </servlet-mapping>
-
-
-
+          
+          <!-- REST urls. no .html necessary -->
+          <url-pattern>/user/*</url-pattern>
+          <url-pattern>/college/*</url-pattern>
+     </servlet-mapping>     
+     
      <servlet>
           <servlet-name>sitemesh-freemarker</servlet-name>
           <servlet-class>com.opensymphony.module.sitemesh.freemarker.FreemarkerDecoratorServlet</servlet-class>
@@ -110,7 +118,7 @@
 
      <servlet-mapping>
           <servlet-name>sitemesh-freemarker</servlet-name>
-          <url-pattern>*.ftl</url-pattern>
+          <url-pattern>*.dec</url-pattern>
      </servlet-mapping>
 
      <session-config>
@@ -132,11 +140,11 @@
 
      <error-page>
           <error-code>404</error-code>
-          <location>/site/servletErrorView.html?code=404</location>
+          <location>/servletErrorView.html?code=404</location>
      </error-page>
      <error-page>
           <error-code>500</error-code>
-          <location>/site/servletErrorView.html?code=500</location>
+          <location>/servletErrorView.html?code=500</location>
      </error-page>
 
      <!-- screws things up??? weird.

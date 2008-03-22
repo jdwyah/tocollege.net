@@ -36,7 +36,6 @@ import com.apress.progwt.server.service.SchoolService;
 import com.apress.progwt.server.service.UserService;
 
 @Controller
-@RequestMapping("/college/*")
 public class CollegeController {
 
     @Autowired
@@ -49,7 +48,7 @@ public class CollegeController {
     @Autowired
     private UserService userService;
 
-    private String notFoundView = "redirect:/site/search.html";
+    private String notFoundView = "redirect:/search.html";
     private String view = "college";
 
     private static final Logger log = Logger
@@ -68,12 +67,12 @@ public class CollegeController {
         String[] pathParts = path.split("/");
         log.debug("!path parts " + Arrays.toString(pathParts));
 
-        // "/college/dartmouth" splits to [,college,dartmouth]
-        if (pathParts.length < 3) {
+        // "/college/dartmouth" splits to [,dartmouth]
+        if (pathParts.length < 2) {
             return getNotFoundView();
         }
 
-        String schoolName = pathParts[2];
+        String schoolName = pathParts[1];
 
         School school = schoolService.getSchoolDetails(schoolName);
         if (school == null) {

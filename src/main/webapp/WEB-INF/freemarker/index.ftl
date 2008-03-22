@@ -35,7 +35,7 @@
 	
 	<@common.box "boxStyle", "app", "Calculator">  	 	  
 		
-		Go see   <a href="<@spring.url "/site/calculator.html"/>">Calculator</a> 
+		Go see   <a href="<@spring.url "/calculator.html"/>">Calculator</a> 
 		
 	</@common.box>	 	
 	
@@ -46,7 +46,7 @@
 			
 	<#if !user?exists>
 	<@common.box "boxStyle", "signup", "Need an account?">
-	Signup and <a href="<@spring.url "/site/signupifpossible.html"/>">Pick a username here!</a>
+	Signup and <a href="<@spring.url "/signupifpossible.html"/>">Pick a username here!</a>
   	</@common.box>	
   	</#if>  	
   	

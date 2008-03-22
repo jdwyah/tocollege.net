@@ -4,6 +4,7 @@
 <#import "commonGWT.ftl" as gwt/>
 <head>
   <title>About ToCollege.net</title>
+  <meta name="decorator" content="n1"/>    
 </head>
 
 

@@ -14,16 +14,16 @@
 </#macro>
 
 <#macro schoolLink school>
-	<a href="<@spring.url "/site/college/${school.name?url}"/>">${school.name}</a>
+	<a href="<@spring.url "/college/${school.name?url}"/>">${school.name}</a>
 </#macro>
 <#macro userLink user>
-	<a href="<@spring.url "/site/user/${user.nickname?url}"/>">${user.nickname}</a>
+	<a href="<@spring.url "/user/${user.nickname?url}"/>">${user.nickname}</a>
 </#macro>
 <#macro forumLink forumPost>
-    <a href="<@spring.url "/site/forums.html?uniqueForumID=${forumPost.uniqueForumID}"/>">${forumPost.postTitle?default("--")}</a>
+    <a href="<@spring.url "/forums.html?uniqueForumID=${forumPost.uniqueForumID}"/>">${forumPost.postTitle?default("--")}</a>
 </#macro>
 <#macro forumTopicLink forumPost>
-    <a href="<@spring.url "/site/forums.html?uniqueForumID=${forumPost.topic.uniqueForumID}"/>">${forumPost.topic.forumDisplayName?default("--")}</a>
+    <a href="<@spring.url "/forums.html?uniqueForumID=${forumPost.topic.uniqueForumID}"/>">${forumPost.topic.forumDisplayName?default("--")}</a>
 </#macro>
 
 <#macro showForumPosts forumPosts>
@@ -88,7 +88,7 @@
 		 <input name="login" value="<@spring.message "login.1.button"/>" type="submit"> <a class="link" onclick="javascript:doOpenID();">Use OpenID</a>
 		</fieldset>
 	 </form>	
-	 <form id="openIDForm" class="header_account-OpenID" action="<@spring.url "/site/j_acegi_openid_start"/>" method="POST" style="display: block" onSubmit="javascript:formvalidation();return false;" >
+	 <form id="openIDForm" class="header_account-OpenID" action="<@spring.url "/j_acegi_openid_start.html"/>" method="POST" style="display: block" onSubmit="javascript:formvalidation();return false;" >
 		<fieldset>			
 		  <legend><@spring.message "login.1.header"/></legend><p>
 			 <label for="j_username2"><input type='text' name='openid_url' id = 'j_username2' class="openid-identifier">OpenID
@@ -102,7 +102,7 @@
 
 <#macro signupNow>
 	<h2 id="signupNow">
-	 	<a href="<@spring.url "/site/signupifpossible.html"/>"><@spring.message "login.signup"/></a>
+	 	<a href="<@spring.url "/signupifpossible.html"/>"><@spring.message "login.signup"/></a>
 	</h2>
 </#macro>
 
@@ -122,7 +122,7 @@
 </#macro>
 
 <#macro terms_formatted p="<p>",br="<br>">
-${p}Thank you for using ToCollege.net. By using ToCollege.net's products, services or web sites ("ToCollege.net"), you agree to the following terms and conditions, and any policies, guidelines or amendments thereto that may be presented to you from time to time (collectively, the "Terms of Service"). We may update the Terms of Service in the future, and you will be able to find the most current version of this agreement at http://www.ToCollege.net/site/terms.html.
+${p}Thank you for using ToCollege.net. By using ToCollege.net's products, services or web sites ("ToCollege.net"), you agree to the following terms and conditions, and any policies, guidelines or amendments thereto that may be presented to you from time to time (collectively, the "Terms of Service"). We may update the Terms of Service in the future, and you will be able to find the most current version of this agreement at http://www.ToCollege.net/terms.html.
 ${p}
 1. USE OF SERVICES
 ${p}

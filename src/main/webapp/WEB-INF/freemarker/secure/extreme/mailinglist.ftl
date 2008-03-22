@@ -32,7 +32,7 @@
         <td><#if entry.inviter?exists>${entry.inviter.username}<#else>None</#if></td>
         <td><#if entry.signedUpUser?exists>${entry.signedUpUser.username}<#else>None</#if></td>
         <td>${entry.sentEmailOk?string}</td>
-        <td><a href="<@spring.url "/site/secure/extreme/mailinglistaction.html?entryID=${entry.id?c}"/>"/>Send Invite</a></td>              
+        <td><a href="<@spring.url "/secure/extreme/mailinglistaction.html?entryID=${entry.id?c}"/>"/>Send Invite</a></td>              
         </tr>
     </#list>
     </table>

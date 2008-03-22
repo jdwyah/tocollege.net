@@ -25,16 +25,18 @@
 		<to type="redirect">%{context-path}/rewrite-status</to>
 	</rule>
 
+
 	<rule>
-		<from>/com.aavu.AddLink/AddLink.html(.*)</from>
-		<to type="redirect">/site/secure/addLink.html$1</to>
+	     <from>^/site/(.*)$</from>
+	     <to type="permanent-redirect">/$1</to>
 	</rule>
+
 
 	<rule match-type="wildcard">
-		<from>/</from>
-		<to type="forward">/site/index.html</to>
-	</rule>
-
+        <from>/</from>
+        <to type="forward">/index.html</to>
+    </rule>
+    
 	<outbound-rule>
 		<note>
 			The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url) the url

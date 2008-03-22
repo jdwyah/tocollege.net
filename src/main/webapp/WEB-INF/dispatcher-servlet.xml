@@ -42,7 +42,7 @@
          <property name="view" value="viewuser"/>
 	     <property name="schoolService" ref="schoolService" />
 	     <property name="userService" ref="userService" />
-	     <property name="notFoundView" value="redirect:/site/search.html" />
+	     <property name="notFoundView" value="redirect:/search.html" />
 	</bean>
      
      <bean id="mylistController" class="com.apress.progwt.server.web.controllers.MyListController">
@@ -54,14 +54,14 @@
      
      
      <bean id="signupIfPossibleController" class="com.apress.progwt.server.web.controllers.SignupIfPossibleController">
-          <property name="mailingListView" value="redirect:/site/mailinglist.html" />
+          <property name="mailingListView" value="redirect:/mailinglist.html" />
           <property name="invitationService" ref="invitationService" />
           <property name="signupView" value="signup" />
           <property name="userService" ref="userService" />
      </bean>
      <bean id="mailingListController" class="com.apress.progwt.server.web.controllers.MailingListController">
           <property name="formView" value="mailinglist" />
-          <property name="successView" value="redirect:/site/index.html" />
+          <property name="successView" value="redirect:/index.html" />
           <property name="invitationService" ref="invitationService" />
      </bean>
      
@@ -75,7 +75,7 @@
 
      <bean id="createUserController" class="com.apress.progwt.server.web.controllers.CreateUserController">
           <property name="formView" value="signup" />
-          <property name="successView" value="redirect:/site/index.html" /><!-- redirect index needs command in model -->
+          <property name="successView" value="redirect:/index.html" /><!-- redirect index needs command in model -->
           <property name="validator" ref="createUserValidator" />
           <property name="userService" ref="userService" />
           <property name="invitationService" ref="invitationService" />
@@ -108,20 +108,21 @@
 				<prop key="/service/userService">GWTUserService</prop>
                 <prop key="/service/schoolService">GWTSchoolService</prop>
 				
-                <prop key="/site/secure/myList.html">mylistController</prop>                
-                <prop key="/site/user/*">viewUserController</prop>
+                <prop key="/secure/myList.html">mylistController</prop>                
+                <prop key="/user/*">viewUserController</prop>
+                <prop key="/college/*">collegeController</prop>
                 
-                <prop key="/site/mailinglist.html">mailingListController</prop>
-                <prop key="/site/signup.html">createUserController</prop>                
+                <prop key="/mailinglist.html">mailingListController</prop>
+                <prop key="/signup.html">createUserController</prop>                
 
-				<prop key="/site/accessDenied.html">errorController</prop>
-				<prop key="/site/servletErrorView.html">errorController</prop>						
+				<prop key="/accessDenied.html">errorController</prop>
+				<prop key="/servletErrorView.html">errorController</prop>						
                 
 
-			    <prop key="/site/j_acegi_openid_start">openIDLoginStartController</prop>
+			    <prop key="/j_acegi_openid_start.html">openIDLoginStartController</prop>
                     
-				<prop key="/site/clear.cache.gif">forwardClearCacheController</prop>
-				<prop key="/site/secure/clear.cache.gif">forwardClearCacheController</prop>
+				<prop key="/clear.cache.gif">forwardClearCacheController</prop>
+				<prop key="/secure/clear.cache.gif">forwardClearCacheController</prop>
 
 				
 			</props>

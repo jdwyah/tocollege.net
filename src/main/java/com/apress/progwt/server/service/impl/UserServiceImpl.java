@@ -233,7 +233,7 @@ public class UserServiceImpl implements UserService {
 
         // important. otherwise we were getting directed to the user page
         // in a logged in, but not
-        // authenticated state, despite our redirect:/site/index.html
+        // authenticated state, despite our redirect:/index.html
         SecurityContextHolder.getContext().setAuthentication(null);
         return createdU;
     }
