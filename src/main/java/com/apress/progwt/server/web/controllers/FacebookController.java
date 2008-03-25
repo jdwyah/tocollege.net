@@ -23,14 +23,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.apress.progwt.client.domain.User;
 import com.apress.progwt.server.service.SchoolService;
 import com.apress.progwt.server.service.UserService;
-import com.facebook.api.Facebook;
+import com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer;
 import com.facebook.api.FacebookException;
 import com.facebook.api.FacebookRestClient;
 import com.facebook.api.schema.FriendsGetResponse;
@@ -40,21 +42,29 @@ import com.facebook.api.schema.FriendsGetResponse;
  * @author Jeff Dwyer
  */
 @Controller
-public class FacebookController extends PropertiesSupport {
+public class FacebookController {
     private static final Logger log = Logger
             .getLogger(FacebookController.class);
 
     private UserService userService;
     private SchoolService schoolService;
 
+    @Autowired
+    @Qualifier(value = "propertyConfigurer")
+    private HostPrecedingPropertyPlaceholderConfigurer hostConfigurer;
 
     
+
+    public void setHostConfigurer(
+            HostPrecedingPropertyPlaceholderConfigurer hostConfigurer) {
+        this.hostConfigurer = hostConfigurer;
+    }
     
-    @RequestMapping("/facebook")
-    public ModelMap facebookHandler(HttpServletRequest req,HttpServletResponse resp) throws FacebookException, IOException {
+    @RequestMapping("/facebook/canvas.html")
+    public ModelAndView facebookHandler(HttpServletRequest req,HttpServletResponse resp) throws FacebookException, IOException {
         
-        String apiKey = getProperty("env.facebook.apikey");
-        String secret = getProperty("env.facebook.secret");
+        String apiKey = hostConfigurer.resolvePlaceholder("env.facebook.apikey");
+        String secret = hostConfigurer.resolvePlaceholder("env.facebook.secret");
         
         log.debug("apikey: "+apiKey);
         
@@ -62,7 +72,7 @@ public class FacebookController extends PropertiesSupport {
         
         if(f.requireLogin("#")){
             log.info("require login redirect");
-            return null;   
+            return null;
         }
         if(f.requireAdd("")){
             log.info("require add redirect");
@@ -86,10 +96,9 @@ public class FacebookController extends PropertiesSupport {
 
         } catch (FacebookException e) {
             if(e.getCode() == 102){
-                log.debug("102 error requiring add...");
-
-               
+                log.warn("102 error requiring add...");
             }
+            log.error(e);
         }
         client.friends_get();
         
@@ -104,7 +113,7 @@ public class FacebookController extends PropertiesSupport {
         rtn.addAttribute("viewUser", user);
         rtn.addAttribute("friends", friends);
 
-        return rtn;
+        return new ModelAndView("facebook/canvas",rtn);
 
     }
     @Autowired

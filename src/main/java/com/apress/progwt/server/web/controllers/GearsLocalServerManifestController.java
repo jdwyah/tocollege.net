@@ -23,10 +23,13 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.apress.progwt.server.util.HostPrecedingPropertyPlaceholderConfigurer;
 import com.apress.progwt.server.util.RandomUtils;
 
 /**
@@ -38,11 +41,27 @@ import com.apress.progwt.server.util.RandomUtils;
  */
 @Controller
 @RequestMapping("/manifest.json")
-public class GearsLocalServerManifestController extends PropertiesSupport{
+public class GearsLocalServerManifestController {
     private static final Logger log = Logger
             .getLogger(GearsLocalServerManifestController.class);
 
-   
+
+    @Autowired
+    @Qualifier(value = "propertyConfigurer")
+    private HostPrecedingPropertyPlaceholderConfigurer hostConfigurer;
+
+    
+
+    public void setHostConfigurer(
+            HostPrecedingPropertyPlaceholderConfigurer hostConfigurer) {
+        this.hostConfigurer = hostConfigurer;
+    }
+
+    
+    protected String getProperty(String name){
+        return hostConfigurer.resolvePlaceholder(name);
+    }
+    
 
     private static String manifest;
 
@@ -68,9 +87,9 @@ public class GearsLocalServerManifestController extends PropertiesSupport{
 
     private String createManifest() throws JSONException {
 
-        String gwtROOT = getProperty(
+        String gwtROOT = hostConfigurer.resolvePlaceholder(
                 "HOST.gears.localserver.dir");
-        String localServerURL = getProperty(
+        String localServerURL = hostConfigurer.resolvePlaceholder(
                 "HOST.gears.localserver.url");
 
         File contextF = new File(gwtROOT);

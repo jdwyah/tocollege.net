@@ -15,6 +15,7 @@
  */
 package com.apress.progwt.server.util;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Properties;
@@ -55,11 +56,21 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
  * @author Jeff Dwyer (blog) http://jdwyah.blogspot.com
  * 
  */
-public class HostPrecedingPropertyPlaceholderConfigurer extends
-        PropertyPlaceholderConfigurer {
+public class HostPrecedingPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
 
     private static Logger log = Logger
-            .getLogger(HostPrecedingPropertyPlaceholderConfigurer.class);
+    .getLogger(HostPrecedingPropertyPlaceholderConfigurer.class);
+
+    public String resolvePlaceholder(String placeholder){
+        Properties mergedProps;
+        try {
+            mergedProps = mergeProperties();
+        } catch (IOException e) {
+            log.error(e);
+            throw new RuntimeException(e);
+        }
+        return resolvePlaceholder(placeholder, mergedProps);    
+    }
 
     public String resolvePlaceholder(String placeholder, Properties props) {
 

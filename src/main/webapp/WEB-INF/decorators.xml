@@ -21,7 +21,9 @@ If you're not connected to the internet.
     <decorator name="default" page="default.dec">
         <pattern>/*</pattern>        
     </decorator>
-   
+    <decorator name="fb" page="facebook.dec">
+        <pattern>/facebook/*</pattern>        
+    </decorator>
    
     
 </decorators>

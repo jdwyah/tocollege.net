@@ -13,7 +13,8 @@
        </repository>
   </repositories>  
   <properties>
-    <maven.test.failure.ignore>true</maven.test.failure.ignore>
+  	<maven.test.failure.ignore>true</maven.test.failure.ignore>
+  	<maven.test.error.ignore>true</maven.test.error.ignore>
   </properties>
   <build>
 		<plugins>                 
@@ -393,11 +394,6 @@
                <version>1.2.0</version>
           </dependency>
 
-          <dependency>
-               <groupId>com.facebook.api</groupId>
-               <artifactId>facebook-util</artifactId>
-               <version>1.7.3</version>
-          </dependency>
           <dependency>
                <groupId>com.facebook.api</groupId>
                <artifactId>facebook-java-api</artifactId>

@@ -1,0 +1,10 @@
+<html>
+<head>
+  <!--none-->
+  <title>${title}</title>
+  ${head}
+</head>
+<#--note, no body tag-->
+${body}
+
+</html>
