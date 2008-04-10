@@ -1,5 +1,5 @@
 <#import "/spring.ftl" as spring/>
-<#macro gwtURL str><@spring.url "/com.apress.progwt.Interactive/std/${str}"/></#macro>
+<#macro gwtURL str><@spring.url "/com.apress.progwt.Interactive/${str}"/></#macro>
 
 <#macro css>
 <link href="<@gwtURL "themes/alphacube.css"/>" rel="stylesheet" type="text/css"></link>

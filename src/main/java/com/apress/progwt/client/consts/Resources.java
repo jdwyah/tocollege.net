@@ -89,5 +89,39 @@ public interface Resources extends ImmutableResourceBundle {
      * @gwt.resource century3.png
      */
     public DataResource tl_3century();
+    
+    /**
+     * @gwt.resource bg_headergradient.png
+     */
+    public DataResource bg_headergradient();
+    /**
+     * @gwt.resource bg_listgradient.png
+     */
+    public DataResource bg_listgradient();
+    /**
+     * @gwt.resource bg_stackpanel.png
+     */
+    public DataResource bg_stackpanel();
+    /**
+     * @gwt.resource bg_tab_selected.png
+     */
+    public DataResource bg_tab_selected();
+    /**
+     * @gwt.resource bg_tab.png
+     */
+    public DataResource bg_tab();
+   
+    /**
+     * @gwt.resource hborder.png
+     */
+    public DataResource hborder();    
+    /**
+     * @gwt.resource vborder.png
+     */
+    public DataResource vborder();
+    /**
+     * @gwt.resource loading.gif
+     */
+    public DataResource loading();
 
 }

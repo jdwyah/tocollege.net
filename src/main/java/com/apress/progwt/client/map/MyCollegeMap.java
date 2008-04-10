@@ -15,7 +15,6 @@
  */
 package com.apress.progwt.client.map;
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.apress.progwt.client.college.ServiceCache;
 import com.apress.progwt.client.college.gui.MyPageTab;
 import com.apress.progwt.client.college.gui.SchoolLink;
@@ -30,11 +29,7 @@ import com.google.gwt.maps.client.control.SmallMapControl;
 import com.google.gwt.maps.client.event.MarkerClickListener;
 import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.maps.client.overlay.Marker;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Unfortunately, GoogleMaps don't play well with Tabs, so we have to do
@@ -53,37 +48,20 @@ public class MyCollegeMap extends Composite implements MyPageTab {
     private static final LatLng middleAmerica = new LatLng(37.0625,
             -95.677068);
 
-    private DialogBox dialogBox;
-
     private MapWidget map;
 
     private User user;
 
-    private Button showB;
-
     public MyCollegeMap(ServiceCache serviceCache) {
 
-        dialogBox = new DialogBox(true);
-        dialogBox.setText("College Map");
-
-        dialogBox.setPixelSize(500, 300);
         map = new MapWidget(middleAmerica, 4);
         map.setSize("500px", "300px");
 
         map.addControl(new SmallMapControl());
         map.addControl(new MapTypeControl());
         map.setScrollWheelZoomEnabled(true);
-        dialogBox.add(map);
 
-        showB = new Button("Show");
-        showB.addClickListener(new ClickListener() {
-            public void onClick(Widget sender) {
-                dialogBox.show();
-            }
-        });
-
-        initWidget(showB);
-        dialogBox.setPopupPosition(100, 100);
+        initWidget(map);
     }
 
     private Marker createMarker(final School school) {
@@ -94,7 +72,7 @@ public class MyCollegeMap extends Composite implements MyPageTab {
         }
 
         final Marker marker = new Marker(point);
-        marker.addClickListener(new MarkerClickListener() {
+        marker.addMarkerClickListener(new MarkerClickListener() {
             public void onClick(Marker sender) {
                 InfoWindow info = map.getInfoWindow();
                 info.open(sender, new InfoWindowContent(new SchoolLink(
@@ -116,11 +94,6 @@ public class MyCollegeMap extends Composite implements MyPageTab {
     }
 
     public void refresh() {
-        Log.debug("Refreshing MyCollegeMap " + getAbsoluteLeft() + " "
-                + getAbsoluteTop() + " " + showB.getAbsoluteLeft() + " ");
-
-        dialogBox.setPopupPosition(100, 100);
-
         map.checkResize();
 
         if (user != null) {
@@ -136,7 +109,6 @@ public class MyCollegeMap extends Composite implements MyPageTab {
             }
         }
 
-        dialogBox.show();
 
     }
 }

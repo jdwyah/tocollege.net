@@ -512,6 +512,13 @@ public final class ServerSerializationStreamWriter1941 extends
         buffer.append("]");
         return buffer.toString();
     }
+    public void writeLong(long fieldValue) {
+        /*
+         * Marshal down to client as a string; if we tried to marshal as a number
+         * the JSON eval would lose precision.
+         */
+        writeString(Long.toString(fieldValue, 16));
+      }
 
     @Override
     protected int addString(String string) {
@@ -718,4 +725,5 @@ public final class ServerSerializationStreamWriter1941 extends
         }
         buffer.append("]");
     }
+
 }

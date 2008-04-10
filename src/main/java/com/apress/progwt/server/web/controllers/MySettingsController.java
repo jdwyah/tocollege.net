@@ -74,7 +74,7 @@ public class MySettingsController {
         }
 
         map.addAttribute("message", "Password Change Success");
-        return "redirect:/site/secure/settings.html";
+        return "redirect:/secure/settings.html";
     }
 
     public void setUserService(UserService userService) {
