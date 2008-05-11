@@ -69,6 +69,7 @@ public class MyApplicationTimeline extends Composite implements
         public AppList() {
             mainPanel = new VerticalPanel();
             initWidget(mainPanel);
+            setStylePrimaryName("AppTimelineAppList");
         }
 
         public void load(User user) {
@@ -172,7 +173,7 @@ public class MyApplicationTimeline extends Composite implements
 
         this.serviceCache = serviceCache;
 
-        HorizontalPanel mainP = new HorizontalPanel();
+        HorizontalPanel mainP = new HorizontalPanel();        
         VerticalPanel chooserP = new VerticalPanel();
 
         timeline = new ProcessTimeline(this);

@@ -51,6 +51,7 @@ public class MyPage extends Composite implements TabListener,
         serviceCache = collegeBoundApp.getServiceCache();
 
         mainPanel = new TabPanel();
+        mainPanel.setStylePrimaryName("MainTabs");
         mainPanel.getDeckPanel().setAnimationEnabled(true);
 
         myRankings = new MyRankings(serviceCache);

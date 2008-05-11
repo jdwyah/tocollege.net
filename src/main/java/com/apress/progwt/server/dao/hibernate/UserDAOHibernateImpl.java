@@ -198,6 +198,9 @@ public class UserDAOHibernateImpl extends HibernateDaoSupport implements
             Hibernate.initialize(application.getProcess());
             Hibernate.initialize(application.getRatings());
         }
+        
+        log.debug("fetched user: "+rtn.getNickname()+" ratings "+rtn.getRatingTypes().size());
+        
         // Hibernate.initialize(rtn.getSchoolRankings());
         return rtn;
 

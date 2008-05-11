@@ -111,7 +111,12 @@ a:visited {
 .ResultBox {
 	text-align: right;
 }
-
+.MainTabs {
+	width: 760px;/*only ff necessary*/
+}
+.AppTimelineAppList {
+	width: 120px;
+}
 .TC-ProcessTypes {
 	left: 200px;
 	font-size: 12pt;
@@ -359,11 +364,11 @@ a:visited {
 }
 
 html>body .gwt-TabBar .gwt-TabBarItem .topLeft {
-  background: url(img/corner.png) no-repeat 0px -55px;
+  background: url('%corner%') no-repeat 0px -55px;
 }
 
 html>body .gwt-TabBar .gwt-TabBarItem .topRight {
-  background: url(img/corner.png) no-repeat -6px -55px;
+  background: url('%corner%') no-repeat -6px -55px;
 }
 
 html>body .gwt-TabBar .gwt-TabBarItem-selected .topLeft {

@@ -76,13 +76,14 @@
      </filter-mapping>
 
      <servlet>
-          <servlet-name>gwtFiles</servlet-name>
+          <servlet-name>fileServlet</servlet-name>
           <servlet-class>com.apress.progwt.server.web.servlet.FileServlet</servlet-class>          
           <load-on-startup>1</load-on-startup>
      </servlet>
      <servlet-mapping>
-          <servlet-name>gwtFiles</servlet-name>          
+          <servlet-name>fileServlet</servlet-name>          
           <url-pattern>/com.apress.progwt.Interactive/*</url-pattern>
+          <url-pattern>/tools/*</url-pattern>
      </servlet-mapping>
 
      <servlet>

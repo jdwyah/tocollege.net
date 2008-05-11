@@ -4,7 +4,7 @@
   <title>${title}</title>
   ${head}
 </head>
-<#--note, no body tag-->
+<#--note, no body tag. facebook doesn't like that-->
 ${body}
 
 </html>

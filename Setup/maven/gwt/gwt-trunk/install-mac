@@ -1,0 +1,10 @@
+mvn install:install-file -DgroupId=com.google -DartifactId=gwt-servlet -Dversion=$1 -Dpackaging=jar -Dfile=build/staging/gwt-mac-0.0.0/gwt-servlet.jar -DgeneratePom=true
+mvn install:install-file -DgroupId=com.google -DartifactId=gwt-user -Dversion=$1 -Dpackaging=jar -Dfile=build/staging/gwt-mac-0.0.0/gwt-user.jar -DgeneratePom=true
+mvn install:install-file -Dclassifier=sources -DgroupId=com.google -DartifactId=gwt-user -Dversion=$1 -Dpackaging=jar -Dfile=build/staging/gwt-mac-0.0.0/gwt-user.jar -DgeneratePom=true
+mvn install:install-file -DgroupId=com.google -DartifactId=gwt-dev-mac -Dversion=$1 -Dpackaging=jar -Dfile=build/staging/gwt-mac-0.0.0/gwt-dev-mac.jar -DgeneratePom=true
+cp build/staging/gwt-mac-0.0.0/lib* ~/.m2/repository/com/google/gwt-dev-mac/$1
+cp -r build/staging/gwt-mac-0.0.0/Frameworks ~/.m2/repository/com/google/gwt-dev-mac/$1
+
+
+
+

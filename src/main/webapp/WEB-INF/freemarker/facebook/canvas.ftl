@@ -1,7 +1,7 @@
 
 <#import "/spring.ftl" as spring/>
-<#import "common.ftl" as common/>
-<#import "commonGWT.ftl" as gwt/>
+<#import "../common.ftl" as common/>
+<#import "../commonGWT.ftl" as gwt/>
 
  <#if message?exists>
 	<div style="z-index: 99; position: absolute; left: 200px;">
@@ -9,6 +9,11 @@
 	</div>
  </#if>			  	 	  
 
+<ul>
+<li><a href="infinite.html">Infinite</a></li>
+<li><a href="updateprofile.html">updateprofile</a></li>
+</ul>
+<p>
 
      <#list friends as friend>
       fr: ${friend}
@@ -42,82 +47,17 @@
   	 </table>
   	</@common.box>   
   	
-<#--
-	<@common.box "boxStyle", "list", "The List">
-	
-	<table>
-	<tr class="headerRow">
-	<th>School</th>
-	
-	<#assign allparams = {"total":"${viewUser.processTypes?size}"}/>
-	
-	<#list viewUser.processTypes as processType>
-	   <#assign id="head_${processType_index}"/>
-	   <th id="${id}">
-	   
-	   <#assign params = {"text${processType_index}":"${processType.name}",
-                              "id${processType_index}":"${id}"}/>  
-                                    
-       <#assign allparams = allparams + params />               					
-	   </th>
-	</#list>
-	</tr>
-	<@gwt.widget "VerticalLabel", allparams/>
-
-	<#list viewUser.schoolRankings as sap>
-	<tr>
-	<td>
-		<@common.schoolLink sap.school/><br>
-	</td>
-		<#list viewUser.processTypes as processType>		
-		<td>		 				
-		<#assign processVal = sap.getTheProcess(processType)?default("")/>
-		<#if processVal?has_content>
-		  <#if processType.percentage>
-		  ${processVal.pctComplete}
-		  <#else>
-		      <#if processVal.pctComplete == 1>		        
-		       <@gwt.widget "ImageBundle", {"name":"checked"}/>
-		      <#else>
-		       <@gwt.widget "ImageBundle", {"name":"unchecked"}/>
-		      </#if>		  	
-		  </#if>
-		</#if>
-		</td>		
-		</#list>
-	</tr>
-	</#list>
-	
-	
-	</table>
-	
-	</@common.box>	
-	
-	
-	<div id="bottom">       
-         
-    <@common.box "boxStyle", "forums", "My Wall">        
-        <#assign params = {"uniqueForumID":"${viewUser.uniqueForumID}"}/>    
-        <@gwt.widget "Forum", params/>        
-    </@common.box>  
-        
-        
-    </div>
-	
-	</div>  
-
-	
-  	<div id="sidebar">  		
-			
-	<@common.box "boxStyle", "userInfo", "About ${viewUser.nickname}">
-				
-		State: NH
-		
-	</@common.box>	
-           
-    </div>
-    
-  
-        
-    <@gwt.finalize/>
-    -->
+  	</div>
+  	
+  	<div id="sidebar">
+  		
+  		<h1>Top School</h1>
+  		Dartmouth
+  		Swarthmore
+  		
+  		<h1>Top Users</h1>
+  		Bob
+  		John
+  		
+  	</div>
+  	

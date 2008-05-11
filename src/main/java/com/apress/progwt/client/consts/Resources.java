@@ -45,83 +45,58 @@ import com.google.gwt.libideas.resources.client.TextResource;
  */
 public interface Resources extends ImmutableResourceBundle {
 
-    /**
-     * @gwt.resource gwtstyles.css
-     */
+    @Resource(value = { "gwtstyles.css" })
     public TextResource gwtstyles();
 
-    /**
-     * @gwt.resource hour.png
-     */
+    @Resource(value = { "hour.png" })
     public DataResource tl_hour();
 
-    /**
-     * @gwt.resource day.png
-     */
+    @Resource(value = { "day.png" })
     public DataResource tl_day();
 
-    /**
-     * @gwt.resource week.png
-     */
+    @Resource(value = { "week.png" })
     public DataResource tl_week();
 
-    /**
-     * @gwt.resource way3.png
-     */
+    @Resource(value = { "way3.png" })
     public DataResource tl_3way();
 
-    /**
-     * @gwt.resource month.png
-     */
+    @Resource(value = { "month.png" })
     public DataResource tl_month();
 
-    /**
-     * @gwt.resource year.png
-     */
+    @Resource(value = { "year.png" })
     public DataResource tl_year();
 
-    /**
-     * @gwt.resource decade.png
-     */
+    @Resource(value = { "decade.png" })
     public DataResource tl_decade();
 
-    /**
-     * @gwt.resource century3.png
-     */
+    @Resource(value = { "century3.png" })
     public DataResource tl_3century();
-    
-    /**
-     * @gwt.resource bg_headergradient.png
-     */
+
+    @Resource(value = { "bg_headergradient.png" })
     public DataResource bg_headergradient();
-    /**
-     * @gwt.resource bg_listgradient.png
-     */
+
+    @Resource(value = { "corner.png" })
+    public DataResource corner();
+    
+    @Resource(value = { "bg_listgradient.png" })
     public DataResource bg_listgradient();
-    /**
-     * @gwt.resource bg_stackpanel.png
-     */
+
+    @Resource(value = { "bg_stackpanel.png" })
     public DataResource bg_stackpanel();
-    /**
-     * @gwt.resource bg_tab_selected.png
-     */
+
+    @Resource(value = { "bg_tab_selected.png" })
     public DataResource bg_tab_selected();
-    /**
-     * @gwt.resource bg_tab.png
-     */
+
+    @Resource(value = { "bg_tab.png" })
     public DataResource bg_tab();
-   
-    /**
-     * @gwt.resource hborder.png
-     */
-    public DataResource hborder();    
-    /**
-     * @gwt.resource vborder.png
-     */
+
+    @Resource(value = { "hborder.png" })
+    public DataResource hborder();
+
+    @Resource(value = { "vborder.png" })
     public DataResource vborder();
-    /**
-     * @gwt.resource loading.gif
-     */
+
+    @Resource(value = { "loading.gif" })
     public DataResource loading();
 
 }

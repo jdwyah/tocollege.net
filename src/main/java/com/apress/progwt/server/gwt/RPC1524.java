@@ -374,7 +374,7 @@ public final class RPC1524 {
     public static String encodeResponseForFailure(Method serviceMethod,
             Throwable cause) throws SerializationException {
         return encodeResponseForFailure(serviceMethod, cause,
-                new ServerSerializationStreamWriter1941(
+                new ServerSerializationStreamWriter2335(
                         getDefaultSerializationPolicy()));
     }
 
@@ -413,7 +413,7 @@ public final class RPC1524 {
      */
     public static String encodeResponseForFailure(Method serviceMethod,
             Throwable cause,
-            ServerSerializationStreamWriter1941 streamWriter)
+            ServerSerializationStreamWriter2335 streamWriter)
             throws SerializationException {
         if (cause == null) {
             throw new NullPointerException("cause cannot be null");
@@ -457,7 +457,7 @@ public final class RPC1524 {
     public static String encodeResponseForSuccess(Method serviceMethod,
             Object object) throws SerializationException {
         return encodeResponseForSuccess(serviceMethod, object,
-                new ServerSerializationStreamWriter1941(
+                new ServerSerializationStreamWriter2335(
                         getDefaultSerializationPolicy()));
     }
 
@@ -495,7 +495,7 @@ public final class RPC1524 {
      */
     public static String encodeResponseForSuccess(Method serviceMethod,
             Object object,
-            ServerSerializationStreamWriter1941 streamWriter)
+            ServerSerializationStreamWriter2335 streamWriter)
             throws SerializationException {
         if (serviceMethod == null) {
             throw new NullPointerException("serviceMethod cannot be null");
@@ -622,14 +622,14 @@ public final class RPC1524 {
             SerializationPolicy serializationPolicy)
             throws SerializationException {
         return invokeAndEncodeResponse(target, serviceMethod, args,
-                new ServerSerializationStreamWriter1941(
+                new ServerSerializationStreamWriter2335(
                         serializationPolicy));
 
     }
 
     public static String invokeAndEncodeResponse(Object target,
             Method serviceMethod, Object[] args,
-            ServerSerializationStreamWriter1941 streamWriter)
+            ServerSerializationStreamWriter2335 streamWriter)
             throws SerializationException {
         if (serviceMethod == null) {
             throw new NullPointerException("serviceMethod");
@@ -685,7 +685,7 @@ public final class RPC1524 {
      */
     private static String encodeResponse(Class<?> responseClass,
             Object object, boolean wasThrown,
-            ServerSerializationStreamWriter1941 stream)
+            ServerSerializationStreamWriter2335 stream)
             throws SerializationException {
 
         stream.prepareToWrite();

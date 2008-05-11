@@ -66,8 +66,7 @@ public class SaveRatingCommand extends AbstractCommand implements
         Log.debug("SaveRatingCommand application " + application
                 + " rating " + ratingType);
         if (application != null) {
-            System.out
-                    .println("app.ratings: " + application.getRatings());
+            Log.debug("app.ratings: " + application.getRatings());
         }
 
         application.getRatings().put(ratingType, getSelectedRating());

@@ -15,7 +15,7 @@
 </listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.google.gwt.dev.GWTShell"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-out www -noserver -port 8080 com.apress.progwt.Interactive/std/CollegeApp.html"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-out www -noserver -port 8080 com.apress.progwt.Interactive/CollegeApp.html"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="ProGWT"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms512m -Xmx512m -XstartOnFirstThread"/>
 </launchConfiguration>

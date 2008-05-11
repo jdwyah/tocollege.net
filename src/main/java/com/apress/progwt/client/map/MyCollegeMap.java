@@ -30,6 +30,7 @@ import com.google.gwt.maps.client.event.MarkerClickListener;
 import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.SimplePanel;
 
 /**
  * Unfortunately, GoogleMaps don't play well with Tabs, so we have to do
@@ -54,14 +55,20 @@ public class MyCollegeMap extends Composite implements MyPageTab {
 
     public MyCollegeMap(ServiceCache serviceCache) {
 
-        map = new MapWidget(middleAmerica, 4);
-        map.setSize("500px", "300px");
+        map = new MapWidget(middleAmerica, 4);        
+        map.setPixelSize(760, 300);
 
         map.addControl(new SmallMapControl());
         map.addControl(new MapTypeControl());
         map.setScrollWheelZoomEnabled(true);
 
-        initWidget(map);
+        SimplePanel sizeCorrector = new SimplePanel();
+        sizeCorrector.add(map);
+        sizeCorrector.setPixelSize(760,300);
+        
+        initWidget(sizeCorrector);
+        
+        
     }
 
     private Marker createMarker(final School school) {
