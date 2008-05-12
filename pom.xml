@@ -395,11 +395,27 @@
           </dependency>
 
           <dependency>
-               <groupId>com.facebook.api</groupId>
-               <artifactId>facebook-java-api</artifactId>
-               <version>1.7.4</version>
+          	<groupId>com.facebook.api</groupId>
+          	<artifactId>facebook-java-api</artifactId>
+          	<version>1.7.4</version>
           </dependency>
-
+          <!-- 1.5 only, req'd for facebook -->
+          <dependency>
+          	<groupId>javax.xml.bind</groupId>
+          	<artifactId>jaxb-api</artifactId>
+          	<version>2.1</version>
+          </dependency>
+          <dependency>
+          	<groupId>com.sun.xml</groupId>
+          	<artifactId>jaxb-impl</artifactId>
+          	<version>2.1</version>
+          </dependency>
+          <dependency>
+          	<groupId>javax.xml.bind</groupId>
+          	<artifactId>jsr173_api</artifactId>
+          	<version>1.0</version>
+          </dependency>
+          <!-- /1.5 only req'd for facebook -->
 
 
   </dependencies>
