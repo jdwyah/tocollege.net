@@ -19,7 +19,7 @@ import com.apress.progwt.client.domain.School;
 
 public class SchoolLink extends ExternalLink {
     public SchoolLink(School school) {
-        super(school.getName(), "site/college/"
+        super(school.getName(), "college/"
                 + school.getName().replace(' ', '_'), true);
     }
 }

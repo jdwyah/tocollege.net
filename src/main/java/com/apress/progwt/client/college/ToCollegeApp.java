@@ -27,7 +27,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class ToCollegeApp extends GWTApp {
 
-    private static final String SECURE_TARGET_URL = "site/secure/myList.html";
+    private static final String SECURE_TARGET_URL = "secure/myList.html";
 
     private void loadGUI(Widget widget) {
         RootPanel.get(getPreLoadID()).setVisible(false);

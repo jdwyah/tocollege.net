@@ -51,7 +51,7 @@ public class CreatePostButton extends Button implements ClickListener {
 
     public void onClick(Widget sender) {
 
-        String secureTargetURL = "site/secure/forums.html";
+        String secureTargetURL = "secure/forums.html";
 
         // let the /secure/ page know that we should
         // fire the create action
@@ -78,7 +78,7 @@ public class CreatePostButton extends Button implements ClickListener {
         // // force a login
         // if (author.getUser() == null) {
         //
-        // String base = "site/secure/forums.html";
+        // String base = "secure/forums.html";
         //
         // // let the /secure/ page know that we should
         // // fire the create action

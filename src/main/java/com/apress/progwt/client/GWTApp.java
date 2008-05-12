@@ -43,7 +43,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class GWTApp {
 
-    private static final String MANIFEST_URL = "site/manifest.json";
+    private static final String MANIFEST_URL = "manifest.json";
 
     private static String getLoadID(int id) {
         return "gwt-slot-" + id;

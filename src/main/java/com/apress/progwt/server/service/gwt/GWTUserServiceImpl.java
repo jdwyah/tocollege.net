@@ -38,6 +38,7 @@ public class GWTUserServiceImpl extends GWTController implements
 
             UserAndToken rtn = userService.getCurrentUserAndToken();
 
+           
             if (rtn.getUser() != null) {
                 log.info("GWT get current user... "
                         + rtn.getUser().getUsername());
@@ -56,10 +57,11 @@ public class GWTUserServiceImpl extends GWTController implements
 
                 rtn.setUser(fetched);
             }
+            log.debug("Returning "+rtn);
             return rtn;
 
         } catch (UsernameNotFoundException u) {
-            log.debug("No User Found " + u);
+            log.warn("No User Found " + u);
             throw new BusinessException(u);
         }
     }
