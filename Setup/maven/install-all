@@ -8,3 +8,4 @@
 ./install javax.servlet jstl 1.2 jstl-1.2.jar
 ./install com.sun.xml jaxb-impl 2.1 jaxb-impl-2.1.jar
 ./install javax.xml.bind jaxb-api 2.1 jaxb-api-2.1.jar
+./install com.facebook.api facebook-java-api 1.7.4 facebook-java-api-1.7.4.jar

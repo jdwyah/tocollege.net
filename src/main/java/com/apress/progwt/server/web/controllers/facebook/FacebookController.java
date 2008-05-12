@@ -78,7 +78,7 @@ public class FacebookController {
         
         map.addAttribute("userID", f.getUser());
         
-        map.addAttribute("sessionID", f.getFacebookRestClient().get_sessionKey());
+        map.addAttribute("sessionID", f.getFacebookRestClient()._getSessionKey());
         
         return "facebook/infinite";
         
@@ -166,7 +166,7 @@ public class FacebookController {
         
         FacebookRestClient client = f.getFacebookRestClient();
         
-        Long userID = client.get_userId();
+        Long userID = client._getUserId();
         
         String profileFBML = "profile from tocollege";
 

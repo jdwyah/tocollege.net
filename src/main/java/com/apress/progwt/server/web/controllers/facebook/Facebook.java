@@ -60,7 +60,7 @@ public class Facebook {
 			for (String friend : friends.split(",")) {
 				friendsList.add(Long.parseLong(friend));
 			}
-			apiClient.setFriendsList(friendsList);
+			apiClient._setFriendsList(friendsList);
 		}
 		// caching of the "added" value
 		String added = fbParams.get("added");
@@ -155,7 +155,7 @@ public class Facebook {
 					doGetSession(request
 							.getParameter("auth_token"));
 				
-					setUser(apiClient.get_userId(), apiClient.get_sessionKey(), apiClient.get_expires());
+					setUser(apiClient._getUserId(), apiClient._getSessionKey(), apiClient._getExpires());
 				} catch (Exception e) {
 					// if auth_token is stale (browser url doesn't change,
 					// server is restarted), then auth_getSession throws
@@ -210,7 +210,7 @@ public class Facebook {
 		}
 
 		this.user = user_id;
-		this.apiClient.set_sessionKey(session_key);
+		this.apiClient._setSessionKey(session_key);
 	}
 	
 	private void addCookie (String key, String value, int age) {
