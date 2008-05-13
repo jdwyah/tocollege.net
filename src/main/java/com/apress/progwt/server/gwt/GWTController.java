@@ -64,10 +64,10 @@ import com.google.gwt.user.server.rpc.SerializationPolicy;
  */
 
 public class GWTController extends RemoteServiceServlet implements
-        ServletContextAware, Controller, RemoteService, GWTSerializer {
+ServletContextAware, Controller, RemoteService, GWTSerializer {
 
     private static final Logger log = Logger
-            .getLogger(GWTController.class);
+    .getLogger(GWTController.class);
 
     private static final long serialVersionUID = 5399966488983189122L;
 
@@ -79,7 +79,7 @@ public class GWTController extends RemoteServiceServlet implements
 
     @Override
     public String processCall(String payload)
-            throws SerializationException {
+    throws SerializationException {
         try {
 
             RPCRequest rpcRequest = RPC.decodeRequest(payload, this
@@ -91,10 +91,16 @@ public class GWTController extends RemoteServiceServlet implements
 
         } catch (IncompatibleRemoteServiceException ex) {
             log
-                    .error(
-                            "An IncompatibleRemoteServiceException was thrown while processing this call.",
-                            ex);
+            .error(
+                    "An IncompatibleRemoteServiceException was thrown while processing this call.",
+                    ex);
             return RPC.encodeResponseForFailure(null, ex);
+        } catch (Exception e){
+            log
+            .error(
+                    "An Exception was thrown while processing this call.",
+                    e);
+            return RPC.encodeResponseForFailure(null, e);
         }
     }
 
@@ -135,7 +141,7 @@ public class GWTController extends RemoteServiceServlet implements
      * async call.
      */
     public String serializeObject(Object object, Class<?> clazz)
-            throws InfrastructureException {
+    throws InfrastructureException {
 
         ServerSerializationStreamWriter2335 serializer = getWriter();
 
@@ -177,8 +183,14 @@ public class GWTController extends RemoteServiceServlet implements
 
     public ModelAndView handleRequest(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        doPost(request, response);
-        return null;
+        try{
+            doPost(request, response);            
+            return null;
+        }catch (Exception ex) {
+            log.error("handleRequest error "+ex);
+            //ex.printStackTrace();
+            return null;
+        }
     }
 
     private ServletContext servletContext;

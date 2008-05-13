@@ -71,7 +71,6 @@ public class CollegeEntry extends Composite implements Orderable {
         DisclosurePanel disclosurePanel = new DisclosurePanel(" ");
         disclosurePanel.add(getInfoPanel());
         mainPanel.add(disclosurePanel);
-        mainPanel.setCellWidth(disclosurePanel, "20px");
         mainPanel.setCellHorizontalAlignment(disclosurePanel,
                 HorizontalPanel.ALIGN_RIGHT);
         mainPanel.setStylePrimaryName("TC-CollegeEntry");
