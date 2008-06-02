@@ -24,9 +24,9 @@ import com.apress.progwt.client.map.MyCollegeMap;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.SourcesTabEvents;
 import com.google.gwt.user.client.ui.TabListener;
-import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class MyPage extends Composite implements TabListener,
@@ -36,7 +36,7 @@ public class MyPage extends Composite implements TabListener,
 
     private User thisUser;
 
-    private TabPanel mainPanel;
+    private DecoratedTabPanel mainPanel;
 
     private MyRankings myRankings;
 
@@ -50,7 +50,7 @@ public class MyPage extends Composite implements TabListener,
 
         serviceCache = collegeBoundApp.getServiceCache();
 
-        mainPanel = new TabPanel();
+        mainPanel = new DecoratedTabPanel();
         mainPanel.setStylePrimaryName("MainTabs");
         mainPanel.getDeckPanel().setAnimationEnabled(true);
 

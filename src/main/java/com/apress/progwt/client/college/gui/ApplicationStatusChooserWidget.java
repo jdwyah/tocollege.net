@@ -25,16 +25,16 @@ import com.apress.progwt.client.widget.datepicker.SimpleDatePicker;
 import com.google.gwt.user.client.ui.ChangeListener;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ApplicationStatusChooserWidget extends Composite {
 
     private ServiceCache serviceCache;
-    private PopupPanel popupP;
+    private DecoratedPopupPanel popupP;
     private Label lab;
 
     public ApplicationStatusChooserWidget(Application application,
@@ -63,7 +63,7 @@ public class ApplicationStatusChooserWidget extends Composite {
             chooseP.add(hp);
         }
         chooseP.add(new Label("Click Status To Choose"));
-        popupP = new PopupPanel(true);
+        popupP = new DecoratedPopupPanel(true);
         popupP.add(chooseP);
         popupP.addStyleName("TC-Popup");
         popupP.addStyleName("TC-Popup-Status");

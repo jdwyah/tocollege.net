@@ -11,17 +11,17 @@
             <name>Spring Portfolio Milestone Repository</name>
             <url>http://s3.amazonaws.com/maven.springframework.org/milestone</url>
        </repository>
-  </repositories>  
+  </repositories>   
   <properties>
   	<maven.test.failure.ignore>true</maven.test.failure.ignore>
   	<maven.test.error.ignore>true</maven.test.error.ignore>
   </properties>
   <build>
-		<plugins>                 
-			<plugin>
-				<groupId>org.xi8ix</groupId>
-				<artifactId>xi8ix-gwtc</artifactId>
-				<version>1.3.3.3</version>
+		<plugins>      
+			  <plugin>
+				<groupId>net.tocollege</groupId>
+				<artifactId>gwt_maven</artifactId>
+				<version>1.0.0</version>
 				<executions>
 					<execution>
 						<phase>compile</phase>
@@ -35,7 +35,7 @@
 						<module>com.apress.progwt.Interactive</module>
 					</modules>
 
-					<maxMemory>512</maxMemory>
+					<maxMemory>1024</maxMemory>
 
 					<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 				</configuration>
@@ -157,18 +157,18 @@
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>1.5.0-M2</version>			
+			<version>1.5.0.RC1</version>			
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>${gwt-dev}</artifactId>
-			<version>1.5.0-M2</version>
+			<version>1.5.0.RC1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>gwt-servlet</artifactId>               
-			<version>1.5.0-M2</version>
+			<version>1.5.0.RC1</version>
             <scope>runtime</scope>
 		</dependency>
            <dependency>

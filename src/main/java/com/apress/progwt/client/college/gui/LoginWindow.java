@@ -20,6 +20,7 @@ import com.apress.progwt.client.Interactive;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FormHandler;
 import com.google.gwt.user.client.ui.FormPanel;
@@ -32,7 +33,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.PopupListener;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -111,7 +111,7 @@ public class LoginWindow extends DialogBox {
 
         VerticalPanel panel = new VerticalPanel();
 
-        TabPanel tabs = new TabPanel();
+        DecoratedTabPanel tabs = new DecoratedTabPanel();
         tabs.add(getOpenIDTab(), "OpenID");
         tabs.add(getUPTab(), "Username/Password");
         tabs.selectTab(1);

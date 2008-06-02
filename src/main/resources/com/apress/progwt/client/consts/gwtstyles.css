@@ -300,94 +300,82 @@ a:visited {
 	background-color: #C3D9FF;
 	padding: 1px;
 }
-
-.gwt-TabBar {
+.gwt-DecoratedTabBar {
 }
-
-.gwt-TabBar .gwt-TabBarFirst {
+.gwt-DecoratedTabBar .gwt-TabBarFirst {
   width: 5px;  /* first tab distance from the left */
 }
-
-.gwt-TabBar .gwt-TabBarRest {
+.gwt-DecoratedTabBar .gwt-TabBarRest {
 }
-
-.gwt-TabBar .gwt-TabBarItem {
+.gwt-DecoratedTabBar .gwt-TabBarItem {
   border-collapse: collapse;
   margin-left: 6px;
 }
-
-.gwt-TabBar .gwt-TabBarItem .topCenter {
+.gwt-DecoratedTabBar .tabTopCenter {
   padding: 0px;
-  background: url('%hborder%') 0px -32px repeat-x;
+  background: #d0e4f6;
 }
-
-.gwt-TabBar .gwt-TabBarItem .topLeft,
-.gwt-TabBar .gwt-TabBarItem .topRight {
+.gwt-DecoratedTabBar .tabTopLeft,
+.gwt-DecoratedTabBar .tabTopRight {
   padding: 0px;
   zoom: 1;
 }
-
-.gwt-TabBar .gwt-TabBarItem .topLeftInner,
-.gwt-TabBar .gwt-TabBarItem .topRightInner {
+.gwt-DecoratedTabBar .tabTopLeftInner,
+.gwt-DecoratedTabBar .tabTopRightInner {
   width: 6px;
   height: 6px;
 }
-
-.gwt-TabBar .gwt-TabBarItem .middleLeft,
-.gwt-TabBar .gwt-TabBarItem .middleRight {
+.gwt-DecoratedTabBar .tabMiddleLeft,
+.gwt-DecoratedTabBar .tabMiddleRight {
   width: 6px;
   padding: 0px;
-  background: #e4e9f3 url('%bg_tab%') repeat-x;
+  background: #d0e4f6;
 }
-
-.gwt-TabBar .gwt-TabBarItem .middleCenter {
+.gwt-DecoratedTabBar .tabMiddleLeftInner,
+.gwt-DecoratedTabBar .tabMiddleRightInner {
+  width: 1px;
+  height: 1px;
+}
+.gwt-DecoratedTabBar .tabMiddleCenter {
   padding: 0px 4px 2px 4px;
   cursor: pointer;
   cursor: hand;
+  color: black;
   font-weight: bold;
   text-align: center;
-  background: #e4e9f3 url('%bg_tab%') repeat-x;
+  background: #d0e4f6;
 }
-
-.gwt-TabBar .gwt-TabBarItem-selected .topCenter {
-  background: url('%hborder%') 0px -38px repeat-x;
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter {
+  background: #92c1f0;
 }
-
-.gwt-TabBar .gwt-TabBarItem-selected .middleLeft,
-.gwt-TabBar .gwt-TabBarItem-selected .middleRight {
-  background: #92c1f0 url('%bg_tab_selected%') repeat-x;
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft,
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+  background: #92c1f0;
 }
-
-.gwt-TabBar .gwt-TabBarItem-selected .middleCenter {
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
   cursor: default;
-  background: #92c1f0 url('%bg_tab_selected%') repeat-x;
+  background: #92c1f0;
 }
-
-html>body .gwt-TabBar .gwt-TabBarItem .topLeft {
+html>body .gwt-DecoratedTabBar .tabTopLeft {
   background: url('%corner%') no-repeat 0px -55px;
 }
-
-html>body .gwt-TabBar .gwt-TabBarItem .topRight {
+html>body .gwt-DecoratedTabBar .tabTopRight {
   background: url('%corner%') no-repeat -6px -55px;
 }
-
-html>body .gwt-TabBar .gwt-TabBarItem-selected .topLeft {
+html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeft {
   background-position: 0px -61px;
 }
-
-html>body .gwt-TabBar .gwt-TabBarItem-selected .topRight {
+html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
   background-position: -6px -61px;
 }
-
-* html .gwt-TabBar .gwt-TabBarItem .topLeftInner {
+* html .gwt-DecoratedTabBar .tabTopLeftInner {
   width: 5px;
   height: 61px;
   margin-top: -55px;
   overflow: hidden;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/corner.png',sizingMethod='crop');
 }
-
-* html .gwt-TabBar .gwt-TabBarItem .topRightInner {
+* html .gwt-DecoratedTabBar .tabTopRightInner {
   width: 12px;
   height: 61px;
   margin-top: -55px;
@@ -395,27 +383,23 @@ html>body .gwt-TabBar .gwt-TabBarItem-selected .topRight {
   overflow: hidden;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/corner.png',sizingMethod='crop');
 }
-
-* html .gwt-TabBar .gwt-TabBarItem-selected .topLeftInner {
+* html .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeftInner {
   width: 5px;
   height: 67px;
   margin-top: -61px;
   overflow: hidden;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/corner.png',sizingMethod='crop');
 }
-
-* html .gwt-TabBar .gwt-TabBarItem-selected .topRightInner {
+* html .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRightInner {
   width: 12px;
   height: 67px;
   margin-top: -61px;
   margin-left: -6px;
-  overflow: hidden;  
+  overflow: hidden;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/corner.png',sizingMethod='crop');
 }
-
 .gwt-TabPanel {
 }
-
 .gwt-TabPanelBottom {
   border-color: #92c1f0;
   border-style: solid;
