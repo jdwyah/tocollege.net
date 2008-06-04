@@ -1,0 +1,1 @@
+mvn -Dwebdir=src/main/webapp -Dmaven.compiler.gwt.skip=true jetty:run
