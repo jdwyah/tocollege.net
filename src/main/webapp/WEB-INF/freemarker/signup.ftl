@@ -3,7 +3,22 @@
 <#import "common.ftl" as common/>
 <head>
   <title><@spring.message "signup.title"/></title>
+
+<script>
+function utmx_section(){}function utmx(){}
+(function(){var k='1102045388',d=document,l=d.location,c=d.cookie;function f(n){
+if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return c.substring(i+n.
+length+1,j<0?c.length:j)}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;
+d.write('<sc'+'ript src="'+
+'http'+(l.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com'
++'/siteopt.js?v=1&utmxkey='+k+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='
++new Date().valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+'" type="text/javascript" charset="utf-8"></sc'+'ript>')})();
+</script><script>utmx("url",'A/B');</script>
+
 </head>
+
+
 
 <body id="signup">
    
@@ -99,6 +114,16 @@
 
 	</div>
 		
+<script>
+if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
+'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
+'.google-analytics.com/urchin.js'+'"></sc'+'ript>')
+</script>
+<script>
+_uacct = 'UA-1880676-4';
+urchinTracker("/1102045388/test");
+</script>
+
 
 </body>
 </html>

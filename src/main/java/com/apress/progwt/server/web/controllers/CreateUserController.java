@@ -15,6 +15,9 @@
  */
 package com.apress.progwt.server.web.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,11 +42,19 @@ public class CreateUserController extends SimpleFormController {
     protected Object formBackingObject(HttpServletRequest req)
             throws Exception {
         CreateUserRequestCommand com = new CreateUserRequestCommand();
-
+        
         com.setEmail(req.getParameter("email"));
         com.setRandomkey(req.getParameter("secretkey"));
 
         return com;
+    }
+
+    @Override
+    protected Map<String, Object> referenceData(HttpServletRequest request)
+            throws Exception {
+        Map<String,Object> reference = new HashMap<String, Object>();     
+        reference.put("hideSecretKey", request.getParameter("hideSecretKey"));
+        return reference;
     }
 
     @Override

@@ -45,6 +45,7 @@ public class ControllerUtil {
         Map<String, Object> model = new HashMap<String, Object>();
 
         User su = null;
+        model.put("message", req.getParameter("message"));
         try {
             su = userService.getCurrentUser();
             model.put("user", su);

@@ -56,9 +56,9 @@
      <bean id="signupIfPossibleController" class="com.apress.progwt.server.web.controllers.SignupIfPossibleController">
           <property name="mailingListView" value="redirect:/mailinglist.html" />
           <property name="invitationService" ref="invitationService" />
-          <property name="signupView" value="signup" />
           <property name="userService" ref="userService" />
      </bean>
+	
      <bean id="mailingListController" class="com.apress.progwt.server.web.controllers.MailingListController">
           <property name="formView" value="mailinglist" />
           <property name="successView" value="redirect:/index.html" />
@@ -75,12 +75,19 @@
 
      <bean id="createUserController" class="com.apress.progwt.server.web.controllers.CreateUserController">
           <property name="formView" value="signup" />
-          <property name="successView" value="redirect:/index.html" /><!-- redirect index needs command in model -->
+          <property name="successView" value="redirect:/congratulations.html" /><!-- redirect index needs command in model -->
           <property name="validator" ref="createUserValidator" />
           <property name="userService" ref="userService" />
           <property name="invitationService" ref="invitationService" />
      </bean>
-
+	 <!-- For A/B testing-->
+     <bean id="createUser2Controller" class="com.apress.progwt.server.web.controllers.CreateUser2Controller">
+          <property name="formView" value="signup2" />
+          <property name="successView" value="redirect:/congratulations.html" /><!-- redirect index needs command in model -->
+          <property name="validator" ref="createUserValidator" />
+          <property name="userService" ref="userService" />
+          <property name="invitationService" ref="invitationService" />
+     </bean>
      <bean id="openIDLoginStartController" class="com.apress.progwt.server.web.controllers.OpenIDLoginController">
           <property name="consumer" ref="openIDConsumer" />
           <property name="openIDFilter" ref="openIDResponseProcess"/>
@@ -113,7 +120,8 @@
                 <prop key="/college/*">collegeController</prop>
                 
                 <prop key="/mailinglist.html">mailingListController</prop>
-                <prop key="/signup.html">createUserController</prop>                
+                <prop key="/signup.html">createUserController</prop>
+				<prop key="/signup2.html">createUser2Controller</prop>                  
 
 				<prop key="/accessDenied.html">errorController</prop>
 				<prop key="/servletErrorView.html">errorController</prop>						

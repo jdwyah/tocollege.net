@@ -46,6 +46,10 @@ public class LoginController {
                 .getAttribute(
                         AbstractProcessingFilter.SPRING_SECURITY_LAST_EXCEPTION_KEY);
 
+        // parameter may be on param line if we're redirect:ed here
+        // (createUserController)
+        map.addAttribute("message", req.getParameter("message"));
+        
         if (authExcept != null) {
             String message = authExcept.getMessage();
             log.info("Login Error " + message + " uname: "

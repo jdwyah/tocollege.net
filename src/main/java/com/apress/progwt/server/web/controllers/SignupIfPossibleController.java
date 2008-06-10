@@ -39,7 +39,6 @@ public class SignupIfPossibleController extends AbstractController {
 
     private InvitationService invitationService;
     private UserService userService;
-    private String signupView;
     private String mailingListView;
 
     @Override
@@ -52,26 +51,26 @@ public class SignupIfPossibleController extends AbstractController {
 
             Calendar c = Calendar.getInstance();
             c.get(Calendar.DAY_OF_WEEK_IN_MONTH);
-            comm.setRandomkey(CryptUtils.hashString(invitationService
+            String secretKey = CryptUtils.hashString(invitationService
                     .getSalt()
-                    + c.get(Calendar.DAY_OF_WEEK_IN_MONTH)));
+                    + c.get(Calendar.DAY_OF_WEEK_IN_MONTH));
 
             model.put("hideSecretKey", true);
-            model.put("command", comm);
-            return new ModelAndView(getSignupView(), model);
+            model.put("secretkey", secretKey);
+
+           
+            if (req.getServletPath().contains("2")) {
+                return new ModelAndView("redirect:signup2.html", model);
+            } else {
+                return new ModelAndView("redirect:signup.html", model);
+            }
+                
         } else {
             return new ModelAndView(getMailingListView());
         }
     }
 
-    public String getSignupView() {
-        return signupView;
-    }
 
-    @Required
-    public void setSignupView(String signupView) {
-        this.signupView = signupView;
-    }
 
     public String getMailingListView() {
         return mailingListView;

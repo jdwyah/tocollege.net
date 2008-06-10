@@ -1,4 +1,4 @@
-call ./install.bat net.tocollege gwt_maven 1.0.0  gwt_maven-1.0.0.jar
+call ./install.bat net.tocollege gwt_maven 1.0.1  gwt_maven-1.0.1.jar
 call ./install.bat com.google gwt-incubator 0.0.1.build591 gwt-incubator-0.0.1.build591.jar
 call ./install.bat com.google gwt-google-apis 1.5.0.build235 gwt-google-apis-1.5.0.build235.jar
 call ./install.bat com.allen_sauer.gwt.dnd gwt-dnd 2.0.7 gwt-dnd-2.0.7.jar
