@@ -171,7 +171,7 @@ public class OneFourTenSerializationPolicy extends SerializationPolicy {
             return true;
         }
 
-        return SerializabilityUtil1940.hasCustomFieldSerializer(clazz) != null;
+        return SerializabilityUtil_1_5_3.hasCustomFieldSerializer(clazz) != null;
     }
 
 }

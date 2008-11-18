@@ -13,7 +13,13 @@
 				http://s3.amazonaws.com/maven.springframework.org/milestone
 			</url>
 		</repository>
-
+		<repository>
+			<id>jboss</id>
+			<name>JBoss Repository</name>
+			<url>
+				http://repository.jboss.org/maven2
+			</url>
+		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -45,7 +51,8 @@
 				</executions>
 				<configuration>
 					<modules>
-						<module>com.apress.progwt.Interactive</module>
+						<module>com.apress.progwt.Interactive
+						</module>
 					</modules>
 
 					<maxMemory>1024</maxMemory>
@@ -68,7 +75,8 @@
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
+				<artifactId>cobertura-maven-plugin
+				</artifactId>
 				<executions>
 					<execution>
 						<goals>
@@ -104,37 +112,36 @@
 			</plugin>
 		</plugins>
 
-		<!--  Eek, this totally screw with GWT ImageBundle creation
-			<resources>		     
-			<resource>
-			<directory>src/main/resources</directory>
-			<filtering>true</filtering>
-			</resource>
-			</resources>-->
+		<!--
+			Eek, this totally screw with GWT ImageBundle creation <resources>
+			<resource> <directory>src/main/resources</directory>
+			<filtering>true</filtering> </resource> </resources>
+		-->
 	</build>
-	<!-- an attempt to get maven filtering to help us keep passwords out of DB. Not currently deployed, because it didn't seem to be able to run on the webapps dir -->
-	<!-- http://sujitpal.blogspot.com/2006/10/maven2-multi-environment-filter-setup.html -->
-	<!-- http://maven.apache.org/guides/getting-started/index.html#How_do_I_filter_resource_files -->
+	<!--
+		an attempt to get maven filtering to help us keep passwords out of DB.
+		Not currently deployed, because it didn't seem to be able to run on
+		the webapps dir
+	-->
+	<!--
+		http://sujitpal.blogspot.com/2006/10/maven2-multi-environment-filter-setup.html
+	-->
+	<!--
+		http://maven.apache.org/guides/getting-started/index.html#How_do_I_filter_resource_files
+	-->
 	<!-- http://www.devx.com/Java/Article/32386/1954?pf=true -->
-	<!-- http://blog.arendsen.net/index.php/2005/03/12/configuration-management-with-spring/ -->
-	<!--   <properties>
-		<env>foo</env>
+	<!--
+		http://blog.arendsen.net/index.php/2005/03/12/configuration-management-with-spring/
+	-->
+	<!--
+		<properties> <env>foo</env>
 		<configLocation>src/main/resources/profile.properties</configLocation>
-		</properties>
-		<profiles>
-		<profile>
-		<id>dev</id>
-		<properties>
+		</properties> <profiles> <profile> <id>dev</id> <properties>
 		<configLocation>src/main/resources/profile.properties</configLocation>
-		</properties>
-		</profile>      
-		<profile>
-		<id>live</id>
-		<properties>
+		</properties> </profile> <profile> <id>live</id> <properties>
 		<configLocation>/etc/tocollege.net/profile.properties</configLocation>
-		</properties>
-		</profile>
-		</profiles> -->
+		</properties> </profile> </profiles>
+	-->
 	<profiles>
 		<profile>
 			<id>unix</id>
@@ -144,7 +151,7 @@
 				</os>
 			</activation>
 			<properties>
-				<gwt-dev>gwt-dev-linux</gwt-dev>
+				<gwt-dev>linux</gwt-dev>
 			</properties>
 		</profile>
 		<profile><!-- arg, must come AFTER linux or misidentifies -->
@@ -155,7 +162,7 @@
 				</os>
 			</activation>
 			<properties>
-				<gwt-dev>gwt-dev-mac</gwt-dev>
+				<gwt-dev>mac</gwt-dev>
 			</properties>
 		</profile>
 		<profile>
@@ -166,26 +173,27 @@
 				</os>
 			</activation>
 			<properties>
-				<gwt-dev>gwt-dev-windows</gwt-dev>
+				<gwt-dev>windows</gwt-dev>
 			</properties>
 		</profile>
 	</profiles>
 	<dependencies>
 		<dependency>
-			<groupId>com.google</groupId>
+			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>1.5.0.RC1</version>
+			<version>1.5.3</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google</groupId>
-			<artifactId>${gwt-dev}</artifactId>
-			<version>1.5.0.RC1</version>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<classifier>${gwt-dev}</classifier>
+			<version>1.5.3</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.google</groupId>
+			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-servlet</artifactId>
-			<version>1.5.0.RC1</version>
+			<version>1.5.3</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -206,7 +214,7 @@
 		<dependency>
 			<groupId>com.allen_sauer.gwt.log</groupId>
 			<artifactId>gwt-log</artifactId>
-			<version>1.5.1</version>
+			<version>1.5.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
@@ -214,16 +222,13 @@
 			<version>20070829</version>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.4.3</version>
+		<!--
+			<dependency> <groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId> <version>1.4.3</version>
+			</dependency> <dependency> <groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId> <version>1.4.3</version>
 			</dependency>
-			<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.4.3</version>
-			</dependency> -->
+		-->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -242,33 +247,16 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>2.0-M2</version>
-			<!-- exlucsions necessary for a m2eclipse bug, not for regular command line Maven -->
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-context</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-support</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.openid4java</groupId>
-			<artifactId>openid4java</artifactId>
-			<version>0.9.3</version>
+			<groupId>org.springframework.security
+			</groupId>
+			<artifactId>spring-security-openid</artifactId>
+			<version>2.0.4</version>
 		</dependency>
 
+
 		<dependency>
-			<groupId>org.springframework.security</groupId>
+			<groupId>org.springframework.security
+			</groupId>
 			<artifactId>spring-security-openid</artifactId>
 			<version>2.0.0</version>
 		</dependency>
@@ -417,15 +405,17 @@
 			<version>1.7.4</version>
 		</dependency>
 		<!-- 1.5 only, req'd for facebook -->
+
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 			<version>2.1</version>
 		</dependency>
+
 		<dependency>
-			<groupId>com.sun.xml</groupId>
+			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
-			<version>2.1</version>
+			<version>2.1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -441,13 +431,14 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
+				<artifactId>maven-surefire-report-plugin
+				</artifactId>
 			</plugin>
 			<!-- Uncomment for code coverage statistics -->
-			<!-- <plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				</plugin> -->
+			<!--
+				<plugin> <groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId> </plugin>
+			-->
 
 		</plugins>
 	</reporting>

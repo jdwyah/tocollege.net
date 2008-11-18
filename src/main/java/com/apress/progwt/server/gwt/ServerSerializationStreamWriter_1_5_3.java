@@ -1,3 +1,5 @@
+package com.apress.progwt.server.gwt;
+
 /*
  * Copyright 2008 Google Inc.
  * 
@@ -13,7 +15,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.apress.progwt.server.gwt;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -21,11 +22,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
-import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import com.google.gwt.user.client.rpc.SerializationException;
-import com.google.gwt.user.client.rpc.SerializationStreamWriter;
 import com.google.gwt.user.client.rpc.impl.AbstractSerializationStreamWriter;
 import com.google.gwt.user.server.rpc.SerializationPolicy;
 
@@ -33,15 +33,72 @@ import com.google.gwt.user.server.rpc.SerializationPolicy;
  * For internal use only. Used for server call serialization. This class is
  * carefully matched with the client-side version.
  */
-public final class ServerSerializationStreamWriter2335 extends
+public final class ServerSerializationStreamWriter_1_5_3 extends
     AbstractSerializationStreamWriter {
-
 
     public void setValueWriter(Class<?> clazz, ValueWriter writer) {
         CLASS_TO_VALUE_WRITER.put(clazz, writer);
     }
     
- 
+  /**
+   * Builds a string that evaluates into an array containing the given elements.
+   * This class exists to work around a bug in IE6/7 that limits the size of
+   * array literals.
+   */
+  public static class LengthConstrainedArray {
+    public static final int MAXIMUM_ARRAY_LENGTH = 1 << 15;
+    private static final String POSTLUDE = "])";
+    private static final String PRELUDE = "].concat([";
+
+    private final StringBuffer buffer;
+    private int count = 0;
+    private boolean needsComma = false;
+    private int total = 0;
+
+    public LengthConstrainedArray() {
+      buffer = new StringBuffer();
+    }
+
+    public LengthConstrainedArray(int capacityGuess) {
+      buffer = new StringBuffer(capacityGuess);
+    }
+
+    public void addToken(CharSequence token) {
+      total++;
+      if (count++ == MAXIMUM_ARRAY_LENGTH) {
+        if (total == MAXIMUM_ARRAY_LENGTH + 1) {
+          buffer.append(PRELUDE);
+        } else {
+          buffer.append("],[");
+        }
+        count = 0;
+        needsComma = false;
+      }
+
+      if (needsComma) {
+        buffer.append(",");
+      } else {
+        needsComma = true;
+      }
+
+      buffer.append(token);
+    }
+
+    public void addToken(int i) {
+      addToken(String.valueOf(i));
+    }
+
+    @Override
+    public String toString() {
+      if (total > MAXIMUM_ARRAY_LENGTH) {
+        return "[" + buffer.toString() + POSTLUDE;
+      } else {
+        return "[" + buffer.toString() + "]";
+      }
+    }
+  }
+
+  
 
   /**
    * Enumeration used to provided typed vector writers.
@@ -49,7 +106,7 @@ public final class ServerSerializationStreamWriter2335 extends
   private enum VectorWriter {
     BOOLEAN_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         boolean[] vector = (boolean[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -59,7 +116,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     BYTE_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         byte[] vector = (byte[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -69,7 +126,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     CHAR_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         char[] vector = (char[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -79,7 +136,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     DOUBLE_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         double[] vector = (double[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -89,7 +146,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     FLOAT_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         float[] vector = (float[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -99,7 +156,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     INT_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         int[] vector = (int[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -109,7 +166,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     LONG_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         long[] vector = (long[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -119,7 +176,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     OBJECT_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance)
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance)
           throws SerializationException {
         Object[] vector = (Object[]) instance;
         stream.writeInt(vector.length);
@@ -130,7 +187,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     SHORT_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         short[] vector = (short[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -140,7 +197,7 @@ public final class ServerSerializationStreamWriter2335 extends
     },
     STRING_VECTOR {
       @Override
-      void write(ServerSerializationStreamWriter2335 stream, Object instance) {
+      void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance) {
         String[] vector = (String[]) instance;
         stream.writeInt(vector.length);
         for (int i = 0, n = vector.length; i < n; ++i) {
@@ -149,11 +206,19 @@ public final class ServerSerializationStreamWriter2335 extends
       }
     };
 
-    abstract void write(ServerSerializationStreamWriter2335 stream, Object instance)
+    abstract void write(ServerSerializationStreamWriter_1_5_3 stream, Object instance)
         throws SerializationException;
   }
 
-  private static final char NON_BREAKING_HYPHEN = '\u2011';
+  /**
+   * Map of {@link Class} objects to {@link ValueWriter}s.
+   */
+  private static final Map<Class<?>, ValueWriter> CLASS_TO_VALUE_WRITER = new IdentityHashMap<Class<?>, ValueWriter>();
+
+  /**
+   * Map of {@link Class} vector objects to {@link VectorWriter}s.
+   */
+  private static final Map<Class<?>, VectorWriter> CLASS_TO_VECTOR_WRITER = new IdentityHashMap<Class<?>, VectorWriter>();
 
   /**
    * Number of escaped JS Chars.
@@ -186,15 +251,7 @@ public final class ServerSerializationStreamWriter2335 extends
       '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D',
       'E', 'F'};
 
-  /**
-   * Map of {@link Class} objects to {@link ValueWriter}s.
-   */
-  private static final Map<Class<?>, ValueWriter> CLASS_TO_VALUE_WRITER = new IdentityHashMap<Class<?>, ValueWriter>();
-
-  /**
-   * Map of {@link Class} vector objects to {@link VectorWriter}s.
-   */
-  private static final Map<Class<?>, VectorWriter> CLASS_TO_VECTOR_WRITER = new IdentityHashMap<Class<?>, VectorWriter>();
+  private static final char NON_BREAKING_HYPHEN = '\u2011';
 
   static {
     /*
@@ -222,68 +279,66 @@ public final class ServerSerializationStreamWriter2335 extends
     CLASS_TO_VECTOR_WRITER.put(short[].class, VectorWriter.SHORT_VECTOR);
     CLASS_TO_VECTOR_WRITER.put(String[].class, VectorWriter.STRING_VECTOR);
 
-
     CLASS_TO_VALUE_WRITER.put(boolean.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeBoolean(((Boolean) instance).booleanValue());
         }
     });
     CLASS_TO_VALUE_WRITER.put(byte.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeByte(((Byte) instance).byteValue());
         }
     });
     CLASS_TO_VALUE_WRITER.put(char.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeChar(((Character) instance).charValue());
         }
     });
     CLASS_TO_VALUE_WRITER.put(double.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeDouble(((Double) instance).doubleValue());
         }
     });
     CLASS_TO_VALUE_WRITER.put(float.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeFloat(((Float) instance).floatValue());
         }
     });
     CLASS_TO_VALUE_WRITER.put(int.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeInt(((Integer) instance).intValue());
         }
     });
     CLASS_TO_VALUE_WRITER.put(long.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeLong(((Long) instance).longValue());
         }
     });
     CLASS_TO_VALUE_WRITER.put(Object.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeObject(instance);
         }
     });
     CLASS_TO_VALUE_WRITER.put(short.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeShort(((Short) instance).shortValue());
         }
     });
     CLASS_TO_VALUE_WRITER.put(String.class, new ValueWriter() {
-        public void write(ServerSerializationStreamWriter2335 stream,
+        public void write(ServerSerializationStreamWriter_1_5_3 stream,
                 Object instance) throws SerializationException {
             stream.writeString((String) instance);
         }
     });
-    
   }
 
   /**
@@ -303,11 +358,7 @@ public final class ServerSerializationStreamWriter2335 extends
 
     for (int i = 0, n = input.length; i < n; ++i) {
       char c = input[i];
-      if (c < NUMBER_OF_JS_ESCAPED_CHARS && JS_CHARS_ESCAPED[c] != 0) {
-        charVector.add(JS_ESCAPE_CHAR);
-        charVector.add(JS_CHARS_ESCAPED[c]);
-      } else if (needsUnicodeEscape(c)) {
-        charVector.add(JS_ESCAPE_CHAR);
+      if (needsUnicodeEscape(c)) {
         unicodeEscape(c, charVector);
       } else {
         charVector.add(c);
@@ -376,43 +427,57 @@ public final class ServerSerializationStreamWriter2335 extends
    * </ol>
    */
   private static boolean needsUnicodeEscape(char ch) {
-    switch (Character.getType(ch)) {
-      // Conservative
-      case Character.COMBINING_SPACING_MARK:
-      case Character.ENCLOSING_MARK:
-      case Character.NON_SPACING_MARK:
-      case Character.UNASSIGNED:
-      case Character.PRIVATE_USE:
-      case Character.SPACE_SEPARATOR:
-      case Character.CONTROL:
-
-        // Minimal
-      case Character.LINE_SEPARATOR:
-      case Character.FORMAT:
-      case Character.PARAGRAPH_SEPARATOR:
-      case Character.SURROGATE:
+    switch (ch) {
+      case ' ':
+        // ASCII space gets caught in SPACE_SEPARATOR below, but does not
+        // need to be escaped
+        return false;
+      case JS_QUOTE_CHAR:
+      case JS_ESCAPE_CHAR:
+        // these must be quoted or they will break the protocol
         return true;
-
-      default:
-        if (ch == NON_BREAKING_HYPHEN) {
+      case NON_BREAKING_HYPHEN:
           // This can be expanded into a break followed by a hyphen
           return true;
+      default:
+        switch (Character.getType(ch)) {
+          // Conservative
+          case Character.COMBINING_SPACING_MARK:
+          case Character.ENCLOSING_MARK:
+          case Character.NON_SPACING_MARK:
+          case Character.UNASSIGNED:
+          case Character.PRIVATE_USE:
+          case Character.SPACE_SEPARATOR:
+          case Character.CONTROL:
+
+            // Minimal
+          case Character.LINE_SEPARATOR:
+          case Character.FORMAT:
+          case Character.PARAGRAPH_SEPARATOR:
+          case Character.SURROGATE:
+            return true;
+
+          default:
+            break;
         }
         break;
     }
-
     return false;
   }
 
   /**
-   * Writes either the two or four character escape sequence for a character.
-   * 
+   * Writes a safe escape sequence for a character.  Some characters have a
+   * short form, such as \n for U+000D, while others are represented as \\xNN
+   * or \\uNNNN.
    * 
    * @param ch character to unicode escape
    * @param charVector char vector to receive the unicode escaped representation
    */
   private static void unicodeEscape(char ch, CharVector charVector) {
-    if (ch < 256) {
+    charVector.add(JS_ESCAPE_CHAR);
+    if (ch < NUMBER_OF_JS_ESCAPED_CHARS && JS_CHARS_ESCAPED[ch] != 0) {
+      charVector.add(JS_CHARS_ESCAPED[ch]);
+    } else if (ch < 256) {
       charVector.add('x');
       charVector.add(NIBBLE_TO_HEX_CHAR[(ch >> 4) & 0x0F]);
       charVector.add(NIBBLE_TO_HEX_CHAR[ch & 0x0F]);
@@ -425,13 +490,13 @@ public final class ServerSerializationStreamWriter2335 extends
     }
   }
 
+  private final SerializationPolicy serializationPolicy;
+
   private ArrayList<String> tokenList = new ArrayList<String>();
 
   private int tokenListCharCount;
 
-  private final SerializationPolicy serializationPolicy;
-
-  public ServerSerializationStreamWriter2335(SerializationPolicy serializationPolicy) {
+  public ServerSerializationStreamWriter_1_5_3(SerializationPolicy serializationPolicy) {
     this.serializationPolicy = serializationPolicy;
   }
 
@@ -466,21 +531,25 @@ public final class ServerSerializationStreamWriter2335 extends
     // We take a guess at how big to make to buffer to avoid numerous resizes.
     //
     int capacityGuess = 2 * tokenListCharCount + 2 * tokenList.size();
-    StringBuffer buffer = new StringBuffer(capacityGuess);
-    buffer.append("[");
-    writePayload(buffer);
-    writeStringTable(buffer);
-    writeHeader(buffer);
-    buffer.append("]");
-    return buffer.toString();
+    LengthConstrainedArray stream = new LengthConstrainedArray(capacityGuess);
+    writePayload(stream);
+    writeStringTable(stream);
+    writeHeader(stream);
+
+    return stream.toString();
   }
 
   public void writeLong(long fieldValue) {
     /*
-     * Marshal down to client as a string; if we tried to marshal as a number
-     * the JSON eval would lose precision.
+     * Client code represents longs internally as an array of two Numbers. In
+     * order to make serialization of longs faster, we'll send the component
+     * parts so that the value can be directly reconstituted on the client.
      */
-    writeString(Long.toString(fieldValue, 16));
+    double[] parts = makeLongComponents((int) (fieldValue >> 32),
+        (int) fieldValue);
+    assert parts.length == 2;
+    writeDouble(parts[0]);
+    writeDouble(parts[1]);
   }
 
   @Override
@@ -496,11 +565,7 @@ public final class ServerSerializationStreamWriter2335 extends
     assert (instance != null);
 
     Class<?> clazz = getClassForSerialization(instance);
-    if (shouldEnforceTypeVersioning()) {
-      return SerializabilityUtil1940.encodeSerializedInstanceReference(clazz);
-    } else {
-      return SerializabilityUtil1940.getSerializedTypeName(clazz);
-    }
+    return SerializabilityUtil_1_5_3.encodeSerializedInstanceReference(clazz);
   }
 
   @Override
@@ -540,7 +605,7 @@ public final class ServerSerializationStreamWriter2335 extends
       throws SerializationException {
     assert (instance != null);
 
-    Field[] serializableFields = SerializabilityUtil1940.applyFieldSerializationPolicy(instanceClass);
+    Field[] serializableFields = SerializabilityUtil_1_5_3.applyFieldSerializationPolicy(instanceClass);
     for (Field declField : serializableFields) {
       assert (declField != null);
 
@@ -575,7 +640,7 @@ public final class ServerSerializationStreamWriter2335 extends
       throws SerializationException {
     assert (instance != null);
 
-    Class<?> customSerializer = SerializabilityUtil1940.hasCustomFieldSerializer(instanceClass);
+    Class<?> customSerializer = SerializabilityUtil_1_5_3.hasCustomFieldSerializer(instanceClass);
     if (customSerializer != null) {
       // Use custom field serializer
       serializeWithCustomSerializer(customSerializer, instance, instanceClass);
@@ -592,15 +657,16 @@ public final class ServerSerializationStreamWriter2335 extends
   private void serializeWithCustomSerializer(Class<?> customSerializer,
       Object instance, Class<?> instanceClass) throws SerializationException {
 
-    Method serialize;
     try {
       assert (!instanceClass.isArray());
 
-      serialize = customSerializer.getMethod("serialize",
-          SerializationStreamWriter.class, instanceClass);
-
-      serialize.invoke(null, this, instance);
-
+      for (Method method : customSerializer.getMethods()) {
+        if ("serialize".equals(method.getName())) {
+          method.invoke(null, this, instance);
+          return;
+        }
+      }
+      throw new NoSuchMethodException("serialize");
     } catch (SecurityException e) {
       throw new SerializationException(e);
 
@@ -622,35 +688,25 @@ public final class ServerSerializationStreamWriter2335 extends
    * Notice that the field are written in reverse order that the client can just
    * pop items out of the stream.
    */
-  private void writeHeader(StringBuffer buffer) {
-    buffer.append(",");
-    buffer.append(getFlags());
-    buffer.append(",");
-    buffer.append(getVersion());
+  private void writeHeader(LengthConstrainedArray stream) {
+    stream.addToken(getFlags());
+    stream.addToken(getVersion());
   }
 
-  private void writePayload(StringBuffer buffer) {
-    for (int i = tokenList.size() - 1; i >= 0; --i) {
-      String token = tokenList.get(i);
-      buffer.append(token);
-      if (i > 0) {
-        buffer.append(",");
-      }
+  private void writePayload(LengthConstrainedArray stream) {
+    ListIterator<String> tokenIterator = tokenList.listIterator(tokenList.size());
+    while (tokenIterator.hasPrevious()) {
+      stream.addToken(tokenIterator.previous());
     }
   }
 
-  private void writeStringTable(StringBuffer buffer) {
-    List<String> stringTable = getStringTable();
-    if (tokenList.size() > 0) {
-      buffer.append(",");
+  private void writeStringTable(LengthConstrainedArray stream) {
+    LengthConstrainedArray tableStream = new LengthConstrainedArray();
+    for (String s : getStringTable()) {
+      tableStream.addToken(escapeString(s));
     }
-    buffer.append("[");
-    for (int i = 0, c = stringTable.size(); i < c; ++i) {
-      if (i > 0) {
-        buffer.append(",");
-      }
-      buffer.append(escapeString(stringTable.get(i)));
-    }
-    buffer.append("]");
+    stream.addToken(tableStream.toString());
   }
+
+
 }

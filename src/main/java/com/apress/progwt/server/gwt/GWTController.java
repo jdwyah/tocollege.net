@@ -84,7 +84,7 @@ ServletContextAware, Controller, RemoteService, GWTSerializer {
 
             RPCRequest rpcRequest = RPC.decodeRequest(payload, this
                     .getClass(), this);
-            ServerSerializationStreamWriter2335 writer = getWriter(rpcRequest);
+            ServerSerializationStreamWriter_1_5_3 writer = getWriter(rpcRequest);
 
             return RPC1524.invokeAndEncodeResponse(this, rpcRequest
                     .getMethod(), rpcRequest.getParameters(), writer);
@@ -104,7 +104,7 @@ ServletContextAware, Controller, RemoteService, GWTSerializer {
         }
     }
 
-    private ServerSerializationStreamWriter2335 getWriter(
+    private ServerSerializationStreamWriter_1_5_3 getWriter(
             RPCRequest rpcRequest) {
         return getWriter(rpcRequest.getSerializationPolicy());
     }
@@ -116,18 +116,18 @@ ServletContextAware, Controller, RemoteService, GWTSerializer {
      * 
      * @return
      */
-    private ServerSerializationStreamWriter2335 getWriter() {
+    private ServerSerializationStreamWriter_1_5_3 getWriter() {
         return getWriter(OneFourTenSerializationPolicy.getInstance());
     }
 
-    private ServerSerializationStreamWriter2335 getWriter(
+    private ServerSerializationStreamWriter_1_5_3 getWriter(
             SerializationPolicy serializationPolicy) {
 
-        ServerSerializationStreamWriter2335 writer = new ServerSerializationStreamWriter2335(
+        ServerSerializationStreamWriter_1_5_3 writer = new ServerSerializationStreamWriter_1_5_3(
                 serializationPolicy);
 
         writer.setValueWriter(Object.class, new ValueWriter() {
-            public void write(ServerSerializationStreamWriter2335 stream,
+            public void write(ServerSerializationStreamWriter_1_5_3 stream,
                     Object instance) throws SerializationException {
                 stream.writeObject(HibernateFilter.filter(instance));
             }
@@ -143,7 +143,7 @@ ServletContextAware, Controller, RemoteService, GWTSerializer {
     public String serializeObject(Object object, Class<?> clazz)
     throws InfrastructureException {
 
-        ServerSerializationStreamWriter2335 serializer = getWriter();
+        ServerSerializationStreamWriter_1_5_3 serializer = getWriter();
 
         try {
             serializer.serializeValue(object, clazz);

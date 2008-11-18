@@ -64,6 +64,10 @@ public class ServerSideUser implements UserDetails {
         public String getAuthority() {
             return auth;
         }
+
+        public int compareTo(Object o) {
+            throw new RuntimeException("Unimplemented");
+        }
     }
 
     public String getPassword() {
