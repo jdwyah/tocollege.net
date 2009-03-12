@@ -10,6 +10,8 @@ With that in mind I've built a full-sized web site called [ToCollege.net](http:/
 
 The book is essentially a walkthrough of this codebase. It explains how to get the site up and running on your localhost and goes into how the site is built. I hope you enjoy & please avail yourself of the [google group](http://groups.google.com/group/tocollege-net) if you have any questions.
 
+The wiki on the google code site(http://code.google.com/p/tocollege-net/) still has some good information, but please don't use the Google Code SVN repo it is no longer updated.
+
 Cheers,
 
 -Jeff Dwyer
